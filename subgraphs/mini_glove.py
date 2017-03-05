@@ -36,6 +36,11 @@ def main():
 	for pair in cosine_dists:
 		if cosine_dists[pair] > 0.5:
 			g.add_edge(pair[0], pair[1])
+			# I would use "weight" but that
+			# makes the visualization look funny
+			# "weight" will be helpful for
+			# running some NetworkX algorithms
+			g[pair[0]][pair[1]]["w"] = cosine_dists[pair]
 
 	draw(g, filename=OUTPUT_GRAPH)
 
