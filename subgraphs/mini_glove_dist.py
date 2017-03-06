@@ -1,5 +1,6 @@
 """
-This computes cosine distances for a subset of fruits/vegs.
+This computes cosine distances for a subset of fruits/vegs
+based on GloVe data.
 
 mcrae_fruitveg.txt is hand-picked list of fruits/vegs
 from the McRae concept dataset.
@@ -13,13 +14,14 @@ from scipy import spatial
 
 GLOVE_INPUT = "../glove/glove.6B.300d.txt"
 VOCAB = "mcrae_fruitveg.txt"
-OUTPUT = "fruitveg_sim.txt"
+OUTPUT = "fruitveg_sim_glove.txt"
 
 def main():
 	vocab_file = open(VOCAB, 'r')
 	vocabulary = set()
 	for line in vocab_file:
 		vocabulary.add(line.strip())
+		
 	f = open(GLOVE_INPUT, 'r')
 	vectors = defaultdict(list)
 	for line in f:

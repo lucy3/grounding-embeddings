@@ -17,9 +17,9 @@ on cosine similarities of words in glove.6B.300d.txt.
 import snap
 from collections import defaultdict
 
-INPUT_FILE = "fruitveg_sim.txt"
+INPUT_FILE = "fruitveg_sim_glove.txt"
 VOCAB = "mcrae_fruitveg.txt"
-OUTPUT_GRAPH = "fruitveg_out.png"
+OUTPUT_GRAPH = "fruitveg_out_glove.png"
 
 def get_cosine_dist():
 	d = defaultdict(float)
