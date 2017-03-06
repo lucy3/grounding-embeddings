@@ -14,7 +14,7 @@ from collections import defaultdict
 from nxpd import draw
 
 INPUT_FILE = "fruitveg_sim_glove.txt"
-VOCAB = "mcrae_fruitveg.txt"
+VOCAB = "vocab_fruitveg.txt"
 OUTPUT_GRAPH = "fruitveg_out_glove.png"
 
 def get_cosine_dist():

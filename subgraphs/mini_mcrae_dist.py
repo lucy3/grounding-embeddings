@@ -12,7 +12,7 @@ from the McRae concept dataset.
 MCRAE_INPUTS = ["../mcrae/cos_matrix_brm_IFR_1-200.txt",
 	"../mcrae/cos_matrix_brm_IFR_201-400.txt",
 	"../mcrae/cos_matrix_brm_IFR_401-541.txt"]
-VOCAB = "mcrae_fruitveg.txt"
+VOCAB = "vocab_fruitveg.txt"
 OUTPUT = "fruitveg_sim_mcrae.txt"
 
 def main():

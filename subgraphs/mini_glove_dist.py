@@ -13,7 +13,7 @@ from collections import defaultdict
 from scipy import spatial
 
 GLOVE_INPUT = "../glove/glove.6B.300d.txt"
-VOCAB = "mcrae_fruitveg.txt"
+VOCAB = "vocab_fruitveg.txt"
 OUTPUT = "fruitveg_sim_glove.txt"
 
 def main():

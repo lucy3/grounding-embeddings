@@ -18,7 +18,7 @@ import snap
 from collections import defaultdict
 
 INPUT_FILE = "fruitveg_sim_glove.txt"
-VOCAB = "mcrae_fruitveg.txt"
+VOCAB = "vocab_fruitveg.txt"
 OUTPUT_GRAPH = "fruitveg_out_glove.png"
 
 def get_cosine_dist():
