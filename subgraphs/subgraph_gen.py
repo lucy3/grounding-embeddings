@@ -2,7 +2,7 @@
 Using NetworkX
 
 This creates a small fruit/veg subgraph based
-on cosine similarities of words. 
+on cosine similarities of words.
 
 - input: cosine simlarities and vocabulary
 - output: graph png
@@ -14,14 +14,14 @@ from collections import defaultdict
 from nxpd import draw
 
 # # uncomment for GloVe data
-# INPUT_FILE = "fruitveg_sim_glove.txt"
-# VOCAB = "vocab_fruitveg.txt"
-# OUTPUT_GRAPH = "fruitveg_out_glove.png"
+# INPUT_FILE = "./fruitveg/fruitveg_sim_glove.txt"
+# VOCAB = "./fruitveg/vocab_fruitveg.txt"
+# OUTPUT_GRAPH = "./fruitveg/fruitveg_out_glove.png"
 
 # uncomment for McRae data
-INPUT_FILE = "fruitveg_sim_mcrae.txt"
-VOCAB = "vocab_fruitveg.txt"
-OUTPUT_GRAPH = "fruitveg_out_mcrae.png"
+INPUT_FILE = "./fruitveg/fruitveg_sim_mcrae.txt"
+VOCAB = "./fruitveg/vocab_fruitveg.txt"
+OUTPUT_GRAPH = "./fruitveg/fruitveg_out_mcrae.png"
 
 def get_cosine_dist():
 	d = defaultdict(float)
