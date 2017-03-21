@@ -22,14 +22,14 @@ import operator
 NUM_EDGES = 200
 
 # uncomment for GloVe data
-INPUT_FILE = "./fruitveg/fruitveg_sim_glove.txt"
-VOCAB = "./fruitveg/vocab_fruitveg.txt"
-OUTPUT_GRAPH = "./fruitveg/fruitveg_out_glove" + str(NUM_EDGES) + ".png"
+# INPUT_FILE = "./fruitveg/fruitveg_sim_glove.txt"
+# VOCAB = "./fruitveg/vocab_fruitveg.txt"
+# OUTPUT_GRAPH = "./fruitveg/fruitveg_out_glove" + str(NUM_EDGES) + ".png"
 
 # uncomment for McRae data
-# INPUT_FILE = "./fruitveg/fruitveg_sim_mcrae.txt"
-# VOCAB = "./fruitveg/vocab_fruitveg.txt"
-# OUTPUT_GRAPH = "./fruitveg/fruitveg_out_mcrae" + str(NUM_EDGES) + ".png"
+INPUT_FILE = "./fruitveg/fruitveg_sim_mcrae.txt"
+VOCAB = "./fruitveg/vocab_fruitveg.txt"
+OUTPUT_GRAPH = "./fruitveg/fruitveg_out_mcrae" + str(NUM_EDGES) + ".png"
 
 def get_cosine_dist():
 	d = defaultdict(float)
