@@ -1,7 +1,7 @@
 """
 Using NetworkX
 
-This creates a small fruit/veg subgraph based
+This creates a graph based
 on cosine similarities of words.
 
 - input: cosine simlarities and vocabulary
@@ -19,19 +19,29 @@ from collections import defaultdict
 from nxpd import draw
 import operator
 
-NUM_EDGES = 200
+NUM_EDGES = 400
 
-# uncomment for GloVe data
-INPUT_FILE = "./fruitveg/fruitveg_sim_glove.txt"
-VOCAB = "./fruitveg/vocab_fruitveg.txt"
-OUTPUT_GRAPH = "./fruitveg/fruitveg_out_glove" + str(NUM_EDGES) + ".png"
-OUTPUT_STATS = "./fruitveg/fruitveg_glove_stats.txt"
+# uncomment for GloVe fruitveg data
+# INPUT_FILE = "./fruitveg/fruitveg_sim_glove.txt"
+# VOCAB = "./fruitveg/vocab_fruitveg.txt"
+# OUTPUT_GRAPH = "./fruitveg/fruitveg_out_glove" + str(NUM_EDGES) + ".png"
+# OUTPUT_STATS = "./fruitveg/fruitveg_glove_stats.txt"
 
-# uncomment for McRae data
+# uncomment for ALL GloVe data
+# INPUT_FILE = "./all/sim_glove.txt"
+# VOCAB = "./all/vocab.txt"
+# OUTPUT_STATS = "./all/glove_stats.txt"
+
+# uncomment for McRae fruitveg data
 # INPUT_FILE = "./fruitveg/fruitveg_sim_mcrae.txt"
 # VOCAB = "./fruitveg/vocab_fruitveg.txt"
 # OUTPUT_GRAPH = "./fruitveg/fruitveg_out_mcrae" + str(NUM_EDGES) + ".png"
 # OUTPUT_STATS = "./fruitveg/fruitveg_mcrae_stats.txt"
+
+# uncomment for ALL McRae data
+INPUT_FILE = "./all/sim_mcrae.txt"
+VOCAB = "./all/vocab.txt"
+OUTPUT_STATS = "./all/mcrae_stats.txt"
 
 def get_cosine_dist():
 	d = defaultdict(float)
@@ -82,7 +92,7 @@ def main():
 		g.add_edge(pair[0], pair[1])
 		g[pair[0]][pair[1]]["w"] = tup[1]
 
-	draw(g, filename=OUTPUT_GRAPH)
+	# draw(g, filename=OUTPUT_GRAPH)
 	output_graph_stats(g)
 
 if __name__ == '__main__':

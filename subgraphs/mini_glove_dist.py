@@ -1,9 +1,12 @@
 """
 This computes cosine distances for a subset of fruits/vegs
-based on GloVe data.
+based on GloVe data (Wikipedia 2014 + Gigaword 5).
 
-mcrae_fruitveg.txt is hand-picked list of fruits/vegs
+vocab_fruitveg.txt is hand-picked list of fruits/vegs
 from the McRae concept dataset.
+
+vocab.txt is a list of concepts from McRae without underscores
+(underscores differentiate multiple meanings for one concept).
 
 - input: vocabulary, glove data
 - output: cosine similarities in a txt
@@ -13,8 +16,10 @@ from collections import defaultdict
 from scipy import spatial
 
 GLOVE_INPUT = "../glove/glove.6B.300d.txt"
-VOCAB = "./fruitveg/vocab_fruitveg.txt"
-OUTPUT = "./fruitveg/fruitveg_sim_glove.txt"
+# VOCAB = "./fruitveg/vocab_fruitveg.txt"
+# OUTPUT = "./fruitveg/fruitveg_sim_glove.txt"
+VOCAB = "./all/vocab.txt"
+OUTPUT = "./all/sim_glove.txt"
 
 def main():
 	vocab_file = open(VOCAB, 'r')
