@@ -1,0 +1,74 @@
+NOTE: graph is treated as an unweighted graph
+
+Name: 
+Type: Graph
+Number of nodes: 54
+Number of edges: 200
+Average degree:   7.4074
+
+TRANSITIVITY: 0.603034134008
+
+NODES WITH CLUST COEFF = 1: 
+carrot ['celery', 'garlic', 'cucumber', 'cauliflower', 'zucchini']
+corn ['beans', 'potato']
+olive ['tomato', 'lemon', 'garlic']
+plum ['cherry', 'pear', 'peach']
+banana ['coconut', 'pineapple']
+AVG CLUSTERING COEFFICIENT: 0.493221229044
+
+DEGREE HISTOGRAM: [6, 6, 3, 3, 7, 4, 4, 0, 2, 0, 1, 1, 2, 2, 0, 3, 4, 2, 2, 1, 0, 0, 1]
+
+NODES WITH HIGHEST DEGREE CENTRALITY: 
+[('tomato', 0.4150943396226415), ('garlic', 0.3584905660377358), ('celery', 0.33962264150943394), ('cucumber', 0.33962264150943394), ('onions', 0.32075471698113206)]
+
+4-CLIQUE COMMUNITIES (clique percolation): 
+frozenset(['pepper', 'cauliflower', 'radish', 'peas', 'lettuce', 'carrot', 'garlic', 'olive', 'cabbage', 'onions', 'broccoli', 'coconut', 'lime', 'tomato', 'lemon', 'beets', 'spinach', 'asparagus', 'potato', 'avocado', 'parsley', 'celery', 'cantaloupe', 'beans', 'eggplant', 'pineapple', 'cucumber', 'zucchini'])
+frozenset(['cherry', 'plum', 'pear', 'peach'])
+frozenset(['strawberry', 'raspberry', 'blueberry', 'peach'])
+
+MAXIMAL CLIQUES: 
+['coconut', 'pineapple', 'lemon', 'avocado', 'lime']
+['coconut', 'pineapple', 'banana']
+['radish', 'celery', 'cabbage', 'cucumber']
+['carrot', 'celery', 'cucumber', 'garlic', 'cauliflower', 'zucchini']
+['rhubarb', 'asparagus', 'celery']
+['rhubarb', 'strawberry', 'blueberry']
+['cherry', 'peach', 'plum', 'pear']
+['cherry', 'peach', 'raspberry']
+['parsley', 'garlic', 'celery', 'onions', 'lettuce', 'cucumber', 'zucchini']
+['parsley', 'garlic', 'celery', 'onions', 'pepper']
+['parsley', 'garlic', 'lemon', 'pepper']
+['parsley', 'garlic', 'lemon', 'cucumber']
+['grapefruit', 'lemon', 'tangerine']
+['grapefruit', 'lemon', 'avocado']
+['grapefruit', 'pear', 'avocado']
+['blueberry', 'raspberry', 'strawberry', 'peach']
+['blueberry', 'raspberry', 'cranberry']
+['cantaloupe', 'cucumber', 'avocado', 'pineapple']
+['pear', 'avocado', 'pineapple']
+['pear', 'peach', 'pineapple']
+['corn', 'beans', 'potato']
+['tangerine', 'peach', 'lemon']
+['peas', 'spinach', 'onions', 'asparagus', 'beans']
+['peas', 'spinach', 'onions', 'asparagus', 'broccoli', 'cauliflower', 'zucchini']
+['peas', 'spinach', 'onions', 'beets', 'beans']
+['peas', 'spinach', 'onions', 'beets', 'broccoli', 'cauliflower', 'zucchini']
+['raspberry', 'pineapple', 'peach']
+['raspberry', 'pineapple', 'cranberry']
+['broccoli', 'cauliflower', 'spinach', 'celery', 'lettuce', 'eggplant', 'cabbage', 'onions', 'zucchini', 'asparagus', 'garlic']
+['broccoli', 'cauliflower', 'spinach', 'celery', 'lettuce', 'eggplant', 'cabbage', 'onions', 'zucchini', 'beets']
+['tomato', 'potato', 'cabbage', 'beans', 'spinach']
+['tomato', 'cranberry', 'pineapple']
+['tomato', 'garlic', 'asparagus', 'lettuce', 'eggplant', 'cucumber', 'zucchini', 'celery', 'cabbage', 'onions', 'cauliflower']
+['tomato', 'garlic', 'asparagus', 'lettuce', 'eggplant', 'cucumber', 'zucchini', 'avocado']
+['tomato', 'garlic', 'asparagus', 'lettuce', 'eggplant', 'spinach', 'cabbage', 'onions', 'celery', 'cauliflower', 'zucchini']
+['tomato', 'garlic', 'asparagus', 'lettuce', 'eggplant', 'spinach', 'cabbage', 'onions', 'beans']
+['tomato', 'garlic', 'asparagus', 'lettuce', 'eggplant', 'spinach', 'avocado', 'zucchini']
+['tomato', 'garlic', 'olive', 'lemon']
+['tomato', 'garlic', 'pepper', 'celery', 'onions']
+['tomato', 'garlic', 'pepper', 'lemon']
+['tomato', 'garlic', 'lemon', 'cucumber', 'avocado']
+['tomato', 'pineapple', 'avocado', 'lemon', 'cucumber']
+['tomato', 'pineapple', 'avocado', 'lemon', 'lime']
+['peach', 'lemon', 'pineapple']
+['beets', 'spinach', 'lettuce', 'eggplant', 'cabbage', 'onions', 'beans']

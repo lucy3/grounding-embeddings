@@ -1,0 +1,76 @@
+NOTE: graph is treated as an unweighted graph
+
+Name: 
+Type: Graph
+Number of nodes: 54
+Number of edges: 200
+Average degree:   7.4074
+
+TRANSITIVITY: 0.602478058854
+
+NODES WITH CLUST COEFF = 1: 
+yam ['turnip', 'eggplant']
+cranberry ['strawberry', 'raspberry', 'apple', 'cherry']
+peas ['spinach', 'asparagus', 'parsley', 'celery', 'beans', 'cabbage', 'broccoli', 'zucchini']
+olive ['lettuce', 'spinach']
+raisin ['plum', 'prune']
+AVG CLUSTERING COEFFICIENT: 0.517459189927
+
+DEGREE HISTOGRAM: [8, 1, 4, 2, 1, 5, 2, 3, 2, 6, 3, 3, 2, 7, 2, 2, 0, 1]
+
+NODES WITH HIGHEST DEGREE CENTRALITY: 
+[('plum', 0.32075471698113206), ('apple', 0.2830188679245283), ('asparagus', 0.2830188679245283), ('avocado', 0.2641509433962264), ('cabbage', 0.2641509433962264)]
+
+4-CLIQUE COMMUNITIES (clique percolation): 
+frozenset(['peas', 'lettuce', 'turnip', 'cabbage', 'broccoli', 'spinach', 'asparagus', 'rhubarb', 'avocado', 'parsley', 'celery', 'beans', 'eggplant', 'cucumber', 'pickle', 'zucchini'])
+frozenset(['cantaloupe', 'apple', 'pear', 'pineapple', 'tangerine', 'mandarin', 'raspberry', 'prune', 'tomato', 'honeydew', 'grape', 'nectarine', 'peach', 'cherry', 'plum', 'strawberry', 'cranberry', 'orange', 'blueberry'])
+
+MAXIMAL CLIQUES: 
+['lettuce', 'asparagus', 'celery', 'pickle', 'avocado', 'parsley']
+['lettuce', 'asparagus', 'celery', 'pickle', 'cucumber']
+['lettuce', 'asparagus', 'celery', 'spinach', 'broccoli', 'cucumber', 'cabbage']
+['lettuce', 'asparagus', 'celery', 'spinach', 'broccoli', 'beans', 'cabbage', 'parsley']
+['lettuce', 'asparagus', 'celery', 'spinach', 'broccoli', 'beans', 'cabbage', 'rhubarb']
+['lettuce', 'asparagus', 'celery', 'spinach', 'broccoli', 'beans', 'avocado', 'parsley']
+['lettuce', 'asparagus', 'turnip', 'cabbage', 'beans']
+['lettuce', 'olive', 'spinach']
+['turnip', 'cabbage', 'cauliflower']
+['turnip', 'cabbage', 'beets']
+['turnip', 'eggplant', 'asparagus', 'beans']
+['turnip', 'eggplant', 'yam']
+['turnip', 'eggplant', 'beets']
+['lime', 'avocado', 'pear']
+['lime', 'avocado', 'grape']
+['lime', 'apple', 'pear']
+['lime', 'apple', 'lemon']
+['lime', 'apple', 'grape']
+['lemon', 'apple', 'pineapple']
+['lemon', 'banana', 'grapefruit']
+['lemon', 'banana', 'pineapple']
+['cauliflower', 'cabbage', 'broccoli']
+['rhubarb', 'tomato', 'beets']
+['rhubarb', 'beets', 'cabbage']
+['avocado', 'tomato', 'grape']
+['avocado', 'asparagus', 'parsley', 'celery', 'zucchini', 'beans', 'broccoli', 'spinach']
+['avocado', 'banana', 'pear']
+['parsley', 'asparagus', 'celery', 'spinach', 'peas', 'cabbage', 'beans', 'broccoli', 'zucchini']
+['celery', 'asparagus', 'cucumber', 'zucchini', 'cabbage', 'broccoli', 'spinach']
+['banana', 'pineapple', 'pear']
+['tomato', 'apple', 'strawberry', 'cherry', 'raspberry']
+['tomato', 'apple', 'strawberry', 'cantaloupe']
+['tomato', 'apple', 'strawberry', 'grape']
+['plum', 'cantaloupe', 'strawberry', 'mandarin']
+['plum', 'cantaloupe', 'strawberry', 'apple']
+['plum', 'cantaloupe', 'honeydew', 'blueberry', 'tangerine']
+['plum', 'cantaloupe', 'honeydew', 'peach', 'nectarine', 'pineapple', 'orange', 'mandarin', 'tangerine']
+['plum', 'cantaloupe', 'honeydew', 'peach', 'nectarine', 'pineapple', 'apple']
+['plum', 'cantaloupe', 'prune', 'tangerine', 'nectarine', 'peach', 'pineapple']
+['plum', 'grape', 'apple', 'strawberry']
+['plum', 'grape', 'apple', 'honeydew']
+['plum', 'raisin', 'prune']
+['plum', 'pear', 'honeydew', 'apple', 'peach', 'pineapple']
+['plum', 'cherry', 'tangerine', 'peach', 'nectarine']
+['plum', 'cherry', 'apple', 'strawberry', 'raspberry']
+['plum', 'cherry', 'apple', 'nectarine', 'peach']
+['plum', 'raspberry', 'blueberry']
+['cranberry', 'strawberry', 'cherry', 'raspberry', 'apple']
