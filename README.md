@@ -10,4 +10,10 @@
 
 3. Download McRae Norms from [psychonomic](www.psychonomic.org/archive) and place in a folder called "mcrae" in main directory. 
 
-## File Naming Conventions
+## Directory / File naming conventions
+
+**subgraphs**
+	- mini_DATA_dist.py: outputs cosine distances for some vocabulary based on some DATA source
+	- subgraph_gen.py: takes cosine distances and creates a graph and outputs some metrics
+	- *fruitveg*: fruit/veg subgraph for GloVe (Wikipedia 2014 + Gigaword 5) and McRae
+	- *all*: (almost) all McRae concepts for GloVe (Wikipedia 2014 + Gigaword 5) and McRae

@@ -1,6 +1,5 @@
 """
-This outputs cosine distances for a subset of fruits/vegs
-based on McRae data.
+This outputs cosine distances based on McRae data.
 
 vocab_fruitveg.txt is hand-picked list of fruits/vegs
 from the McRae concept dataset.

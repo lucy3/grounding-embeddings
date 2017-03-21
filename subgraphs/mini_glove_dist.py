@@ -1,6 +1,6 @@
 """
-This computes cosine distances for a subset of fruits/vegs
-based on GloVe data (Wikipedia 2014 + Gigaword 5).
+This computes cosine distances based on GloVe data
+(Wikipedia 2014 + Gigaword 5), glove.6B.300d.
 
 vocab_fruitveg.txt is hand-picked list of fruits/vegs
 from the McRae concept dataset.
