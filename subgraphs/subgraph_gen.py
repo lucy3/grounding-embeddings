@@ -19,7 +19,7 @@ from collections import defaultdict
 from nxpd import draw
 import operator
 
-NUM_EDGES = 600
+NUM_EDGES = 200
 
 # uncomment for GloVe fruitveg data
 # INPUT_FILE = "./fruitveg/fruitveg_sim_glove.txt"
@@ -33,15 +33,15 @@ NUM_EDGES = 600
 # OUTPUT_STATS = "./all/glove_stats" + str(NUM_EDGES) + ".txt"
 
 # uncomment for McRae fruitveg data
-# INPUT_FILE = "./fruitveg/fruitveg_sim_mcrae.txt"
-# VOCAB = "./fruitveg/vocab_fruitveg.txt"
-# OUTPUT_GRAPH = "./fruitveg/fruitveg_out_mcrae" + str(NUM_EDGES) + ".png"
-# OUTPUT_STATS = "./fruitveg/fruitveg_mcrae_stats" + str(NUM_EDGES) + ".txt"
+INPUT_FILE = "./fruitveg/fruitveg_sim_mcrae.txt"
+VOCAB = "./fruitveg/vocab_fruitveg.txt"
+OUTPUT_GRAPH = "./fruitveg/fruitveg_out_mcrae" + str(NUM_EDGES) + ".png"
+OUTPUT_STATS = "./fruitveg/fruitveg_mcrae_stats" + str(NUM_EDGES) + ".txt"
 
 # uncomment for ALL McRae data
-INPUT_FILE = "./all/sim_mcrae.txt"
-VOCAB = "./all/vocab.txt"
-OUTPUT_STATS = "./all/mcrae_stats" + str(NUM_EDGES) + ".txt"
+# INPUT_FILE = "./all/sim_mcrae.txt"
+# VOCAB = "./all/vocab.txt"
+# OUTPUT_STATS = "./all/mcrae_stats" + str(NUM_EDGES) + ".txt"
 
 def get_cosine_dist():
 	d = defaultdict(float)
