@@ -19,29 +19,29 @@ from collections import defaultdict
 from nxpd import draw
 import operator
 
-NUM_EDGES = 400
+NUM_EDGES = 600
 
 # uncomment for GloVe fruitveg data
 # INPUT_FILE = "./fruitveg/fruitveg_sim_glove.txt"
 # VOCAB = "./fruitveg/vocab_fruitveg.txt"
 # OUTPUT_GRAPH = "./fruitveg/fruitveg_out_glove" + str(NUM_EDGES) + ".png"
-# OUTPUT_STATS = "./fruitveg/fruitveg_glove_stats.txt"
+# OUTPUT_STATS = "./fruitveg/fruitveg_glove_stats" + str(NUM_EDGES) + ".txt"
 
 # uncomment for ALL GloVe data
 # INPUT_FILE = "./all/sim_glove.txt"
 # VOCAB = "./all/vocab.txt"
-# OUTPUT_STATS = "./all/glove_stats.txt"
+# OUTPUT_STATS = "./all/glove_stats" + str(NUM_EDGES) + ".txt"
 
 # uncomment for McRae fruitveg data
 # INPUT_FILE = "./fruitveg/fruitveg_sim_mcrae.txt"
 # VOCAB = "./fruitveg/vocab_fruitveg.txt"
 # OUTPUT_GRAPH = "./fruitveg/fruitveg_out_mcrae" + str(NUM_EDGES) + ".png"
-# OUTPUT_STATS = "./fruitveg/fruitveg_mcrae_stats.txt"
+# OUTPUT_STATS = "./fruitveg/fruitveg_mcrae_stats" + str(NUM_EDGES) + ".txt"
 
 # uncomment for ALL McRae data
 INPUT_FILE = "./all/sim_mcrae.txt"
 VOCAB = "./all/vocab.txt"
-OUTPUT_STATS = "./all/mcrae_stats.txt"
+OUTPUT_STATS = "./all/mcrae_stats" + str(NUM_EDGES) + ".txt"
 
 def get_cosine_dist():
 	d = defaultdict(float)
