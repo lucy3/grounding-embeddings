@@ -19,7 +19,7 @@ from collections import defaultdict
 from nxpd import draw
 import operator
 
-NUM_EDGES = 200
+NUM_EDGES = 400
 
 # uncomment for GloVe fruitveg data
 # INPUT_FILE = "./fruitveg/fruitveg_sim_glove.txt"
@@ -31,12 +31,18 @@ NUM_EDGES = 200
 # INPUT_FILE = "./all/sim_glove.txt"
 # VOCAB = "./all/vocab.txt"
 # OUTPUT_STATS = "./all/glove_stats" + str(NUM_EDGES) + ".txt"
+# INPUT_FILE = "./all/sim_glove_cc.txt"
+# VOCAB = "./all/vocab.txt"
+# OUTPUT_STATS = "./all/glove_cc_stats" + str(NUM_EDGES) + ".txt"
+INPUT_FILE = "./all/sim_glove_tw.txt"
+VOCAB = "./all/vocab.txt"
+OUTPUT_STATS = "./all/glove_tw_stats" + str(NUM_EDGES) + ".txt"
 
 # uncomment for McRae fruitveg data
-INPUT_FILE = "./fruitveg/fruitveg_sim_mcrae.txt"
-VOCAB = "./fruitveg/vocab_fruitveg.txt"
-OUTPUT_GRAPH = "./fruitveg/fruitveg_out_mcrae" + str(NUM_EDGES) + ".png"
-OUTPUT_STATS = "./fruitveg/fruitveg_mcrae_stats" + str(NUM_EDGES) + ".txt"
+# INPUT_FILE = "./fruitveg/fruitveg_sim_mcrae.txt"
+# VOCAB = "./fruitveg/vocab_fruitveg.txt"
+# OUTPUT_GRAPH = "./fruitveg/fruitveg_out_mcrae" + str(NUM_EDGES) + ".png"
+# OUTPUT_STATS = "./fruitveg/fruitveg_mcrae_stats" + str(NUM_EDGES) + ".txt"
 
 # uncomment for ALL McRae data
 # INPUT_FILE = "./all/sim_mcrae.txt"
