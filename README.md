@@ -10,6 +10,8 @@
 
 3. Download McRae Norms from [psychonomic](www.psychonomic.org/archive) and place in a folder called "mcrae" in main directory. 
 
+4. Download Communities_Detection.exe from [Radatools](http://deim.urv.cat/~sergio.gomez/radatools.php). 
+
 ## Directory / File naming conventions
 
 **subgraphs**
