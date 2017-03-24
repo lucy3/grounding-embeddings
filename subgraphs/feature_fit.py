@@ -1,6 +1,7 @@
 import codecs
 from collections import defaultdict, namedtuple
 from pathlib import Path
+from pprint import pprint
 
 import numpy as np
 
@@ -100,8 +101,18 @@ def main():
                     for feature in features]
     feature_data = sorted(filter(None, feature_data), key=lambda f: f[2])
 
+    label_groups = defaultdict(list)
     for name, n_entries, score in feature_data:
         print("%40s\t%i\t%f" % (name, n_entries, score))
+        label_groups[features[name].br_label].append(score)
+
+    print("\n\nGrouping by BR label:")
+    label_groups = {k: (len(data), np.mean(data), np.var(data))
+                    for k, data in label_groups.items()}
+    label_groups = sorted(label_groups.items(), key=lambda x: x[1][1])
+    for label_group, (n, mean, var) in label_groups:
+        print("%25s\t%2i\t%.5f\t%.5f" % (label_group, n, mean, var))
+
 
 if __name__ == "__main__":
     main()
