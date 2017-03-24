@@ -5,8 +5,8 @@ clusters with names that a human can understand.
 
 from collections import defaultdict
 
-INPUT_NET = "./all/glove_cc.net"
-INPUT_COMMUN = "./all/glove_cc-lol.txt"
+INPUT_NET = "./all/glove_tw.net"
+INPUT_COMMUN = "./all/glove_tw-lol.txt"
 
 def main():
 	nodes = defaultdict(str)
