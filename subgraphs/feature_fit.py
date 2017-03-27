@@ -92,6 +92,16 @@ def analyze_feature(feature, features, word2idx, embeddings):
     return (feature, len(embeddings), avg_dot)
 
 
+def plot_groups(label_groups):
+    from matplotlib import pyplot as plt
+    bins = np.linspace(0, 1, 30)
+    for label_group, values in label_groups.items():
+        if label_group in ["visual-colour", "function"]:
+            plt.hist(values, bins=bins, alpha=0.5, label=label_group, normed=True)
+    plt.legend(loc='upper left')
+    plt.show()
+
+
 def main():
     features, concepts = load_features_concepts()
     vocab, embeddings = load_embeddings(concepts)
@@ -105,6 +115,8 @@ def main():
     for name, n_entries, score in feature_data:
         print("%40s\t%i\t%f" % (name, n_entries, score))
         label_groups[features[name].br_label].append(score)
+
+    plot_groups(label_groups)
 
     print("\n\nGrouping by BR label:")
     label_groups = {k: (len(data), np.mean(data), np.var(data))
