@@ -2,9 +2,9 @@ NOTE: graph is treated as an unweighted graph
 
 Name: 
 Type: Graph
-Number of nodes: 517
+Number of nodes: 515
 Number of edges: 600
-Average degree:   2.3211
+Average degree:   2.3301
 
 TRANSITIVITY: 0.506620714674
 
@@ -48,12 +48,12 @@ fork ['spoon', 'knife']
 cello ['violin', 'piano']
 cheetah ['leopard', 'zebra']
 peas ['cabbage', 'rice', 'beans', 'corn', 'broccoli']
-AVG CLUSTERING COEFFICIENT: 0.18262284398
+AVG CLUSTERING COEFFICIENT: 0.183332058908
 
-DEGREE HISTOGRAM: [288, 61, 46, 13, 20, 13, 7, 11, 6, 7, 6, 5, 10, 5, 3, 4, 2, 0, 2, 2, 4, 1, 0, 0, 1]
+DEGREE HISTOGRAM: [286, 61, 46, 13, 20, 13, 7, 11, 6, 7, 6, 5, 10, 5, 3, 4, 2, 0, 2, 2, 4, 1, 0, 0, 1]
 
 NODES WITH HIGHEST DEGREE CENTRALITY: 
-[('garlic', 0.046511627906976744), ('spinach', 0.040697674418604654), ('tomato', 0.03875968992248062), ('cheese', 0.03875968992248062), ('chicken', 0.03875968992248062)]
+[('garlic', 0.04669260700389105), ('spinach', 0.04085603112840467), ('tomato', 0.038910505836575876), ('cheese', 0.038910505836575876), ('chicken', 0.038910505836575876)]
 
 4-CLIQUE COMMUNITIES (clique percolation): 
 frozenset(['cheese', 'coconut', 'lettuce', 'lobster', 'chicken', 'onions', 'cabbage', 'lime', 'lemon', 'cauliflower', 'peach', 'spinach', 'cherry', 'avocado', 'crab', 'orange', 'rice', 'blueberry', 'zucchini', 'pepper', 'banana', 'mushroom', 'corn', 'pineapple', 'salmon', 'peas', 'garlic', 'olive', 'grape', 'tuna', 'raspberry', 'broccoli', 'bread', 'tomato', 'potato', 'asparagus', 'shrimp', 'strawberry', 'beans', 'cranberry', 'cake', 'cucumber'])

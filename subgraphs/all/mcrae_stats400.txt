@@ -2,9 +2,9 @@ NOTE: graph is treated as an unweighted graph
 
 Name: 
 Type: Graph
-Number of nodes: 517
+Number of nodes: 515
 Number of edges: 400
-Average degree:   1.5474
+Average degree:   1.5534
 
 TRANSITIVITY: 0.730739299611
 
@@ -35,12 +35,12 @@ skillet ['pot', 'pan']
 cello ['guitar', 'banjo', 'harpsichord', 'harp']
 deer ['elk', 'moose', 'caribou']
 peas ['asparagus', 'beans', 'broccoli']
-AVG CLUSTERING COEFFICIENT: 0.130814762894
+AVG CLUSTERING COEFFICIENT: 0.13132278139
 
-DEGREE HISTOGRAM: [313, 104, 24, 10, 12, 14, 7, 4, 7, 0, 3, 0, 2, 1, 2, 1, 0, 1, 2, 1, 3, 3, 0, 3]
+DEGREE HISTOGRAM: [311, 104, 24, 10, 12, 14, 7, 4, 7, 0, 3, 0, 2, 1, 2, 1, 0, 1, 2, 1, 3, 3, 0, 3]
 
 NODES WITH HIGHEST DEGREE CENTRALITY: 
-[('nightingale', 0.04457364341085271), ('starling', 0.04457364341085271), ('partridge', 0.04457364341085271), ('oriole', 0.040697674418604654), ('raven', 0.040697674418604654)]
+[('nightingale', 0.04474708171206226), ('starling', 0.04474708171206226), ('partridge', 0.04474708171206226), ('oriole', 0.04085603112840467), ('raven', 0.04085603112840467)]
 
 4-CLIQUE COMMUNITIES (clique percolation): 
 frozenset(['elk', 'moose', 'caribou', 'deer', 'bison', 'ox', 'buffalo'])

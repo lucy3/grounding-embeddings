@@ -2,9 +2,9 @@ NOTE: graph is treated as an unweighted graph
 
 Name: 
 Type: Graph
-Number of nodes: 517
+Number of nodes: 515
 Number of edges: 400
-Average degree:   1.5474
+Average degree:   1.5534
 
 TRANSITIVITY: 0.593908629442
 
@@ -44,12 +44,12 @@ harpsichord ['violin', 'piano', 'flute', 'clarinet', 'cello']
 deer ['elk', 'moose']
 pig ['sheep', 'cow']
 yacht ['sailboat', 'boat']
-AVG CLUSTERING COEFFICIENT: 0.147450851635
+AVG CLUSTERING COEFFICIENT: 0.148023476302
 
-DEGREE HISTOGRAM: [297, 82, 50, 24, 9, 11, 5, 1, 5, 5, 4, 12, 6, 1, 3, 0, 0, 2]
+DEGREE HISTOGRAM: [295, 82, 50, 24, 9, 11, 5, 1, 5, 5, 4, 12, 6, 1, 3, 0, 0, 2]
 
 NODES WITH HIGHEST DEGREE CENTRALITY: 
-[('onions', 0.03294573643410853), ('tomato', 0.03294573643410853), ('blouse', 0.027131782945736434), ('spinach', 0.027131782945736434), ('jacket', 0.027131782945736434)]
+[('onions', 0.033073929961089495), ('tomato', 0.033073929961089495), ('blouse', 0.027237354085603113), ('spinach', 0.027237354085603113), ('jacket', 0.027237354085603113)]
 
 4-CLIQUE COMMUNITIES (clique percolation): 
 frozenset(['gown', 'shoes', 'shawl', 'jeans', 'boots', 'socks', 'sandals', 'skirt', 'blouse', 'shirt', 'dress', 'sweater', 'jacket', 'gloves', 'slippers', 'trousers', 'robe', 'scarf', 'pants'])

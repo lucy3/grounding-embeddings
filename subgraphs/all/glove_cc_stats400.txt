@@ -2,9 +2,9 @@ NOTE: graph is treated as an unweighted graph
 
 Name: 
 Type: Graph
-Number of nodes: 517
+Number of nodes: 515
 Number of edges: 400
-Average degree:   1.5474
+Average degree:   1.5534
 
 TRANSITIVITY: 0.608509234828
 
@@ -38,12 +38,12 @@ shoes ['sandals', 'boots']
 harpsichord ['violin', 'cello']
 caribou ['elk', 'moose']
 yacht ['sailboat', 'boat']
-AVG CLUSTERING COEFFICIENT: 0.141110424439
+AVG CLUSTERING COEFFICIENT: 0.141658426087
 
-DEGREE HISTOGRAM: [299, 80, 53, 25, 11, 9, 5, 5, 4, 8, 2, 2, 2, 0, 0, 1, 2, 2, 2, 3, 1, 1]
+DEGREE HISTOGRAM: [297, 80, 53, 25, 11, 9, 5, 5, 4, 8, 2, 2, 2, 0, 0, 1, 2, 2, 2, 3, 1, 1]
 
 NODES WITH HIGHEST DEGREE CENTRALITY: 
-[('tomato', 0.040697674418604654), ('onions', 0.03875968992248062), ('cabbage', 0.036821705426356585), ('spinach', 0.036821705426356585), ('celery', 0.036821705426356585)]
+[('tomato', 0.04085603112840467), ('onions', 0.038910505836575876), ('cabbage', 0.03696498054474708), ('spinach', 0.03696498054474708), ('celery', 0.03696498054474708)]
 
 4-CLIQUE COMMUNITIES (clique percolation): 
 frozenset(['cheese', 'pepper', 'cauliflower', 'radish', 'cucumber', 'peas', 'lettuce', 'carrot', 'garlic', 'cabbage', 'onions', 'broccoli', 'tomato', 'lemon', 'beets', 'potato', 'asparagus', 'spinach', 'avocado', 'parsley', 'celery', 'chicken', 'beans', 'eggplant', 'turnip', 'zucchini'])

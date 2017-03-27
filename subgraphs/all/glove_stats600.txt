@@ -2,9 +2,9 @@ NOTE: graph is treated as an unweighted graph
 
 Name: 
 Type: Graph
-Number of nodes: 517
+Number of nodes: 515
 Number of edges: 600
-Average degree:   2.3211
+Average degree:   2.3301
 
 TRANSITIVITY: 0.589880952381
 
@@ -46,12 +46,12 @@ harpsichord ['accordion', 'flute', 'cello', 'trombone', 'violin', 'piano', 'clar
 strawberry ['raspberry', 'blueberry', 'peach']
 tongs ['spatula', 'spoon']
 veil ['robe', 'cloak', 'scarf']
-AVG CLUSTERING COEFFICIENT: 0.192058994156
+AVG CLUSTERING COEFFICIENT: 0.192804854328
 
-DEGREE HISTOGRAM: [255, 78, 50, 34, 14, 20, 9, 6, 2, 5, 6, 3, 9, 8, 2, 5, 4, 3, 1, 1, 0, 1, 0, 0, 0, 0, 1]
+DEGREE HISTOGRAM: [253, 78, 50, 34, 14, 20, 9, 6, 2, 5, 6, 3, 9, 8, 2, 5, 4, 3, 1, 1, 0, 1, 0, 0, 0, 0, 1]
 
 NODES WITH HIGHEST DEGREE CENTRALITY: 
-[('tomato', 0.050387596899224806), ('garlic', 0.040697674418604654), ('onions', 0.036821705426356585), ('trousers', 0.03488372093023256), ('asparagus', 0.03294573643410853)]
+[('tomato', 0.05058365758754864), ('garlic', 0.04085603112840467), ('onions', 0.03696498054474708), ('trousers', 0.03501945525291829), ('asparagus', 0.033073929961089495)]
 
 4-CLIQUE COMMUNITIES (clique percolation): 
 frozenset(['cheese', 'pepper', 'cauliflower', 'radish', 'peas', 'lettuce', 'carrot', 'garlic', 'olive', 'chicken', 'onions', 'cabbage', 'coconut', 'bread', 'tomato', 'lemon', 'beets', 'spinach', 'asparagus', 'broccoli', 'potato', 'avocado', 'parsley', 'shrimp', 'celery', 'beans', 'eggplant', 'pineapple', 'cucumber', 'lime', 'zucchini'])
