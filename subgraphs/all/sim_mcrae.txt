@@ -17,7 +17,6 @@ accordion crow 0.054
 accordion dishwasher 0.040
 accordion drill 0.057
 accordion drum 0.458
-accordion dunebuggy 0.038
 accordion elevator 0.076
 airplane ambulance 0.131
 airplane anchor 0.115
@@ -99,7 +98,6 @@ airplane dresser 0.023
 airplane drill 0.024
 airplane drum 0.024
 airplane duck 0.156
-airplane dunebuggy 0.082
 airplane eagle 0.328
 airplane elephant 0.088
 airplane elevator 0.092
@@ -252,7 +250,6 @@ ambulance dove 0.164
 ambulance dresser 0.016
 ambulance drill 0.037
 ambulance drum 0.035
-ambulance dunebuggy 0.218
 ambulance eagle 0.023
 ambulance elephant 0.058
 ambulance elevator 0.028
@@ -800,7 +797,6 @@ bagpipe crow 0.052
 bagpipe dishwasher 0.017
 bagpipe drill 0.055
 bagpipe drum 0.377
-bagpipe dunebuggy 0.037
 ball balloon 0.217
 ball banana 0.052
 ball banjo 0.092
@@ -849,7 +845,6 @@ ball drain 0.063
 ball drapes 0.018
 ball dress 0.025
 ball drum 0.125
-ball dunebuggy 0.037
 ball earmuffs 0.122
 ball envelope 0.026
 balloon banana 0.030
@@ -1577,7 +1572,6 @@ bazooka drain 0.039
 bazooka dresser 0.026
 bazooka drill 0.110
 bazooka drum 0.107
-bazooka dunebuggy 0.050
 bazooka eagle 0.038
 bazooka eel 0.058
 bazooka elephant 0.098
@@ -2132,7 +2126,6 @@ bike doorknob 0.027
 bike drain 0.014
 bike drill 0.012
 bike drum 0.013
-bike dunebuggy 0.313
 bike elevator 0.089
 bike elk 0.013
 birch bookcase 0.043
@@ -2332,7 +2325,6 @@ blender dishwasher 0.499
 blender drain 0.054
 blender drill 0.251
 blender drum 0.097
-blender dunebuggy 0.069
 blender eel 0.179
 blender elevator 0.045
 blouse bluejay 0.013
@@ -2527,7 +2519,6 @@ boat dagger 0.031
 boat desk 0.148
 boat door 0.166
 boat dresser 0.134
-boat dunebuggy 0.047
 boat elevator 0.114
 bolts bookcase 0.071
 bolts box 0.031
@@ -2595,7 +2586,6 @@ bomb dagger 0.258
 bomb dishwasher 0.016
 bomb drill 0.054
 bomb drum 0.051
-bomb dunebuggy 0.036
 bomb eel 0.056
 book bookcase 0.065
 book desk 0.027
@@ -3318,7 +3308,6 @@ budgie dress 0.013
 budgie drill 0.036
 budgie drum 0.034
 budgie duck 0.262
-budgie dunebuggy 0.024
 budgie eagle 0.418
 budgie earmuffs 0.015
 budgie elephant 0.062
@@ -3414,7 +3403,6 @@ buggy doorknob 0.053
 buggy drain 0.027
 buggy drill 0.025
 buggy drum 0.025
-buggy dunebuggy 0.376
 buggy elevator 0.105
 building bull 0.100
 building bullet 0.045
@@ -3555,7 +3543,6 @@ bullet doorknob 0.084
 bullet drain 0.043
 bullet drill 0.039
 bullet drum 0.040
-bullet dunebuggy 0.076
 bullet elevator 0.048
 bullet elk 0.047
 bungalow butterfly 0.059
@@ -3649,7 +3636,6 @@ bus dishwasher 0.014
 bus dresser 0.021
 bus drill 0.046
 bus drum 0.043
-bus dunebuggy 0.324
 bus eagle 0.031
 bus elephant 0.080
 bus elevator 0.151
@@ -3959,7 +3945,6 @@ camel dolphin 0.099
 camel donkey 0.315
 camel dresser 0.013
 camel duck 0.031
-camel dunebuggy 0.012
 camel eagle 0.020
 camel elephant 0.197
 camel elevator 0.029
@@ -4076,7 +4061,6 @@ cannon drapes 0.043
 cannon dresser 0.051
 cannon drill 0.098
 cannon drum 0.093
-cannon dunebuggy 0.141
 cannon eagle 0.034
 cannon elephant 0.107
 cannon elevator 0.019
@@ -4110,7 +4094,6 @@ canoe door 0.150
 canoe drapes 0.020
 canoe dress 0.035
 canoe dresser 0.122
-canoe dunebuggy 0.015
 canoe eel 0.053
 canoe elevator 0.036
 cantaloupe carrot 0.119
@@ -4179,7 +4162,6 @@ car deer 0.053
 car dish 0.020
 car drapes 0.012
 car dress 0.054
-car dunebuggy 0.516
 car earmuffs 0.019
 car elevator 0.192
 car elk 0.026
@@ -4216,7 +4198,6 @@ caribou dolphin 0.140
 caribou donkey 0.401
 caribou dresser 0.037
 caribou duck 0.159
-caribou dunebuggy 0.023
 caribou eagle 0.055
 caribou elephant 0.419
 caribou elk 0.744
@@ -4292,7 +4273,6 @@ cart drain 0.022
 cart dresser 0.159
 cart drill 0.020
 cart drum 0.020
-cart dunebuggy 0.328
 cart eagle 0.020
 cart elephant 0.052
 cart elevator 0.024
@@ -4344,7 +4324,6 @@ catapult dagger 0.099
 catapult desk 0.147
 catapult door 0.165
 catapult dresser 0.157
-catapult dunebuggy 0.072
 catapult eagle 0.035
 catapult elephant 0.088
 catapult elk 0.030
@@ -4617,7 +4596,6 @@ cheetah dog 0.228
 cheetah dolphin 0.109
 cheetah donkey 0.301
 cheetah duck 0.059
-cheetah dunebuggy 0.106
 cheetah eagle 0.018
 cheetah earmuffs 0.039
 cheetah elephant 0.244
@@ -4706,7 +4684,6 @@ chicken dove 0.487
 chicken drill 0.040
 chicken drum 0.037
 chicken duck 0.480
-chicken dunebuggy 0.026
 chicken eagle 0.465
 chicken eel 0.061
 chicken eggplant 0.128
@@ -4759,7 +4736,6 @@ chipmunk dolphin 0.154
 chipmunk donkey 0.336
 chipmunk dove 0.112
 chipmunk duck 0.036
-chipmunk dunebuggy 0.044
 chipmunk earmuffs 0.077
 chipmunk elephant 0.158
 chipmunk elk 0.354
@@ -5158,7 +5134,6 @@ cougar dolphin 0.149
 cougar donkey 0.355
 cougar dresser 0.014
 cougar duck 0.075
-cougar dunebuggy 0.117
 cougar eagle 0.159
 cougar eel 0.030
 cougar elephant 0.296
@@ -5261,7 +5236,6 @@ crow dresser 0.021
 crow drill 0.129
 crow drum 0.121
 crow duck 0.253
-crow dunebuggy 0.086
 crow eagle 0.504
 crow elephant 0.117
 crow elk 0.027
@@ -5354,7 +5328,6 @@ deer dog 0.422
 deer dolphin 0.142
 deer donkey 0.511
 deer duck 0.122
-deer dunebuggy 0.063
 deer eel 0.026
 deer eggplant 0.054
 deer elephant 0.295
@@ -5386,7 +5359,6 @@ dishwasher doorknob 0.044
 dishwasher drain 0.079
 dishwasher drill 0.177
 dishwasher drum 0.060
-dishwasher dunebuggy 0.028
 dishwasher eel 0.141
 dishwasher elevator 0.102
 dog doll 0.047
@@ -5444,10 +5416,8 @@ dresser elephant 0.062
 dresser elk 0.021
 dresser emu 0.024
 drill drum 0.147
-drill dunebuggy 0.092
 drill eel 0.168
 drill elevator 0.064
-drum dunebuggy 0.087
 drum earmuffs 0.043
 drum elevator 0.022
 duck eagle 0.337
@@ -5456,8 +5426,6 @@ duck eggplant 0.111
 duck elephant 0.076
 duck elk 0.136
 duck emu 0.266
-dunebuggy elevator 0.031
-dunebuggy elk 0.031
 eagle elephant 0.114
 eagle elk 0.032
 eagle emu 0.426
@@ -5730,7 +5698,6 @@ fawn dog 0.299
 fawn dolphin 0.150
 fawn donkey 0.386
 fawn duck 0.123
-fawn dunebuggy 0.025
 fawn eagle 0.035
 fawn earmuffs 0.014
 fawn eel 0.042
@@ -6240,7 +6207,6 @@ fox dog 0.510
 fox dolphin 0.150
 fox donkey 0.503
 fox duck 0.094
-fox dunebuggy 0.055
 fox eagle 0.010
 fox elephant 0.314
 fox elk 0.554
@@ -7760,7 +7726,6 @@ gun doorknob 0.064
 gun drain 0.033
 gun drill 0.089
 gun drum 0.086
-gun dunebuggy 0.040
 gun eel 0.048
 gun elevator 0.037
 guppy alligator 0.168
@@ -7878,7 +7843,6 @@ hammer drapes 0.023
 hammer dresser 0.055
 hammer drill 0.215
 hammer drum 0.058
-hammer dunebuggy 0.025
 hammer elevator 0.027
 hamster alligator 0.149
 hamster ant 0.214
@@ -8039,7 +8003,6 @@ hare dolphin 0.040
 hare donkey 0.319
 hare dove 0.060
 hare duck 0.040
-hare dunebuggy 0.075
 hare elephant 0.250
 hare elk 0.299
 hare emu 0.116
@@ -8475,7 +8438,6 @@ helicopter doorknob 0.048
 helicopter drain 0.025
 helicopter drill 0.201
 helicopter drum 0.191
-helicopter dunebuggy 0.139
 helicopter elevator 0.075
 helmet apron 0.259
 helmet armour 0.335
@@ -8835,7 +8797,6 @@ horse dolphin 0.078
 horse donkey 0.518
 horse dresser 0.048
 horse duck 0.064
-horse dunebuggy 0.053
 horse eagle 0.097
 horse elephant 0.447
 horse elevator 0.043
@@ -9077,7 +9038,6 @@ housefly dog 0.083
 housefly donkey 0.091
 housefly dove 0.282
 housefly duck 0.124
-housefly dunebuggy 0.044
 housefly eagle 0.237
 housefly elephant 0.044
 housefly elk 0.027
@@ -9181,7 +9141,6 @@ hyena dog 0.382
 hyena dolphin 0.172
 hyena donkey 0.486
 hyena duck 0.055
-hyena dunebuggy 0.047
 hyena eagle 0.085
 hyena earmuffs 0.034
 hyena elephant 0.266
@@ -9399,7 +9358,6 @@ jeep celery 0.076
 jeep cottage 0.022
 jeep crocodile 0.035
 jeep cucumber 0.060
-jeep dunebuggy 0.385
 jeep emerald 0.082
 jet accordion 0.047
 jet airplane 0.775
@@ -9486,7 +9444,6 @@ jet dresser 0.028
 jet drill 0.125
 jet drum 0.118
 jet duck 0.102
-jet dunebuggy 0.295
 jet eagle 0.233
 jet elephant 0.107
 jet elevator 0.071
@@ -10032,7 +9989,6 @@ leopard dolphin 0.070
 leopard donkey 0.352
 leopard dresser 0.024
 leopard duck 0.047
-leopard dunebuggy 0.036
 leopard eagle 0.135
 leopard earmuffs 0.073
 leopard elephant 0.274
@@ -10277,7 +10233,6 @@ limousine dove 0.124
 limousine drapes 0.059
 limousine dress 0.151
 limousine dresser 0.017
-limousine dunebuggy 0.096
 limousine eagle 0.024
 limousine eel 0.157
 limousine elephant 0.062
@@ -10900,7 +10855,6 @@ microwave dish 0.050
 microwave dishwasher 0.270
 microwave drain 0.032
 microwave drill 0.079
-microwave dunebuggy 0.060
 microwave eel 0.097
 microwave elevator 0.064
 microwave elk 0.037
@@ -10986,7 +10940,6 @@ mink dolphin 0.175
 mink donkey 0.444
 mink dress 0.020
 mink duck 0.096
-mink dunebuggy 0.034
 mink earmuffs 0.143
 mink elephant 0.230
 mink elk 0.511
@@ -11189,7 +11142,6 @@ missile dress 0.071
 missile drill 0.026
 missile drum 0.027
 missile duck 0.027
-missile dunebuggy 0.033
 missile eagle 0.044
 missile eel 0.113
 missile elevator 0.032
@@ -11238,7 +11190,6 @@ mixer dishwasher 0.569
 mixer drain 0.051
 mixer drill 0.342
 mixer drum 0.097
-mixer dunebuggy 0.069
 mixer eel 0.291
 mixer elevator 0.074
 moose airplane 0.093
@@ -11413,7 +11364,6 @@ motorcycle deer 0.071
 motorcycle dishwasher 0.024
 motorcycle drill 0.079
 motorcycle drum 0.074
-motorcycle dunebuggy 0.488
 motorcycle eel 0.073
 motorcycle elevator 0.041
 motorcycle elk 0.035
@@ -12770,7 +12720,6 @@ panther dog 0.249
 panther dolphin 0.067
 panther donkey 0.265
 panther duck 0.035
-panther dunebuggy 0.074
 panther eagle 0.105
 panther elephant 0.160
 panther elk 0.297
@@ -12907,7 +12856,6 @@ parakeet dove 0.526
 parakeet drill 0.042
 parakeet drum 0.039
 parakeet duck 0.298
-parakeet dunebuggy 0.028
 parakeet eagle 0.528
 parakeet elephant 0.031
 parakeet emu 0.405
@@ -14640,7 +14588,6 @@ pistol drapes 0.012
 pistol dresser 0.008
 pistol drill 0.083
 pistol drum 0.080
-pistol dunebuggy 0.041
 pistol eel 0.039
 pistol elevator 0.027
 plate ambulance 0.042
@@ -15784,7 +15731,6 @@ raft desk 0.245
 raft dish 0.027
 raft door 0.275
 raft dresser 0.222
-raft dunebuggy 0.019
 raft elevator 0.047
 raisin ant 0.269
 raisin apartment 0.099
@@ -16667,7 +16613,6 @@ rifle dress 0.043
 rifle dresser 0.010
 rifle drill 0.058
 rifle drum 0.056
-rifle dunebuggy 0.030
 rifle eel 0.115
 rifle elevator 0.016
 robe alligator 0.102
@@ -16951,7 +16896,6 @@ rocket dress 0.108
 rocket dresser 0.044
 rocket drill 0.045
 rocket drum 0.092
-rocket dunebuggy 0.069
 rocket eagle 0.065
 rocket earmuffs 0.034
 rocket eel 0.108
@@ -17266,7 +17210,6 @@ sailboat crow 0.044
 sailboat cushion 0.018
 sailboat dagger 0.028
 sailboat dresser 0.035
-sailboat dunebuggy 0.020
 sailboat eagle 0.052
 sailboat elephant 0.131
 sailboat elevator 0.050
@@ -17824,7 +17767,6 @@ scooter doorknob 0.039
 scooter drain 0.020
 scooter drill 0.018
 scooter drum 0.019
-scooter dunebuggy 0.464
 scooter elevator 0.145
 scooter elk 0.031
 screwdriver airplane 0.039
@@ -18660,7 +18602,6 @@ ship cupboard 0.036
 ship desk 0.050
 ship door 0.056
 ship dresser 0.095
-ship dunebuggy 0.028
 ship eagle 0.074
 ship elephant 0.188
 ship elevator 0.069
@@ -18778,7 +18719,6 @@ shotgun doorknob 0.104
 shotgun drain 0.054
 shotgun drill 0.196
 shotgun drum 0.188
-shotgun dunebuggy 0.099
 shotgun eel 0.049
 shotgun elevator 0.059
 shovel airplane 0.034
@@ -19047,7 +18987,6 @@ skateboard door 0.184
 skateboard drapes 0.025
 skateboard dress 0.044
 skateboard dresser 0.149
-skateboard dunebuggy 0.505
 skateboard eel 0.066
 skateboard elevator 0.071
 skateboard elk 0.016
@@ -19443,7 +19382,6 @@ sled dress 0.016
 sled dresser 0.177
 sled drill 0.016
 sled drum 0.016
-sled dunebuggy 0.093
 sled earmuffs 0.019
 sled elevator 0.020
 sled elk 0.021
@@ -19624,7 +19562,6 @@ sleigh drain 0.024
 sleigh dresser 0.100
 sleigh drill 0.022
 sleigh drum 0.022
-sleigh dunebuggy 0.091
 sleigh elevator 0.111
 slingshot alligator 0.033
 slingshot axe 0.115
@@ -20409,7 +20346,6 @@ squirrel dolphin 0.207
 squirrel donkey 0.459
 squirrel dove 0.024
 squirrel duck 0.097
-squirrel dunebuggy 0.044
 squirrel eagle 0.055
 squirrel eel 0.017
 squirrel elephant 0.337
@@ -20494,7 +20430,6 @@ stereo dishwasher 0.088
 stereo dress 0.042
 stereo drill 0.150
 stereo drum 0.067
-stereo dunebuggy 0.047
 stereo eel 0.097
 stereo elevator 0.025
 stereo emerald 0.096
@@ -20976,7 +20911,6 @@ submarine drain 0.045
 submarine dresser 0.044
 submarine drill 0.041
 submarine drum 0.042
-submarine dunebuggy 0.028
 submarine eagle 0.065
 submarine elephant 0.165
 submarine elevator 0.118
@@ -21016,7 +20950,6 @@ subway deer 0.106
 subway dishwasher 0.055
 subway drill 0.106
 subway drum 0.058
-subway dunebuggy 0.170
 subway eel 0.054
 subway elevator 0.118
 subway elk 0.053
@@ -21581,7 +21514,6 @@ taxi crown 0.045
 taxi dandelion 0.326
 taxi deer 0.031
 taxi dress 0.025
-taxi dunebuggy 0.112
 taxi elevator 0.104
 taxi elk 0.015
 taxi emerald 0.057
@@ -22308,7 +22240,6 @@ toy balloon 0.060
 toy bracelet 0.016
 toy crayon 0.201
 toy doll 0.369
-toy dunebuggy 0.088
 tractor accordion 0.033
 tractor airplane 0.078
 tractor ambulance 0.073
@@ -22399,7 +22330,6 @@ tractor drain 0.022
 tractor dresser 0.036
 tractor drill 0.099
 tractor drum 0.095
-tractor dunebuggy 0.318
 tractor eagle 0.053
 tractor elephant 0.135
 tractor elevator 0.024
@@ -22454,7 +22384,6 @@ trailer cow 0.055
 trailer crocodile 0.044
 trailer crow 0.030
 trailer dresser 0.024
-trailer dunebuggy 0.221
 trailer eagle 0.035
 trailer elephant 0.090
 trailer elk 0.031
@@ -22515,7 +22444,6 @@ train doorknob 0.037
 train drain 0.019
 train drill 0.065
 train drum 0.063
-train dunebuggy 0.250
 train elevator 0.085
 train elk 0.043
 tray airplane 0.047
@@ -22667,7 +22595,6 @@ tricycle doorknob 0.047
 tricycle drain 0.024
 tricycle drill 0.022
 tricycle drum 0.022
-tricycle dunebuggy 0.296
 tricycle elevator 0.064
 tripod airplane 0.050
 tripod anchor 0.136
@@ -22799,7 +22726,6 @@ trolley drain 0.032
 trolley dresser 0.028
 trolley drill 0.029
 trolley drum 0.030
-trolley dunebuggy 0.350
 trolley eagle 0.042
 trolley elephant 0.107
 trolley elevator 0.121
@@ -22880,7 +22806,6 @@ trombone dress 0.051
 trombone dresser 0.025
 trombone drill 0.098
 trombone drum 0.580
-trombone dunebuggy 0.066
 trombone eagle 0.036
 trombone eel 0.078
 trombone elephant 0.093
@@ -23045,7 +22970,6 @@ truck crowbar 0.030
 truck crown 0.015
 truck drapes 0.014
 truck dresser 0.065
-truck dunebuggy 0.465
 truck eagle 0.083
 truck elephant 0.211
 truck elevator 0.046
@@ -23100,7 +23024,6 @@ trumpet doorknob 0.109
 trumpet drain 0.025
 trumpet drill 0.189
 trumpet drum 0.544
-trumpet dunebuggy 0.111
 trumpet elevator 0.028
 trumpet emerald 0.073
 tuba accordion 0.487
@@ -23181,7 +23104,6 @@ tuba drapes 0.021
 tuba dresser 0.069
 tuba drill 0.132
 tuba drum 0.554
-tuba dunebuggy 0.078
 tuba eagle 0.081
 tuba elephant 0.207
 tuba elevator 0.018
@@ -23675,7 +23597,6 @@ unicycle cannon 0.057
 unicycle canoe 0.022
 unicycle car 0.067
 unicycle chair 0.048
-unicycle dunebuggy 0.019
 unicycle elephant 0.054
 unicycle elevator 0.046
 urn airplane 0.038
@@ -23790,7 +23711,6 @@ van crocodile 0.072
 van crow 0.049
 van cupboard 0.106
 van dresser 0.039
-van dunebuggy 0.424
 van eagle 0.057
 van elephant 0.147
 van elevator 0.154
@@ -24092,7 +24012,6 @@ wagon drain 0.013
 wagon dresser 0.071
 wagon drill 0.012
 wagon drum 0.012
-wagon dunebuggy 0.285
 wagon elevator 0.048
 wall apartment 0.046
 wall ashtray 0.030
@@ -24598,7 +24517,6 @@ wheelbarrow drain 0.042
 wheelbarrow dresser 0.105
 wheelbarrow drill 0.038
 wheelbarrow drum 0.038
-wheelbarrow dunebuggy 0.278
 wheelbarrow elevator 0.083
 whip alligator 0.136
 whip ant 0.073
@@ -24742,7 +24660,6 @@ whistle doorknob 0.116
 whistle drain 0.060
 whistle drill 0.161
 whistle drum 0.207
-whistle dunebuggy 0.072
 whistle elevator 0.066
 willow airplane 0.040
 willow alligator 0.147
@@ -24880,7 +24797,6 @@ woodpecker dove 0.584
 woodpecker drill 0.036
 woodpecker drum 0.034
 woodpecker duck 0.340
-woodpecker dunebuggy 0.024
 woodpecker eagle 0.548
 woodpecker elephant 0.083
 woodpecker elk 0.072
@@ -25062,7 +24978,6 @@ yacht crow 0.071
 yacht crown 0.099
 yacht dress 0.055
 yacht dresser 0.056
-yacht dunebuggy 0.075
 yacht eagle 0.083
 yacht elephant 0.211
 yacht elevator 0.032
