@@ -1,0 +1,132 @@
+NOTE: graph is treated as an unweighted graph
+
+Name: 
+Type: Graph
+Number of nodes: 515
+Number of edges: 600
+Average degree:   2.3301
+
+TRANSITIVITY: 0.740096038415
+
+NODES WITH CLUST COEFF = 1: 
+gown ['dress', 'skirt']
+crow ['buzzard', 'starling', 'blackbird', 'nightingale', 'oriole', 'raven']
+duck ['goose', 'pheasant']
+lime ['pear', 'avocado']
+woodpecker ['sparrow', 'dove', 'bluejay', 'pigeon', 'blackbird', 'goose', 'nightingale', 'starling', 'finch', 'falcon', 'partridge', 'oriole', 'raven']
+ox ['elk', 'moose', 'buffalo', 'bison']
+bazooka ['pistol', 'rifle']
+shelves ['shed', 'cabinet']
+razor ['scissors', 'machete']
+stork ['pelican', 'dove', 'starling', 'nightingale', 'seagull', 'hawk', 'oriole']
+chicken ['peacock', 'pheasant', 'sparrow', 'goose', 'starling', 'blackbird', 'partridge', 'raven']
+bear ['buffalo', 'moose', 'bison']
+honeydew ['cantaloupe', 'nectarine']
+bureau ['cabinet', 'dresser']
+dress ['gown', 'skirt']
+robin ['blackbird', 'sparrow', 'starling', 'finch']
+violin ['guitar', 'banjo', 'harpsichord', 'harp']
+pan ['pot', 'skillet']
+budgie ['starling', 'parakeet', 'canary', 'finch']
+vulture ['eagle', 'starling', 'buzzard', 'raven']
+shed ['shelves', 'cabinet']
+tuba ['trombone', 'trumpet']
+cranberry ['strawberry', 'raspberry']
+owl ['partridge', 'sparrow', 'pigeon', 'blackbird', 'nightingale', 'falcon', 'hawk', 'oriole']
+dagger ['machete', 'knife', 'sword']
+skillet ['pot', 'pan']
+cello ['guitar', 'banjo', 'harpsichord', 'harp']
+dresser ['bureau', 'cabinet']
+peas ['spinach', 'asparagus', 'beans', 'cabbage', 'broccoli', 'zucchini']
+skirt ['gown', 'dress']
+AVG CLUSTERING COEFFICIENT: 0.177261465151
+
+DEGREE HISTOGRAM: [243, 119, 40, 18, 20, 11, 11, 6, 9, 13, 1, 0, 0, 2, 0, 2, 1, 0, 2, 1, 1, 3, 2, 2, 2, 2, 3, 0, 0, 1]
+
+NODES WITH HIGHEST DEGREE CENTRALITY: 
+[('starling', 0.05642023346303502), ('sparrow', 0.05058365758754864), ('nightingale', 0.05058365758754864), ('blackbird', 0.05058365758754864), ('oriole', 0.048638132295719845)]
+
+4-CLIQUE COMMUNITIES (clique percolation): 
+frozenset(['elk', 'moose', 'caribou', 'deer', 'bear', 'bison', 'ox', 'buffalo'])
+frozenset(['pelican', 'pheasant', 'sparrow', 'crow', 'canary', 'goose', 'starling', 'owl', 'falcon', 'chicken', 'woodpecker', 'oriole', 'stork', 'pigeon', 'buzzard', 'chickadee', 'parakeet', 'finch', 'raven', 'eagle', 'budgie', 'vulture', 'nightingale', 'partridge', 'hawk', 'dove', 'peacock', 'bluejay', 'blackbird', 'seagull', 'robin'])
+frozenset(['spinach', 'asparagus', 'peas', 'parsley', 'celery', 'lettuce', 'cucumber', 'beans', 'cabbage', 'broccoli', 'zucchini'])
+frozenset(['cantaloupe', 'peach', 'nectarine', 'cherry', 'plum', 'tangerine', 'mandarin', 'pineapple', 'orange'])
+frozenset(['perch', 'sardine', 'mackerel', 'salmon', 'cod', 'goldfish', 'tuna', 'trout', 'guppy', 'minnow', 'catfish'])
+frozenset(['machete', 'dagger', 'sword', 'knife'])
+frozenset(['clarinet', 'harpsichord', 'piano', 'accordion'])
+frozenset(['guitar', 'harpsichord', 'cello', 'violin', 'banjo', 'harp'])
+frozenset(['tomato', 'strawberry', 'raspberry', 'apple'])
+
+MAXIMAL CLIQUES: 
+['gown', 'dress', 'skirt']
+['mackerel', 'trout', 'catfish', 'minnow', 'perch', 'goldfish']
+['mackerel', 'trout', 'catfish', 'minnow', 'perch', 'salmon', 'cod']
+['mackerel', 'trout', 'catfish', 'minnow', 'guppy', 'goldfish']
+['mackerel', 'trout', 'catfish', 'minnow', 'guppy', 'salmon', 'cod']
+['mackerel', 'trout', 'catfish', 'tuna', 'guppy', 'salmon', 'cod']
+['tuba', 'trombone', 'trumpet']
+['asparagus', 'avocado', 'parsley']
+['asparagus', 'spinach', 'celery', 'lettuce', 'cucumber']
+['asparagus', 'spinach', 'celery', 'lettuce', 'beans', 'broccoli', 'cabbage']
+['asparagus', 'spinach', 'celery', 'lettuce', 'beans', 'broccoli', 'parsley']
+['asparagus', 'spinach', 'celery', 'zucchini', 'cucumber']
+['asparagus', 'spinach', 'celery', 'zucchini', 'beans', 'broccoli', 'cabbage']
+['asparagus', 'spinach', 'celery', 'zucchini', 'beans', 'broccoli', 'parsley']
+['asparagus', 'spinach', 'peas', 'cabbage', 'beans', 'broccoli', 'zucchini']
+['gun', 'pistol', 'revolver']
+['gun', 'pistol', 'rifle']
+['saxophone', 'trombone', 'clarinet']
+['saxophone', 'trombone', 'trumpet']
+['saxophone', 'accordion', 'clarinet']
+['apple', 'raspberry', 'tomato', 'strawberry']
+['apple', 'raspberry', 'cherry']
+['duck', 'goose', 'pheasant']
+['lime', 'pear', 'avocado']
+['chisel', 'pliers', 'wrench']
+['violin', 'guitar', 'banjo', 'harpsichord', 'harp']
+['sword', 'machete', 'dagger', 'knife']
+['cranberry', 'strawberry', 'raspberry']
+['minnow', 'sardine', 'guppy', 'cod']
+['clarinet', 'trombone', 'flute']
+['clarinet', 'harpsichord', 'piano', 'accordion']
+['clarinet', 'harpsichord', 'flute']
+['orange', 'mandarin', 'cantaloupe', 'tangerine', 'nectarine']
+['beetle', 'moth', 'wasp']
+['harp', 'harpsichord', 'guitar', 'cello', 'banjo']
+['harp', 'harpsichord', 'piano']
+['plum', 'nectarine', 'peach', 'cherry']
+['plum', 'nectarine', 'peach', 'cantaloupe', 'mandarin', 'tangerine']
+['plum', 'nectarine', 'peach', 'cantaloupe', 'pineapple']
+['bazooka', 'pistol', 'rifle']
+['shelves', 'shed', 'cabinet']
+['scissors', 'machete', 'razor']
+['scissors', 'machete', 'hatchet']
+['scissors', 'machete', 'knife']
+['whale', 'bison', 'walrus']
+['whale', 'bison', 'buffalo']
+['pineapple', 'pear', 'peach']
+['nectarine', 'honeydew', 'cantaloupe']
+['bear', 'buffalo', 'moose', 'bison']
+['bison', 'elk', 'moose', 'buffalo', 'caribou']
+['bison', 'elk', 'moose', 'buffalo', 'ox']
+['bureau', 'cabinet', 'dresser']
+['cod', 'sardine', 'tuna', 'guppy']
+['pot', 'skillet', 'pan']
+['starling', 'stork', 'pelican', 'nightingale', 'oriole', 'seagull', 'hawk', 'dove']
+['starling', 'crow', 'nightingale', 'blackbird', 'oriole', 'buzzard', 'raven']
+['starling', 'budgie', 'parakeet', 'canary', 'finch']
+['starling', 'vulture', 'eagle', 'buzzard', 'raven']
+['starling', 'sparrow', 'blackbird', 'partridge', 'goose', 'raven', 'chicken', 'peacock', 'pheasant']
+['starling', 'sparrow', 'blackbird', 'partridge', 'goose', 'raven', 'bluejay', 'falcon', 'nightingale', 'oriole', 'peacock', 'chickadee', 'pheasant']
+['starling', 'sparrow', 'blackbird', 'partridge', 'goose', 'raven', 'bluejay', 'falcon', 'nightingale', 'oriole', 'pigeon', 'finch', 'pelican', 'hawk', 'dove', 'seagull']
+['starling', 'sparrow', 'blackbird', 'partridge', 'goose', 'raven', 'bluejay', 'falcon', 'nightingale', 'oriole', 'pigeon', 'finch', 'pelican', 'hawk', 'dove', 'pheasant', 'chickadee']
+['starling', 'sparrow', 'blackbird', 'partridge', 'goose', 'raven', 'bluejay', 'falcon', 'nightingale', 'oriole', 'pigeon', 'finch', 'pelican', 'hawk', 'dove', 'pheasant', 'eagle']
+['starling', 'sparrow', 'blackbird', 'partridge', 'goose', 'raven', 'bluejay', 'falcon', 'nightingale', 'oriole', 'pigeon', 'finch', 'pelican', 'hawk', 'buzzard', 'eagle']
+['starling', 'sparrow', 'blackbird', 'partridge', 'goose', 'raven', 'bluejay', 'falcon', 'nightingale', 'oriole', 'pigeon', 'finch', 'woodpecker', 'dove']
+['starling', 'sparrow', 'blackbird', 'partridge', 'parakeet', 'falcon', 'bluejay', 'nightingale', 'oriole', 'chickadee', 'peacock']
+['starling', 'sparrow', 'blackbird', 'partridge', 'parakeet', 'falcon', 'bluejay', 'nightingale', 'oriole', 'chickadee', 'pigeon', 'finch']
+['starling', 'sparrow', 'blackbird', 'partridge', 'parakeet', 'falcon', 'bluejay', 'nightingale', 'oriole', 'buzzard', 'pigeon', 'finch']
+['starling', 'sparrow', 'blackbird', 'robin', 'finch']
+['starling', 'sparrow', 'canary', 'chickadee', 'nightingale', 'parakeet', 'finch']
+['moose', 'elk', 'deer', 'caribou']
+['owl', 'partridge', 'sparrow', 'pigeon', 'nightingale', 'blackbird', 'falcon', 'hawk', 'oriole']
