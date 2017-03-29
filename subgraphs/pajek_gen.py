@@ -2,12 +2,12 @@
 Using this community detection tool:
 http://deim.urv.cat/~sergio.gomez/radatools.php
 
-This generates a .net file representing our network
+This generates a pajek .net file representing our network
 so that the above tool can work.
 
 This is a undirected, weighted, signed, complete network.
 
-Usage:
+Usage of output .net:
 Communities_Detection.exe P WS trfr 1 net_name.net net_name-lol.txt
 """
 
@@ -31,6 +31,10 @@ OUTPUT_NET = "./all/glove_tw.net"
 # OUTPUT_NET = "./all/mcrae.net"
 
 def get_cosine_dist():
+	"""
+	@output:
+	- d: {(concept1, concept2) tuple : distance as a float}
+	"""
 	d = defaultdict(float)
 	word_sim = open(INPUT_FILE, 'r')
 	for line in word_sim:

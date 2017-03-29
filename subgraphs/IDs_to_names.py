@@ -1,6 +1,9 @@
 """
 Turns modularity communities with IDs of nodes to actual
 clusters with names that a human can understand.
+
+This is necessary because the modularity .exe produces
+an output that is all node IDs.
 """
 
 from collections import defaultdict

@@ -1,13 +1,11 @@
 """
-Using NetworkX
-
 This creates a graph based
 on cosine similarities of words.
 
 - input: cosine simlarities and vocabulary
-- output: graph png
+- output: graph png or graph statistics txt
 
-Note: 
+Note:
 I would use "weight" as an edge attribute but that
 makes the visualization look funny.
 "weight" will be helpful for
@@ -50,6 +48,10 @@ OUTPUT_STATS = "./all/glove_stats" + str(NUM_EDGES) + ".txt"
 # OUTPUT_STATS = "./all/mcrae_stats" + str(NUM_EDGES) + ".txt"
 
 def get_cosine_dist():
+	"""
+	@output:
+	- d: {(concept1, concept2) tuple : distance as a float}
+	"""
 	d = defaultdict(float)
 	word_sim = open(INPUT_FILE, 'r')
 	for line in word_sim:
@@ -59,13 +61,16 @@ def get_cosine_dist():
 	return d
 
 def output_graph_stats(g):
+	"""
+	Clique percolation, along with some other NetworkX statistics
+	about the generated graph that may be useful.
+	"""
 	stat_file = open(OUTPUT_STATS, 'w')
 	stat_file.write("NOTE: graph is treated as an unweighted graph" + "\n\n")
 	stat_file.write(str(nx.info(g)) + "\n\n")
 	stat_file.write("TRANSITIVITY: " + str(nx.transitivity(g)) + "\n\n")
 	clust_coeffs = nx.clustering(g)
 	stat_file.write("NODES WITH CLUST COEFF = 1: " + "\n")
-	# there should be better ways to find cliques
 	for node in clust_coeffs:
 		if clust_coeffs[node] == 1.0:
 			stat_file.write(node + " " + str(g.neighbors(node)) + "\n")

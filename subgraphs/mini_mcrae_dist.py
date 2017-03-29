@@ -6,6 +6,7 @@ from the McRae concept dataset.
 
 vocab.txt is a list of concepts from McRae without underscores
 (underscores differentiate multiple meanings for one concept).
+(Also does not include dunebuggy and pipe.)
 
 - input: vocabulary, mcrae matrices
 - output: txt of cosine similarities
