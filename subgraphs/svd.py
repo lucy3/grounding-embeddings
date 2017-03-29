@@ -43,9 +43,20 @@ def load_features_concepts():
         for feature in concepts_features[concept]:
             mat[i, feature2idx[feature]] = 1.0
 
-    mat /= mat.sum(axis=1, keepdims=True)
-
     return mat, features, concepts
+
+
+def make_c2c(mat, features, concepts):
+    """
+    Make a concept-concept co-occurrence matrix using a concept-feature matrix.
+
+    Returns:
+        c2c_mat: n_concepts * n_concepts ndarray
+    """
+    ret = mat @ mat.T
+    lengths = np.linalg.norm(mat, axis=1, keepdims=True)
+    ret /= lengths @ lengths.T
+    return ret
 
 
 # http://stackoverflow.com/a/36867493/176075
@@ -67,17 +78,17 @@ def condensed_to_square(k, n):
 def report_closest(mat, concepts, sample_concepts, n=50):
     mat = mat[sample_concepts]
     distances = distance.pdist(mat, metric="cosine")
+    distances_square = distance.squareform(distances)
+    np.fill_diagonal(distances_square, np.inf)
 
-    topn = np.argsort(distances)[::-1][:n]
+    topn = np.argsort(distances_square.flatten())[:n]
     for idx in topn:
-        i, j = condensed_to_square(idx, len(mat))
-        print("%20s\t%20s\t%5f" % (concepts[i], concepts[j], distances[idx]))
+        i, j = np.unravel_index(idx, distances_square.shape)
+        print("%20s\t%20s\t%5f" % (concepts[i], concepts[j], distances_square[i, j]))
 
 
 def main():
     mat, features, concepts = load_features_concepts()
-    print(mat.shape)
-    print(mat.sum(axis=1)[:10])
 
     sample_concepts = np.random.choice(len(concepts), size=50)
     report_closest(mat, concepts, sample_concepts)
@@ -89,6 +100,15 @@ def main():
 
     print(mat_svd.shape)
     report_closest(mat_svd, concepts, sample_concepts)
+
+    print("\n\n==================================\n\n")
+
+    # Convert to concept-concept matrix.
+    c2c_mat = make_c2c(mat, features, concepts)
+    c2c_svd = TruncatedSVD(n_components=50)
+    c2c_svd = c2c_svd.fit_transform(c2c_mat)
+
+    report_closest(c2c_svd, concepts, sample_concepts)
 
 
 if __name__ == "__main__":
