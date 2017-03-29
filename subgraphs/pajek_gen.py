@@ -17,18 +17,18 @@ from collections import defaultdict
 # uncomment for ALL GloVe data
 # INPUT_FILE = "./all/sim_glove.txt"
 # VOCAB = "./all/vocab.txt"
-# OUTPUT_NET = "./all/glove.net"
+# OUTPUT_NET = "./all/modularity/glove.net"
 # INPUT_FILE = "./all/sim_glove_cc.txt"
 # VOCAB = "./all/vocab.txt"
-# OUTPUT_NET = "./all/glove_cc.net"
+# OUTPUT_NET = "./all/modularity/glove_cc.net"
 INPUT_FILE = "./all/sim_glove_tw.txt"
 VOCAB = "./all/vocab.txt"
-OUTPUT_NET = "./all/glove_tw.net"
+OUTPUT_NET = "./all/modularity/glove_tw.net"
 
 # uncomment for ALL McRae data
 # INPUT_FILE = "./all/sim_mcrae.txt"
 # VOCAB = "./all/vocab.txt"
-# OUTPUT_NET = "./all/mcrae.net"
+# OUTPUT_NET = "./all/modularity/mcrae.net"
 
 def get_cosine_dist():
 	"""

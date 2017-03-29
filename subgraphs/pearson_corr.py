@@ -22,7 +22,7 @@ from nltk.corpus import wordnet as wn
 VOCAB = "./all/vocab.txt"
 INPUT_FILE1 = "./all/sim_mcrae.txt"
 INPUT_FILE2 = "./all/sim_glove_tw.txt"
-OUTPUT_FILE = "./all/corr_mcrae_tw.txt"
+OUTPUT_FILE = "./all/pearson_corr/corr_mcrae_tw.txt"
 CONC_BRM = "../mcrae/CONCS_brm.txt"
 CONCSTATS = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 DOMAINS = set(["a_bird", "a_fish", "a_fruit", "a_mammal", \

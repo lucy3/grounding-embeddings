@@ -26,13 +26,13 @@ DOMAINS = ["a_bird", "a_fish", "a_fruit", "a_mammal", \
 CONCSTATS = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 
 INPUT = "../glove/glove.6B.300d.txt" # Wikipedia 2014 + Gigaword 5
-OUTPUT = "./all/dendrogram_wikigiga_domains.pdf"
+OUTPUT = "./all/hier_clust/dendrogram_wikigiga_domains.pdf"
 
 # INPUT = "../glove/glove.840B.300d.txt" # Common Crawl
-# OUTPUT = "./all/dendrogram_cc_domains.pdf"
+# OUTPUT = "./all/hier_clust/dendrogram_cc_domains.pdf"
 
 # INPUT = "./all/mcrae_vectors.txt" # McRae
-# OUTPUT = "./all/dendrogram_mcrae_domains.pdf"
+# OUTPUT = "./all/hier_clust/dendrogram_mcrae_domains.pdf"
 
 def get_domain_colors(vocabulary):
 	colors = ['r', 'olive', 'g', 'c', 'm', 'y', 'purple']
