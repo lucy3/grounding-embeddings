@@ -6,7 +6,8 @@ from pprint import pprint
 import numpy as np
 
 
-EMBEDDING_NAME = "glove.6B.300d"
+EMBEDDING_NAME = "glove.6B.300d" # Wikipedia 2014 + Gigaword 5
+# EMBEDDING_NAME = "glove.840B.300d" # Common Crawl
 GLOVE_INPUT = "../glove/%s.txt" % EMBEDDING_NAME
 
 FEATURES = "../mcrae/CONCS_FEATS_concstats_brm.txt"
@@ -29,7 +30,7 @@ def load_embeddings(concepts):
         assert len(embeddings) == len(vocab), "%i %i" % (len(embeddings), len(vocab))
     else:
         vocab, embeddings = [], []
-        with codecs.open(GLOVE_INPUT, "r", encoding="utf-8") as glove_f:
+        with open(GLOVE_INPUT, "r") as glove_f:
             for line in glove_f:
                 fields = line.strip().split()
                 word = fields[0]
@@ -113,7 +114,7 @@ def main():
 
     grouping_fns = {
         "br_label": lambda name: features[name].br_label,
-        "first_word": lambda name: name[:name.index("_")],
+        "first_word": lambda name: name.split("_")[0],
     }
     groups = {k: defaultdict(list) for k in grouping_fns}
     for name, n_entries, score in feature_data:
@@ -122,20 +123,26 @@ def main():
 
         for grouping_fn_name, grouping_fn in grouping_fns.items():
             group = grouping_fn(name)
-            groups[grouping_fn_name][group].append(score)
+            groups[grouping_fn_name][group].append((score, n_entries))
 
     # plot_groups(label_groups)
 
     for grouping_fn_name, groups_result in groups.items():
         print("\n\nGrouping by %s:" % grouping_fn_name)
-        groups_summary = {k: (len(data), np.mean(data), np.percentile(data, (0, 50, 100)))
-                          for k, data in groups_result.items()}
-        groups_summary = sorted(groups_summary.items(), key=lambda x: x[1][1])
-        print("%25s\tn\tmean\t\tmin\tmed\tmax" % "group")
-        print("=" * 80)
-        for label_group, (n, mean, pcts) in groups_summary:
-            print("%25s\t%2i\t%.5f\t\t%s" % (label_group, n, mean,
-                                            " ".join(["%.5f" % x for x in pcts])))
+        summary = {}
+        for name, data in groups_result.items():
+            data = np.array(data)
+            scores = data[:, 0]
+            n_entries = data[:, 1]
+            summary[name] = (len(data), np.mean(scores), np.percentile(scores, (0, 50, 100)),
+                             np.mean(n_entries))
+        summary = sorted(summary.items(), key=lambda x: x[1][1])
+
+        print("%25s\tmean n concepts\tn\tmean\t\tmin\tmed\tmax" % "group")
+        print("=" * 100)
+        for label_group, (n, mean, pcts, n_concepts) in summary:
+            print("%25s\t%.2f\t\t%3i\t%.5f\t\t%s" % (label_group, n_concepts, n, mean,
+                                                   " ".join(["%.5f" % x for x in pcts])))
 
 
 if __name__ == "__main__":
