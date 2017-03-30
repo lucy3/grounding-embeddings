@@ -9,7 +9,7 @@ import numpy as np
 EMBEDDING_NAME = "glove.6B.300d"
 GLOVE_INPUT = "../glove/%s.txt" % EMBEDDING_NAME
 
-FEATURES = "./all/CONCS_FEATS_concstats_brm.txt"
+FEATURES = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 VOCAB = "./all/vocab.txt"
 EMBEDDINGS = "./all/embeddings.%s.npy" % EMBEDDING_NAME
 OUTPUT = "./all/feature_fit.txt"
@@ -116,14 +116,17 @@ def main():
         print("%40s\t%i\t%f" % (name, n_entries, score))
         label_groups[features[name].br_label].append(score)
 
-    plot_groups(label_groups)
+    # plot_groups(label_groups)
 
     print("\n\nGrouping by BR label:")
-    label_groups = {k: (len(data), np.mean(data), np.var(data))
-                    for k, data in label_groups.items()}
-    label_groups = sorted(label_groups.items(), key=lambda x: x[1][1])
-    for label_group, (n, mean, var) in label_groups:
-        print("%25s\t%2i\t%.5f\t%.5f" % (label_group, n, mean, var))
+    label_groups_summary = {k: (len(data), np.mean(data), np.percentile(data, (0, 50, 100)))
+                            for k, data in label_groups.items()}
+    label_groups_summary = sorted(label_groups_summary.items(), key=lambda x: x[1][1])
+    print("%25s\tn\tmean\t\tmin\tmed\tmax" % "group")
+    print("=" * 80)
+    for label_group, (n, mean, pcts) in label_groups_summary:
+        print("%25s\t%2i\t%.5f\t\t%s" % (label_group, n, mean,
+                                         " ".join(["%.5f" % x for x in pcts])))
 
 
 if __name__ == "__main__":
