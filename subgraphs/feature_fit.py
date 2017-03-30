@@ -111,22 +111,31 @@ def main():
                     for feature in features]
     feature_data = sorted(filter(None, feature_data), key=lambda f: f[2])
 
-    label_groups = defaultdict(list)
+    grouping_fns = {
+        "br_label": lambda name: features[name].br_label,
+        "first_word": lambda name: name[:name.index("_")],
+    }
+    groups = {k: defaultdict(list) for k in grouping_fns}
     for name, n_entries, score in feature_data:
-        print("%40s\t%i\t%f" % (name, n_entries, score))
-        label_groups[features[name].br_label].append(score)
+        print("%40s\t%25s\t%i\t%f" % (name, features[name].br_label,
+                                      n_entries, score))
+
+        for grouping_fn_name, grouping_fn in grouping_fns.items():
+            group = grouping_fn(name)
+            groups[grouping_fn_name][group].append(score)
 
     # plot_groups(label_groups)
 
-    print("\n\nGrouping by BR label:")
-    label_groups_summary = {k: (len(data), np.mean(data), np.percentile(data, (0, 50, 100)))
-                            for k, data in label_groups.items()}
-    label_groups_summary = sorted(label_groups_summary.items(), key=lambda x: x[1][1])
-    print("%25s\tn\tmean\t\tmin\tmed\tmax" % "group")
-    print("=" * 80)
-    for label_group, (n, mean, pcts) in label_groups_summary:
-        print("%25s\t%2i\t%.5f\t\t%s" % (label_group, n, mean,
-                                         " ".join(["%.5f" % x for x in pcts])))
+    for grouping_fn_name, groups_result in groups.items():
+        print("\n\nGrouping by %s:" % grouping_fn_name)
+        groups_summary = {k: (len(data), np.mean(data), np.percentile(data, (0, 50, 100)))
+                          for k, data in groups_result.items()}
+        groups_summary = sorted(groups_summary.items(), key=lambda x: x[1][1])
+        print("%25s\tn\tmean\t\tmin\tmed\tmax" % "group")
+        print("=" * 80)
+        for label_group, (n, mean, pcts) in groups_summary:
+            print("%25s\t%2i\t%.5f\t\t%s" % (label_group, n, mean,
+                                            " ".join(["%.5f" % x for x in pcts])))
 
 
 if __name__ == "__main__":
