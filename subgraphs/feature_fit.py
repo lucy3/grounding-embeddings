@@ -136,13 +136,13 @@ def main():
             n_entries = data[:, 1]
             summary[name] = (len(data), np.mean(scores), np.percentile(scores, (0, 50, 100)),
                              np.mean(n_entries))
-        summary = sorted(summary.items(), key=lambda x: x[1][1])
+        summary = sorted(summary.items(), key=lambda x: x[1][2][1])
 
-        print("%25s\tmean n concepts\tn\tmean\t\tmin\tmed\tmax" % "group")
+        print("%25s\tmu\tn\tmed\t\tmin\tmean\tmax" % "group")
         print("=" * 100)
         for label_group, (n, mean, pcts, n_concepts) in summary:
-            print("%25s\t%.2f\t\t%3i\t%.5f\t\t%s" % (label_group, n_concepts, n, mean,
-                                                   " ".join(["%.5f" % x for x in pcts])))
+            print("%25s\t%.2f\t%3i\t%.5f\t\t%.5f\t%.5f\t%.5f"
+                  % (label_group, n_concepts, n, pcts[1], pcts[0], mean, pcts[2]))
 
 
 if __name__ == "__main__":
