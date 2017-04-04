@@ -87,8 +87,11 @@ def get_mcrae_freq(pearson_co):
     with open(CONC_BRM, 'r') as csvfile:
         reader = csv.DictReader(csvfile, delimiter='\t')
         for row in reader:
-            concept_stats[row["Concept"]] = row["BNC"] + '\t' + row["Num_Feats_Tax"] + '\t' + \
-                row["Familiarity"] + '\t' + str(prod_freqs[row["Concept"]])
+            concept = row["Concept"]
+            row_stats = (row["BNC"], row["Num_Feats_Tax"], row["Familiarity"],
+                         prod_freqs[concept], len(wn.synsets(concept)))
+            concept_stats[concept] = row_stats
+
     average_in_domain = defaultdict(float)
     for key in sum_in_domain:
         average_in_domain[key] = sum_in_domain[key]/count_in_domain[key]
@@ -115,9 +118,9 @@ def main():
     output.write('Concept\tcorrelation\tBNC_freq\t' +
         'num_feats_tax\tfamiliarity\ttot_num_feats\tpolysemy\n')
     for pair in sorted_pearson:
-        output.write(pair[0] + '\t' + str(pair[1]) + '\t' + concept_stats[pair[0]] + '\t'
-            + str(len(wn.synsets(pair[0]))) + '\n')
-    for tax_feature in average_in_domain:
+        row_stats = "\t".join(str(stat) for stat in concept_stats[pair[0]])
+        output.write(pair[0] + '\t' + str(pair[1]) + '\t' + row_stats + '\n')
+    for tax_feature in sorted(average_in_domain.keys()):
         output.write("\n" + tax_feature + "\t" + str(average_in_domain[tax_feature]) + "\n")
     output.close()
 
