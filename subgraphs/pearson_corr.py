@@ -13,10 +13,13 @@ Average correlation in domains based on taxonomic features
 with >15 associated concepts.
 """
 
-from scipy.stats.stats import pearsonr
+import csv
 from collections import defaultdict
 import operator
-import csv
+
+import numpy as np
+from scipy.stats.stats import pearsonr
+from sklearn import linear_model
 from nltk.corpus import wordnet as wn
 
 VOCAB = "./all/vocab.txt"
@@ -97,6 +100,24 @@ def get_mcrae_freq(pearson_co):
         average_in_domain[key] = sum_in_domain[key]/count_in_domain[key]
     return (concept_stats, average_in_domain)
 
+
+def do_regression(sorted_pearson, concept_stats):
+    N = len(sorted_pearson)
+    X, y = [], []
+    for concept, corr in sorted_pearson:
+        X.append([float(x) for x in concept_stats[concept]])
+        y.append(corr)
+
+    X = np.array(X)
+    y = np.array(y)
+
+    reg = linear_model.LinearRegression()
+    reg.fit(X, y)
+
+    r2 = reg.score(X, y)
+    return r2
+
+
 def main():
     # get vocabulary
     vocab_file = open(VOCAB, 'r')
@@ -112,6 +133,10 @@ def main():
             pearson_co[concept] = pearsonr(neighbor_dist1[concept], neighbor_dist2[concept])[0]
     sorted_pearson = sorted(pearson_co.items(), key=operator.itemgetter(1))
     concept_stats, average_in_domain = get_mcrae_freq(pearson_co)
+
+    # Attempt a baseline regression.
+    r2 = do_regression(sorted_pearson, concept_stats)
+    print("baseline regression: %5f" % r2)
 
     # write everything to an output file
     output = open(OUTPUT_FILE, 'w')
