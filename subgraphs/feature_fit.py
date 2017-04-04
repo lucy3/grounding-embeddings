@@ -39,6 +39,10 @@ def load_embeddings(concepts):
                     embeddings.append(vec)
                     vocab.append(word)
 
+        voc_embeddings = sorted(zip(vocab, embeddings), key=lambda x: x[0])
+        vocab = [x[0] for x in voc_embeddings]
+        embeddings = [x[1] for x in voc_embeddings]
+
         embeddings = np.array(embeddings)
         np.save(EMBEDDINGS, embeddings)
 
