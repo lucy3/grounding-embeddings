@@ -1,0 +1,4 @@
+# Ignore data directories -- these files are giant / cannot be legally shared publicly
+glove/*
+mcrae/*
+cslb/*
