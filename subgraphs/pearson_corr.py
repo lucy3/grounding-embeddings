@@ -15,6 +15,7 @@ with >15 associated concepts.
 
 import csv
 from collections import defaultdict
+import itertools
 import operator
 
 import numpy as np
@@ -74,8 +75,10 @@ def get_mcrae_freq(pearson_co):
     - concept_stats: {concept: tab-deliminated string of stats
     for later writing to a file}
     - average_in_domain: {domain string: average pearson correlation}
+    - concept_features: {concept: set of feature strings}
     """
     concept_stats = defaultdict(list)
+    concept_features = defaultdict(set)
     prod_freqs = defaultdict(int)
     sum_in_domain = defaultdict(float)
     count_in_domain = defaultdict(int)
@@ -83,6 +86,7 @@ def get_mcrae_freq(pearson_co):
         reader = csv.DictReader(csvfile, delimiter='\t')
         for row in reader:
             prod_freqs[row["Concept"]] += int(row["Prod_Freq"])
+            concept_features[row["Concept"]].add(row["Feature"])
             if row["Feature"] in DOMAINS:
                 sum_in_domain[row["Feature"]] += pearson_co[row["Concept"]]
                 count_in_domain[row["Feature"]] += 1
@@ -98,10 +102,15 @@ def get_mcrae_freq(pearson_co):
     average_in_domain = defaultdict(float)
     for key in sum_in_domain:
         average_in_domain[key] = sum_in_domain[key]/count_in_domain[key]
-    return (concept_stats, average_in_domain)
+
+    return concept_stats, average_in_domain, concept_features
 
 
 def do_regression(sorted_pearson, concept_stats):
+    """
+    Regress from concept data stored in `concept_stats` to Pearson correlation
+    values.
+    """
     N = len(sorted_pearson)
     X, y = [], []
     for concept, corr in sorted_pearson:
@@ -111,11 +120,30 @@ def do_regression(sorted_pearson, concept_stats):
     X = np.array(X)
     y = np.array(y)
 
+    print(X.shape, y.shape)
     reg = linear_model.LinearRegression()
     reg.fit(X, y)
 
     r2 = reg.score(X, y)
     return r2
+
+
+def augment_concept_stats(concept_stats, concept_features):
+    """
+    Augment concept_stats dictionary with feature norm information.
+    """
+    # Build a canonicalized format for the feature norm space.
+    all_features = list(sorted(set(itertools.chain.from_iterable(concept_features.values()))))
+    feature2idx = {feature: idx for idx, feature in enumerate(all_features)}
+
+    ret = {}
+    for concept in concept_stats:
+        associated_features = set(concept_features[concept])
+        associated_features = [1 if feature in associated_features else 0
+                               for feature in all_features]
+        ret[concept] = concept_stats[concept] + tuple(associated_features)
+
+    return ret
 
 
 def main():
@@ -132,11 +160,16 @@ def main():
     for concept in vocabulary:
             pearson_co[concept] = pearsonr(neighbor_dist1[concept], neighbor_dist2[concept])[0]
     sorted_pearson = sorted(pearson_co.items(), key=operator.itemgetter(1))
-    concept_stats, average_in_domain = get_mcrae_freq(pearson_co)
+    concept_stats, average_in_domain, concept_features = \
+            get_mcrae_freq(pearson_co)
 
     # Attempt a baseline regression.
     r2 = do_regression(sorted_pearson, concept_stats)
     print("baseline regression: %5f" % r2)
+
+    augmented_concept_stats = augment_concept_stats(concept_stats, concept_features)
+    r2 = do_regression(sorted_pearson, augmented_concept_stats)
+    print("augmented regression: %5f" % r2)
 
     # write everything to an output file
     output = open(OUTPUT_FILE, 'w')
