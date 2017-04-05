@@ -125,7 +125,8 @@ def do_regression(sorted_pearson, concept_stats):
     reg.fit(X, y)
 
     r2 = reg.score(X, y)
-    return r2
+    params = reg.coef_
+    return r2, params
 
 
 def augment_concept_stats(concept_stats, concept_domains):
@@ -142,7 +143,7 @@ def augment_concept_stats(concept_stats, concept_domains):
                    for domain in all_domains]
         ret[concept] = concept_stats[concept] + tuple(domains)
 
-    return ret
+    return ret, all_domains
 
 
 def main():
@@ -163,12 +164,18 @@ def main():
             get_mcrae_freq(pearson_co)
 
     # Attempt a baseline regression.
-    r2 = do_regression(sorted_pearson, concept_stats)
+    r2, _ = do_regression(sorted_pearson, concept_stats)
     print("baseline regression: %5f" % r2)
 
-    augmented_concept_stats = augment_concept_stats(concept_stats, domains)
-    r2 = do_regression(sorted_pearson, augmented_concept_stats)
+    augmented_concept_stats, augmented_labels = \
+            augment_concept_stats(concept_stats, domains)
+    r2, weights = do_regression(sorted_pearson, augmented_concept_stats)
     print("augmented regression: %5f" % r2)
+
+    augmented_weights = weights[-len(augmented_labels):]
+    augmented_weights = sorted(zip(augmented_weights, augmented_labels))
+    from pprint import pprint
+    pprint(list(augmented_weights))
 
     # write everything to an output file
     output = open(OUTPUT_FILE, 'w')
