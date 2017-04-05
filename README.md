@@ -16,10 +16,10 @@
 
 **subgraphs**
 
-	- mini_DATA_dist.py: outputs cosine distances for some vocabulary based on some DATA source
+- mini_DATA_dist.py: outputs cosine distances for some vocabulary based on some DATA source
 	
-	- subgraph_gen.py: takes cosine distances and creates a graph and outputs some metrics
+- subgraph_gen.py: takes cosine distances and creates a graph and outputs some metrics
 	
-	- *fruitveg*: fruit/veg subgraph for GloVe (Wikipedia 2014 + Gigaword 5) and McRae
+- *fruitveg*: fruit/veg subgraph for GloVe (Wikipedia 2014 + Gigaword 5) and McRae
 	
-	- *all*: (almost) all McRae concepts for GloVe (Wikipedia 2014 + Gigaword 5) and McRae
+- *all*: (almost) all McRae concepts for GloVe (Wikipedia 2014 + Gigaword 5) and McRae
