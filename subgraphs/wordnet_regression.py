@@ -149,8 +149,14 @@ def main():
     concept_stats, domains = get_concept_stats()
 
     # Generate regression targets.
-    reg_data = [(concept, m1 - m2) for concept, (m1, m2)
-                in concept_metrics.items()]
+#    reg_data = [(concept, m1 - m2) for concept, (m1, m2)
+#                in concept_metrics.items()]
+
+    # HACK: include m1 as a feature and predict m2. this might be more
+    # informative
+    reg_data = [(concept, m2) for concept, (m1, m2) in concept_metrics.items()]
+    concept_stats = {c: vs + (concept_metrics[c][0],)
+                     for c, vs in concept_stats.items() if c in concept_metrics}
 
     print("File 1: ", os.path.basename(INPUT_FILE1))
     print("File 2: ", os.path.basename(INPUT_FILE2))
