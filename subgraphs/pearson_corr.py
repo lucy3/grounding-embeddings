@@ -180,10 +180,12 @@ def main():
 
     # write everything to an output file
     output = open(OUTPUT_FILE, 'w')
-    output.write('Concept\tcorrelation\tBNC_freq\t' +
-        'num_feats_tax\tfamiliarity\ttot_num_feats\tpolysemy\n')
+    headers = ["Concept", "correlation", "log(BNC_freq)", "num_feats_tax",
+               "familiarity", "tot_num_feats", "polysemy"]
+    headers += augmented_labels
+    output.write("%s\n" % "\t".join(headers))
     for pair in sorted_pearson:
-        row_stats = "\t".join(str(stat) for stat in concept_stats[pair[0]])
+        row_stats = "\t".join(str(stat) for stat in augmented_concept_stats[pair[0]])
         output.write(pair[0] + '\t' + str(pair[1]) + '\t' + row_stats + '\n')
     for tax_feature in sorted(average_in_domain.keys()):
         output.write("\n" + tax_feature + "\t" + str(average_in_domain[tax_feature]) + "\n")
