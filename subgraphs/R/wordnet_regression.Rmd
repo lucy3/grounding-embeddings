@@ -1,0 +1,64 @@
+---
+title: "data regression analysis"
+output: html_notebook
+---
+
+Constants
+
+```{r}
+PEARSON_FILE <- "../all/pearson_corr/corr_mcrae_wikigiga.txt"
+FILE <- "../all/hier_clust/wordnet_match_wikigiga.txt"
+```
+
+
+```{r}
+pearson <- read.table(PEARSON_FILE, sep="\t", header=TRUE)
+data <- read.table(FILE, sep="\t", header=TRUE, na.strings=c("n/a"))
+```
+
+Merge feature data from Pearson file with a particular WordNet match column.
+
+```{r}
+colnames(pearson)
+colnames(data)
+```
+
+```{r}
+new_data <- pearson
+new_data["wordnet_corr"] <- data[,c("dendrogram..0.8..wordnet..7")]
+new_data[is.na(new_data)] <- 0.0
+```
+
+Baseline regression: use frequency, etc. lexical features, but leave out taxonomy features.
+
+```{r}
+colnames(new_data)
+```
+
+```{r}
+attach(new_data)
+baseline_lm <- lm(wordnet_corr ~ log.BNC_freq. + num_feats_tax + familiarity + tot_num_feats + polysemy)
+summary(baseline_lm)
+```
+
+
+Full model, including domain features
+
+```{r}
+cn <- colnames(new_data)
+full_formula <- as.formula(paste("wordnet_corr", "~", paste(cn[c(3:14)], collapse="+")))
+full_formula
+full_lm <- lm(full_formula, data=new_data)
+summary(full_lm)
+```
+
+## Comparing models
+
+```{r}
+anova(full_lm)
+```
+
+
+```{r}
+anova(baseline_lm, full_lm)
+```

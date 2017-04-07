@@ -1,0 +1,55 @@
+---
+title: "Pearson regression analysis"
+output: html_notebook
+---
+
+Constants
+
+```{r}
+PEARSON_FILE <- "../all/pearson_corr/corr_mcrae_wikigiga.txt"
+WORDNET_FILE <- NULL
+```
+
+
+```{r}
+pearson <- read.table(PEARSON_FILE, sep="\t", header=TRUE, 
+                      colClasses=c("character", "numeric", "numeric", "integer", "numeric", "integer", "integer",
+                                   "integer", "integer", "integer", "integer", "integer", "integer", "integer"))
+hist(pearson[,c("correlation")])
+```
+
+Baseline regression: use frequency, etc. lexical features, but leave out taxonomy features.
+
+```{r}
+colnames(pearson)
+```
+
+```{r}
+#y <- pearson[,c("correlation")]
+#X <- pearson[,c("log.BNC_freq.", "num_feats_tax", "familiarity", "tot_num_feats", "polysemy")]
+#attach(pearson)
+baseline_lm <- lm(correlation ~ log.BNC_freq. + num_feats_tax + familiarity + tot_num_feats + polysemy)
+summary(baseline_lm)
+```
+
+
+Full model, including domain features
+
+```{r}
+cn <- colnames(pearson)
+full_formula <- as.formula(paste(cn[2], "~", paste(cn[c(3:14)], collapse="+")))
+full_formula
+full_lm <- lm(full_formula, data=pearson)
+summary(full_lm)
+```
+
+## Comparing models
+
+```{r}
+anova(full_lm)
+```
+
+
+```{r}
+anova(baseline_lm, full_lm)
+```
