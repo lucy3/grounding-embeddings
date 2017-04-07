@@ -26,8 +26,8 @@ from nltk.corpus import wordnet as wn
 VOCAB = "./all/vocab.txt"
 INPUT_FILE1 = "./all/sim_mcrae.txt"
 # INPUT_FILE2 = "./all/sim_glove_tw.txt"
-INPUT_FILE2 = "./all/sim_glove.txt"
-OUTPUT_FILE = "./all/pearson_corr/corr_mcrae_wikigiga.txt"
+INPUT_FILE2 = "./all/sim_glove_cc.txt"
+OUTPUT_FILE = "./all/pearson_corr/corr_mcrae_cc.txt"
 CONC_BRM = "../mcrae/CONCS_brm.txt"
 CONCSTATS = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 DOMAINS = set(["a_bird", "a_fish", "a_fruit", "a_mammal", \
@@ -96,8 +96,9 @@ def get_mcrae_freq(pearson_co):
         reader = csv.DictReader(csvfile, delimiter='\t')
         for row in reader:
             concept = row["Concept"]
-            row_stats = (row["BNC"], row["Num_Feats_Tax"], row["Familiarity"],
-                         prod_freqs[concept], len(wn.synsets(concept)))
+            row_stats = (np.log(int(row["BNC"])), row["Num_Feats_Tax"],
+                         row["Familiarity"], prod_freqs[concept],
+                         len(wn.synsets(concept)))
             concept_stats[concept] = row_stats
 
     average_in_domain = defaultdict(float)
