@@ -26,8 +26,9 @@ from nltk.corpus import wordnet as wn
 VOCAB = "./all/vocab.txt"
 INPUT_FILE1 = "./all/sim_mcrae.txt"
 # INPUT_FILE2 = "./all/sim_glove_tw.txt"
-INPUT_FILE2 = "./all/sim_glove_cc.txt"
-OUTPUT_FILE = "./all/pearson_corr/corr_mcrae_cc.txt"
+# INPUT_FILE2 = "./all/sim_glove_cc.txt"
+INPUT_FILE2 = "./all/sim_glove.txt"
+OUTPUT_FILE = "./all/pearson_corr/corr_mcrae_wikigiga.txt"
 CONC_BRM = "../mcrae/CONCS_brm.txt"
 CONCSTATS = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 DOMAINS = set(["a_bird", "a_fish", "a_fruit", "a_mammal", \
@@ -179,6 +180,10 @@ def main():
     from pprint import pprint
     pprint(list(augmented_weights))
 
+    # Print average correlations among domains
+    for tax_feature in sorted(average_in_domain.keys()):
+        print(tax_feature + "\t" + str(average_in_domain[tax_feature]))
+
     # write everything to an output file
     output = open(OUTPUT_FILE, 'w')
     headers = ["Concept", "correlation", "log(BNC_freq)", "num_feats_tax",
@@ -188,8 +193,6 @@ def main():
     for pair in sorted_pearson:
         row_stats = "\t".join(str(stat) for stat in augmented_concept_stats[pair[0]])
         output.write(pair[0] + '\t' + str(pair[1]) + '\t' + row_stats + '\n')
-    for tax_feature in sorted(average_in_domain.keys()):
-        output.write("\n" + tax_feature + "\t" + str(average_in_domain[tax_feature]) + "\n")
     output.close()
 
 if __name__ == '__main__':
