@@ -15,13 +15,13 @@ with >15 associated concepts.
 
 import csv
 from collections import defaultdict
-import itertools
 import operator
 
 import numpy as np
 from scipy.stats.stats import pearsonr
 from sklearn import linear_model
 from nltk.corpus import wordnet as wn
+import get_domains
 
 VOCAB = "./all/vocab.txt"
 INPUT_FILE1 = "./all/sim_mcrae.txt"
@@ -31,8 +31,6 @@ INPUT_FILE2 = "./all/sim_glove.txt"
 OUTPUT_FILE = "./all/pearson_corr/corr_mcrae_wikigiga.txt"
 CONC_BRM = "../mcrae/CONCS_brm.txt"
 CONCSTATS = "../mcrae/CONCS_FEATS_concstats_brm.txt"
-DOMAINS = set(["a_bird", "a_fish", "a_fruit", "a_mammal", \
-    "a_musical_instrument", "a_tool", "a_vegetable", "an_animal"])
 
 def get_cosine_dist(input_file):
     """
@@ -80,18 +78,11 @@ def get_mcrae_freq(pearson_co):
     - domains: {concept: domain string}
     """
     concept_stats = defaultdict(list)
-    domains = {}
     prod_freqs = defaultdict(int)
-    sum_in_domain = defaultdict(float)
-    count_in_domain = defaultdict(int)
     with open(CONCSTATS, 'r') as csvfile:
         reader = csv.DictReader(csvfile, delimiter='\t')
         for row in reader:
             prod_freqs[row["Concept"]] += int(row["Prod_Freq"])
-            if row["Feature"] in DOMAINS:
-                sum_in_domain[row["Feature"]] += pearson_co[row["Concept"]]
-                count_in_domain[row["Feature"]] += 1
-                domains[row["Concept"]] = row["Feature"]
 
     with open(CONC_BRM, 'r') as csvfile:
         reader = csv.DictReader(csvfile, delimiter='\t')
@@ -102,11 +93,20 @@ def get_mcrae_freq(pearson_co):
                          len(wn.synsets(concept)))
             concept_stats[concept] = row_stats
 
+    concept_domains = get_domains.get_concept_domains()
+    sum_in_domain = defaultdict(float)
+    count_in_domain = defaultdict(int)
+    domain_concepts = get_domains.get_domain_concepts()
+    for domain in domain_concepts:
+    	cons = domain_concepts[domain]
+    	for c in cons:
+    		sum_in_domain[domain] += pearson_co[c]
+    	count_in_domain[domain] = len(cons)
     average_in_domain = defaultdict(float)
     for key in sum_in_domain:
         average_in_domain[key] = sum_in_domain[key]/count_in_domain[key]
 
-    return concept_stats, average_in_domain, domains
+    return concept_stats, average_in_domain, concept_domains
 
 
 def do_regression(sorted_pearson, concept_stats):
