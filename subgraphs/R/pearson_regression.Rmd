@@ -27,7 +27,7 @@ colnames(pearson)
 ```{r}
 #y <- pearson[,c("correlation")]
 #X <- pearson[,c("log.BNC_freq.", "num_feats_tax", "familiarity", "tot_num_feats", "polysemy")]
-#attach(pearson)
+attach(pearson)
 baseline_lm <- lm(correlation ~ log.BNC_freq. + num_feats_tax + familiarity + tot_num_feats + polysemy)
 summary(baseline_lm)
 ```
@@ -37,7 +37,7 @@ Full model, including domain features
 
 ```{r}
 cn <- colnames(pearson)
-full_formula <- as.formula(paste(cn[2], "~", paste(cn[c(3:14)], collapse="+")))
+full_formula <- as.formula(paste(cn[2], "~", paste(cn[c(3:70)], collapse="+")))
 full_formula
 full_lm <- lm(full_formula, data=pearson)
 summary(full_lm)
