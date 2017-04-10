@@ -62,3 +62,34 @@ anova(full_lm)
 ```{r}
 anova(baseline_lm, full_lm)
 ```
+
+## Comparing with the pearson model
+
+Let's compute the Pearson LM here and compare its weights with the weights from the WordNet LM.
+
+```{r}
+cn <- colnames(new_data)
+pearson_formula <- as.formula(paste("correlation", "~", paste(cn[c(3:70)], collapse="+")))
+pearson_formula
+pearson_lm <- lm(pearson_formula, data=new_data)
+summary(pearson_lm)
+```
+
+
+```{r}
+coefs <- cbind(pearson=coef(pearson_lm), wordnet=coef(full_lm))
+plot(coefs)
+```
+
+Correlation:
+
+```{r}
+cor(coefs)
+```
+
+Rank correlation:
+
+```{r}
+cor(coefs, method="spearman")
+```
+
