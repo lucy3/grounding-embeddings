@@ -2,6 +2,7 @@
 glove/*
 mcrae/*
 cslb/*
+wndomains/*
 
 # Compiled files
 *.pyc
