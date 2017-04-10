@@ -195,10 +195,19 @@ data &lt;- read.table(FILE, sep=&quot;\t&quot;, header=TRUE, na.strings=c(&quot;
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29sbmFtZXMocGVhcnNvbilcbmBgYCJ9 -->
 <pre class="r"><code>colnames(pearson)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIkNvbmNlcHRcIiAgICAgICAgICAgICAgXCJjb3JyZWxhdGlvblwiICAgICAgICAgIFwibG9nLkJOQ19mcmVxLlwiICAgICAgICBcIm51bV9mZWF0c190YXhcIiAgICAgICAgXCJmYW1pbGlhcml0eVwiICAgICAgICAgXG4gWzZdIFwidG90X251bV9mZWF0c1wiICAgICAgICBcInBvbHlzZW15XCIgICAgICAgICAgICAgXCJhX2JpcmRcIiAgICAgICAgICAgICAgIFwiYV9maXNoXCIgICAgICAgICAgICAgICBcImFfZnJ1aXRcIiAgICAgICAgICAgICBcblsxMV0gXCJhX211c2ljYWxfaW5zdHJ1bWVudFwiIFwiYV90b29sXCIgICAgICAgICAgICAgICBcImFfdmVnZXRhYmxlXCIgICAgICAgICAgXCJhbl9hbmltYWxcIiAgICAgICAgICAgXG4ifQ== -->
-<pre><code> [1] &quot;Concept&quot;              &quot;correlation&quot;          &quot;log.BNC_freq.&quot;        &quot;num_feats_tax&quot;        &quot;familiarity&quot;         
- [6] &quot;tot_num_feats&quot;        &quot;polysemy&quot;             &quot;a_bird&quot;               &quot;a_fish&quot;               &quot;a_fruit&quot;             
-[11] &quot;a_musical_instrument&quot; &quot;a_tool&quot;               &quot;a_vegetable&quot;          &quot;an_animal&quot;           </code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIkNvbmNlcHRcIiAgICAgICAgICAgXCJjb3JyZWxhdGlvblwiICAgICAgIFwibG9nLkJOQ19mcmVxLlwiICAgICBcIm51bV9mZWF0c190YXhcIiAgICAgXCJmYW1pbGlhcml0eVwiICAgICAgIFwidG90X251bV9mZWF0c1wiICAgIFxuIFs3XSBcInBvbHlzZW15XCIgICAgICAgICAgXCJhZG1pbmlzdHJhdGlvblwiICAgIFwiYW5pbWFsX2h1c2JhbmRyeVwiICBcImFuaW1hbHNcIiAgICAgICAgICAgXCJhbnRocm9wb2xvZ3lcIiAgICAgIFwiYXJ0XCIgICAgICAgICAgICAgIFxuWzEzXSBcImFydGlzYW5zaGlwXCIgICAgICAgXCJhdG9taWNfcGh5c2ljXCIgICAgIFwiYmFua2luZ1wiICAgICAgICAgICBcImJhc2ViYWxsXCIgICAgICAgICAgXCJiaW9sb2d5XCIgICAgICAgICAgIFwiYm9keV9jYXJlXCIgICAgICAgIFxuWzE5XSBcImJ1aWxkaW5nc1wiICAgICAgICAgXCJjYXJkXCIgICAgICAgICAgICAgIFwiY2hlbWlzdHJ5XCIgICAgICAgICBcImNvbG9yXCIgICAgICAgICAgICAgXCJjb21tZXJjZVwiICAgICAgICAgIFwiZHJhd2luZ1wiICAgICAgICAgIFxuWzI1XSBcImVjb25vbXlcIiAgICAgICAgICAgXCJlbGVjdHJpY2l0eVwiICAgICAgIFwiZW50b21vbG9neVwiICAgICAgICBcImZhc2hpb25cIiAgICAgICAgICAgXCJmaXNoaW5nXCIgICAgICAgICAgIFwiZm9vZFwiICAgICAgICAgICAgIFxuWzMxXSBcImZ1cm5pdHVyZVwiICAgICAgICAgXCJnYXN0cm9ub215XCIgICAgICAgIFwiZ2VvZ3JhcGh5XCIgICAgICAgICBcImdlb2xvZ3lcIiAgICAgICAgICAgXCJnZW9tZXRyeVwiICAgICAgICAgIFwiaGlzdG9yeVwiICAgICAgICAgIFxuWzM3XSBcImhvbWVcIiAgICAgICAgICAgICAgXCJoeWRyYXVsaWNzXCIgICAgICAgIFwiaW5kdXN0cnlcIiAgICAgICAgICBcImpld2VsbGVyeVwiICAgICAgICAgXCJsYXdcIiAgICAgICAgICAgICAgIFwibWVjaGFuaWNzXCIgICAgICAgIFxuWzQzXSBcIm1lZGljaW5lXCIgICAgICAgICAgXCJtZXRyb2xvZ3lcIiAgICAgICAgIFwibWlsaXRhcnlcIiAgICAgICAgICBcIm1vbmV5XCIgICAgICAgICAgICAgXCJtdXNpY1wiICAgICAgICAgICAgIFwibi5hXCIgICAgICAgICAgICAgIFxuWzQ5XSBcIm5hdXRpY2FsXCIgICAgICAgICAgXCJudW1pc21hdGljc1wiICAgICAgIFwib3B0aWNzXCIgICAgICAgICAgICBcInBhaW50aW5nXCIgICAgICAgICAgXCJwZXJzb25cIiAgICAgICAgICAgIFwicGh5c2ljc1wiICAgICAgICAgIFxuWzU1XSBcInBsYW50c1wiICAgICAgICAgICAgXCJwbGF5XCIgICAgICAgICAgICAgIFwicHVibGlzaGluZ1wiICAgICAgICBcInJhY2luZ1wiICAgICAgICAgICAgXCJyYWlsd2F5XCIgICAgICAgICAgIFwicmVsaWdpb25cIiAgICAgICAgIFxuWzYxXSBcInNrYXRpbmdcIiAgICAgICAgICAgXCJza2lpbmdcIiAgICAgICAgICAgIFwic3BvcnRcIiAgICAgICAgICAgICBcInN3aW1taW5nXCIgICAgICAgICAgXCJ0ZWxlY29tbXVuaWNhdGlvblwiIFwidGVsZXBob255XCIgICAgICAgIFxuWzY3XSBcInRvdXJpc21cIiAgICAgICAgICAgXCJ0b3duX3BsYW5uaW5nXCIgICAgIFwidHJhbnNwb3J0XCIgICAgICAgICBcInZlaGljbGVzXCIgICAgICAgICBcbiJ9 -->
+<pre><code> [1] &quot;Concept&quot;           &quot;correlation&quot;       &quot;log.BNC_freq.&quot;     &quot;num_feats_tax&quot;     &quot;familiarity&quot;       &quot;tot_num_feats&quot;    
+ [7] &quot;polysemy&quot;          &quot;administration&quot;    &quot;animal_husbandry&quot;  &quot;animals&quot;           &quot;anthropology&quot;      &quot;art&quot;              
+[13] &quot;artisanship&quot;       &quot;atomic_physic&quot;     &quot;banking&quot;           &quot;baseball&quot;          &quot;biology&quot;           &quot;body_care&quot;        
+[19] &quot;buildings&quot;         &quot;card&quot;              &quot;chemistry&quot;         &quot;color&quot;             &quot;commerce&quot;          &quot;drawing&quot;          
+[25] &quot;economy&quot;           &quot;electricity&quot;       &quot;entomology&quot;        &quot;fashion&quot;           &quot;fishing&quot;           &quot;food&quot;             
+[31] &quot;furniture&quot;         &quot;gastronomy&quot;        &quot;geography&quot;         &quot;geology&quot;           &quot;geometry&quot;          &quot;history&quot;          
+[37] &quot;home&quot;              &quot;hydraulics&quot;        &quot;industry&quot;          &quot;jewellery&quot;         &quot;law&quot;               &quot;mechanics&quot;        
+[43] &quot;medicine&quot;          &quot;metrology&quot;         &quot;military&quot;          &quot;money&quot;             &quot;music&quot;             &quot;n.a&quot;              
+[49] &quot;nautical&quot;          &quot;numismatics&quot;       &quot;optics&quot;            &quot;painting&quot;          &quot;person&quot;            &quot;physics&quot;          
+[55] &quot;plants&quot;            &quot;play&quot;              &quot;publishing&quot;        &quot;racing&quot;            &quot;railway&quot;           &quot;religion&quot;         
+[61] &quot;skating&quot;           &quot;skiing&quot;            &quot;sport&quot;             &quot;swimming&quot;          &quot;telecommunication&quot; &quot;telephony&quot;        
+[67] &quot;tourism&quot;           &quot;town_planning&quot;     &quot;transport&quot;         &quot;vehicles&quot;         </code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29sbmFtZXMoZGF0YSlcbmBgYCJ9 -->
 <pre class="r"><code>colnames(data)</code></pre>
@@ -227,10 +236,19 @@ new_data[is.na(new_data)] &lt;- 0.0</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29sbmFtZXMobmV3X2RhdGEpXG5gYGAifQ== -->
 <pre class="r"><code>colnames(new_data)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIkNvbmNlcHRcIiAgICAgICAgICAgICAgXCJjb3JyZWxhdGlvblwiICAgICAgICAgIFwibG9nLkJOQ19mcmVxLlwiICAgICAgICBcIm51bV9mZWF0c190YXhcIiAgICAgICAgXCJmYW1pbGlhcml0eVwiICAgICAgICAgXG4gWzZdIFwidG90X251bV9mZWF0c1wiICAgICAgICBcInBvbHlzZW15XCIgICAgICAgICAgICAgXCJhX2JpcmRcIiAgICAgICAgICAgICAgIFwiYV9maXNoXCIgICAgICAgICAgICAgICBcImFfZnJ1aXRcIiAgICAgICAgICAgICBcblsxMV0gXCJhX211c2ljYWxfaW5zdHJ1bWVudFwiIFwiYV90b29sXCIgICAgICAgICAgICAgICBcImFfdmVnZXRhYmxlXCIgICAgICAgICAgXCJhbl9hbmltYWxcIiAgICAgICAgICAgIFwid29yZG5ldF9jb3JyXCIgICAgICAgIFxuIn0= -->
-<pre><code> [1] &quot;Concept&quot;              &quot;correlation&quot;          &quot;log.BNC_freq.&quot;        &quot;num_feats_tax&quot;        &quot;familiarity&quot;         
- [6] &quot;tot_num_feats&quot;        &quot;polysemy&quot;             &quot;a_bird&quot;               &quot;a_fish&quot;               &quot;a_fruit&quot;             
-[11] &quot;a_musical_instrument&quot; &quot;a_tool&quot;               &quot;a_vegetable&quot;          &quot;an_animal&quot;            &quot;wordnet_corr&quot;        </code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIkNvbmNlcHRcIiAgICAgICAgICAgXCJjb3JyZWxhdGlvblwiICAgICAgIFwibG9nLkJOQ19mcmVxLlwiICAgICBcIm51bV9mZWF0c190YXhcIiAgICAgXCJmYW1pbGlhcml0eVwiICAgICAgIFwidG90X251bV9mZWF0c1wiICAgIFxuIFs3XSBcInBvbHlzZW15XCIgICAgICAgICAgXCJhZG1pbmlzdHJhdGlvblwiICAgIFwiYW5pbWFsX2h1c2JhbmRyeVwiICBcImFuaW1hbHNcIiAgICAgICAgICAgXCJhbnRocm9wb2xvZ3lcIiAgICAgIFwiYXJ0XCIgICAgICAgICAgICAgIFxuWzEzXSBcImFydGlzYW5zaGlwXCIgICAgICAgXCJhdG9taWNfcGh5c2ljXCIgICAgIFwiYmFua2luZ1wiICAgICAgICAgICBcImJhc2ViYWxsXCIgICAgICAgICAgXCJiaW9sb2d5XCIgICAgICAgICAgIFwiYm9keV9jYXJlXCIgICAgICAgIFxuWzE5XSBcImJ1aWxkaW5nc1wiICAgICAgICAgXCJjYXJkXCIgICAgICAgICAgICAgIFwiY2hlbWlzdHJ5XCIgICAgICAgICBcImNvbG9yXCIgICAgICAgICAgICAgXCJjb21tZXJjZVwiICAgICAgICAgIFwiZHJhd2luZ1wiICAgICAgICAgIFxuWzI1XSBcImVjb25vbXlcIiAgICAgICAgICAgXCJlbGVjdHJpY2l0eVwiICAgICAgIFwiZW50b21vbG9neVwiICAgICAgICBcImZhc2hpb25cIiAgICAgICAgICAgXCJmaXNoaW5nXCIgICAgICAgICAgIFwiZm9vZFwiICAgICAgICAgICAgIFxuWzMxXSBcImZ1cm5pdHVyZVwiICAgICAgICAgXCJnYXN0cm9ub215XCIgICAgICAgIFwiZ2VvZ3JhcGh5XCIgICAgICAgICBcImdlb2xvZ3lcIiAgICAgICAgICAgXCJnZW9tZXRyeVwiICAgICAgICAgIFwiaGlzdG9yeVwiICAgICAgICAgIFxuWzM3XSBcImhvbWVcIiAgICAgICAgICAgICAgXCJoeWRyYXVsaWNzXCIgICAgICAgIFwiaW5kdXN0cnlcIiAgICAgICAgICBcImpld2VsbGVyeVwiICAgICAgICAgXCJsYXdcIiAgICAgICAgICAgICAgIFwibWVjaGFuaWNzXCIgICAgICAgIFxuWzQzXSBcIm1lZGljaW5lXCIgICAgICAgICAgXCJtZXRyb2xvZ3lcIiAgICAgICAgIFwibWlsaXRhcnlcIiAgICAgICAgICBcIm1vbmV5XCIgICAgICAgICAgICAgXCJtdXNpY1wiICAgICAgICAgICAgIFwibi5hXCIgICAgICAgICAgICAgIFxuWzQ5XSBcIm5hdXRpY2FsXCIgICAgICAgICAgXCJudW1pc21hdGljc1wiICAgICAgIFwib3B0aWNzXCIgICAgICAgICAgICBcInBhaW50aW5nXCIgICAgICAgICAgXCJwZXJzb25cIiAgICAgICAgICAgIFwicGh5c2ljc1wiICAgICAgICAgIFxuWzU1XSBcInBsYW50c1wiICAgICAgICAgICAgXCJwbGF5XCIgICAgICAgICAgICAgIFwicHVibGlzaGluZ1wiICAgICAgICBcInJhY2luZ1wiICAgICAgICAgICAgXCJyYWlsd2F5XCIgICAgICAgICAgIFwicmVsaWdpb25cIiAgICAgICAgIFxuWzYxXSBcInNrYXRpbmdcIiAgICAgICAgICAgXCJza2lpbmdcIiAgICAgICAgICAgIFwic3BvcnRcIiAgICAgICAgICAgICBcInN3aW1taW5nXCIgICAgICAgICAgXCJ0ZWxlY29tbXVuaWNhdGlvblwiIFwidGVsZXBob255XCIgICAgICAgIFxuWzY3XSBcInRvdXJpc21cIiAgICAgICAgICAgXCJ0b3duX3BsYW5uaW5nXCIgICAgIFwidHJhbnNwb3J0XCIgICAgICAgICBcInZlaGljbGVzXCIgICAgICAgICAgXCJ3b3JkbmV0X2NvcnJcIiAgICAgXG4ifQ== -->
+<pre><code> [1] &quot;Concept&quot;           &quot;correlation&quot;       &quot;log.BNC_freq.&quot;     &quot;num_feats_tax&quot;     &quot;familiarity&quot;       &quot;tot_num_feats&quot;    
+ [7] &quot;polysemy&quot;          &quot;administration&quot;    &quot;animal_husbandry&quot;  &quot;animals&quot;           &quot;anthropology&quot;      &quot;art&quot;              
+[13] &quot;artisanship&quot;       &quot;atomic_physic&quot;     &quot;banking&quot;           &quot;baseball&quot;          &quot;biology&quot;           &quot;body_care&quot;        
+[19] &quot;buildings&quot;         &quot;card&quot;              &quot;chemistry&quot;         &quot;color&quot;             &quot;commerce&quot;          &quot;drawing&quot;          
+[25] &quot;economy&quot;           &quot;electricity&quot;       &quot;entomology&quot;        &quot;fashion&quot;           &quot;fishing&quot;           &quot;food&quot;             
+[31] &quot;furniture&quot;         &quot;gastronomy&quot;        &quot;geography&quot;         &quot;geology&quot;           &quot;geometry&quot;          &quot;history&quot;          
+[37] &quot;home&quot;              &quot;hydraulics&quot;        &quot;industry&quot;          &quot;jewellery&quot;         &quot;law&quot;               &quot;mechanics&quot;        
+[43] &quot;medicine&quot;          &quot;metrology&quot;         &quot;military&quot;          &quot;money&quot;             &quot;music&quot;             &quot;n.a&quot;              
+[49] &quot;nautical&quot;          &quot;numismatics&quot;       &quot;optics&quot;            &quot;painting&quot;          &quot;person&quot;            &quot;physics&quot;          
+[55] &quot;plants&quot;            &quot;play&quot;              &quot;publishing&quot;        &quot;racing&quot;            &quot;railway&quot;           &quot;religion&quot;         
+[61] &quot;skating&quot;           &quot;skiing&quot;            &quot;sport&quot;             &quot;swimming&quot;          &quot;telecommunication&quot; &quot;telephony&quot;        
+[67] &quot;tourism&quot;           &quot;town_planning&quot;     &quot;transport&quot;         &quot;vehicles&quot;          &quot;wordnet_corr&quot;     </code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -239,16 +257,16 @@ new_data[is.na(new_data)] &lt;- 0.0</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXR0YWNoKG5ld19kYXRhKVxuYGBgIn0= -->
 <pre class="r"><code>attach(new_data)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSBuZXdfZGF0YSAocG9zID0gMyk6XG5cbiAgICBhX2JpcmQsIGFfZmlzaCwgYV9mcnVpdCwgYV9tdXNpY2FsX2luc3RydW1lbnQsIGFfdG9vbCwgYV92ZWdldGFibGUsIGFuX2FuaW1hbCwgQ29uY2VwdCwgY29ycmVsYXRpb24sXG4gICAgZmFtaWxpYXJpdHksIGxvZy5CTkNfZnJlcS4sIG51bV9mZWF0c190YXgsIHBvbHlzZW15LCB0b3RfbnVtX2ZlYXRzLCB3b3JkbmV0X2NvcnJcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSBuZXdfZGF0YSAocG9zID0gNCk6XG5cbiAgICBhX2JpcmQsIGFfZmlzaCwgYV9mcnVpdCwgYV9tdXNpY2FsX2luc3RydW1lbnQsIGFfdG9vbCwgYV92ZWdldGFibGUsIGFuX2FuaW1hbCwgQ29uY2VwdCwgY29ycmVsYXRpb24sXG4gICAgZmFtaWxpYXJpdHksIGxvZy5CTkNfZnJlcS4sIG51bV9mZWF0c190YXgsIHBvbHlzZW15LCB0b3RfbnVtX2ZlYXRzLCB3b3JkbmV0X2NvcnJcbiJ9 -->
-<pre><code>The following objects are masked from new_data (pos = 3):
+<!-- rnb-output-begin eyJkYXRhIjoiVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSBwZWFyc29uOlxuXG4gICAgYWRtaW5pc3RyYXRpb24sIGFuaW1hbF9odXNiYW5kcnksIGFuaW1hbHMsIGFudGhyb3BvbG9neSwgYXJ0LCBhcnRpc2Fuc2hpcCwgYXRvbWljX3BoeXNpYywgYmFua2luZywgYmFzZWJhbGwsXG4gICAgYmlvbG9neSwgYm9keV9jYXJlLCBidWlsZGluZ3MsIGNhcmQsIGNoZW1pc3RyeSwgY29sb3IsIGNvbW1lcmNlLCBDb25jZXB0LCBjb3JyZWxhdGlvbiwgZHJhd2luZywgZWNvbm9teSxcbiAgICBlbGVjdHJpY2l0eSwgZW50b21vbG9neSwgZmFtaWxpYXJpdHksIGZhc2hpb24sIGZpc2hpbmcsIGZvb2QsIGZ1cm5pdHVyZSwgZ2FzdHJvbm9teSwgZ2VvZ3JhcGh5LCBnZW9sb2d5LFxuICAgIGdlb21ldHJ5LCBoaXN0b3J5LCBob21lLCBoeWRyYXVsaWNzLCBpbmR1c3RyeSwgamV3ZWxsZXJ5LCBsYXcsIGxvZy5CTkNfZnJlcS4sIG1lY2hhbmljcywgbWVkaWNpbmUsIG1ldHJvbG9neSxcbiAgICBtaWxpdGFyeSwgbW9uZXksIG11c2ljLCBuLmEsIG5hdXRpY2FsLCBudW1fZmVhdHNfdGF4LCBudW1pc21hdGljcywgb3B0aWNzLCBwYWludGluZywgcGVyc29uLCBwaHlzaWNzLCBwbGFudHMsXG4gICAgcGxheSwgcG9seXNlbXksIHB1Ymxpc2hpbmcsIHJhY2luZywgcmFpbHdheSwgcmVsaWdpb24sIHNrYXRpbmcsIHNraWluZywgc3BvcnQsIHN3aW1taW5nLCB0ZWxlY29tbXVuaWNhdGlvbixcbiAgICB0ZWxlcGhvbnksIHRvdF9udW1fZmVhdHMsIHRvdXJpc20sIHRvd25fcGxhbm5pbmcsIHRyYW5zcG9ydCwgdmVoaWNsZXNcbiJ9 -->
+<pre><code>The following objects are masked from pearson:
 
-    a_bird, a_fish, a_fruit, a_musical_instrument, a_tool, a_vegetable, an_animal, Concept, correlation,
-    familiarity, log.BNC_freq., num_feats_tax, polysemy, tot_num_feats, wordnet_corr
-
-The following objects are masked from new_data (pos = 4):
-
-    a_bird, a_fish, a_fruit, a_musical_instrument, a_tool, a_vegetable, an_animal, Concept, correlation,
-    familiarity, log.BNC_freq., num_feats_tax, polysemy, tot_num_feats, wordnet_corr</code></pre>
+    administration, animal_husbandry, animals, anthropology, art, artisanship, atomic_physic, banking, baseball,
+    biology, body_care, buildings, card, chemistry, color, commerce, Concept, correlation, drawing, economy,
+    electricity, entomology, familiarity, fashion, fishing, food, furniture, gastronomy, geography, geology,
+    geometry, history, home, hydraulics, industry, jewellery, law, log.BNC_freq., mechanics, medicine, metrology,
+    military, money, music, n.a, nautical, num_feats_tax, numismatics, optics, painting, person, physics, plants,
+    play, polysemy, publishing, racing, railway, religion, skating, skiing, sport, swimming, telecommunication,
+    telephony, tot_num_feats, tourism, town_planning, transport, vehicles</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmFzZWxpbmVfbG0gPC0gbG0od29yZG5ldF9jb3JyIH4gbG9nLkJOQ19mcmVxLiArIG51bV9mZWF0c190YXggKyBmYW1pbGlhcml0eSArIHRvdF9udW1fZmVhdHMgKyBwb2x5c2VteSlcbnN1bW1hcnkoYmFzZWxpbmVfbG0pXG5gYGAifQ== -->
 <pre class="r"><code>baseline_lm &lt;- lm(wordnet_corr ~ log.BNC_freq. + num_feats_tax + familiarity + tot_num_feats + polysemy)
@@ -284,50 +302,116 @@ F-statistic: 11.07 on 5 and 509 DF,  p-value: 3.878e-10</code></pre>
 <p>Full model, including domain features</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY24gPC0gY29sbmFtZXMobmV3X2RhdGEpXG5mdWxsX2Zvcm11bGEgPC0gYXMuZm9ybXVsYShwYXN0ZShcIndvcmRuZXRfY29yclwiLCBcIn5cIiwgcGFzdGUoY25bYygzOjE0KV0sIGNvbGxhcHNlPVwiK1wiKSkpXG5mdWxsX2Zvcm11bGFcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY24gPC0gY29sbmFtZXMobmV3X2RhdGEpXG5mdWxsX2Zvcm11bGEgPC0gYXMuZm9ybXVsYShwYXN0ZShcIndvcmRuZXRfY29yclwiLCBcIn5cIiwgcGFzdGUoY25bYygzOjcwKV0sIGNvbGxhcHNlPVwiK1wiKSkpXG5mdWxsX2Zvcm11bGFcbmBgYCJ9 -->
 <pre class="r"><code>cn &lt;- colnames(new_data)
-full_formula &lt;- as.formula(paste(&quot;wordnet_corr&quot;, &quot;~&quot;, paste(cn[c(3:14)], collapse=&quot;+&quot;)))
+full_formula &lt;- as.formula(paste(&quot;wordnet_corr&quot;, &quot;~&quot;, paste(cn[c(3:70)], collapse=&quot;+&quot;)))
 full_formula</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoid29yZG5ldF9jb3JyIH4gbG9nLkJOQ19mcmVxLiArIG51bV9mZWF0c190YXggKyBmYW1pbGlhcml0eSArIFxuICAgIHRvdF9udW1fZmVhdHMgKyBwb2x5c2VteSArIGFfYmlyZCArIGFfZmlzaCArIGFfZnJ1aXQgKyBhX211c2ljYWxfaW5zdHJ1bWVudCArIFxuICAgIGFfdG9vbCArIGFfdmVnZXRhYmxlICsgYW5fYW5pbWFsXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoid29yZG5ldF9jb3JyIH4gbG9nLkJOQ19mcmVxLiArIG51bV9mZWF0c190YXggKyBmYW1pbGlhcml0eSArIFxuICAgIHRvdF9udW1fZmVhdHMgKyBwb2x5c2VteSArIGFkbWluaXN0cmF0aW9uICsgYW5pbWFsX2h1c2JhbmRyeSArIFxuICAgIGFuaW1hbHMgKyBhbnRocm9wb2xvZ3kgKyBhcnQgKyBhcnRpc2Fuc2hpcCArIGF0b21pY19waHlzaWMgKyBcbiAgICBiYW5raW5nICsgYmFzZWJhbGwgKyBiaW9sb2d5ICsgYm9keV9jYXJlICsgYnVpbGRpbmdzICsgY2FyZCArIFxuICAgIGNoZW1pc3RyeSArIGNvbG9yICsgY29tbWVyY2UgKyBkcmF3aW5nICsgZWNvbm9teSArIGVsZWN0cmljaXR5ICsgXG4gICAgZW50b21vbG9neSArIGZhc2hpb24gKyBmaXNoaW5nICsgZm9vZCArIGZ1cm5pdHVyZSArIGdhc3Ryb25vbXkgKyBcbiAgICBnZW9ncmFwaHkgKyBnZW9sb2d5ICsgZ2VvbWV0cnkgKyBoaXN0b3J5ICsgaG9tZSArIGh5ZHJhdWxpY3MgKyBcbiAgICBpbmR1c3RyeSArIGpld2VsbGVyeSArIGxhdyArIG1lY2hhbmljcyArIG1lZGljaW5lICsgbWV0cm9sb2d5ICsgXG4gICAgbWlsaXRhcnkgKyBtb25leSArIG11c2ljICsgbi5hICsgbmF1dGljYWwgKyBudW1pc21hdGljcyArIFxuICAgIG9wdGljcyArIHBhaW50aW5nICsgcGVyc29uICsgcGh5c2ljcyArIHBsYW50cyArIHBsYXkgKyBwdWJsaXNoaW5nICsgXG4gICAgcmFjaW5nICsgcmFpbHdheSArIHJlbGlnaW9uICsgc2thdGluZyArIHNraWluZyArIHNwb3J0ICsgXG4gICAgc3dpbW1pbmcgKyB0ZWxlY29tbXVuaWNhdGlvbiArIHRlbGVwaG9ueSArIHRvdXJpc20gKyB0b3duX3BsYW5uaW5nICsgXG4gICAgdHJhbnNwb3J0ICsgdmVoaWNsZXNcbiJ9 -->
 <pre><code>wordnet_corr ~ log.BNC_freq. + num_feats_tax + familiarity + 
-    tot_num_feats + polysemy + a_bird + a_fish + a_fruit + a_musical_instrument + 
-    a_tool + a_vegetable + an_animal</code></pre>
+    tot_num_feats + polysemy + administration + animal_husbandry + 
+    animals + anthropology + art + artisanship + atomic_physic + 
+    banking + baseball + biology + body_care + buildings + card + 
+    chemistry + color + commerce + drawing + economy + electricity + 
+    entomology + fashion + fishing + food + furniture + gastronomy + 
+    geography + geology + geometry + history + home + hydraulics + 
+    industry + jewellery + law + mechanics + medicine + metrology + 
+    military + money + music + n.a + nautical + numismatics + 
+    optics + painting + person + physics + plants + play + publishing + 
+    racing + railway + religion + skating + skiing + sport + 
+    swimming + telecommunication + telephony + tourism + town_planning + 
+    transport + vehicles</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZnVsbF9sbSA8LSBsbShmdWxsX2Zvcm11bGEsIGRhdGE9bmV3X2RhdGEpXG5zdW1tYXJ5KGZ1bGxfbG0pXG5gYGAifQ== -->
 <pre class="r"><code>full_lm &lt;- lm(full_formula, data=new_data)
 summary(full_lm)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IGZ1bGxfZm9ybXVsYSwgZGF0YSA9IG5ld19kYXRhKVxuXG5SZXNpZHVhbHM6XG4gICAgIE1pbiAgICAgICAxUSAgIE1lZGlhbiAgICAgICAzUSAgICAgIE1heCBcbi0wLjc1MTYyIC0wLjI3OTY0ICAwLjAzNjIyICAwLjI3NjgyICAwLjgyMDQ5IFxuXG5Db2VmZmljaWVudHM6XG4gICAgICAgICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgdCB2YWx1ZSBQcig+fHR8KSAgICBcbihJbnRlcmNlcHQpICAgICAgICAgICAxLjk0MmUtMDEgIDguMzA4ZS0wMiAgIDIuMzM3IDAuMDE5ODIxICogIFxubG9nLkJOQ19mcmVxLiAgICAgICAgIDEuNjgzZS0wMiAgMS4xNTRlLTAyICAgMS40NTggMC4xNDU0MTAgICAgXG5udW1fZmVhdHNfdGF4ICAgICAgICAgMS4xOTZlLTAyICA4LjA3OWUtMDMgICAxLjQ4MSAwLjEzOTIyMyAgICBcbmZhbWlsaWFyaXR5ICAgICAgICAgIC0xLjM1OWUtMDIgIDEuMDEzZS0wMiAgLTEuMzQyIDAuMTgwMTk4ICAgIFxudG90X251bV9mZWF0cyAgICAgICAgIDEuODMzZS0wNSAgNy42NzhlLTA0ICAgMC4wMjQgMC45ODA5NjAgICAgXG5wb2x5c2VteSAgICAgICAgICAgICAtMS4wMDllLTAyICA0LjYzN2UtMDMgIC0yLjE3NiAwLjAzMDAyNyAqICBcbmFfYmlyZCAgICAgICAgICAgICAgICAxLjYxNWUtMDEgIDkuMjc4ZS0wMiAgIDEuNzQxIDAuMDgyMjg3IC4gIFxuYV9maXNoICAgICAgICAgICAgICAgIDQuMzY4ZS0wMSAgMS4yNDBlLTAxICAgMy41MjMgMC4wMDA0NjUgKioqXG5hX2ZydWl0ICAgICAgICAgICAgICAgMy40MTVlLTAxICA3LjU0N2UtMDIgICA0LjUyNSA3LjU2ZS0wNiAqKipcbmFfbXVzaWNhbF9pbnN0cnVtZW50ICAxLjQ0OWUtMDEgIDguNzYzZS0wMiAgIDEuNjUzIDAuMDk4ODY5IC4gIFxuYV90b29sICAgICAgICAgICAgICAgIDIuMjQ3ZS0wMSAgOC4zODllLTAyICAgMi42NzkgMC4wMDc2MzAgKiogXG5hX3ZlZ2V0YWJsZSAgICAgICAgICAgMi4wNjhlLTAxICA2Ljg0N2UtMDIgICAzLjAyMSAwLjAwMjY1MCAqKiBcbmFuX2FuaW1hbCAgICAgICAgICAgICAyLjc0NWUtMDEgIDQuOTM2ZS0wMiAgIDUuNTYxIDQuMzdlLTA4ICoqKlxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCDigJgqKirigJkgMC4wMDEg4oCYKirigJkgMC4wMSDigJgq4oCZIDAuMDUg4oCYLuKAmSAwLjEg4oCYIOKAmSAxXG5cblJlc2lkdWFsIHN0YW5kYXJkIGVycm9yOiAwLjMzODMgb24gNTAyIGRlZ3JlZXMgb2YgZnJlZWRvbVxuTXVsdGlwbGUgUi1zcXVhcmVkOiAgMC4xODcyLFx0QWRqdXN0ZWQgUi1zcXVhcmVkOiAgMC4xNjc4IFxuRi1zdGF0aXN0aWM6IDkuNjM4IG9uIDEyIGFuZCA1MDIgREYsICBwLXZhbHVlOiA8IDIuMmUtMTZcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxubG0oZm9ybXVsYSA9IGZ1bGxfZm9ybXVsYSwgZGF0YSA9IG5ld19kYXRhKVxuXG5SZXNpZHVhbHM6XG4gICAgTWluICAgICAgMVEgIE1lZGlhbiAgICAgIDNRICAgICBNYXggXG4tMC43NTc3IC0wLjIyNzAgIDAuMDA4OSAgMC4yNTE5ICAwLjY0MTQgXG5cbkNvZWZmaWNpZW50czpcbiAgICAgICAgICAgICAgICAgICAgRXN0aW1hdGUgU3RkLiBFcnJvciB0IHZhbHVlIFByKD58dHwpICAgXG4oSW50ZXJjZXB0KSAgICAgICAgMC4yMjExODUyICAwLjEwNjk5MTUgICAyLjA2NyAgMC4wMzkyOCAqIFxubG9nLkJOQ19mcmVxLiAgICAgIDAuMDI0NzAzOCAgMC4wMTI2ODQ0ICAgMS45NDggIDAuMDUyMDkgLiBcbm51bV9mZWF0c190YXggICAgICAwLjAwMjcyMzMgIDAuMDA4NDQ3MSAgIDAuMzIyICAwLjc0NzMwICAgXG5mYW1pbGlhcml0eSAgICAgICAtMC4wMTQyODc2ICAwLjAxMTc5NDEgIC0xLjIxMSAgMC4yMjYzOCAgIFxudG90X251bV9mZWF0cyAgICAgIDAuMDAwODU3MyAgMC4wMDA3NzAyICAgMS4xMTMgIDAuMjY2MjggICBcbnBvbHlzZW15ICAgICAgICAgIC0wLjAwODI2ODEgIDAuMDA0OTk5NSAgLTEuNjU0ICAwLjA5ODg4IC4gXG5hZG1pbmlzdHJhdGlvbiAgICAtMC4xMjg5ODA1ICAwLjI4NDI2MzYgIC0wLjQ1NCAgMC42NTAyNCAgIFxuYW5pbWFsX2h1c2JhbmRyeSAgLTAuNDExNDA4OCAgMC4zNDE1OTgxICAtMS4yMDQgIDAuMjI5MDkgICBcbmFuaW1hbHMgICAgICAgICAgICAwLjIxNjUzMTEgIDAuMDgyMzA5NiAgIDIuNjMxICAwLjAwODgyICoqXG5hbnRocm9wb2xvZ3kgICAgICAgMC4zNjM3NDY1ICAwLjM5NTcyODAgICAwLjkxOSAgMC4zNTg1MCAgIFxuYXJ0ICAgICAgICAgICAgICAgLTAuMTYyMTcxMSAgMC4yNDc1MjEwICAtMC42NTUgIDAuNTEyNjkgICBcbmFydGlzYW5zaGlwICAgICAgICAwLjAwNjI3MjMgIDAuMjQzNTQ3OSAgIDAuMDI2ICAwLjk3OTQ3ICAgXG5hdG9taWNfcGh5c2ljICAgICAtMC40Njk5OTY1ICAwLjI0ODA1MDMgIC0xLjg5NSAgMC4wNTg3NyAuIFxuYmFua2luZyAgICAgICAgICAgLTAuNDAzMzQwOCAgMC4zNDE4MDg1ICAtMS4xODAgIDAuMjM4NjIgICBcbmJhc2ViYWxsICAgICAgICAgICAwLjEwODE5NDcgIDAuMjQ4NDM5OCAgIDAuNDM1ICAwLjY2MzQxICAgXG5iaW9sb2d5ICAgICAgICAgICAtMC4wMzI1OTIyICAwLjA1NjAyMjQgIC0wLjU4MiAgMC41NjEwMSAgIFxuYm9keV9jYXJlICAgICAgICAgLTAuMDgxMTc2NSAgMC4yNDc1NDYzICAtMC4zMjggIDAuNzQzMTIgICBcbmJ1aWxkaW5ncyAgICAgICAgIC0wLjA5NTg2MDEgIDAuMDk1MjE1NiAgLTEuMDA3ICAwLjMxNDU5ICAgXG5jYXJkICAgICAgICAgICAgICAtMC4xMjMzODExICAwLjM0Mjg0NjcgIC0wLjM2MCAgMC43MTkxMSAgIFxuY2hlbWlzdHJ5ICAgICAgICAgLTAuMDMxMDQzMCAgMC4wODY1MzI2ICAtMC4zNTkgIDAuNzE5OTYgICBcbmNvbG9yICAgICAgICAgICAgIC0wLjAwNDQ4NDggIDAuMzQ5ODIyMyAgLTAuMDEzICAwLjk4OTc4ICAgXG5jb21tZXJjZSAgICAgICAgICAtMC4xMjY3MTkyICAwLjM0MzQwODkgIC0wLjM2OSAgMC43MTIzMCAgIFxuZHJhd2luZyAgICAgICAgICAgLTAuNDI1MDI5MCAgMC4yNDc5NDQ3ICAtMS43MTQgIDAuMDg3MTkgLiBcbmVjb25vbXkgICAgICAgICAgICAwLjE5MDc0MDIgIDAuMjYzMTI4MiAgIDAuNzI1ICAwLjQ2ODkwICAgXG5lbGVjdHJpY2l0eSAgICAgICAtMC4wNTUzMTM4ICAwLjM0NDIzNjUgIC0wLjE2MSAgMC44NzI0MSAgIFxuZW50b21vbG9neSAgICAgICAgIDAuMDgyMzc1NiAgMC4xMTU0NTMyICAgMC43MTMgIDAuNDc1OTEgICBcbmZhc2hpb24gICAgICAgICAgICAwLjEyNjgyNDQgIDAuMDg4NDg1OCAgIDEuNDMzICAwLjE1MjQ4ICAgXG5maXNoaW5nICAgICAgICAgICAgMC4xMjA1NTM5ICAwLjM0MzgyMzMgICAwLjM1MSAgMC43MjYwMyAgIFxuZm9vZCAgICAgICAgICAgICAgIDAuMzUyODY5NiAgMC4xMjQyMzQwICAgMi44NDAgIDAuMDA0NzEgKipcbmZ1cm5pdHVyZSAgICAgICAgIC0wLjEwNTMwMTYgIDAuMTAzNDU0OCAgLTEuMDE4ICAwLjMwOTMwICAgXG5nYXN0cm9ub215ICAgICAgICAtMC4wMDcwODY3ICAwLjA4OTc1NjQgIC0wLjA3OSAgMC45MzcxMCAgIFxuZ2VvZ3JhcGh5ICAgICAgICAgLTAuNDMyNjQ1MiAgMC4zNDM4NDQ2ICAtMS4yNTggIDAuMjA4OTYgICBcbmdlb2xvZ3kgICAgICAgICAgIC0wLjI5MTMxMjUgIDAuMTgyOTY2MiAgLTEuNTkyICAwLjExMjA2ICAgXG5nZW9tZXRyeSAgICAgICAgICAtMC40Mzg0NzEwICAwLjM0NDE1NzAgIC0xLjI3NCAgMC4yMDMzMSAgIFxuaGlzdG9yeSAgICAgICAgICAgLTAuNTE2NDE3MiAgMC4yMDEzOTI2ICAtMi41NjQgIDAuMDEwNjcgKiBcbmhvbWUgICAgICAgICAgICAgIC0wLjAxMjM2MzIgIDAuMTQ1Njg0NiAgLTAuMDg1ICAwLjkzMjQxICAgXG5oeWRyYXVsaWNzICAgICAgICAtMC40MDA3MzYxICAwLjM0MjE0NDggIC0xLjE3MSAgMC4yNDIxMiAgIFxuaW5kdXN0cnkgICAgICAgICAgIDAuMzAzODA4NyAgMC4xODM3MDYzICAgMS42NTQgIDAuMDk4ODggLiBcbmpld2VsbGVyeSAgICAgICAgIC0wLjIwNzgxODggIDAuMTgxNTEyMSAgLTEuMTQ1ICAwLjI1Mjg1ICAgXG5sYXcgICAgICAgICAgICAgICAgMC4wNTkzMjc2ICAwLjI4MDEyNzggICAwLjIxMiAgMC44MzIzNyAgIFxubWVjaGFuaWNzICAgICAgICAgLTAuMDAwOTMzOSAgMC4xNDM3ODMyICAtMC4wMDYgIDAuOTk0ODIgICBcbm1lZGljaW5lICAgICAgICAgICAwLjMzNjExODAgIDAuMzQxODUxMCAgIDAuOTgzICAwLjMyNjAzICAgXG5tZXRyb2xvZ3kgICAgICAgICAtMC4yMzA5NTI4ICAwLjIwNTU2NTYgIC0xLjEyMyAgMC4yNjE4MyAgIFxubWlsaXRhcnkgICAgICAgICAgIDAuMTAzNDYxNCAgMC4wOTgyMDIxICAgMS4wNTQgIDAuMjkyNjYgICBcbm1vbmV5ICAgICAgICAgICAgIC0wLjQ2NzgwODQgIDAuMzQzMDQ1MyAgLTEuMzY0ICAwLjE3MzM1ICAgXG5tdXNpYyAgICAgICAgICAgICAgMC4wMjQyMDcxICAwLjEwNTk5NDEgICAwLjIyOCAgMC44MTk0NSAgIFxubi5hICAgICAgICAgICAgICAgLTAuMTUxNTMxNCAgMC4wODExMzU4ICAtMS44NjggIDAuMDYyNDcgLiBcbm5hdXRpY2FsICAgICAgICAgICAwLjAzMTk2MzUgIDAuMTM0ODQyMyAgIDAuMjM3ICAwLjgxMjczICAgXG5udW1pc21hdGljcyAgICAgICAgMC4xMzUzNDY3ICAwLjQ3NTkwMzUgICAwLjI4NCAgMC43NzYyNCAgIFxub3B0aWNzICAgICAgICAgICAgLTAuMjM4MDkyNCAgMC4zNDM3OTMzICAtMC42OTMgIDAuNDg4OTYgICBcbnBhaW50aW5nICAgICAgICAgIC0wLjI5OTk2MjUgIDAuMzQzNjI1OCAgLTAuODczICAwLjM4MzE3ICAgXG5wZXJzb24gICAgICAgICAgICAgMC4zMzcxNDI4ICAwLjE0NDY0NTAgICAyLjMzMSAgMC4wMjAyMSAqIFxucGh5c2ljcyAgICAgICAgICAgLTAuMDQ1ODExNCAgMC4yNDc3MDc1ICAtMC4xODUgIDAuODUzMzYgICBcbnBsYW50cyAgICAgICAgICAgICAwLjE5NTEzNzEgIDAuMDcxNzY0MyAgIDIuNzE5ICAwLjAwNjgwICoqXG5wbGF5ICAgICAgICAgICAgICAtMC4yNjc2MjAyICAwLjE2NTg4MDAgIC0xLjYxMyAgMC4xMDczOCAgIFxucHVibGlzaGluZyAgICAgICAgLTAuMzI1Mjc4OSAgMC4xNjIyNzczICAtMi4wMDQgIDAuMDQ1NjIgKiBcbnJhY2luZyAgICAgICAgICAgIC0wLjA1NTY0NjQgIDAuMjUxNzc4OSAgLTAuMjIxICAwLjgyNTE4ICAgXG5yYWlsd2F5ICAgICAgICAgICAtMC4xMzA3MDI3ICAwLjM2NTAzMDcgIC0wLjM1OCAgMC43MjA0NyAgIFxucmVsaWdpb24gICAgICAgICAgLTAuMDQ0OTQ3NyAgMC4yMTYzODQ2ICAtMC4yMDggIDAuODM1NTQgICBcbnNrYXRpbmcgICAgICAgICAgICAwLjEzMDU2NzQgIDAuMzQxNjE3MiAgIDAuMzgyICAwLjcwMjQ5ICAgXG5za2lpbmcgICAgICAgICAgICAtMC4yMzIzODU2ICAwLjM1NjY2NjYgIC0wLjY1MiAgMC41MTUwMyAgIFxuc3BvcnQgICAgICAgICAgICAgLTAuMTk3MjE2OSAgMC4yMjEwMjYxICAtMC44OTIgIDAuMzcyNzIgICBcbnN3aW1taW5nICAgICAgICAgICAwLjEwODY0NzggIDAuMjQwODMyMSAgIDAuNDUxICAwLjY1MjExICAgXG50ZWxlY29tbXVuaWNhdGlvbiAtMC40Nzc0NTE2ICAwLjM0MzIyNjcgIC0xLjM5MSAgMC4xNjQ5MCAgIFxudGVsZXBob255ICAgICAgICAgLTAuMzI1NTcxMiAgMC4zNDQ1NjM1ICAtMC45NDUgIDAuMzQ1MjMgICBcbnRvdXJpc20gICAgICAgICAgIC0wLjEwNTg0NzUgIDAuMTE2MzU1NiAgLTAuOTEwICAwLjM2MzQ4ICAgXG50b3duX3BsYW5uaW5nICAgICAgMC4xNDEyMzEwICAwLjEyOTA3MDMgICAxLjA5NCAgMC4yNzQ0NSAgIFxudHJhbnNwb3J0ICAgICAgICAgLTAuMDE2MjAzMiAgMC4wODk4NTkxICAtMC4xODAgIDAuODU2OTggICBcbnZlaGljbGVzICAgICAgICAgIC0wLjIwOTk3MzkgIDAuMzQ0NTEzNSAgLTAuNjA5ICAwLjU0MjUyICAgXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuUmVzaWR1YWwgc3RhbmRhcmQgZXJyb3I6IDAuMzM0MSBvbiA0NDYgZGVncmVlcyBvZiBmcmVlZG9tXG5NdWx0aXBsZSBSLXNxdWFyZWQ6ICAwLjI5NTksXHRBZGp1c3RlZCBSLXNxdWFyZWQ6ICAwLjE4ODUgXG5GLXN0YXRpc3RpYzogMi43NTYgb24gNjggYW5kIDQ0NiBERiwgIHAtdmFsdWU6IDIuMjQ2ZS0xMFxuIn0= -->
 <pre><code>
 Call:
 lm(formula = full_formula, data = new_data)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--0.75162 -0.27964  0.03622  0.27682  0.82049 
+    Min      1Q  Median      3Q     Max 
+-0.7577 -0.2270  0.0089  0.2519  0.6414 
 
 Coefficients:
-                       Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)           1.942e-01  8.308e-02   2.337 0.019821 *  
-log.BNC_freq.         1.683e-02  1.154e-02   1.458 0.145410    
-num_feats_tax         1.196e-02  8.079e-03   1.481 0.139223    
-familiarity          -1.359e-02  1.013e-02  -1.342 0.180198    
-tot_num_feats         1.833e-05  7.678e-04   0.024 0.980960    
-polysemy             -1.009e-02  4.637e-03  -2.176 0.030027 *  
-a_bird                1.615e-01  9.278e-02   1.741 0.082287 .  
-a_fish                4.368e-01  1.240e-01   3.523 0.000465 ***
-a_fruit               3.415e-01  7.547e-02   4.525 7.56e-06 ***
-a_musical_instrument  1.449e-01  8.763e-02   1.653 0.098869 .  
-a_tool                2.247e-01  8.389e-02   2.679 0.007630 ** 
-a_vegetable           2.068e-01  6.847e-02   3.021 0.002650 ** 
-an_animal             2.745e-01  4.936e-02   5.561 4.37e-08 ***
+                    Estimate Std. Error t value Pr(&gt;|t|)   
+(Intercept)        0.2211852  0.1069915   2.067  0.03928 * 
+log.BNC_freq.      0.0247038  0.0126844   1.948  0.05209 . 
+num_feats_tax      0.0027233  0.0084471   0.322  0.74730   
+familiarity       -0.0142876  0.0117941  -1.211  0.22638   
+tot_num_feats      0.0008573  0.0007702   1.113  0.26628   
+polysemy          -0.0082681  0.0049995  -1.654  0.09888 . 
+administration    -0.1289805  0.2842636  -0.454  0.65024   
+animal_husbandry  -0.4114088  0.3415981  -1.204  0.22909   
+animals            0.2165311  0.0823096   2.631  0.00882 **
+anthropology       0.3637465  0.3957280   0.919  0.35850   
+art               -0.1621711  0.2475210  -0.655  0.51269   
+artisanship        0.0062723  0.2435479   0.026  0.97947   
+atomic_physic     -0.4699965  0.2480503  -1.895  0.05877 . 
+banking           -0.4033408  0.3418085  -1.180  0.23862   
+baseball           0.1081947  0.2484398   0.435  0.66341   
+biology           -0.0325922  0.0560224  -0.582  0.56101   
+body_care         -0.0811765  0.2475463  -0.328  0.74312   
+buildings         -0.0958601  0.0952156  -1.007  0.31459   
+card              -0.1233811  0.3428467  -0.360  0.71911   
+chemistry         -0.0310430  0.0865326  -0.359  0.71996   
+color             -0.0044848  0.3498223  -0.013  0.98978   
+commerce          -0.1267192  0.3434089  -0.369  0.71230   
+drawing           -0.4250290  0.2479447  -1.714  0.08719 . 
+economy            0.1907402  0.2631282   0.725  0.46890   
+electricity       -0.0553138  0.3442365  -0.161  0.87241   
+entomology         0.0823756  0.1154532   0.713  0.47591   
+fashion            0.1268244  0.0884858   1.433  0.15248   
+fishing            0.1205539  0.3438233   0.351  0.72603   
+food               0.3528696  0.1242340   2.840  0.00471 **
+furniture         -0.1053016  0.1034548  -1.018  0.30930   
+gastronomy        -0.0070867  0.0897564  -0.079  0.93710   
+geography         -0.4326452  0.3438446  -1.258  0.20896   
+geology           -0.2913125  0.1829662  -1.592  0.11206   
+geometry          -0.4384710  0.3441570  -1.274  0.20331   
+history           -0.5164172  0.2013926  -2.564  0.01067 * 
+home              -0.0123632  0.1456846  -0.085  0.93241   
+hydraulics        -0.4007361  0.3421448  -1.171  0.24212   
+industry           0.3038087  0.1837063   1.654  0.09888 . 
+jewellery         -0.2078188  0.1815121  -1.145  0.25285   
+law                0.0593276  0.2801278   0.212  0.83237   
+mechanics         -0.0009339  0.1437832  -0.006  0.99482   
+medicine           0.3361180  0.3418510   0.983  0.32603   
+metrology         -0.2309528  0.2055656  -1.123  0.26183   
+military           0.1034614  0.0982021   1.054  0.29266   
+money             -0.4678084  0.3430453  -1.364  0.17335   
+music              0.0242071  0.1059941   0.228  0.81945   
+n.a               -0.1515314  0.0811358  -1.868  0.06247 . 
+nautical           0.0319635  0.1348423   0.237  0.81273   
+numismatics        0.1353467  0.4759035   0.284  0.77624   
+optics            -0.2380924  0.3437933  -0.693  0.48896   
+painting          -0.2999625  0.3436258  -0.873  0.38317   
+person             0.3371428  0.1446450   2.331  0.02021 * 
+physics           -0.0458114  0.2477075  -0.185  0.85336   
+plants             0.1951371  0.0717643   2.719  0.00680 **
+play              -0.2676202  0.1658800  -1.613  0.10738   
+publishing        -0.3252789  0.1622773  -2.004  0.04562 * 
+racing            -0.0556464  0.2517789  -0.221  0.82518   
+railway           -0.1307027  0.3650307  -0.358  0.72047   
+religion          -0.0449477  0.2163846  -0.208  0.83554   
+skating            0.1305674  0.3416172   0.382  0.70249   
+skiing            -0.2323856  0.3566666  -0.652  0.51503   
+sport             -0.1972169  0.2210261  -0.892  0.37272   
+swimming           0.1086478  0.2408321   0.451  0.65211   
+telecommunication -0.4774516  0.3432267  -1.391  0.16490   
+telephony         -0.3255712  0.3445635  -0.945  0.34523   
+tourism           -0.1058475  0.1163556  -0.910  0.36348   
+town_planning      0.1412310  0.1290703   1.094  0.27445   
+transport         -0.0162032  0.0898591  -0.180  0.85698   
+vehicles          -0.2099739  0.3445135  -0.609  0.54252   
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 0.3383 on 502 degrees of freedom
-Multiple R-squared:  0.1872,    Adjusted R-squared:  0.1678 
-F-statistic: 9.638 on 12 and 502 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 0.3341 on 446 degrees of freedom
+Multiple R-squared:  0.2959,    Adjusted R-squared:  0.1885 
+F-statistic: 2.756 on 68 and 446 DF,  p-value: 2.246e-10</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -338,24 +422,80 @@ F-statistic: 9.638 on 12 and 502 DF,  p-value: &lt; 2.2e-16</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYW5vdmEoZnVsbF9sbSlcbmBgYCJ9 -->
 <pre class="r"><code>anova(full_lm)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiQW5hbHlzaXMgb2YgVmFyaWFuY2UgVGFibGVcblxuUmVzcG9uc2U6IHdvcmRuZXRfY29yclxuICAgICAgICAgICAgICAgICAgICAgIERmIFN1bSBTcSBNZWFuIFNxIEYgdmFsdWUgICAgUHIoPkYpICAgIFxubG9nLkJOQ19mcmVxLiAgICAgICAgICAxICAwLjU3NyAgMC41NzY4ICA1LjAzODkgIDAuMDI1MjE4ICogIFxubnVtX2ZlYXRzX3RheCAgICAgICAgICAxICAzLjA3NSAgMy4wNzQ5IDI2Ljg2MTAgMy4xNzRlLTA3ICoqKlxuZmFtaWxpYXJpdHkgICAgICAgICAgICAxICAyLjQ1OCAgMi40NTc4IDIxLjQ3MDEgNC41ODZlLTA2ICoqKlxudG90X251bV9mZWF0cyAgICAgICAgICAxICAwLjUwOSAgMC41MDg5ICA0LjQ0NTIgIDAuMDM1NDk0ICogIFxucG9seXNlbXkgICAgICAgICAgICAgICAxICAwLjMxNyAgMC4zMTY2ICAyLjc2NjAgIDAuMDk2OTEwIC4gIFxuYV9iaXJkICAgICAgICAgICAgICAgICAxICAwLjAyOSAgMC4wMjg4ICAwLjI1MTcgIDAuNjE2MDc4ICAgIFxuYV9maXNoICAgICAgICAgICAgICAgICAxICAwLjc5NCAgMC43OTQwICA2LjkzNTkgIDAuMDA4NzA5ICoqIFxuYV9mcnVpdCAgICAgICAgICAgICAgICAxICAxLjE0NSAgMS4xNDUwIDEwLjAwMjUgIDAuMDAxNjU4ICoqIFxuYV9tdXNpY2FsX2luc3RydW1lbnQgICAxICAwLjAxNiAgMC4wMTU4ICAwLjEzNzcgIDAuNzEwNzc3ICAgIFxuYV90b29sICAgICAgICAgICAgICAgICAxICAwLjI3MiAgMC4yNzI0ICAyLjM3OTQgIDAuMTIzNTc2ICAgIFxuYV92ZWdldGFibGUgICAgICAgICAgICAxICAwLjUwOSAgMC41MDg3ICA0LjQ0MzYgIDAuMDM1NTI3ICogIFxuYW5fYW5pbWFsICAgICAgICAgICAgICAxICAzLjU0MCAgMy41Mzk5IDMwLjkyMjkgNC4zNjllLTA4ICoqKlxuUmVzaWR1YWxzICAgICAgICAgICAgNTAyIDU3LjQ2NyAgMC4xMTQ1ICAgICAgICAgICAgICAgICAgICAgIFxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCDigJgqKirigJkgMC4wMDEg4oCYKirigJkgMC4wMSDigJgq4oCZIDAuMDUg4oCYLuKAmSAwLjEg4oCYIOKAmSAxXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiQW5hbHlzaXMgb2YgVmFyaWFuY2UgVGFibGVcblxuUmVzcG9uc2U6IHdvcmRuZXRfY29yclxuICAgICAgICAgICAgICAgICAgIERmIFN1bSBTcSBNZWFuIFNxIEYgdmFsdWUgICAgUHIoPkYpICAgIFxubG9nLkJOQ19mcmVxLiAgICAgICAxICAwLjU3NyAwLjU3Njg0ICA1LjE2NzYgMC4wMjM0ODY4ICogIFxubnVtX2ZlYXRzX3RheCAgICAgICAxICAzLjA3NSAzLjA3NDk0IDI3LjU0NjggMi4zNzZlLTA3ICoqKlxuZmFtaWxpYXJpdHkgICAgICAgICAxICAyLjQ1OCAyLjQ1NzgxIDIyLjAxODMgMy41OThlLTA2ICoqKlxudG90X251bV9mZWF0cyAgICAgICAxICAwLjUwOSAwLjUwODg3ICA0LjU1ODcgMC4wMzMyOTYxICogIFxucG9seXNlbXkgICAgICAgICAgICAxICAwLjMxNyAwLjMxNjY0ICAyLjgzNjYgMC4wOTI4MzcxIC4gIFxuYWRtaW5pc3RyYXRpb24gICAgICAxICAwLjAzMyAwLjAzMjg1ICAwLjI5NDMgMC41ODc3NTg1ICAgIFxuYW5pbWFsX2h1c2JhbmRyeSAgICAxICAwLjE2OSAwLjE2OTQyICAxLjUxNzggMC4yMTg2MDU0ICAgIFxuYW5pbWFscyAgICAgICAgICAgICAxICAxLjczNyAxLjczNzM2IDE1LjU2NDIgOS4yNjFlLTA1ICoqKlxuYW50aHJvcG9sb2d5ICAgICAgICAxICAwLjA5MyAwLjA5MjgxICAwLjgzMTQgMC4zNjIzNDcxICAgIFxuYXJ0ICAgICAgICAgICAgICAgICAxICAwLjAyOCAwLjAyODIyICAwLjI1MjggMC42MTUzMjU4ICAgIFxuYXJ0aXNhbnNoaXAgICAgICAgICAxICAwLjAwOCAwLjAwNzc1ICAwLjA2OTQgMC43OTIzNTI5ICAgIFxuYXRvbWljX3BoeXNpYyAgICAgICAxICAwLjMwMSAwLjMwMDY1ICAyLjY5MzQgMC4xMDE0NzA2ICAgIFxuYmFua2luZyAgICAgICAgICAgICAxICAwLjE2MiAwLjE2MTYyICAxLjQ0NzkgMC4yMjk1MDI1ICAgIFxuYmFzZWJhbGwgICAgICAgICAgICAxICAwLjA0NCAwLjA0Mzk2ICAwLjM5MzggMC41MzA2MDUzICAgIFxuYmlvbG9neSAgICAgICAgICAgICAxICAwLjEwNSAwLjEwNTE1ICAwLjk0MjAgMC4zMzIyOTczICAgIFxuYm9keV9jYXJlICAgICAgICAgICAxICAwLjAwMiAwLjAwMTY1ICAwLjAxNDcgMC45MDMzOTg0ICAgIFxuYnVpbGRpbmdzICAgICAgICAgICAxICAwLjAwMiAwLjAwMjExICAwLjAxODkgMC44OTA4MTM3ICAgIFxuY2FyZCAgICAgICAgICAgICAgICAxICAwLjAwNiAwLjAwNjE4ICAwLjA1NTQgMC44MTQwOTQ1ICAgIFxuY2hlbWlzdHJ5ICAgICAgICAgICAxICAwLjUyMyAwLjUyMjYwICA0LjY4MTcgMC4wMzEwMTYwICogIFxuY29sb3IgICAgICAgICAgICAgICAxICAwLjAxNSAwLjAxNDg1ICAwLjEzMzEgMC43MTU0NjMxICAgIFxuY29tbWVyY2UgICAgICAgICAgICAxICAwLjAyMCAwLjAxOTU1ICAwLjE3NTEgMC42NzU4MDQxICAgIFxuZHJhd2luZyAgICAgICAgICAgICAxICAwLjMxMCAwLjMxMDE2ICAyLjc3ODYgMC4wOTYyMzQ2IC4gIFxuZWNvbm9teSAgICAgICAgICAgICAxICAwLjIxNyAwLjIxNjkzICAxLjk0MzMgMC4xNjQwMDE4ICAgIFxuZWxlY3RyaWNpdHkgICAgICAgICAxICAwLjAwMiAwLjAwMTYzICAwLjAxNDYgMC45MDM4NTQwICAgIFxuZW50b21vbG9neSAgICAgICAgICAxICAwLjAyNCAwLjAyNDM3ICAwLjIxODMgMC42NDA1NzcwICAgIFxuZmFzaGlvbiAgICAgICAgICAgICAxICAwLjkzOSAwLjkzOTAwICA4LjQxMjAgMC4wMDM5MTE3ICoqIFxuZmlzaGluZyAgICAgICAgICAgICAxICAwLjAxMCAwLjAwOTc1ICAwLjA4NzMgMC43Njc3MzYwICAgIFxuZm9vZCAgICAgICAgICAgICAgICAxICAxLjM3NSAxLjM3NTAzIDEyLjMxODIgMC4wMDA0OTQyICoqKlxuZnVybml0dXJlICAgICAgICAgICAxICAwLjA5NCAwLjA5MzYyICAwLjgzODcgMC4zNjAyNjU4ICAgIFxuZ2FzdHJvbm9teSAgICAgICAgICAxICAwLjE2OSAwLjE2OTQxICAxLjUxNzcgMC4yMTg2MTk5ICAgIFxuZ2VvZ3JhcGh5ICAgICAgICAgICAxICAwLjEzNSAwLjEzNDU4ICAxLjIwNTYgMC4yNzI3OTAwICAgIFxuZ2VvbG9neSAgICAgICAgICAgICAxICAwLjI4OSAwLjI4OTAwICAyLjU4OTAgMC4xMDgzMTQ2ICAgIFxuZ2VvbWV0cnkgICAgICAgICAgICAxICAwLjE5MSAwLjE5MDkyICAxLjcxMDQgMC4xOTE2MTE3ICAgIFxuaGlzdG9yeSAgICAgICAgICAgICAxICAwLjQ2OCAwLjQ2ODIyICA0LjE5NDUgMC4wNDExMzk2ICogIFxuaG9tZSAgICAgICAgICAgICAgICAxICAwLjAwOSAwLjAwODYyICAwLjA3NzIgMC43ODExODg1ICAgIFxuaHlkcmF1bGljcyAgICAgICAgICAxICAwLjEyMyAwLjEyMjUxICAxLjA5NzUgMC4yOTUzNzU1ICAgIFxuaW5kdXN0cnkgICAgICAgICAgICAxICAwLjE3NiAwLjE3NjM5ICAxLjU4MDIgMC4yMDkzOTI3ICAgIFxuamV3ZWxsZXJ5ICAgICAgICAgICAxICAwLjEzOSAwLjEzODU5ICAxLjI0MTYgMC4yNjU3NjMzICAgIFxubGF3ICAgICAgICAgICAgICAgICAxICAwLjAxNCAwLjAxMzkzICAwLjEyNDggMC43MjQwNjgyICAgIFxubWVjaGFuaWNzICAgICAgICAgICAxICAwLjAwMCAwLjAwMDQzICAwLjAwMzkgMC45NTAzMDY3ICAgIFxubWVkaWNpbmUgICAgICAgICAgICAxICAwLjEwOSAwLjEwODU4ICAwLjk3MjcgMC4zMjQ1Mzc5ICAgIFxubWV0cm9sb2d5ICAgICAgICAgICAxICAwLjEwNSAwLjEwNTM1ICAwLjk0MzggMC4zMzE4MjYyICAgIFxubWlsaXRhcnkgICAgICAgICAgICAxICAwLjM5OSAwLjM5ODczICAzLjU3MjAgMC4wNTk0MDgwIC4gIFxubW9uZXkgICAgICAgICAgICAgICAxICAwLjI0MCAwLjI0MDEwICAyLjE1MDkgMC4xNDMxODc4ICAgIFxubXVzaWMgICAgICAgICAgICAgICAxICAwLjA2NCAwLjA2MzY2ICAwLjU3MDMgMC40NTA1MzM0ICAgIFxubi5hICAgICAgICAgICAgICAgICAxICAwLjk1NyAwLjk1NzQxICA4LjU3NzAgMC4wMDM1Nzg4ICoqIFxubmF1dGljYWwgICAgICAgICAgICAxICAwLjAxNiAwLjAxNTY1ICAwLjE0MDIgMC43MDgyMzEyICAgIFxubnVtaXNtYXRpY3MgICAgICAgICAxICAwLjAyMSAwLjAyMDYxICAwLjE4NDcgMC42Njc2MDM2ICAgIFxub3B0aWNzICAgICAgICAgICAgICAxICAwLjA1MyAwLjA1MjkzICAwLjQ3NDIgMC40OTE0MjI1ICAgIFxucGFpbnRpbmcgICAgICAgICAgICAxICAwLjEwNSAwLjEwNDYyICAwLjkzNzIgMC4zMzM1MjQyICAgIFxucGVyc29uICAgICAgICAgICAgICAxICAwLjY4NiAwLjY4NjI5ICA2LjE0ODEgMC4wMTM1MjM1ICogIFxucGh5c2ljcyAgICAgICAgICAgICAxICAwLjAwMiAwLjAwMTg4ICAwLjAxNjkgMC44OTY3Njc0ICAgIFxucGxhbnRzICAgICAgICAgICAgICAxICAxLjcxOSAxLjcxODU1IDE1LjM5NTYgMC4wMDAxMDA5ICoqKlxucGxheSAgICAgICAgICAgICAgICAxICAwLjQxNCAwLjQxNDM2ICAzLjcxMjEgMC4wNTQ2NTYwIC4gIFxucHVibGlzaGluZyAgICAgICAgICAxICAwLjM4MSAwLjM4MDkzICAzLjQxMjUgMC4wNjUzNjU3IC4gIFxucmFjaW5nICAgICAgICAgICAgICAxICAwLjAwNSAwLjAwNTA2ICAwLjA0NTMgMC44MzE1MTkxICAgIFxucmFpbHdheSAgICAgICAgICAgICAxICAwLjAxMiAwLjAxMTYzICAwLjEwNDIgMC43NDY5NzYzICAgIFxucmVsaWdpb24gICAgICAgICAgICAxICAwLjAxMyAwLjAxMjgyICAwLjExNDkgMC43MzQ4MzM3ICAgIFxuc2thdGluZyAgICAgICAgICAgICAxICAwLjAyNiAwLjAyNTYwICAwLjIyOTMgMC42MzIyODAwICAgIFxuc2tpaW5nICAgICAgICAgICAgICAxICAwLjA4OCAwLjA4Nzg3ICAwLjc4NzIgMC4zNzU0MzA1ICAgIFxuc3BvcnQgICAgICAgICAgICAgICAxICAwLjA3OCAwLjA3ODMzICAwLjcwMTggMC40MDI2NDE5ICAgIFxuc3dpbW1pbmcgICAgICAgICAgICAxICAwLjAyNCAwLjAyMzc3ICAwLjIxMzAgMC42NDQ2NjkzICAgIFxudGVsZWNvbW11bmljYXRpb24gICAxICAwLjIwMCAwLjIwMDI3ICAxLjc5NDIgMC4xODExMDMyICAgIFxudGVsZXBob255ICAgICAgICAgICAxICAwLjA5NiAwLjA5NTU3ICAwLjg1NjEgMC4zNTUzMjA5ICAgIFxudG91cmlzbSAgICAgICAgICAgICAxICAwLjA1NyAwLjA1NjU5ICAwLjUwNzAgMC40NzY4MjQ0ICAgIFxudG93bl9wbGFubmluZyAgICAgICAxICAwLjE0NCAwLjE0NDQ5ICAxLjI5NDQgMC4yNTU4NTIxICAgIFxudHJhbnNwb3J0ICAgICAgICAgICAxICAwLjAwMyAwLjAwMzQxICAwLjAzMDUgMC44NjE0MTE3ICAgIFxudmVoaWNsZXMgICAgICAgICAgICAxICAwLjA0MSAwLjA0MTQ3ICAwLjM3MTUgMC41NDI1MTcwICAgIFxuUmVzaWR1YWxzICAgICAgICAgNDQ2IDQ5Ljc4NSAwLjExMTYzICAgICAgICAgICAgICAgICAgICAgIFxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCDigJgqKirigJkgMC4wMDEg4oCYKirigJkgMC4wMSDigJgq4oCZIDAuMDUg4oCYLuKAmSAwLjEg4oCYIOKAmSAxXG4ifQ== -->
 <pre><code>Analysis of Variance Table
 
 Response: wordnet_corr
-                      Df Sum Sq Mean Sq F value    Pr(&gt;F)    
-log.BNC_freq.          1  0.577  0.5768  5.0389  0.025218 *  
-num_feats_tax          1  3.075  3.0749 26.8610 3.174e-07 ***
-familiarity            1  2.458  2.4578 21.4701 4.586e-06 ***
-tot_num_feats          1  0.509  0.5089  4.4452  0.035494 *  
-polysemy               1  0.317  0.3166  2.7660  0.096910 .  
-a_bird                 1  0.029  0.0288  0.2517  0.616078    
-a_fish                 1  0.794  0.7940  6.9359  0.008709 ** 
-a_fruit                1  1.145  1.1450 10.0025  0.001658 ** 
-a_musical_instrument   1  0.016  0.0158  0.1377  0.710777    
-a_tool                 1  0.272  0.2724  2.3794  0.123576    
-a_vegetable            1  0.509  0.5087  4.4436  0.035527 *  
-an_animal              1  3.540  3.5399 30.9229 4.369e-08 ***
-Residuals            502 57.467  0.1145                      
+                   Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+log.BNC_freq.       1  0.577 0.57684  5.1676 0.0234868 *  
+num_feats_tax       1  3.075 3.07494 27.5468 2.376e-07 ***
+familiarity         1  2.458 2.45781 22.0183 3.598e-06 ***
+tot_num_feats       1  0.509 0.50887  4.5587 0.0332961 *  
+polysemy            1  0.317 0.31664  2.8366 0.0928371 .  
+administration      1  0.033 0.03285  0.2943 0.5877585    
+animal_husbandry    1  0.169 0.16942  1.5178 0.2186054    
+animals             1  1.737 1.73736 15.5642 9.261e-05 ***
+anthropology        1  0.093 0.09281  0.8314 0.3623471    
+art                 1  0.028 0.02822  0.2528 0.6153258    
+artisanship         1  0.008 0.00775  0.0694 0.7923529    
+atomic_physic       1  0.301 0.30065  2.6934 0.1014706    
+banking             1  0.162 0.16162  1.4479 0.2295025    
+baseball            1  0.044 0.04396  0.3938 0.5306053    
+biology             1  0.105 0.10515  0.9420 0.3322973    
+body_care           1  0.002 0.00165  0.0147 0.9033984    
+buildings           1  0.002 0.00211  0.0189 0.8908137    
+card                1  0.006 0.00618  0.0554 0.8140945    
+chemistry           1  0.523 0.52260  4.6817 0.0310160 *  
+color               1  0.015 0.01485  0.1331 0.7154631    
+commerce            1  0.020 0.01955  0.1751 0.6758041    
+drawing             1  0.310 0.31016  2.7786 0.0962346 .  
+economy             1  0.217 0.21693  1.9433 0.1640018    
+electricity         1  0.002 0.00163  0.0146 0.9038540    
+entomology          1  0.024 0.02437  0.2183 0.6405770    
+fashion             1  0.939 0.93900  8.4120 0.0039117 ** 
+fishing             1  0.010 0.00975  0.0873 0.7677360    
+food                1  1.375 1.37503 12.3182 0.0004942 ***
+furniture           1  0.094 0.09362  0.8387 0.3602658    
+gastronomy          1  0.169 0.16941  1.5177 0.2186199    
+geography           1  0.135 0.13458  1.2056 0.2727900    
+geology             1  0.289 0.28900  2.5890 0.1083146    
+geometry            1  0.191 0.19092  1.7104 0.1916117    
+history             1  0.468 0.46822  4.1945 0.0411396 *  
+home                1  0.009 0.00862  0.0772 0.7811885    
+hydraulics          1  0.123 0.12251  1.0975 0.2953755    
+industry            1  0.176 0.17639  1.5802 0.2093927    
+jewellery           1  0.139 0.13859  1.2416 0.2657633    
+law                 1  0.014 0.01393  0.1248 0.7240682    
+mechanics           1  0.000 0.00043  0.0039 0.9503067    
+medicine            1  0.109 0.10858  0.9727 0.3245379    
+metrology           1  0.105 0.10535  0.9438 0.3318262    
+military            1  0.399 0.39873  3.5720 0.0594080 .  
+money               1  0.240 0.24010  2.1509 0.1431878    
+music               1  0.064 0.06366  0.5703 0.4505334    
+n.a                 1  0.957 0.95741  8.5770 0.0035788 ** 
+nautical            1  0.016 0.01565  0.1402 0.7082312    
+numismatics         1  0.021 0.02061  0.1847 0.6676036    
+optics              1  0.053 0.05293  0.4742 0.4914225    
+painting            1  0.105 0.10462  0.9372 0.3335242    
+person              1  0.686 0.68629  6.1481 0.0135235 *  
+physics             1  0.002 0.00188  0.0169 0.8967674    
+plants              1  1.719 1.71855 15.3956 0.0001009 ***
+play                1  0.414 0.41436  3.7121 0.0546560 .  
+publishing          1  0.381 0.38093  3.4125 0.0653657 .  
+racing              1  0.005 0.00506  0.0453 0.8315191    
+railway             1  0.012 0.01163  0.1042 0.7469763    
+religion            1  0.013 0.01282  0.1149 0.7348337    
+skating             1  0.026 0.02560  0.2293 0.6322800    
+skiing              1  0.088 0.08787  0.7872 0.3754305    
+sport               1  0.078 0.07833  0.7018 0.4026419    
+swimming            1  0.024 0.02377  0.2130 0.6446693    
+telecommunication   1  0.200 0.20027  1.7942 0.1811032    
+telephony           1  0.096 0.09557  0.8561 0.3553209    
+tourism             1  0.057 0.05659  0.5070 0.4768244    
+town_planning       1  0.144 0.14449  1.2944 0.2558521    
+transport           1  0.003 0.00341  0.0305 0.8614117    
+vehicles            1  0.041 0.04147  0.3715 0.5425170    
+Residuals         446 49.785 0.11163                      
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
 <!-- rnb-output-end -->
@@ -366,24 +506,34 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYW5vdmEoYmFzZWxpbmVfbG0sIGZ1bGxfbG0pXG5gYGAifQ== -->
 <pre class="r"><code>anova(baseline_lm, full_lm)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiQW5hbHlzaXMgb2YgVmFyaWFuY2UgVGFibGVcblxuTW9kZWwgMTogd29yZG5ldF9jb3JyIH4gbG9nLkJOQ19mcmVxLiArIG51bV9mZWF0c190YXggKyBmYW1pbGlhcml0eSArIFxuICAgIHRvdF9udW1fZmVhdHMgKyBwb2x5c2VteVxuTW9kZWwgMjogd29yZG5ldF9jb3JyIH4gbG9nLkJOQ19mcmVxLiArIG51bV9mZWF0c190YXggKyBmYW1pbGlhcml0eSArIFxuICAgIHRvdF9udW1fZmVhdHMgKyBwb2x5c2VteSArIGFfYmlyZCArIGFfZmlzaCArIGFfZnJ1aXQgKyBhX211c2ljYWxfaW5zdHJ1bWVudCArIFxuICAgIGFfdG9vbCArIGFfdmVnZXRhYmxlICsgYW5fYW5pbWFsXG4gIFJlcy5EZiAgICBSU1MgRGYgU3VtIG9mIFNxICAgICAgRiAgICBQcig+RikgICAgXG4xICAgIDUwOSA2My43NzIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4yICAgIDUwMiA1Ny40NjcgIDcgICAgNi4zMDQ2IDcuODY3NyA0LjYyMmUtMDkgKioqXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiQW5hbHlzaXMgb2YgVmFyaWFuY2UgVGFibGVcblxuTW9kZWwgMTogd29yZG5ldF9jb3JyIH4gbG9nLkJOQ19mcmVxLiArIG51bV9mZWF0c190YXggKyBmYW1pbGlhcml0eSArIFxuICAgIHRvdF9udW1fZmVhdHMgKyBwb2x5c2VteVxuTW9kZWwgMjogd29yZG5ldF9jb3JyIH4gbG9nLkJOQ19mcmVxLiArIG51bV9mZWF0c190YXggKyBmYW1pbGlhcml0eSArIFxuICAgIHRvdF9udW1fZmVhdHMgKyBwb2x5c2VteSArIGFkbWluaXN0cmF0aW9uICsgYW5pbWFsX2h1c2JhbmRyeSArIFxuICAgIGFuaW1hbHMgKyBhbnRocm9wb2xvZ3kgKyBhcnQgKyBhcnRpc2Fuc2hpcCArIGF0b21pY19waHlzaWMgKyBcbiAgICBiYW5raW5nICsgYmFzZWJhbGwgKyBiaW9sb2d5ICsgYm9keV9jYXJlICsgYnVpbGRpbmdzICsgY2FyZCArIFxuICAgIGNoZW1pc3RyeSArIGNvbG9yICsgY29tbWVyY2UgKyBkcmF3aW5nICsgZWNvbm9teSArIGVsZWN0cmljaXR5ICsgXG4gICAgZW50b21vbG9neSArIGZhc2hpb24gKyBmaXNoaW5nICsgZm9vZCArIGZ1cm5pdHVyZSArIGdhc3Ryb25vbXkgKyBcbiAgICBnZW9ncmFwaHkgKyBnZW9sb2d5ICsgZ2VvbWV0cnkgKyBoaXN0b3J5ICsgaG9tZSArIGh5ZHJhdWxpY3MgKyBcbiAgICBpbmR1c3RyeSArIGpld2VsbGVyeSArIGxhdyArIG1lY2hhbmljcyArIG1lZGljaW5lICsgbWV0cm9sb2d5ICsgXG4gICAgbWlsaXRhcnkgKyBtb25leSArIG11c2ljICsgbi5hICsgbmF1dGljYWwgKyBudW1pc21hdGljcyArIFxuICAgIG9wdGljcyArIHBhaW50aW5nICsgcGVyc29uICsgcGh5c2ljcyArIHBsYW50cyArIHBsYXkgKyBwdWJsaXNoaW5nICsgXG4gICAgcmFjaW5nICsgcmFpbHdheSArIHJlbGlnaW9uICsgc2thdGluZyArIHNraWluZyArIHNwb3J0ICsgXG4gICAgc3dpbW1pbmcgKyB0ZWxlY29tbXVuaWNhdGlvbiArIHRlbGVwaG9ueSArIHRvdXJpc20gKyB0b3duX3BsYW5uaW5nICsgXG4gICAgdHJhbnNwb3J0ICsgdmVoaWNsZXNcbiAgUmVzLkRmICAgIFJTUyBEZiBTdW0gb2YgU3EgICAgICBGICAgIFByKD5GKSAgICBcbjEgICAgNTA5IDYzLjc3MiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbjIgICAgNDQ2IDQ5Ljc4NSA2MyAgICAxMy45ODYgMS45ODg4IDMuNTUyZS0wNSAqKipcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAg4oCYKioq4oCZIDAuMDAxIOKAmCoq4oCZIDAuMDEg4oCYKuKAmSAwLjA1IOKAmC7igJkgMC4xIOKAmCDigJkgMVxuIn0= -->
 <pre><code>Analysis of Variance Table
 
 Model 1: wordnet_corr ~ log.BNC_freq. + num_feats_tax + familiarity + 
     tot_num_feats + polysemy
 Model 2: wordnet_corr ~ log.BNC_freq. + num_feats_tax + familiarity + 
-    tot_num_feats + polysemy + a_bird + a_fish + a_fruit + a_musical_instrument + 
-    a_tool + a_vegetable + an_animal
+    tot_num_feats + polysemy + administration + animal_husbandry + 
+    animals + anthropology + art + artisanship + atomic_physic + 
+    banking + baseball + biology + body_care + buildings + card + 
+    chemistry + color + commerce + drawing + economy + electricity + 
+    entomology + fashion + fishing + food + furniture + gastronomy + 
+    geography + geology + geometry + history + home + hydraulics + 
+    industry + jewellery + law + mechanics + medicine + metrology + 
+    military + money + music + n.a + nautical + numismatics + 
+    optics + painting + person + physics + plants + play + publishing + 
+    racing + railway + religion + skating + skiing + sport + 
+    swimming + telecommunication + telephony + tourism + town_planning + 
+    transport + vehicles
   Res.Df    RSS Df Sum of Sq      F    Pr(&gt;F)    
 1    509 63.772                                  
-2    502 57.467  7    6.3046 7.8677 4.622e-09 ***
+2    446 49.785 63    13.986 1.9888 3.552e-05 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiZGF0YSByZWdyZXNzaW9uIGFuYWx5c2lzIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgpDb25zdGFudHMKCmBgYHtyfQpQRUFSU09OX0ZJTEUgPC0gIi4uL2FsbC9wZWFyc29uX2NvcnIvY29ycl9tY3JhZV93aWtpZ2lnYS50eHQiCkZJTEUgPC0gIi4uL2FsbC9oaWVyX2NsdXN0L3dvcmRuZXRfbWF0Y2hfd2lraWdpZ2EudHh0IgpgYGAKCgpgYGB7cn0KcGVhcnNvbiA8LSByZWFkLnRhYmxlKFBFQVJTT05fRklMRSwgc2VwPSJcdCIsIGhlYWRlcj1UUlVFKQpkYXRhIDwtIHJlYWQudGFibGUoRklMRSwgc2VwPSJcdCIsIGhlYWRlcj1UUlVFLCBuYS5zdHJpbmdzPWMoIm4vYSIpKQpgYGAKCk1lcmdlIGZlYXR1cmUgZGF0YSBmcm9tIFBlYXJzb24gZmlsZSB3aXRoIGEgcGFydGljdWxhciBXb3JkTmV0IG1hdGNoIGNvbHVtbi4KCmBgYHtyfQpjb2xuYW1lcyhwZWFyc29uKQpjb2xuYW1lcyhkYXRhKQpgYGAKCmBgYHtyfQpuZXdfZGF0YSA8LSBwZWFyc29uCm5ld19kYXRhWyJ3b3JkbmV0X2NvcnIiXSA8LSBkYXRhWyxjKCJkZW5kcm9ncmFtLi4wLjguLndvcmRuZXQuLjciKV0KbmV3X2RhdGFbaXMubmEobmV3X2RhdGEpXSA8LSAwLjAKYGBgCgpCYXNlbGluZSByZWdyZXNzaW9uOiB1c2UgZnJlcXVlbmN5LCBldGMuIGxleGljYWwgZmVhdHVyZXMsIGJ1dCBsZWF2ZSBvdXQgdGF4b25vbXkgZmVhdHVyZXMuCgpgYGB7cn0KY29sbmFtZXMobmV3X2RhdGEpCmBgYAoKYGBge3J9CmF0dGFjaChuZXdfZGF0YSkKYmFzZWxpbmVfbG0gPC0gbG0od29yZG5ldF9jb3JyIH4gbG9nLkJOQ19mcmVxLiArIG51bV9mZWF0c190YXggKyBmYW1pbGlhcml0eSArIHRvdF9udW1fZmVhdHMgKyBwb2x5c2VteSkKc3VtbWFyeShiYXNlbGluZV9sbSkKYGBgCgoKRnVsbCBtb2RlbCwgaW5jbHVkaW5nIGRvbWFpbiBmZWF0dXJlcwoKYGBge3J9CmNuIDwtIGNvbG5hbWVzKG5ld19kYXRhKQpmdWxsX2Zvcm11bGEgPC0gYXMuZm9ybXVsYShwYXN0ZSgid29yZG5ldF9jb3JyIiwgIn4iLCBwYXN0ZShjbltjKDM6MTQpXSwgY29sbGFwc2U9IisiKSkpCmZ1bGxfZm9ybXVsYQpmdWxsX2xtIDwtIGxtKGZ1bGxfZm9ybXVsYSwgZGF0YT1uZXdfZGF0YSkKc3VtbWFyeShmdWxsX2xtKQpgYGAKCiMjIENvbXBhcmluZyBtb2RlbHMKCmBgYHtyfQphbm92YShmdWxsX2xtKQpgYGAKCgpgYGB7cn0KYW5vdmEoYmFzZWxpbmVfbG0sIGZ1bGxfbG0pCmBgYA==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiZGF0YSByZWdyZXNzaW9uIGFuYWx5c2lzIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgpDb25zdGFudHMKCmBgYHtyfQpQRUFSU09OX0ZJTEUgPC0gIi4uL2FsbC9wZWFyc29uX2NvcnIvY29ycl9tY3JhZV93aWtpZ2lnYS50eHQiCkZJTEUgPC0gIi4uL2FsbC9oaWVyX2NsdXN0L3dvcmRuZXRfbWF0Y2hfd2lraWdpZ2EudHh0IgpgYGAKCgpgYGB7cn0KcGVhcnNvbiA8LSByZWFkLnRhYmxlKFBFQVJTT05fRklMRSwgc2VwPSJcdCIsIGhlYWRlcj1UUlVFKQpkYXRhIDwtIHJlYWQudGFibGUoRklMRSwgc2VwPSJcdCIsIGhlYWRlcj1UUlVFLCBuYS5zdHJpbmdzPWMoIm4vYSIpKQpgYGAKCk1lcmdlIGZlYXR1cmUgZGF0YSBmcm9tIFBlYXJzb24gZmlsZSB3aXRoIGEgcGFydGljdWxhciBXb3JkTmV0IG1hdGNoIGNvbHVtbi4KCmBgYHtyfQpjb2xuYW1lcyhwZWFyc29uKQpjb2xuYW1lcyhkYXRhKQpgYGAKCmBgYHtyfQpuZXdfZGF0YSA8LSBwZWFyc29uCm5ld19kYXRhWyJ3b3JkbmV0X2NvcnIiXSA8LSBkYXRhWyxjKCJkZW5kcm9ncmFtLi4wLjguLndvcmRuZXQuLjciKV0KbmV3X2RhdGFbaXMubmEobmV3X2RhdGEpXSA8LSAwLjAKYGBgCgpCYXNlbGluZSByZWdyZXNzaW9uOiB1c2UgZnJlcXVlbmN5LCBldGMuIGxleGljYWwgZmVhdHVyZXMsIGJ1dCBsZWF2ZSBvdXQgdGF4b25vbXkgZmVhdHVyZXMuCgpgYGB7cn0KY29sbmFtZXMobmV3X2RhdGEpCmBgYAoKYGBge3J9CmF0dGFjaChuZXdfZGF0YSkKYmFzZWxpbmVfbG0gPC0gbG0od29yZG5ldF9jb3JyIH4gbG9nLkJOQ19mcmVxLiArIG51bV9mZWF0c190YXggKyBmYW1pbGlhcml0eSArIHRvdF9udW1fZmVhdHMgKyBwb2x5c2VteSkKc3VtbWFyeShiYXNlbGluZV9sbSkKYGBgCgoKRnVsbCBtb2RlbCwgaW5jbHVkaW5nIGRvbWFpbiBmZWF0dXJlcwoKYGBge3J9CmNuIDwtIGNvbG5hbWVzKG5ld19kYXRhKQpmdWxsX2Zvcm11bGEgPC0gYXMuZm9ybXVsYShwYXN0ZSgid29yZG5ldF9jb3JyIiwgIn4iLCBwYXN0ZShjbltjKDM6NzApXSwgY29sbGFwc2U9IisiKSkpCmZ1bGxfZm9ybXVsYQpmdWxsX2xtIDwtIGxtKGZ1bGxfZm9ybXVsYSwgZGF0YT1uZXdfZGF0YSkKc3VtbWFyeShmdWxsX2xtKQpgYGAKCiMjIENvbXBhcmluZyBtb2RlbHMKCmBgYHtyfQphbm92YShmdWxsX2xtKQpgYGAKCgpgYGB7cn0KYW5vdmEoYmFzZWxpbmVfbG0sIGZ1bGxfbG0pCmBgYA==</div>
 
 
 

@@ -46,7 +46,7 @@ Full model, including domain features
 
 ```{r}
 cn <- colnames(new_data)
-full_formula <- as.formula(paste("wordnet_corr", "~", paste(cn[c(3:14)], collapse="+")))
+full_formula <- as.formula(paste("wordnet_corr", "~", paste(cn[c(3:70)], collapse="+")))
 full_formula
 full_lm <- lm(full_formula, data=new_data)
 summary(full_lm)
