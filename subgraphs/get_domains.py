@@ -5,6 +5,7 @@ Get domains
 from nltk.corpus import wordnet as wn
 
 VOCAB = "./all/vocab.txt"
+DOMAINS = '../wndomains/wordnet-domains-3.2-wordnet-3.0.txt'
 
 def get_concept_domains():
 	'''
@@ -20,27 +21,35 @@ def get_concept_domains():
 		vocabulary.remove('bluejay')
 		vocabulary.add('jaybird')
 
-	depth = 6
-	concept_domains = {} # concept: domain
+	offset_to_domain = {}
+	domain_map = open(DOMAINS, 'r')
+	for line in domain_map:
+		contents = line.split()
+		offset_to_domain[contents[0]] = contents[2:] # taking the first domain. each sense can have multiple domains
+
+	concept_domains = {} # concept: [domains]
 	for concept in vocabulary:
 		senses = wn.synsets(concept)
-		hypernym_path = senses[0].hypernym_paths()[0] # the first hypernym path of the first sense
-		assert hypernym_path[0].name() == 'entity.n.01' # the main sense should be a noun. if this fails...
-		if len(hypernym_path) > depth:
-			concept_domains[concept] = hypernym_path[depth].name().split('.')[0]
+		offset = str(senses[0].offset()).zfill(8) + '-' + senses[0].pos() # the first sense
+		assert senses[0].pos() == 'n' # should at least be a noun
+		if offset not in offset_to_domain: # there are some concepts without domain labels
+			concept_domains[concept] = ['n/a']
 		else:
-			concept_domains[concept] = hypernym_path[-1].name().split('.')[0]
+			concept_domains[concept] = offset_to_domain[offset]
+	for concept in concept_domains:
+		print concept, concept_domains[concept]
 	return concept_domains
 
 def get_domain_concepts():
 	concept_domains = get_concept_domains()
 	domain_concepts = {} # domain: [concepts]
 	for concept in concept_domains:
-		domain = concept_domains[concept]
-		if domain in domain_concepts:
-			domain_concepts[domain].append(concept)
-		else:
-			domain_concepts[domain] = [concept]
+		domains = concept_domains[concept]
+		for d in domains:
+			if d in domain_concepts:
+				domain_concepts[d].append(concept)
+			else:
+				domain_concepts[d] = [concept]
 	return domain_concepts
 
 if __name__ == '__main__':
