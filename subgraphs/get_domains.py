@@ -53,4 +53,4 @@ def get_domain_concepts():
 if __name__ == '__main__':
 	domain_concepts = get_domain_concepts()
 	for domain in domain_concepts:
-		print domain, len(domain_concepts[domain]), domain_concepts[domain]
+		print(domain, len(domain_concepts[domain]), domain_concepts[domain])
