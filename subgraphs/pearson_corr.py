@@ -137,13 +137,14 @@ def augment_concept_stats(concept_stats, concept_domains):
     Augment concept_stats dictionary with domain information.
     """
     # Build a canonicalized format for the domain space.
-    all_domains = list(sorted(set(concept_domains.values())))
+    all_domains = list(sorted(set([item for sublist in concept_domains.values()
+        for item in sublist])))
 
     ret = {}
     for concept in concept_stats:
         concept_domain = concept_domains.get(concept, None)
-        domains = [1 if domain == concept_domain else 0
-                   for domain in all_domains]
+        domains = [0 if concept_domain is None or domain not in concept_domain
+            else 1 for domain in all_domains]
         ret[concept] = concept_stats[concept] + tuple(domains)
 
     return ret, all_domains

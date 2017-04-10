@@ -36,8 +36,6 @@ def get_concept_domains():
 			concept_domains[concept] = ['n/a']
 		else:
 			concept_domains[concept] = offset_to_domain[offset]
-	for concept in concept_domains:
-		print concept, concept_domains[concept]
 	return concept_domains
 
 def get_domain_concepts():
