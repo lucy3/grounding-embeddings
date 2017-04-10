@@ -90,6 +90,17 @@ cor(coefs)
 Rank correlation:
 
 ```{r}
+coef_ranks <- apply(coefs, 2, rank)
+coef_ranks
+```
+
+```{r}
+plot(coef_ranks)
+```
+
+
+
+```{r}
 cor(coefs, method="spearman")
 ```
 
