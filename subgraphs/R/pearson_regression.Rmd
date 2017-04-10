@@ -18,6 +18,14 @@ pearson <- read.table(PEARSON_FILE, sep="\t", header=TRUE,
 hist(pearson[,c("correlation")])
 ```
 
+Mean-center the values:
+
+```{r}
+pearson[,c("correlation")] <- scale(pearson[,c("correlation")], scale=FALSE)
+hist(pearson[,c("correlation")])
+```
+
+
 Baseline regression: use frequency, etc. lexical features, but leave out taxonomy features.
 
 ```{r}
