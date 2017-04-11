@@ -27,6 +27,7 @@ colnames(data)
 new_data <- pearson
 new_data["wordnet_corr"] <- data[,c("dendrogram..0.8..wordnet..7")]
 new_data[is.na(new_data)] <- 0.0
+new_data["wordnet_corr"] <- scale(new_data["wordnet_corr"])
 ```
 
 Baseline regression: use frequency, etc. lexical features, but leave out taxonomy features.
@@ -69,6 +70,7 @@ Let's compute the Pearson LM here and compare its weights with the weights from 
 
 ```{r}
 cn <- colnames(new_data)
+new_data["correlation"] <- scale(new_data["correlation"])
 pearson_formula <- as.formula(paste("correlation", "~", paste(cn[c(3:70)], collapse="+")))
 pearson_formula
 pearson_lm <- lm(pearson_formula, data=new_data)
