@@ -81,13 +81,26 @@ Fetch the coefficients, and slice off the baseline features:
 
 ```{r}
 names(coef(pearson_lm))
-names(coef(pearson_lm))[-(1:6)]
-coefs <- cbind(pearson=coef(pearson_lm)[-(1:6)],
-               wordnet=coef(full_lm)[-(1:6)])
+coef_names <- names(coef(pearson_lm))[-(1:6)]
+coef_names
+coefs <- data.frame(cbind(pearson=coef(pearson_lm)[-(1:6)],
+                          wordnet=coef(full_lm)[-(1:6)]))
 ```
+
+Extra information: get the counts for each domain.
+
+```{r}
+domain_cols <- c(-(1:7),-71)
+colnames(new_data)[domain_cols]
+colSums(new_data[domain_cols])
+```
+
 
 ```{r}
 plot(coefs)
+text(coefs, labels=coef_names)
+title("Pearson and WN weights, matched by domain")
+abline(lm(coefs$wordnet ~ coefs$pearson))
 ```
 
 Correlation:
@@ -99,12 +112,16 @@ cor(coefs)
 Rank correlation:
 
 ```{r}
-coef_ranks <- apply(coefs, 2, rank)
+coef_ranks <- data.frame(apply(coefs, 2, rank))
 coef_ranks
 ```
 
 ```{r}
 plot(coef_ranks)
+text(coef_ranks, labels=coef_names)
+title("Pearson and WN weight ranks")
+segments(x0=0,y0=0, x1=65,y1=65, col="gray")
+abline(lm(coef_ranks$wordnet ~ coef_ranks$pearson))
 ```
 
 
