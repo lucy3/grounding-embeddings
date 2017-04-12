@@ -77,9 +77,16 @@ pearson_lm <- lm(pearson_formula, data=new_data)
 summary(pearson_lm)
 ```
 
+Fetch the coefficients, and slice off the baseline features:
 
 ```{r}
-coefs <- cbind(pearson=coef(pearson_lm), wordnet=coef(full_lm))
+names(coef(pearson_lm))
+names(coef(pearson_lm))[-(1:6)]
+coefs <- cbind(pearson=coef(pearson_lm)[-(1:6)],
+               wordnet=coef(full_lm)[-(1:6)])
+```
+
+```{r}
 plot(coefs)
 ```
 
