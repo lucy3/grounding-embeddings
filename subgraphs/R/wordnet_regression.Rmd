@@ -92,33 +92,45 @@ Extra information: get the counts for each domain.
 ```{r}
 domain_cols <- c(-(1:7),-71)
 colnames(new_data)[domain_cols]
-colSums(new_data[domain_cols])
+domainSizes <- colSums(new_data[domain_cols])
+domainSizes
+```
+
+Filter out low-count domains.
+
+```{r}
+isRobustDomain <- function(d) {
+  return (d > 2)
+}
+robust_coef_names <- names(Filter(isRobustDomain, domainSizes))
+robust_coefs <- coefs[robust_coef_names,]
 ```
 
 
+
 ```{r}
-plot(coefs)
-text(coefs, labels=coef_names)
+plot(robust_coefs)
+text(robust_coefs, labels=robust_coef_names)
 title("Pearson and WN weights, matched by domain")
-abline(lm(coefs$wordnet ~ coefs$pearson))
+abline(lm(robust_coefs$wordnet ~ robust_coefs$pearson))
 ```
 
 Correlation:
 
 ```{r}
-cor(coefs)
+cor(robust_coefs)
 ```
 
 Rank correlation:
 
 ```{r}
-coef_ranks <- data.frame(apply(coefs, 2, rank))
+coef_ranks <- data.frame(apply(robust_coefs, 2, rank))
 coef_ranks
 ```
 
 ```{r}
 plot(coef_ranks)
-text(coef_ranks, labels=coef_names)
+text(coef_ranks, labels=robust_coef_names)
 title("Pearson and WN weight ranks")
 segments(x0=0,y0=0, x1=65,y1=65, col="gray")
 abline(lm(coef_ranks$wordnet ~ coef_ranks$pearson))
@@ -127,6 +139,6 @@ abline(lm(coef_ranks$wordnet ~ coef_ranks$pearson))
 
 
 ```{r}
-cor(coefs, method="spearman")
+cor(robust_coefs, method="spearman")
 ```
 
