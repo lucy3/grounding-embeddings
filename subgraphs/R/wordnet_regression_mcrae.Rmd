@@ -27,6 +27,12 @@ colnames(data)
 new_data <- pearson
 new_data["wordnet_corr"] <- data[,c("dendrogram..0.8..wordnet..7")]
 new_data[is.na(new_data)] <- 0.0
+
+boxplot(new_data["wordnet_corr"])
+stripchart(new_data["wordnet_corr"], vertical = TRUE,
+           method = "jitter", add = TRUE, pch = 20, col = 'blue')
+title("wordnet values")
+
 new_data["wordnet_corr"] <- scale(new_data["wordnet_corr"])
 ```
 
