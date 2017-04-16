@@ -57,8 +57,11 @@ def get_feat_freqs(concept_domains, domain_concepts):
         for f in feats:
             domain_matrix[i][fcat_list.index(f[0])] += int(f[1])
 
-    num_concepts = np.array([len(domain_concepts[domains[i]]) for i in range(len(domains))])
-    domain_matrix = domain_matrix/num_concepts[:,None]
+    #num_concepts = np.array([len(domain_concepts[domains[i]]) for i in range(len(domains))])
+    #domain_matrix = domain_matrix/num_concepts[:,None]
+
+    domain_totals = np.sum(domain_matrix, axis=1)
+    domain_matrix = domain_matrix/domain_totals[:,None]
 
     return(domain_matrix, domains, fcat_list)
 
@@ -88,13 +91,12 @@ def render_graphs(domain_pearson, domain_wordnet, domains, domain_matrix, fcat_l
 
     # Normalize each column to a range [0, 1].
     domain_matrix = (domain_matrix - domain_matrix.min(axis=0)) / (domain_matrix.max(axis=0) - domain_matrix.min(axis=0))
-
     colormap = plt.get_cmap(colormap)
 
     for j, fcat in enumerate(fcat_list):
         print(fcat)
         fig = plt.figure()
-        fig.suptitle(fcat)
+        fig.suptitle(fcat+"-perc")
 
         ax = fig.add_subplot(111)
         ax.scatter(xs, ys)
@@ -106,7 +108,7 @@ def render_graphs(domain_pearson, domain_wordnet, domains, domain_matrix, fcat_l
                         horizontalalignment="center",
                         verticalalignment="center")
 
-        fig_path = os.path.join(GRAPH_DIR, fcat + ".png")
+        fig_path = os.path.join(GRAPH_DIR, fcat + "-perc.png")
         fig.savefig(fig_path)
 
         print("\n\n")
