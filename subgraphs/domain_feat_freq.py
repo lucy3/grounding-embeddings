@@ -10,9 +10,12 @@ VOCAB = "./all/vocab.txt"
 PEARSON = './all/pearson_corr/corr_mcrae_wikigiga.txt'
 WORDNET = './all/hier_clust/wordnet_match_wikigiga.txt'
 OUTPUT = './all/domain_feat_freq.txt'
+GRAPH_DIR = './all/domain_feat_graphs'
+
+import csv
+import os.path
 
 import get_domains
-import csv
 import numpy as np
 
 def get_feat_freqs(concept_domains, domain_concepts):
@@ -48,7 +51,7 @@ def get_feat_freqs(concept_domains, domain_concepts):
                         feature_cats.add(row["BR_Label"])
     fcat_list = sorted(list(feature_cats))
 
-    domain_matrix = np.zeros((len(domains), len(fcat_list))) # rows: domains, columns: features
+    domain_matrix = np.zeros((len(domains), len(fcat_list))) # rows: domains, columns: feature categories
     for i in range(len(domains)):
         feats = domain_feats[domains[i]] # list of tuples (feature category, production frequency)
         for f in feats:
@@ -76,6 +79,38 @@ def get_average(input_file, c_string, value, concept_domains, domain_concepts):
         domain_average[d] /= len(domain_concepts[d])
     return domain_average
 
+def render_graphs(domain_pearson, domain_wordnet, domains, domain_matrix, fcat_list,
+                  colormap="cool"):
+    import matplotlib.pyplot as plt
+
+    xs = [domain_pearson[domain] for domain in domains]
+    ys = [domain_wordnet[domain] for domain in domains]
+
+    # Normalize each column to a range [0, 1].
+    domain_matrix = (domain_matrix - domain_matrix.min(axis=0)) / (domain_matrix.max(axis=0) - domain_matrix.min(axis=0))
+
+    colormap = plt.get_cmap(colormap)
+
+    for j, fcat in enumerate(fcat_list):
+        print(fcat)
+        fig = plt.figure()
+        fig.suptitle(fcat)
+
+        ax = fig.add_subplot(111)
+        ax.scatter(xs, ys)
+
+        for i, (domain, x, y) in enumerate(zip(domains, xs, ys)):
+            strength = domain_matrix[i, j]
+            print("\t", domain, strength)
+            ax.annotate(domain, (x, y), color=colormap(strength),
+                        horizontalalignment="center",
+                        verticalalignment="center")
+
+        fig_path = os.path.join(GRAPH_DIR, fcat + ".png")
+        fig.savefig(fig_path)
+
+        print("\n\n")
+
 def main():
     concept_domains = get_domains.get_concept_domains()
     domain_concepts = get_domains.get_domain_concepts()
@@ -84,6 +119,8 @@ def main():
         'correlation', concept_domains, domain_concepts)
     domain_wordnet = get_average(WORDNET, 'concept',
         'dendrogram: 0.8; wordnet: 7', concept_domains, domain_concepts)
+
+    render_graphs(domain_pearson, domain_wordnet, domains, domain_matrix, fcat_list)
 
     with open(OUTPUT, 'w') as csvfile:
         writer = csv.writer(csvfile, delimiter='\t')
