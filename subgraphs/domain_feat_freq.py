@@ -49,7 +49,7 @@ def get_feat_freqs(concept_domains, domain_concepts):
 	fcat_list = sorted(list(feature_cats))
 
 	domain_matrix = np.zeros((len(domains), len(fcat_list))) # rows: domains, columns: features
-	for i in xrange(len(domains)):
+	for i in range(len(domains)):
 		feats = domain_feats[domains[i]] # list of tuples (feature category, production frequency)
 		for f in feats:
 			domain_matrix[i][fcat_list.index(f[0])] += int(f[1])
