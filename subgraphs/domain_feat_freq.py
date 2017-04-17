@@ -9,7 +9,11 @@ CONCSTATS = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 VOCAB = "./all/vocab.txt"
 PEARSON = './all/pearson_corr/corr_mcrae_wikigiga.txt'
 WORDNET = './all/hier_clust/wordnet_match_wikigiga.txt'
-OUTPUT = './all/domain_feat_freq.txt'
+OUTPUT = './all/domain_feat/domain_feat_freq_wikigiga-perc.txt'
+# ALSO: edit the names of the output graphs below with the appropriate suffix
+# no suffix for wikigiga averages, -perc for fraction
+# within domain, -mcrae for McRae/Wordnet match
+# See existing names of pngs for examples
 GRAPH_DIR = './all/domain_feat_graphs'
 
 import csv
@@ -57,8 +61,8 @@ def get_feat_freqs(concept_domains, domain_concepts):
         for f in feats:
             domain_matrix[i][fcat_list.index(f[0])] += int(f[1])
 
-    #num_concepts = np.array([len(domain_concepts[domains[i]]) for i in range(len(domains))])
-    #domain_matrix = domain_matrix/num_concepts[:,None]
+    # num_concepts = np.array([len(domain_concepts[domains[i]]) for i in range(len(domains))])
+    # domain_matrix = domain_matrix/num_concepts[:,None]
 
     domain_totals = np.sum(domain_matrix, axis=1)
     domain_matrix = domain_matrix/domain_totals[:,None]
@@ -108,8 +112,8 @@ def render_graphs(domain_pearson, domain_wordnet, domains, domain_matrix, fcat_l
                         horizontalalignment="center",
                         verticalalignment="center")
 
-        fig_path = os.path.join(GRAPH_DIR, fcat + "-perc.png")
-        fig.savefig(fig_path)
+        fig_path = os.path.join(GRAPH_DIR, fcat)
+        fig.savefig(fig_path+"-perc")
 
         print("\n\n")
 
