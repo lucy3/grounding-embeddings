@@ -5,10 +5,11 @@ from pprint import pprint
 
 import numpy as np
 
-
-EMBEDDING_NAME = "glove.6B.300d" # Wikipedia 2014 + Gigaword 5
+EMBEDDING_NAME = "mcrae" # McRae, even though it's not an embedding
+# EMBEDDING_NAME = "glove.6B.300d" # Wikipedia 2014 + Gigaword 5
 # EMBEDDING_NAME = "glove.840B.300d" # Common Crawl
-GLOVE_INPUT = "../glove/%s.txt" % EMBEDDING_NAME
+# INPUT = "../glove/%s.txt" % EMBEDDING_NAME
+INPUT = "./all/mcrae_vectors.txt"
 
 FEATURES = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 VOCAB = "./all/vocab.txt"
@@ -30,7 +31,7 @@ def load_embeddings(concepts):
         assert len(embeddings) == len(vocab), "%i %i" % (len(embeddings), len(vocab))
     else:
         vocab, embeddings = [], []
-        with open(GLOVE_INPUT, "r") as glove_f:
+        with open(INPUT, "r") as glove_f:
             for line in glove_f:
                 fields = line.strip().split()
                 word = fields[0]
