@@ -7,7 +7,7 @@ Constants
 
 ```{r}
 PEARSON_FILE <- "../all/pearson_corr/corr_mcrae_wikigiga.txt"
-FILE <- "../all/hier_clust/wordnet_match_wikigiga.txt"
+FILE <- "../all/hier_clust/wordnet_match_mcrae.txt"
 ```
 
 
