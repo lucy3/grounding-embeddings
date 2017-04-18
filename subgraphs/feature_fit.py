@@ -4,17 +4,18 @@ from pathlib import Path
 from pprint import pprint
 
 import numpy as np
+from sklearn.decomposition import PCA
 
-EMBEDDING_NAME = "mcrae" # McRae, even though it's not an embedding
+# EMBEDDING_NAME = "mcrae" # McRae
 # EMBEDDING_NAME = "glove.6B.300d" # Wikipedia 2014 + Gigaword 5
-# EMBEDDING_NAME = "glove.840B.300d" # Common Crawl
-# INPUT = "../glove/%s.txt" % EMBEDDING_NAME
-INPUT = "./all/mcrae_vectors.txt"
+EMBEDDING_NAME = "glove.840B.300d" # Common Crawl
+INPUT = "../glove/%s.txt" % EMBEDDING_NAME
+# INPUT = "./all/mcrae_vectors.txt"
 
 FEATURES = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 VOCAB = "./all/vocab.txt"
 EMBEDDINGS = "./all/embeddings.%s.npy" % EMBEDDING_NAME
-OUTPUT = "./all/feature_fit.txt"
+OUTPUT = "./all/feature_fit/mcrae_cc.txt"
 
 
 Feature = namedtuple("Feature", ["name", "concepts", "wb_label", "wb_maj",
@@ -83,19 +84,25 @@ def load_features_concepts():
 
 
 def analyze_feature(feature, features, word2idx, embeddings):
+    """
+    Compute metric for a given feature.
+
+    Returns:
+        feature_name:
+        n_concepts: number of concepts which have this feature
+        metric: goodness metric, where higher is better
+    """
     # Fetch available embeddings.
     embeddings = [embeddings[word2idx[concept]]
                   for concept in features[feature].concepts
                   if concept in word2idx]
-    if len(embeddings) < 4 or len(embeddings) > 7:
+    if len(embeddings) < 3:
         return
-    embeddings = np.asarray(embeddings)
-    embeddings /= np.linalg.norm(embeddings, axis=1, keepdims=True)
-    mean = np.mean(embeddings, axis=0)
-    mean /= np.linalg.norm(mean)
 
-    avg_dot = np.dot(embeddings, mean).mean()
-    return (feature, len(embeddings), avg_dot)
+    pca = PCA(n_components=1)
+    pca.fit(embeddings)
+
+    return feature, len(embeddings), pca.explained_variance_ratio_[0]
 
 
 def plot_groups(label_groups):
@@ -117,37 +124,36 @@ def main():
                     for feature in features]
     feature_data = sorted(filter(None, feature_data), key=lambda f: f[2])
 
-    grouping_fns = {
-        "br_label": lambda name: features[name].br_label,
-        "first_word": lambda name: name.split("_")[0],
-    }
-    groups = {k: defaultdict(list) for k in grouping_fns}
-    for name, n_entries, score in feature_data:
-        print("%40s\t%25s\t%i\t%f" % (name, features[name].br_label,
-                                      n_entries, score))
+    with open(OUTPUT, "w") as out:
+        grouping_fns = {
+            "br_label": lambda name: features[name].br_label,
+            "first_word": lambda name: name.split("_")[0],
+        }
+        groups = {k: defaultdict(list) for k in grouping_fns}
+        for name, n_entries, score in feature_data:
+            out.write("%40s\t%25s\t%i\t%f\n" %
+                        (name, features[name].br_label, n_entries, score))
 
-        for grouping_fn_name, grouping_fn in grouping_fns.items():
-            group = grouping_fn(name)
-            groups[grouping_fn_name][group].append((score, n_entries))
+            for grouping_fn_name, grouping_fn in grouping_fns.items():
+                group = grouping_fn(name)
+                groups[grouping_fn_name][group].append((score, n_entries))
 
-    # plot_groups(label_groups)
+        for grouping_fn_name, groups_result in groups.items():
+            out.write("\n\nGrouping by %s:\n" % grouping_fn_name)
+            summary = {}
+            for name, data in groups_result.items():
+                data = np.array(data)
+                scores = data[:, 0]
+                n_entries = data[:, 1]
+                summary[name] = (len(data), np.mean(scores), np.percentile(scores, (0, 50, 100)),
+                                np.mean(n_entries))
+            summary = sorted(summary.items(), key=lambda x: x[1][2][1])
 
-    for grouping_fn_name, groups_result in groups.items():
-        print("\n\nGrouping by %s:" % grouping_fn_name)
-        summary = {}
-        for name, data in groups_result.items():
-            data = np.array(data)
-            scores = data[:, 0]
-            n_entries = data[:, 1]
-            summary[name] = (len(data), np.mean(scores), np.percentile(scores, (0, 50, 100)),
-                             np.mean(n_entries))
-        summary = sorted(summary.items(), key=lambda x: x[1][2][1])
-
-        print("%25s\tmu\tn\tmed\t\tmin\tmean\tmax" % "group")
-        print("=" * 100)
-        for label_group, (n, mean, pcts, n_concepts) in summary:
-            print("%25s\t%.2f\t%3i\t%.5f\t\t%.5f\t%.5f\t%.5f"
-                  % (label_group, n_concepts, n, pcts[1], pcts[0], mean, pcts[2]))
+            out.write("%25s\tmu\tn\tmed\t\tmin\tmean\tmax\n" % "group")
+            out.write(("=" * 100) + "\n")
+            for label_group, (n, mean, pcts, n_concepts) in summary:
+                out.write("%25s\t%.2f\t%3i\t%.5f\t\t%.5f\t%.5f\t%.5f\n"
+                          % (label_group, n_concepts, n, pcts[1], pcts[0], mean, pcts[2]))
 
 
 if __name__ == "__main__":
