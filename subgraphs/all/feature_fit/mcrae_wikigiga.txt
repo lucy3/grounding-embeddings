@@ -339,10 +339,10 @@
                        used_for_shooting	                 function	4	0.534089
                                  a_plant	                taxonomic	3	0.534162
                         used_for_digging	                 function	3	0.535646
-                       used_for_weddings	                 function	3	0.537045
-                associated_with_religion	            encyclopaedic	3	0.537045
                         used_for_praying	                 function	3	0.537045
                     used_for_worshipping	                 function	3	0.537045
+                       used_for_weddings	                 function	3	0.537045
+                associated_with_religion	            encyclopaedic	3	0.537045
                          beh_-_runs_fast	            visual-motion	3	0.537300
                    beh_-_produces_manure	            visual-motion	3	0.538189
                                eaten_raw	                 function	4	0.538610
@@ -370,8 +370,8 @@
                       has_a_light_inside	  visual-form_and_surface	3	0.561027
                           is_destructive	            encyclopaedic	3	0.562514
                          used_by_turning	                 function	3	0.563671
-                            has_sections	  visual-form_and_surface	3	0.563771
                         grows_in_Florida	            encyclopaedic	3	0.563771
+                            has_sections	  visual-form_and_surface	3	0.563771
                     used_for_sleeping_in	                 function	3	0.565011
                               has_6_legs	  visual-form_and_surface	3	0.566225
                                 is_thick	  visual-form_and_surface	3	0.566532

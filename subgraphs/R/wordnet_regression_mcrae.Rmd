@@ -84,6 +84,14 @@ anova(baseline_lm, full_lm)
 Let's compute the Pearson LM here and compare its weights with the weights from the WordNet LM.
 
 ```{r}
+boxplot(new_data["correlation"])
+stripchart(new_data["correlation"], vertical = TRUE,
+           method = "jitter", add = TRUE, pch = 20, col = 'blue')
+title("pearson values")
+```
+
+
+```{r}
 cn <- colnames(new_data)
 new_data["correlation"] <- scale(new_data["correlation"])
 pearson_formula <- as.formula(paste("correlation", "~", paste(cn[c(3:70)], collapse="+")))

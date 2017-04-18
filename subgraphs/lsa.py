@@ -25,8 +25,9 @@ def load_concepts_features():
 
             fields = line.strip().split("\t")
             concept_name, feature_name = fields[:2]
+            prod_freq = int(fields[6])
             if concept_name in vocab:
-                concepts[concept_name].append(feature_name)
+                concepts[concept_name].extend([feature_name] * prod_freq)
 
     return concepts
 
@@ -51,13 +52,13 @@ def main():
 
     # Prep for LSA.
     # Each "document" is a concept, a bag of features.
-    #
-    # TODO: perhaps replicate according to production frequency? log(production
-    # frequency) ?
     documents = [concepts_features[concept] for concept in concepts]
     dictionary = corpora.Dictionary(documents)
-    # Convert to BoW with IDs.
+
+    # Convert to BoW with IDs, then weight by tf-idf.
     documents = [dictionary.doc2bow(document) for document in documents]
+    tfidf = models.TfidfModel(documents)
+    documents = [tfidf[document] for document in documents]
 
     raw_matrix = matutils.corpus2dense(documents, dictionary.num_nnz).T
     # raw_matrix = np.zeros((len(concepts), len(dictionary.token2id)))
@@ -68,7 +69,7 @@ def main():
     report_closest(concepts, raw_matrix, None)
 
     # Learn model.
-    model = models.LsiModel(documents, id2word=dictionary, num_topics=20)
+    model = models.LsiModel(documents, id2word=dictionary, num_topics=50)
     pprint(model.print_topics())
 
     topic_matrix = np.zeros((len(concepts), model.num_topics))
