@@ -6,16 +6,16 @@ from pprint import pprint
 import numpy as np
 from sklearn.decomposition import PCA
 
-# EMBEDDING_NAME = "mcrae" # McRae
+EMBEDDING_NAME = "mcrae" # McRae
 # EMBEDDING_NAME = "glove.6B.300d" # Wikipedia 2014 + Gigaword 5
-EMBEDDING_NAME = "glove.840B.300d" # Common Crawl
-INPUT = "../glove/%s.txt" % EMBEDDING_NAME
-# INPUT = "./all/mcrae_vectors.txt"
+# EMBEDDING_NAME = "glove.840B.300d" # Common Crawl
+# INPUT = "../glove/%s.txt" % EMBEDDING_NAME
+INPUT = "./all/mcrae_vectors.txt"
 
 FEATURES = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 VOCAB = "./all/vocab.txt"
 EMBEDDINGS = "./all/embeddings.%s.npy" % EMBEDDING_NAME
-OUTPUT = "./all/feature_fit/mcrae_cc.txt"
+OUTPUT = "./all/feature_fit/mcrae_mcrae.txt"
 
 
 Feature = namedtuple("Feature", ["name", "concepts", "wb_label", "wb_maj",
@@ -67,6 +67,9 @@ def load_features_concepts():
         for line in features_f:
             fields = line.strip().split("\t")
             concept_name, feature_name = fields[:2]
+            if concept_name == "Concept":
+                # Header row.
+                continue
             if feature_name not in features:
                 features[feature_name] = Feature(
                         feature_name, set(), *fields[2:6], fields[10])
