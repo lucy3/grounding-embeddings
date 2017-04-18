@@ -12,9 +12,9 @@ NB, both hierarchies will probably need to be "trimmed" - i.e.,
 we'll cut the tree off at a certain depth and treat all descendants
 below that depth as siblings.
 
-For the output files, the headers have tuples representing 
-depth/distance. The first value is a parameter for the dendrogram, 
-and the second for wordnet. 
+For the output files, the headers have tuples representing
+depth/distance. The first value is a parameter for the dendrogram,
+and the second for wordnet.
 """
 
 from scipy.cluster import hierarchy
@@ -117,7 +117,7 @@ def are_wordnet_siblings(concept1, concept2, depth):
 	return True if ancestors1 & ancestors2 else False
 
 def write_output(all_probs, params):
-	with open(OUTPUT, 'wb') as csvfile:
+	with open(OUTPUT, 'w') as csvfile:
 		fieldnames = ["concept"] + ["dendrogram: " +
 			str(p[0]) + "; wordnet: " + str(p[1]) for p in params]
 		writer = csv.DictWriter(csvfile, delimiter='\t', fieldnames=fieldnames)
@@ -158,7 +158,7 @@ def main():
 		vocabulary.add(line.strip())
 
 	X, labels = create_X(vocabulary)
-	
+
 	Z = hierarchy.linkage(X, method='average', metric='cosine')
 
 	wordnet_depths = range(6, 9)
