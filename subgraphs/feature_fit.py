@@ -69,7 +69,7 @@ def load_features_concepts():
         for line in features_f:
             fields = line.strip().split("\t")
             concept_name, feature_name = fields[:2]
-            if concept_name == "Concept":
+            if concept_name == "Concept" or concept_name == "dunebuggy":
                 # Header row.
                 continue
             if feature_name not in features:

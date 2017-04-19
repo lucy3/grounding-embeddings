@@ -1,10 +1,10 @@
                           made_of_rubber	  visual-form_and_surface	7	0.235267
-                                  is_fun	            encyclopaedic	7	0.272881
                            used_for_food	                 function	7	0.273390
                        made_of_porcelain	  visual-form_and_surface	6	0.278640
                         beh_-_eats_grass	            visual-motion	7	0.278903
                      has_a_wooden_handle	  visual-form_and_surface	7	0.281601
                           used_for_juice	                 function	7	0.287723
+                                  is_fun	            encyclopaedic	6	0.290447
                         lives_in_jungles	            encyclopaedic	7	0.290984
                            eaten_in_pies	                 function	5	0.292097
                           eaten_in_soups	                 function	5	0.292757
@@ -153,7 +153,6 @@
                    inbeh_-_fires_bullets	            visual-motion	4	0.510093
                          grows_on_bushes	            encyclopaedic	4	0.510420
                   grows_in_warm_climates	            encyclopaedic	4	0.510443
-                                   a_car	                taxonomic	4	0.511161
                          used_by_turning	                 function	3	0.514625
                              has_stripes	  visual-form_and_surface	4	0.515310
                         used_by_the_army	                 function	3	0.518295
@@ -245,6 +244,7 @@
                                has_spots	  visual-form_and_surface	3	0.621757
                                  a_berry	                taxonomic	3	0.623124
                                has_walls	  visual-form_and_surface	3	0.624901
+                                   a_car	                taxonomic	3	0.626250
                               has_6_legs	  visual-form_and_surface	3	0.627462
                                    a_bug	                taxonomic	3	0.629560
                worn_in_cold_temperatures	                 function	3	0.630089
@@ -322,9 +322,9 @@ Grouping by br_label:
             visual-colour	5.14	  7	0.44383		0.31431	0.43769	0.55210
   visual-form_and_surface	4.45	 89	0.47062		0.23527	0.48968	0.86850
             visual-motion	4.39	 23	0.48740		0.27890	0.48116	0.72891
-                taxonomic	4.25	 20	0.50618		0.30755	0.52541	0.85897
+                taxonomic	4.20	 20	0.52827		0.30755	0.53116	0.85897
                  function	4.18	 82	0.53611		0.27339	0.51385	0.85110
-            encyclopaedic	4.11	 80	0.54080		0.27288	0.52424	0.85023
+            encyclopaedic	4.10	 80	0.54080		0.29045	0.52446	0.85023
                     sound	4.50	  6	0.55425		0.29910	0.52414	0.71658
                   tactile	3.67	  6	0.61406		0.38158	0.57692	0.63752
                     taste	3.00	  3	0.65143		0.63596	0.65220	0.66920
@@ -339,9 +339,9 @@ Grouping by first_word:
                     lives	4.46	 13	0.46444		0.29098	0.48471	0.71860
                       has	4.32	 72	0.48253		0.28160	0.50544	0.86850
                       beh	4.30	 27	0.48740		0.27890	0.48718	0.72891
-                        a	4.32	 19	0.50120		0.30755	0.51811	0.85897
+                        a	4.26	 19	0.50120		0.30755	0.52417	0.85897
                     grows	3.86	  7	0.51044		0.39539	0.53782	0.68258
-                       is	4.34	 41	0.53933		0.27288	0.51455	0.85023
+                       is	4.32	 41	0.53933		0.29045	0.51498	0.85023
                  requires	4.20	  5	0.54104		0.32541	0.52581	0.76067
                      used	4.10	 67	0.55179		0.27339	0.52398	0.83867
                     inbeh	4.38	  8	0.55425		0.29352	0.52496	0.69532

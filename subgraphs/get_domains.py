@@ -29,9 +29,6 @@ def get_concept_domains():
 
 	concept_domains = {} # concept: [domains]
 	for concept in vocabulary:
-		if concept == 'dunebuggy':
-			concept_domains[concept] = ['n/a']
-			continue
 		senses = wn.synsets(concept)
 		offset = str(senses[0].offset()).zfill(8) + '-' + senses[0].pos() # the first sense
 		assert senses[0].pos() == 'n' # should at least be a noun
