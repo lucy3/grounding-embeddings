@@ -245,10 +245,10 @@
                used_for_making_furniture	                 function	3	0.664410
                              is_tropical	            encyclopaedic	3	0.665161
                                has_soles	  visual-form_and_surface	3	0.667200
-                        used_for_praying	                 function	3	0.669878
-                associated_with_religion	            encyclopaedic	3	0.669878
                        used_for_weddings	                 function	3	0.669878
+                        used_for_praying	                 function	3	0.669878
                     used_for_worshipping	                 function	3	0.669878
+                associated_with_religion	            encyclopaedic	3	0.669878
                         different_shapes	  visual-form_and_surface	3	0.672763
                                has_laces	  visual-form_and_surface	3	0.678883
                          beh_-_runs_fast	            visual-motion	3	0.678931

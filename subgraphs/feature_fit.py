@@ -10,11 +10,11 @@ import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 import domain_feat_freq
 
-# EMBEDDING_NAME = "mcrae" # McRae
+EMBEDDING_NAME = "mcrae" # McRae
 # EMBEDDING_NAME = "glove.6B.300d" # Wikipedia 2014 + Gigaword 5
 # EMBEDDING_NAME = "glove.840B.300d" # Common Crawl
-INPUT = "../glove/%s.txt" % EMBEDDING_NAME
-# INPUT = "./all/mcrae_vectors.txt"
+# INPUT = "../glove/%s.txt" % EMBEDDING_NAME
+INPUT = "./all/mcrae_vectors.txt"
 
 FEATURES = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 VOCAB = "./all/vocab.txt"
