@@ -99,7 +99,7 @@ def analyze_feature(feature, features, word2idx, embeddings):
     embeddings = [embeddings[word2idx[concept]]
                   for concept in features[feature].concepts
                   if concept in word2idx]
-    if len(embeddings) < 3:
+    if len(embeddings) < 3 or len(embeddings) > 7:
         return
 
     pca = PCA(n_components=1)
