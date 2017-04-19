@@ -246,9 +246,9 @@
                              is_tropical	            encyclopaedic	3	0.665161
                                has_soles	  visual-form_and_surface	3	0.667200
                         used_for_praying	                 function	3	0.669878
+                associated_with_religion	            encyclopaedic	3	0.669878
                        used_for_weddings	                 function	3	0.669878
                     used_for_worshipping	                 function	3	0.669878
-                associated_with_religion	            encyclopaedic	3	0.669878
                         different_shapes	  visual-form_and_surface	3	0.672763
                                has_laces	  visual-form_and_surface	3	0.678883
                          beh_-_runs_fast	            visual-motion	3	0.678931
@@ -307,8 +307,8 @@
                          lives_in_swamps	            encyclopaedic	3	0.833504
                               is_healthy	            encyclopaedic	3	0.835745
                   inbeh_-_produces_sound	                    sound	3	0.835981
-                         used_by_opening	                 function	4	0.864551
                          used_by_closing	                 function	4	0.864551
+                         used_by_opening	                 function	4	0.864551
                              has_pillows	            encyclopaedic	3	0.869276
                               has_2_legs	  visual-form_and_surface	3	0.878987
                          lives_in_a_nest	            encyclopaedic	3	0.895044
