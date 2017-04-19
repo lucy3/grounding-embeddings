@@ -191,10 +191,10 @@
                        used_for_shooting	                 function	4	0.534089
                                  a_plant	                taxonomic	3	0.534162
                         used_for_digging	                 function	3	0.535646
-                       used_for_weddings	                 function	3	0.537045
                 associated_with_religion	            encyclopaedic	3	0.537045
-                    used_for_worshipping	                 function	3	0.537045
                         used_for_praying	                 function	3	0.537045
+                       used_for_weddings	                 function	3	0.537045
+                    used_for_worshipping	                 function	3	0.537045
                          beh_-_runs_fast	            visual-motion	3	0.537300
                    beh_-_produces_manure	            visual-motion	3	0.538189
                                eaten_raw	                 function	4	0.538610
@@ -316,6 +316,20 @@
                               has_2_legs	  visual-form_and_surface	3	0.872138
 
 
+Grouping by br_label:
+                    group	mu	n	med		min	mean	max
+====================================================================================================
+            visual-colour	5.14	  7	0.39747		0.25072	0.39043	0.49533
+            visual-motion	4.39	 23	0.43132		0.25790	0.43020	0.65962
+  visual-form_and_surface	4.45	 89	0.44004		0.25330	0.46180	0.87214
+                taxonomic	4.20	 20	0.44011		0.29941	0.46727	0.73507
+            encyclopaedic	4.10	 80	0.45361		0.24957	0.48089	0.78937
+                    sound	4.50	  6	0.47621		0.25044	0.45511	0.63803
+                 function	4.18	 82	0.52086		0.25039	0.48375	0.81976
+                  tactile	3.67	  6	0.54609		0.35782	0.52379	0.59415
+                    taste	3.00	  3	0.61268		0.53335	0.60978	0.68331
+
+
 Grouping by first_word:
                     group	mu	n	med		min	mean	max
 ====================================================================================================
@@ -338,17 +352,3 @@ Grouping by first_word:
                      worn	4.08	 12	0.57957		0.29915	0.53048	0.81976
                    tastes	3.00	  3	0.61268		0.53335	0.60978	0.68331
                        an	3.00	  1	0.65757		0.65757	0.65757	0.65757
-
-
-Grouping by br_label:
-                    group	mu	n	med		min	mean	max
-====================================================================================================
-            visual-colour	5.14	  7	0.39747		0.25072	0.39043	0.49533
-            visual-motion	4.39	 23	0.43132		0.25790	0.43020	0.65962
-  visual-form_and_surface	4.45	 89	0.44004		0.25330	0.46180	0.87214
-                taxonomic	4.20	 20	0.44011		0.29941	0.46727	0.73507
-            encyclopaedic	4.10	 80	0.45361		0.24957	0.48089	0.78937
-                    sound	4.50	  6	0.47621		0.25044	0.45511	0.63803
-                 function	4.18	 82	0.52086		0.25039	0.48375	0.81976
-                  tactile	3.67	  6	0.54609		0.35782	0.52379	0.59415
-                    taste	3.00	  3	0.61268		0.53335	0.60978	0.68331

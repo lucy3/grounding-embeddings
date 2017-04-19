@@ -5,22 +5,24 @@ from pprint import pprint
 
 import numpy as np
 from sklearn.decomposition import PCA
+import domain_feat_freq
 
-EMBEDDING_NAME = "mcrae" # McRae
+# EMBEDDING_NAME = "mcrae" # McRae
 # EMBEDDING_NAME = "glove.6B.300d" # Wikipedia 2014 + Gigaword 5
-# EMBEDDING_NAME = "glove.840B.300d" # Common Crawl
-# INPUT = "../glove/%s.txt" % EMBEDDING_NAME
-INPUT = "./all/mcrae_vectors.txt"
+EMBEDDING_NAME = "glove.840B.300d" # Common Crawl
+INPUT = "../glove/%s.txt" % EMBEDDING_NAME
+# INPUT = "./all/mcrae_vectors.txt"
 
 FEATURES = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 VOCAB = "./all/vocab.txt"
 EMBEDDINGS = "./all/embeddings.%s.npy" % EMBEDDING_NAME
-OUTPUT = "./all/feature_fit/mcrae_mcrae.txt"
-
+OUTPUT = "./all/feature_fit/mcrae_cc.txt"
+PEARSON = './all/pearson_corr/corr_mcrae_cc.txt'
+WORDNET = './all/hier_clust/wordnet_match_cc.txt'
+GRAPH_DIR = './all/feature_fit/cc'
 
 Feature = namedtuple("Feature", ["name", "concepts", "wb_label", "wb_maj",
                                  "wb_min", "br_label", "disting"])
-
 
 def load_embeddings(concepts):
     if Path(EMBEDDINGS).is_file():
@@ -127,6 +129,7 @@ def main():
                     for feature in features]
     feature_data = sorted(filter(None, feature_data), key=lambda f: f[2])
 
+    fcat_med = {} # {fcat: med}
     with open(OUTPUT, "w") as out:
         grouping_fns = {
             "br_label": lambda name: features[name].br_label,
@@ -157,6 +160,15 @@ def main():
             for label_group, (n, mean, pcts, n_concepts) in summary:
                 out.write("%25s\t%.2f\t%3i\t%.5f\t\t%.5f\t%.5f\t%.5f\n"
                           % (label_group, n_concepts, n, pcts[1], pcts[0], mean, pcts[2]))
+                fcat_med[label_group] = pcts[1]
+
+    domain_pearson = domain_feat_freq.get_average(PEARSON, 'Concept',
+        'correlation')
+    domain_wordnet = domain_feat_freq.get_average(WORDNET, 'concept',
+        'dendrogram: 0.8; wordnet: 7')
+    domain_matrix, domains, fcat_list = domain_feat_freq.get_feat_freqs(weights=fcat_med)
+    domain_feat_freq.render_graphs(GRAPH_DIR, domain_pearson, domain_wordnet,
+    	domains, domain_matrix, fcat_list)
 
 
 if __name__ == "__main__":
