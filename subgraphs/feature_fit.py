@@ -12,18 +12,18 @@ import domain_feat_freq
 
 EMBEDDING_NAME = "mcrae" # McRae
 # EMBEDDING_NAME = "glove.6B.300d" # Wikipedia 2014 + Gigaword 5
-# EMBEDDING_NAME = "glove.840B.300d" # Common Crawl
-# INPUT = "../glove/%s.txt" % EMBEDDING_NAME
-INPUT = "./all/mcrae_vectors.txt"
+EMBEDDING_NAME = "glove.840B.300d" # Common Crawl
+INPUT = "../glove/%s.txt" % EMBEDDING_NAME
+# INPUT = "./all/mcrae_vectors.txt"
 
 FEATURES = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 VOCAB = "./all/vocab.txt"
 EMBEDDINGS = "./all/embeddings.%s.npy" % EMBEDDING_NAME
 
-OUTPUT = "./all/feature_fit/mcrae_mcrae.txt"
-PEARSON = './all/pearson_corr/corr_mcrae_wikigiga.txt'
-WORDNET = './all/hier_clust/wordnet_match_mcrae.txt'
-GRAPH_DIR = './all/feature_fit/mcrae'
+OUTPUT = "./all/feature_fit/mcrae_cc.txt"
+PEARSON = './all/pearson_corr/corr_mcrae_cc.txt'
+WORDNET = './all/hier_clust/wordnet_match_cc.txt'
+GRAPH_DIR = './all/feature_fit/cc'
 
 Feature = namedtuple("Feature", ["name", "concepts", "wb_label", "wb_maj",
                                  "wb_min", "br_label", "disting"])
@@ -216,13 +216,29 @@ def produce_unified_graph(vocab, features, feature_data):
         ys.append(concept_wordnet[concept])
         zs.append(np.mean(weights))
 
+    # Resize Z values
+    zs = np.array(zs)
+    zs = (zs - zs.min()) / (zs.max() - zs.min())
+
+    # HACK: trying to make this approximately normal so that I can easily see
+    # the differences between points. shave off high outliers.
+    zs = np.clip(zs, 0, 0.7)
+    zs = zs / zs.max()
+
     # Render Z axis using colors
     colormap = plt.get_cmap("cool")
-    print(zs)
     cs = colormap(zs)
 
-    plt.scatter(xs, ys, c=cs)
-    plt.show()
+    # Jitter points
+    xs += np.random.randn(len(xs)) * 0.01
+    ys += np.random.randn(len(ys)) * 0.01
+
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    ax.scatter(xs, ys, c=cs, alpha=0.8)
+
+    fig_path = os.path.join(GRAPH_DIR, "unified.png")
+    fig.savefig(fig_path)
 
 
 def main():

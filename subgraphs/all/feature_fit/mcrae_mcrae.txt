@@ -295,16 +295,16 @@
                              has_zippers	  visual-form_and_surface	3	0.891054
                          lives_in_swamps	            encyclopaedic	3	0.892705
                         used_for_praying	                 function	3	0.895759
+                    used_for_worshipping	                 function	3	0.895759
                 associated_with_religion	            encyclopaedic	3	0.895759
                        used_for_weddings	                 function	3	0.895759
-                    used_for_worshipping	                 function	3	0.895759
                           used_for_water	                 function	3	0.900889
                       has_a_light_inside	  visual-form_and_surface	3	0.906365
                            worn_on_torso	                 function	3	0.906385
                              has_candles	            encyclopaedic	3	0.909165
                   used_for_storing_tools	                 function	3	0.910741
-                         used_by_closing	                 function	4	0.912327
                          used_by_opening	                 function	4	0.912327
+                         used_by_closing	                 function	4	0.912327
                               is_healthy	            encyclopaedic	3	0.914479
                               has_an_end	  visual-form_and_surface	3	0.922987
                    beh_-_produces_manure	            visual-motion	3	0.928190
