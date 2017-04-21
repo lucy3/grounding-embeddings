@@ -28,6 +28,7 @@ GRAPH_DIR = './all/feature_fit/mcrae'
 Feature = namedtuple("Feature", ["name", "concepts", "wb_label", "wb_maj",
                                  "wb_min", "br_label", "disting"])
 
+
 def load_embeddings(concepts):
     if Path(EMBEDDINGS).is_file():
         embeddings = np.load(EMBEDDINGS)
@@ -114,15 +115,6 @@ def analyze_feature(feature, features, word2idx, embeddings):
     return feature, len(embeddings), pca.explained_variance_ratio_[0]
 
 
-def plot_groups(label_groups):
-    from matplotlib import pyplot as plt
-    bins = np.linspace(0, 1, 30)
-    for label_group, values in label_groups.items():
-        if label_group in ["visual-colour", "function"]:
-            plt.hist(values, bins=bins, alpha=0.5, label=label_group, normed=True)
-    plt.legend(loc='upper left')
-    plt.show()
-
 def produce_domain_graphs(fcat_med):
     domain_pearson = domain_feat_freq.get_average(PEARSON, 'Concept',
         'correlation')
@@ -131,6 +123,7 @@ def produce_domain_graphs(fcat_med):
     domain_matrix, domains, fcat_list = domain_feat_freq.get_feat_freqs(weights=fcat_med)
     domain_feat_freq.render_graphs(GRAPH_DIR, domain_pearson, domain_wordnet,
         domains, domain_matrix, fcat_list)
+
 
 def get_values(input_file, c_string, value):
     concept_values = {}
@@ -141,6 +134,7 @@ def get_values(input_file, c_string, value):
                 row[value] = 0
             concept_values[row[c_string]] = float(row[value])
     return concept_values
+
 
 def get_fcat_conc_freqs(vocab, weights=None):
     '''
@@ -171,6 +165,7 @@ def get_fcat_conc_freqs(vocab, weights=None):
 
     return(concept_matrix, fcat_list)
 
+
 def produce_concept_graphs(fcat_med):
     concept_pearson = get_values(PEARSON, 'Concept', 'correlation')
     concept_wordnet = get_values(WORDNET, 'concept', 'dendrogram: 0.8; wordnet: 6')
@@ -196,6 +191,7 @@ def produce_concept_graphs(fcat_med):
 
         fig_path = os.path.join(GRAPH_DIR, fcat)
         fig.savefig(fig_path + '-08-60-concepts-perc')
+
 
 def main():
     features, concepts = load_features_concepts()
