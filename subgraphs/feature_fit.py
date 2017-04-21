@@ -220,10 +220,6 @@ def produce_unified_graph(vocab, features, feature_data):
     zs = np.array(zs)
     zs = (zs - zs.min()) / (zs.max() - zs.min())
 
-    # HACK: trying to make this approximately normal so that I can easily see
-    # the differences between points. shave off high outliers.
-    zs = np.clip(zs, 0, 0.7)
-    zs = zs / zs.max()
 
     # Render Z axis using colors
     colormap = plt.get_cmap("cool")
@@ -233,8 +229,25 @@ def produce_unified_graph(vocab, features, feature_data):
     xs += np.random.randn(len(xs)) * 0.01
     ys += np.random.randn(len(ys)) * 0.01
 
+    from mpl_toolkits.mplot3d import Axes3D
     fig = plt.figure()
+    ax = fig.add_subplot(111, projection="3d")
+    ax.set_xlabel("pearson")
+    ax.set_ylabel("wordnet")
+    ax.set_zlabel("feature weight")
+    ax.scatter(xs, ys, zs, c=cs)
+    plt.show()
+
+    # HACK: trying to make this approximately normal so that I can easily see
+    # the differences between points. shave off high outliers.
+    zs = np.clip(zs, 0, 0.7)
+    zs = zs / zs.max()
+
+    fig = plt.figure()
+    fig.suptitle("unified graph")
     ax = fig.add_subplot(111)
+    ax.set_xlabel("pearson")
+    ax.set_ylabel("wordnet")
     ax.scatter(xs, ys, c=cs, alpha=0.8)
 
     fig_path = os.path.join(GRAPH_DIR, "unified.png")

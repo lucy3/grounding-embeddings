@@ -223,9 +223,9 @@
                        used_for_drinking	                 function	3	0.597651
                    bought/sold_in_stores	            encyclopaedic	4	0.598443
                        worn_for_the_rain	                 function	3	0.599921
+                associated_with_religion	            encyclopaedic	3	0.604097
                     used_for_worshipping	                 function	3	0.604097
                         used_for_praying	                 function	3	0.604097
-                associated_with_religion	            encyclopaedic	3	0.604097
                        used_for_weddings	                 function	3	0.604097
                                   a_boat	                taxonomic	4	0.604393
                          found_on_floors	            encyclopaedic	3	0.607617
@@ -252,8 +252,8 @@
                              tastes_tart	                    taste	3	0.635960
                             made_of_iron	  visual-form_and_surface	3	0.636455
                                 is_tight	                  tactile	3	0.637519
-                        grows_in_Florida	            encyclopaedic	3	0.639058
                             has_sections	  visual-form_and_surface	3	0.639058
+                        grows_in_Florida	            encyclopaedic	3	0.639058
                          beh_-_runs_fast	            visual-motion	3	0.639098
                         inbeh_-_explodes	                    sound	3	0.645314
                   used_for_holding_water	                 function	3	0.646356
@@ -262,8 +262,8 @@
                          has_handle_bars	  visual-form_and_surface	3	0.648766
                tastes_different_flavours	                    taste	3	0.651434
                                eaten_raw	                 function	4	0.652536
-                         used_by_opening	                 function	4	0.654471
                          used_by_closing	                 function	4	0.654471
+                         used_by_opening	                 function	4	0.654471
                      used_in_experiments	                 function	3	0.662253
                        used_for_shooting	                 function	4	0.663077
                             an_amphibian	                taxonomic	3	0.664007
