@@ -12,18 +12,18 @@ import domain_feat_freq
 
 EMBEDDING_NAME = "mcrae" # McRae
 # EMBEDDING_NAME = "glove.6B.300d" # Wikipedia 2014 + Gigaword 5
-EMBEDDING_NAME = "glove.840B.300d" # Common Crawl
-INPUT = "../glove/%s.txt" % EMBEDDING_NAME
-# INPUT = "./all/mcrae_vectors.txt"
+# EMBEDDING_NAME = "glove.840B.300d" # Common Crawl
+# INPUT = "../glove/%s.txt" % EMBEDDING_NAME
+INPUT = "./all/mcrae_vectors.txt"
 
 FEATURES = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 VOCAB = "./all/vocab.txt"
 EMBEDDINGS = "./all/embeddings.%s.npy" % EMBEDDING_NAME
 
-OUTPUT = "./all/feature_fit/mcrae_cc.txt"
-PEARSON = './all/pearson_corr/corr_mcrae_cc.txt'
-WORDNET = './all/hier_clust/wordnet_match_cc.txt'
-GRAPH_DIR = './all/feature_fit/cc'
+OUTPUT = "./all/feature_fit/mcrae_mcrae.txt"
+PEARSON = './all/pearson_corr/corr_mcrae_wikigiga.txt'
+WORDNET = './all/hier_clust/wordnet_match_mcrae.txt'
+GRAPH_DIR = './all/feature_fit/mcrae'
 
 Feature = namedtuple("Feature", ["name", "concepts", "wb_label", "wb_maj",
                                  "wb_min", "br_label", "disting"])
@@ -203,6 +203,15 @@ def produce_unified_graph(vocab, features, feature_data):
 
     feature_map = {feature: weight for feature, _, weight in feature_data}
 
+    print("feature\tpvar\tpmean\twvar\twmean")
+    for feature in features.values():
+        this_features_concepts = set(vocab) & set(feature.concepts)
+        if len(this_features_concepts) > 7:
+            pearsons = [concept_pearson[concept] for concept in this_features_concepts]
+            wordnets = [concept_wordnet[concept] for concept in this_features_concepts]
+            print("%s\t%f\t%f\t%f\t%f" % (feature.name, np.var(pearsons),
+                np.mean(pearsons), np.var(wordnets), np.mean(wordnets)))
+
     xs, ys, zs = [], [], []
     for concept in vocab:
         weights = [feature_map[feature.name]
@@ -300,7 +309,7 @@ def main():
     produce_unified_graph(vocab, features, feature_data)
 
     #produce_domain_graphs(fcat_med) # this calls functions in domain_feat_freq.py
-    produce_concept_graphs(fcat_med) # this calls functions in here
+    #produce_concept_graphs(fcat_med) # this calls functions in here
 
 
 if __name__ == "__main__":
