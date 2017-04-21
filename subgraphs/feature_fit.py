@@ -75,7 +75,7 @@ def load_features_concepts():
             fields = line.strip().split("\t")
             concept_name, feature_name = fields[:2]
             if concept_name == "Concept" or concept_name == "dunebuggy":
-                # Header row.
+                # Header row / row we are going to ignore!
                 continue
             if feature_name not in features:
                 features[feature_name] = Feature(
@@ -180,6 +180,8 @@ def produce_concept_graphs(fcat_med):
         - concept_matrix.min(axis=0))
     colormap = plt.get_cmap("cool")
 
+    # For each feature category, produce a scatter plot and use feature
+    # category metrics to color the points (as a sort of third dimension).
     for j, fcat in enumerate(fcat_list):
         print(fcat)
         fig = plt.figure()
@@ -191,6 +193,36 @@ def produce_concept_graphs(fcat_med):
 
         fig_path = os.path.join(GRAPH_DIR, fcat)
         fig.savefig(fig_path + '-08-60-concepts-perc')
+
+
+def produce_unified_graph(vocab, features, feature_data):
+    concept_pearson = get_values(PEARSON, "Concept", "correlation")
+    concept_wordnet = get_values(WORDNET, "concept", "dendrogram: 0.8; wordnet: 6")
+    assert concept_pearson.keys() == concept_wordnet.keys()
+    assert set(concept_pearson.keys()) == set(vocab)
+
+    feature_map = {feature: weight for feature, _, weight in feature_data}
+
+    xs, ys, zs = [], [], []
+    for concept in vocab:
+        weights = [feature_map[feature.name]
+                   for feature in features.values()
+                   if concept in feature.concepts
+                        and feature.name in feature_map]
+        if not weights:
+            continue
+
+        xs.append(concept_pearson[concept])
+        ys.append(concept_wordnet[concept])
+        zs.append(np.mean(weights))
+
+    # Render Z axis using colors
+    colormap = plt.get_cmap("cool")
+    print(zs)
+    cs = colormap(zs)
+
+    plt.scatter(xs, ys, c=cs)
+    plt.show()
 
 
 def main():
@@ -235,6 +267,8 @@ def main():
                 out.write("%25s\t%.2f\t%3i\t%.5f\t\t%.5f\t%.5f\t%.5f\n"
                           % (label_group, n_concepts, n, pcts[1], pcts[0], mean, pcts[2]))
                 fcat_med[label_group] = pcts[1]
+
+    produce_unified_graph(vocab, features, feature_data)
 
     #produce_domain_graphs(fcat_med) # this calls functions in domain_feat_freq.py
     produce_concept_graphs(fcat_med) # this calls functions in here
