@@ -27,7 +27,7 @@ def load_concepts_features():
             concept_name, feature_name = fields[:2]
             prod_freq = int(fields[6])
             if concept_name in vocab:
-                concepts[concept_name].extend([feature_name] * prod_freq)
+                concepts[concept_name].extend([feature_name])# * prod_freq)
 
     return concepts
 
@@ -57,8 +57,8 @@ def main():
 
     # Convert to BoW with IDs, then weight by tf-idf.
     documents = [dictionary.doc2bow(document) for document in documents]
-    tfidf = models.TfidfModel(documents)
-    documents = [tfidf[document] for document in documents]
+    # tfidf = models.TfidfModel(documents)
+    # documents = [tfidf[document] for document in documents]
 
     raw_matrix = matutils.corpus2dense(documents, dictionary.num_nnz).T
     # raw_matrix = np.zeros((len(concepts), len(dictionary.token2id)))
