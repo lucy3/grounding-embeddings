@@ -109,7 +109,7 @@ def analyze_feature(feature, features, word2idx, embeddings):
     # embeddings = [embeddings[word2idx[concept]]
     #               for concept in concepts
     #               if concept in word2idx]
-    if len(concepts) < 5:# or len(concepts) > 7:
+    if len(concepts) < 5:
         return
 
     X = embeddings
@@ -117,27 +117,8 @@ def analyze_feature(feature, features, word2idx, embeddings):
     for concept in concepts:
         y[word2idx[concept]] = 1
 
-    # Pick C by cross-validation
-    C_scores = defaultdict(list)
-    for C in [0.001, 0.01, 0.05, 0.1, 0.5]:
-        # LOOCV
-        for concept in concepts:
-            idx = word2idx[concept]
-            X_loo = np.concatenate((X[:idx], X[idx+1:]))
-            y_loo = np.concatenate((y[:idx], y[idx+1:]))
-
-            reg = linear_model.LogisticRegression(class_weight="balanced",
-                                                  fit_intercept=False, C=C)
-            reg.fit(X_loo, y_loo)
-            C_scores[C].append(reg.score([X[idx]], [y[idx]]))
-
-    C_scores = [(C, np.mean(scores)) for C, scores in C_scores.items()]
-    C_scores = sorted(C_scores, key=lambda x: x[1], reverse=True)
-    print(C_scores)
-    best_C = C_scores[0][0]
-
     reg = linear_model.LogisticRegression(class_weight="balanced",
-                                          fit_intercept=False, C=best_C)
+                                          fit_intercept=False, C=0.001)
     reg.fit(X, y)
     metric = reg.score(X, y)
 
@@ -310,8 +291,8 @@ def produce_unified_graph(vocab, features, feature_data):
     fig.suptitle("unified graph")
     ax = fig.add_subplot(111)
     ax.set_xlabel("pearson")
-    ax.set_ylabel("feature_fit")
-    ax.scatter(xs, zs, c=cs, alpha=0.8)
+    ax.set_ylabel("wordnet")
+    ax.scatter(xs, ys, c=cs, alpha=0.8)
 
     fig_path = os.path.join(GRAPH_DIR, "unified.png")
     fig.savefig(fig_path)
@@ -363,7 +344,7 @@ def main():
     produce_unified_graph(vocab, features, feature_data)
 
     #produce_domain_graphs(fcat_med) # this calls functions in domain_feat_freq.py
-    #produce_concept_graphs(fcat_med) # this calls functions in here
+    produce_concept_graphs(fcat_med) # this calls functions in here
 
 
 if __name__ == "__main__":
