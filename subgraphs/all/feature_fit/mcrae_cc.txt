@@ -1,354 +1,307 @@
-                          made_of_rubber	  visual-form_and_surface	7	0.235267
-                           used_for_food	                 function	7	0.273390
-                       made_of_porcelain	  visual-form_and_surface	6	0.278640
-                        beh_-_eats_grass	            visual-motion	7	0.278903
-                     has_a_wooden_handle	  visual-form_and_surface	7	0.281601
-                          used_for_juice	                 function	7	0.287723
-                                  is_fun	            encyclopaedic	6	0.290447
-                        lives_in_jungles	            encyclopaedic	7	0.290984
-                           eaten_in_pies	                 function	5	0.292097
-                          eaten_in_soups	                 function	5	0.292757
-                      used_by_sitting_on	                 function	7	0.293116
-                          inbeh_-_floats	            visual-motion	7	0.293516
-                        lives_in_deserts	            encyclopaedic	6	0.294842
-                               is_pretty	            encyclopaedic	6	0.296370
-                               is_square	  visual-form_and_surface	6	0.296421
-                  inbeh_-_produces_noise	                    sound	7	0.299103
-                         beh_-_eats_fish	            visual-motion	7	0.300526
-                                has_peel	  visual-form_and_surface	6	0.301931
-                           is_decorative	            encyclopaedic	7	0.303400
-                        worn_around_neck	                 function	6	0.305144
-                        used_by_throwing	                 function	7	0.305327
-                            is_hand_held	                 function	6	0.306624
-                              a_building	                taxonomic	6	0.307551
-                            is_beautiful	            encyclopaedic	6	0.307821
-                            beh_-_crawls	            visual-motion	5	0.307928
-                          lives_in_trees	            encyclopaedic	6	0.309837
-                               has_a_lid	  visual-form_and_surface	6	0.313128
-                                 is_blue	            visual-colour	6	0.314314
-                             has_shelves	  visual-form_and_surface	6	0.315273
-                           has_long_legs	  visual-form_and_surface	6	0.316656
-                          comes_in_pairs	            encyclopaedic	7	0.317831
-                      beh_-_eats_garbage	            visual-motion	5	0.318009
-                            has_patterns	  visual-form_and_surface	5	0.318247
-                              has_a_roof	  visual-form_and_surface	7	0.319546
-                         has_a_long_tail	  visual-form_and_surface	6	0.320259
-                         lives_in_Africa	            encyclopaedic	7	0.323778
-                       requires_gasoline	            encyclopaedic	6	0.325409
-                             beh_-_hunts	            encyclopaedic	5	0.325455
-                         eaten_by_baking	                 function	6	0.327661
-                              has_a_head	  visual-form_and_surface	7	0.328673
-                        used_for_holding	                 function	6	0.331252
-             made_of_different_materials	  visual-form_and_surface	6	0.331383
-                         has_webbed_feet	  visual-form_and_surface	6	0.333689
-                          found_on_walls	            encyclopaedic	6	0.336132
-                              has_a_seat	  visual-form_and_surface	6	0.336251
-                               is_useful	            encyclopaedic	5	0.336430
-                              beh_-_runs	            visual-motion	5	0.336885
-                            made_of_silk	  visual-form_and_surface	6	0.337772
-                        beh_-_cannot_fly	            encyclopaedic	7	0.338517
-                           used_on_water	            encyclopaedic	7	0.338621
-                             has_sleeves	  visual-form_and_surface	6	0.341794
-                                   a_toy	                taxonomic	5	0.342688
-                               has_a_pit	  visual-form_and_surface	6	0.342872
-                          used_for_music	                 function	6	0.343123
-                          made_of_silver	  visual-form_and_surface	6	0.343164
-                         used_for_sports	                 function	5	0.345007
-                             has_numbers	  visual-form_and_surface	5	0.346049
-                        used_for_playing	                 function	5	0.347500
-                             has_handles	  visual-form_and_surface	7	0.347506
-                           made_of_steel	  visual-form_and_surface	6	0.348519
-                         made_of_ceramic	  visual-form_and_surface	7	0.350415
-                               has_horns	  visual-form_and_surface	6	0.355017
-                                 is_pink	            visual-colour	5	0.356481
-                             has_a_blade	  visual-form_and_surface	6	0.356846
-                           eaten_as_meat	                 function	6	0.360038
-                             a_container	                taxonomic	5	0.361587
-                             beh_-_jumps	            visual-motion	5	0.362780
-                          used_for_cargo	                 function	5	0.364160
-                       worn_for_covering	                 function	6	0.368967
-                              has_a_neck	  visual-form_and_surface	5	0.369409
-                         used_for_eating	                 function	5	0.371502
-                       used_for_cleaning	                 function	5	0.373139
-                          worn_in_winter	            encyclopaedic	5	0.373177
-                           has_a_trigger	  visual-form_and_surface	5	0.373789
-             used_by_blowing_air_through	                 function	7	0.374671
-                            beh_-_chirps	                    sound	6	0.375367
-                          made_of_cement	  visual-form_and_surface	4	0.378855
-                            has_antennae	  visual-form_and_surface	4	0.379933
-                                 is_cold	                  tactile	6	0.381578
-                               is_citrus	            encyclopaedic	5	0.382067
-                             is_annoying	            encyclopaedic	4	0.383191
-                     eaten_in_sandwiches	                 function	4	0.384070
-                      beh_-_eats_insects	            visual-motion	5	0.387317
-                             has_drawers	  visual-form_and_surface	5	0.388115
-                             a_scavenger	                taxonomic	5	0.388183
-                      used_by_the_police	                 function	7	0.389187
-                        requires_drivers	            encyclopaedic	5	0.389352
-                       found_in_bedrooms	            encyclopaedic	5	0.390044
-                               has_holes	  visual-form_and_surface	6	0.390050
-                          used_by_riding	                 function	7	0.392650
-                          made_by_humans	            encyclopaedic	4	0.393896
-                          grows_on_vines	            encyclopaedic	4	0.395394
-                        used_for_hunting	                 function	7	0.395870
-                      used_in_orchestras	                 function	6	0.398363
-                                 a_house	                taxonomic	6	0.398502
-                                  a_tree	                taxonomic	5	0.404106
-                         has_a_long_neck	  visual-form_and_surface	5	0.404267
-                             has_pockets	  visual-form_and_surface	6	0.410903
-                      beh_-_climbs_trees	            visual-motion	4	0.413786
-                           made_of_cloth	  visual-form_and_surface	4	0.413883
-                          beh_-_migrates	            encyclopaedic	5	0.414169
-                           is_endangered	            encyclopaedic	5	0.415392
-                                 is_slow	            visual-motion	7	0.416207
-                               is_purple	            visual-colour	5	0.416436
-                              has_a_lock	  visual-form_and_surface	4	0.417002
-                  beh_-_travels_in_herds	            visual-motion	5	0.418748
-                        used_for_camping	                 function	4	0.419412
-                                   a_cat	                taxonomic	5	0.421451
-                            worn_on_feet	                 function	6	0.421822
-                        used_for_fishing	                 function	5	0.423704
-                           has_vitamin_C	            encyclopaedic	4	0.425813
-                             worn_by_men	                 function	5	0.426402
-                           made_of_brick	  visual-form_and_surface	5	0.426946
-                         lives_in_ground	            encyclopaedic	4	0.440947
-                        eaten_by_peeling	                 function	4	0.442175
-                            made_of_gold	  visual-form_and_surface	5	0.442420
-                         is_white_inside	            visual-colour	5	0.443826
-                          lives_on_water	            encyclopaedic	4	0.448396
-                        used_in_circuses	                 function	5	0.449478
-                              has_a_stem	  visual-form_and_surface	4	0.450342
-                             a_herbivore	                taxonomic	5	0.451975
-                                has_ears	  visual-form_and_surface	5	0.452783
-                              has_a_door	  visual-form_and_surface	5	0.455643
-                          eaten_on_pizza	                 function	4	0.458641
-                         used_by_hanging	                 function	4	0.459992
-                         used_for_baking	                 function	4	0.460240
-                              has_blades	  visual-form_and_surface	4	0.460737
-                            has_a_zipper	  visual-form_and_surface	4	0.461074
-                          lives_in_cages	            encyclopaedic	4	0.464436
-                            has_a_tongue	  visual-form_and_surface	4	0.465286
-                                   a_gun	                taxonomic	6	0.466315
-                       used_for_sleeping	                 function	5	0.467799
-                       has_a_long_handle	  visual-form_and_surface	4	0.468315
-                      used_for_living_in	                 function	4	0.468966
-                  used_for_moving_things	                 function	4	0.469956
-                       grows_underground	            encyclopaedic	4	0.470126
-                                has_keys	  visual-form_and_surface	6	0.470621
-                            has_2_wheels	  visual-form_and_surface	5	0.472040
-                              has_straps	  visual-form_and_surface	4	0.475755
-                         eaten_in_summer	            encyclopaedic	5	0.479466
-                      used_for_measuring	                 function	4	0.480110
-                             beh_-_bites	            visual-motion	4	0.487400
-                                 is_gold	            visual-colour	7	0.488259
-                beh_-_produces_offspring	            encyclopaedic	4	0.489307
-                              has_a_hood	  visual-form_and_surface	4	0.489311
-                       eaten_with_butter	            encyclopaedic	4	0.492234
-                          is_transparent	            visual-colour	4	0.492395
-                      used_on_stove_tops	            encyclopaedic	4	0.495877
-                      found_in_libraries	            encyclopaedic	4	0.496297
-                      found_in_toolboxes	            encyclopaedic	4	0.500314
-                               a_seafood	                taxonomic	4	0.501198
-                              is_knitted	            encyclopaedic	5	0.505398
-                   inbeh_-_fires_bullets	            visual-motion	4	0.510093
-                         grows_on_bushes	            encyclopaedic	4	0.510420
-                  grows_in_warm_climates	            encyclopaedic	4	0.510443
-                         used_by_turning	                 function	3	0.514625
-                             has_stripes	  visual-form_and_surface	4	0.515310
-                        used_by_the_army	                 function	3	0.518295
-                                has_bark	  visual-form_and_surface	4	0.523461
-                              has_pedals	  visual-form_and_surface	4	0.523476
-                        different_shapes	  visual-form_and_surface	3	0.525826
-                         used_by_pushing	                 function	3	0.526225
-                             is_domestic	            encyclopaedic	5	0.526521
-                             has_a_strap	  visual-form_and_surface	3	0.529174
-                              beh_-_hops	            visual-motion	4	0.530354
-                           inbeh_-_fires	                    sound	5	0.534912
-                    used_for_sleeping_in	                 function	3	0.534965
-                          used_for_water	                 function	3	0.537247
-                              has_a_mane	  visual-form_and_surface	4	0.537321
-                                is_short	  visual-form_and_surface	4	0.539330
-                          beh_-_slithers	            visual-motion	3	0.539409
-                          has_an_outside	  visual-form_and_surface	4	0.540174
-                           lives_in_seas	            encyclopaedic	4	0.540571
-                            requires_air	            encyclopaedic	4	0.541037
-                           made_of_china	  visual-form_and_surface	3	0.542327
-               used_by_pulling_by_horses	                 function	3	0.544107
-                               has_seats	  visual-form_and_surface	4	0.545053
-                           is_electronic	  visual-form_and_surface	3	0.546747
-                               has_sails	  visual-form_and_surface	4	0.546928
-                   used_for_storing_food	                 function	4	0.551788
-                        has_green_leaves	            visual-colour	4	0.552100
-                 made_of_stainless_steel	  visual-form_and_surface	3	0.553799
-                     used_for_collecting	                 function	3	0.553995
-                            has_bristles	  visual-form_and_surface	3	0.554068
-                         found_on_tables	            encyclopaedic	3	0.554813
-               used_for_making_furniture	                 function	3	0.555065
-                                a_rodent	                taxonomic	4	0.555350
-                                is_thick	  visual-form_and_surface	3	0.555357
-        used_for_holding_things_together	                 function	4	0.556513
-                        grows_in_forests	            encyclopaedic	5	0.556739
-                      used_for_vacations	            encyclopaedic	3	0.557474
-                    found_in_the_country	            encyclopaedic	3	0.563115
-                          is_fashionable	            encyclopaedic	3	0.564252
-                        is_old-fashioned	            encyclopaedic	3	0.564624
-               used_by_hanging_things_on	                 function	3	0.566696
-                       used_for_securing	                 function	3	0.567957
-                            has_branches	  visual-form_and_surface	3	0.569035
-                         has_sharp_teeth	  visual-form_and_surface	3	0.570227
-                       used_for_relaxing	                 function	4	0.570463
-                                  a_root	                taxonomic	3	0.570505
-                          is_frightening	            encyclopaedic	3	0.572630
-                  inbeh_-_produces_sound	                    sound	3	0.573579
-                                 is_wild	            encyclopaedic	3	0.574036
-                      lives_in_mountains	            encyclopaedic	3	0.577145
-                             has_antlers	  visual-form_and_surface	4	0.577787
-                       has_a_long_tongue	  visual-form_and_surface	3	0.579829
-                  used_for_storing_tools	                 function	3	0.580385
-              worn_for_keeping_feet_warm	                 function	3	0.580995
-                        beh_-_eats_worms	            visual-motion	3	0.581731
-                      has_a_light_inside	  visual-form_and_surface	3	0.581917
-                          lives_in_woods	            encyclopaedic	4	0.582464
-                         used_by_pulling	                 function	3	0.585873
-                         found_in_cities	            encyclopaedic	3	0.587115
-                            used_for_tea	                 function	3	0.588361
-                                 is_dark	  visual-form_and_surface	4	0.590921
-                       beh_-_eats_leaves	            visual-motion	3	0.591199
-                            is_poisonous	            encyclopaedic	3	0.592510
-                        used_for_digging	                 function	3	0.592594
-                                has_taps	            encyclopaedic	3	0.593089
-                         is_fuzzy/fluffy	                  tactile	3	0.594774
-                         beh_-_eats_mice	            visual-motion	3	0.595522
-                                 a_plant	                taxonomic	3	0.596079
-                       used_for_drinking	                 function	3	0.597651
-                   bought/sold_in_stores	            encyclopaedic	4	0.598443
-                       worn_for_the_rain	                 function	3	0.599921
-                associated_with_religion	            encyclopaedic	3	0.604097
-                        used_for_praying	                 function	3	0.604097
-                       used_for_weddings	                 function	3	0.604097
-                    used_for_worshipping	                 function	3	0.604097
-                                  a_boat	                taxonomic	4	0.604393
-                         found_on_floors	            encyclopaedic	3	0.607617
-                              has_an_end	  visual-form_and_surface	3	0.607764
-                        used_for_shelter	                 function	3	0.609536
-                      used_for_gardening	                 function	3	0.610189
-                         requires_pilots	            encyclopaedic	3	0.612607
-                               has_soles	  visual-form_and_surface	3	0.612882
-                          lives_in_lakes	            encyclopaedic	3	0.613663
-                                  is_hot	                  tactile	4	0.613970
-                        has_a_hard_shell	                  tactile	3	0.614147
-                   beh_-_produces_manure	            visual-motion	3	0.618630
-                         used_for_mixing	                 function	3	0.618749
-                                is_rough	                  tactile	3	0.619503
-                      eaten_at_Christmas	            encyclopaedic	3	0.620134
-                               has_spots	  visual-form_and_surface	3	0.621757
-                                 a_berry	                taxonomic	3	0.623124
-                               has_walls	  visual-form_and_surface	3	0.624901
-                                   a_car	                taxonomic	3	0.626250
-                              has_6_legs	  visual-form_and_surface	3	0.627462
-                                   a_bug	                taxonomic	3	0.629560
-               worn_in_cold_temperatures	                 function	3	0.630089
-                         used_as_a_house	                 function	3	0.633951
-                             tastes_tart	                    taste	3	0.635960
-                            made_of_iron	  visual-form_and_surface	3	0.636455
-                                is_tight	                  tactile	3	0.637519
-                        grows_in_Florida	            encyclopaedic	3	0.639058
-                            has_sections	  visual-form_and_surface	3	0.639058
-                         beh_-_runs_fast	            visual-motion	3	0.639098
-                        inbeh_-_explodes	                    sound	3	0.645314
-                  used_for_holding_water	                 function	3	0.646356
-                        beh_-_hibernates	            encyclopaedic	3	0.647520
-                   inbeh_-_produces_heat	            encyclopaedic	3	0.647811
-                         has_handle_bars	  visual-form_and_surface	3	0.648766
-               tastes_different_flavours	                    taste	3	0.651434
-                               eaten_raw	                 function	4	0.652536
-                         used_by_closing	                 function	4	0.654471
-                         used_by_opening	                 function	4	0.654471
-                     used_in_experiments	                 function	3	0.662253
-                       used_for_shooting	                 function	4	0.663077
-                            an_amphibian	                taxonomic	3	0.664007
-                               is_bright	  visual-form_and_surface	3	0.664574
-                              tastes_bad	                    taste	3	0.669204
-                used_for_classical_music	                 function	3	0.672756
-                           made_of_brass	  visual-form_and_surface	5	0.675884
-                        used_for_pulling	                 function	3	0.676263
-                             has_pillows	            encyclopaedic	3	0.676922
-                            used_on_snow	            encyclopaedic	3	0.677286
-                             is_medieval	            encyclopaedic	3	0.679486
-                          used_for_games	                 function	3	0.681672
-                     grows_on_the_ground	            encyclopaedic	3	0.682578
-                        used_for_writing	                 function	3	0.684087
-                           worn_on_torso	                 function	3	0.692102
-                            has_armrests	  visual-form_and_surface	3	0.693309
-                          is_destructive	            encyclopaedic	3	0.694723
-                        inbeh_-_gets_hot	            encyclopaedic	3	0.695318
-                              has_a_skin	  visual-form_and_surface	3	0.695346
-                         lives_in_swamps	            encyclopaedic	3	0.695527
-                        different_styles	            encyclopaedic	3	0.697158
-                        beh_-_eats_flies	            visual-motion	3	0.699314
-                         used_for_travel	                 function	3	0.701676
-                               has_rooms	  visual-form_and_surface	3	0.702274
-                       worn_for_the_cold	                 function	3	0.704871
-                      beh_-_eats_rodents	            visual-motion	3	0.710527
-                                is_scary	            encyclopaedic	3	0.711633
-               used_for_storing_clothing	                 function	3	0.716407
-                            beh_-_buzzes	                    sound	3	0.716576
-                         lives_in_a_nest	            encyclopaedic	3	0.718596
-                             has_candles	            encyclopaedic	3	0.728652
-                        beh_-_eats_seeds	            visual-motion	3	0.728912
-                              has_stalks	  visual-form_and_surface	3	0.732741
-                             has_filling	  visual-form_and_surface	3	0.744517
-                              is_healthy	            encyclopaedic	3	0.753406
-                      found_in_buildings	            encyclopaedic	3	0.755107
-                            requires_gas	            encyclopaedic	3	0.760666
-                                 is_oval	  visual-form_and_surface	3	0.765414
-                               has_pipes	  visual-form_and_surface	3	0.768438
-                             is_tropical	            encyclopaedic	3	0.768813
-                       worn_for_weddings	            encyclopaedic	3	0.769321
-                        used_for_drawing	                 function	3	0.772213
-                        used_for_privacy	                 function	3	0.838675
-                               has_laces	  visual-form_and_surface	3	0.840141
-                             has_zippers	  visual-form_and_surface	3	0.848689
-                               is_lethal	            encyclopaedic	3	0.850228
-                  worn_for_covering_legs	                 function	3	0.851100
-                               a_jewelry	                taxonomic	3	0.851427
-                     a_fashion_accessory	                taxonomic	3	0.858967
-                              has_2_legs	  visual-form_and_surface	3	0.868497
-
-
-Grouping by br_label:
-                    group	mu	n	med		min	mean	max
-====================================================================================================
-            visual-colour	5.14	  7	0.44383		0.31431	0.43769	0.55210
-  visual-form_and_surface	4.45	 89	0.47062		0.23527	0.48968	0.86850
-            visual-motion	4.39	 23	0.48740		0.27890	0.48116	0.72891
-                taxonomic	4.20	 20	0.52827		0.30755	0.53116	0.85897
-                 function	4.18	 82	0.53611		0.27339	0.51385	0.85110
-            encyclopaedic	4.10	 80	0.54080		0.29045	0.52446	0.85023
-                    sound	4.50	  6	0.55425		0.29910	0.52414	0.71658
-                  tactile	3.67	  6	0.61406		0.38158	0.57692	0.63752
-                    taste	3.00	  3	0.65143		0.63596	0.65220	0.66920
+                                is_white	            visual-colour	50	0.634951
+                         different_sizes	  visual-form_and_surface	16	0.658252
+                             has_a_shell	  visual-form_and_surface	10	0.691262
+                                 is_hard	                  tactile	20	0.693204
+                                 is_thin	  visual-form_and_surface	16	0.702913
+                                is_small	  visual-form_and_surface	115	0.704854
+                                is_heavy	                  tactile	24	0.708738
+                                is_large	  visual-form_and_surface	101	0.708738
+                                is_brown	            visual-colour	51	0.714563
+                               has_claws	  visual-form_and_surface	9	0.716505
+                                 is_pink	            visual-colour	5	0.720388
+                     used_for_protection	                 function	9	0.728155
+                                is_black	            visual-colour	46	0.732039
+                                 is_grey	            visual-colour	13	0.735922
+                               is_smelly	                    smell	14	0.737864
+                        beh_-_cannot_fly	            encyclopaedic	7	0.737864
+                            is_breakable	            encyclopaedic	10	0.747573
+                                 is_long	  visual-form_and_surface	75	0.749515
+                                 is_soft	                  tactile	26	0.749515
+                            made_of_wood	  visual-form_and_surface	74	0.751456
+                                  is_red	            visual-colour	25	0.753398
+                          made_of_rubber	  visual-form_and_surface	7	0.755340
+                         made_of_plastic	  visual-form_and_surface	44	0.755340
+                               is_strong	            encyclopaedic	8	0.757282
+                           eaten_as_meat	                 function	6	0.757282
+                                 is_slow	            visual-motion	7	0.759223
+                            is_beautiful	            encyclopaedic	6	0.759223
+                                is_round	  visual-form_and_surface	71	0.759223
+                                 is_fast	            visual-motion	32	0.761165
+                           made_of_glass	  visual-form_and_surface	13	0.763107
+                                has_feet	  visual-form_and_surface	9	0.763107
+                                has_ears	  visual-form_and_surface	5	0.763107
+                                is_shiny	  visual-form_and_surface	14	0.765049
+                                 is_flat	  visual-form_and_surface	9	0.766990
+                                is_green	            visual-colour	45	0.766990
+                             has_handles	  visual-form_and_surface	7	0.770874
+                             is_domestic	            encyclopaedic	5	0.770874
+                                has_legs	  visual-form_and_surface	43	0.770874
+                        used_in_circuses	                 function	5	0.772816
+                         beh_-_eats_fish	            visual-motion	7	0.772816
+                                has_eyes	  visual-form_and_surface	16	0.774757
+                               has_teeth	  visual-form_and_surface	14	0.776699
+                                 is_ugly	            encyclopaedic	10	0.776699
+                             beh_-_jumps	            visual-motion	5	0.776699
+                              beh_-_runs	            visual-motion	5	0.778641
+                 used_for_holding_things	                 function	13	0.782524
+                               is_yellow	            visual-colour	26	0.782524
+                         has_webbed_feet	  visual-form_and_surface	6	0.782524
+                                 is_cute	            encyclopaedic	9	0.784466
+                       made_of_porcelain	  visual-form_and_surface	6	0.788350
+                             a_carnivore	                taxonomic	11	0.788350
+                            has_whiskers	  visual-form_and_surface	8	0.788350
+                        used_for_playing	                 function	5	0.788350
+                               is_orange	            visual-colour	15	0.790291
+                             beh_-_swims	            visual-motion	33	0.790291
+                        lives_in_forests	            encyclopaedic	9	0.792233
+                        hunted_by_people	                 function	27	0.794175
+                               has_a_lid	  visual-form_and_surface	6	0.794175
+                               is_silver	            visual-colour	8	0.796117
+                                 has_fur	  visual-form_and_surface	21	0.796117
+                         made_of_ceramic	  visual-form_and_surface	7	0.798058
+                               is_useful	            encyclopaedic	5	0.798058
+                        lives_in_deserts	            encyclopaedic	6	0.798058
+                           lives_in_zoos	            encyclopaedic	9	0.798058
+                                is_furry	                  tactile	19	0.800000
+                       used_for_cleaning	                 function	5	0.800000
+                             beh_-_hunts	            encyclopaedic	5	0.800000
+                         beh_-_lays_eggs	            encyclopaedic	32	0.801942
+                       different_colours	            visual-colour	54	0.801942
+                              has_a_tail	  visual-form_and_surface	39	0.803883
+                         eaten_by_baking	                 function	6	0.803883
+                          lives_in_trees	            encyclopaedic	6	0.803883
+                                has_hair	  visual-form_and_surface	8	0.803883
+                           made_of_metal	  visual-form_and_surface	122	0.803883
+                           has_long_legs	  visual-form_and_surface	6	0.805825
+                               is_square	  visual-form_and_surface	6	0.805825
+                          lives_on_farms	            encyclopaedic	12	0.805825
+                          is_rectangular	  visual-form_and_surface	10	0.805825
+                          lives_in_water	            encyclopaedic	32	0.807767
+                         used_for_eating	                 function	5	0.807767
+                           is_decorative	            encyclopaedic	7	0.809709
+                                  a_food	                taxonomic	9	0.809709
+                      found_in_bathrooms	            encyclopaedic	10	0.811650
+                      beh_-_eats_insects	            visual-motion	5	0.811650
+                            has_a_handle	  visual-form_and_surface	42	0.811650
+                          used_by_people	                 function	10	0.811650
+                                is_dirty	  visual-form_and_surface	10	0.811650
+                              has_4_legs	  visual-form_and_surface	47	0.811650
+                              has_a_head	  visual-form_and_surface	7	0.813592
+                         has_a_long_neck	  visual-form_and_surface	5	0.813592
+                          beh_-_migrates	            encyclopaedic	5	0.813592
+                              beh_-_eats	            visual-motion	39	0.813592
+                           is_endangered	            encyclopaedic	5	0.813592
+                            is_hand_held	                 function	6	0.813592
+                         has_a_long_tail	  visual-form_and_surface	6	0.815534
+                         lives_in_Africa	            encyclopaedic	7	0.815534
+                              a_predator	                taxonomic	9	0.815534
+                               a_reptile	                taxonomic	8	0.817476
+                                   a_pet	                taxonomic	11	0.817476
+                           has_an_inside	  visual-form_and_surface	11	0.817476
+                     lives_in_wilderness	            encyclopaedic	9	0.819417
+                      beh_-_eats_garbage	            visual-motion	5	0.819417
+                              has_hooves	  visual-form_and_surface	9	0.819417
+                            is_dangerous	            encyclopaedic	35	0.819417
+                              has_scales	  visual-form_and_surface	10	0.821359
+                   used_for_construction	                 function	8	0.821359
+                            is_colourful	            visual-colour	18	0.821359
+                        used_for_fishing	                 function	5	0.823301
+                           used_for_food	                 function	7	0.825243
+                               has_doors	  visual-form_and_surface	15	0.825243
+                                 is_loud	                    sound	33	0.827184
+                used_for_carrying_things	                 function	8	0.827184
+                              has_a_door	  visual-form_and_surface	5	0.827184
+                       has_a_pointed_end	  visual-form_and_surface	11	0.827184
+                               is_pretty	            encyclopaedic	6	0.829126
+                                 is_blue	            visual-colour	6	0.829126
+                              is_crunchy	                  tactile	11	0.831068
+                                is_slimy	                  tactile	10	0.831068
+                               has_holes	  visual-form_and_surface	6	0.834951
+                                a_mammal	                taxonomic	41	0.834951
+                         made_of_leather	  visual-form_and_surface	13	0.836893
+                       found_in_kitchens	            encyclopaedic	32	0.836893
+                           made_of_steel	  visual-form_and_surface	6	0.836893
+                               is_edible	                 function	78	0.838835
+                         found_in_houses	            encyclopaedic	10	0.838835
+                           eaten_in_pies	                 function	5	0.840777
+                               has_wings	  visual-form_and_surface	43	0.840777
+                         is_white_inside	            visual-colour	5	0.840777
+                             a_container	                taxonomic	5	0.842718
+                                  a_bird	                taxonomic	39	0.842718
+                           is_electrical	  visual-form_and_surface	20	0.842718
+                           is_nutritious	            encyclopaedic	15	0.842718
+                         eaten_in_salads	                 function	13	0.842718
+                            has_patterns	  visual-form_and_surface	5	0.844660
+                          eaten_in_soups	                 function	5	0.844660
+                              has_a_beak	  visual-form_and_surface	38	0.844660
+                              has_a_neck	  visual-form_and_surface	5	0.846602
+                        used_for_storage	                 function	17	0.846602
+                            has_feathers	  visual-form_and_surface	38	0.846602
+                                   a_toy	                taxonomic	5	0.848544
+                             tastes_sour	                    taste	8	0.848544
+                               a_utensil	                taxonomic	12	0.848544
+                        used_by_children	                 function	13	0.848544
+                        used_for_cooking	                 function	13	0.850485
+                        lives_in_jungles	            encyclopaedic	7	0.850485
+                                  is_fun	            encyclopaedic	6	0.850485
+                              has_a_seat	  visual-form_and_surface	6	0.852427
+                             tastes_good	                    taste	33	0.852427
+                        eaten_by_cooking	                 function	15	0.852427
+                          found_on_walls	            encyclopaedic	6	0.854369
+                         lives_in_oceans	            encyclopaedic	10	0.854369
+                             beh_-_flies	            visual-motion	45	0.854369
+                                   a_cat	                taxonomic	5	0.854369
+                     grows_in_the_ground	            encyclopaedic	8	0.854369
+                                 is_cold	                  tactile	6	0.854369
+                            is_expensive	            encyclopaedic	20	0.856311
+                        grows_in_gardens	            encyclopaedic	18	0.856311
+                              has_leaves	  visual-form_and_surface	15	0.856311
+                             a_scavenger	                taxonomic	5	0.858252
+                             has_buttons	  visual-form_and_surface	12	0.858252
+                             a_vegetable	                taxonomic	28	0.858252
+                          used_for_juice	                 function	7	0.860194
+                             a_herbivore	                taxonomic	5	0.860194
+                                has_skin	  visual-form_and_surface	16	0.860194
+                               furniture	                taxonomic	11	0.860194
+                        grows_in_forests	            encyclopaedic	5	0.860194
+                        used_by_throwing	                 function	7	0.862136
+                               is_purple	            visual-colour	5	0.862136
+                          used_by_riding	                 function	7	0.866019
+                      used_by_sitting_on	                 function	7	0.866019
+                               has_horns	  visual-form_and_surface	6	0.866019
+                                has_peel	  visual-form_and_surface	6	0.867961
+                               has_a_pit	  visual-form_and_surface	6	0.867961
+                               has_seeds	  visual-form_and_surface	21	0.869903
+                       found_in_bedrooms	            encyclopaedic	5	0.869903
+                      beh_-_builds_nests	            encyclopaedic	10	0.869903
+                        worn_around_neck	                 function	6	0.871845
+                                is_sharp	                  tactile	18	0.871845
+                          grows_on_trees	            encyclopaedic	19	0.871845
+                               is_citrus	            encyclopaedic	5	0.873786
+                  beh_-_travels_in_herds	            visual-motion	5	0.873786
+                               an_insect	                taxonomic	12	0.873786
+                              has_wheels	  visual-form_and_surface	21	0.873786
+                     worn_for_protection	                 function	8	0.875728
+                          is_comfortable	                  tactile	15	0.875728
+                             has_shelves	  visual-form_and_surface	6	0.875728
+                            tastes_sweet	                    taste	24	0.875728
+                                 is_tall	  visual-form_and_surface	11	0.877670
+                                  a_fish	                taxonomic	16	0.877670
+                                  a_tool	                taxonomic	18	0.877670
+                        made_of_material	  visual-form_and_surface	18	0.877670
+                             has_windows	  visual-form_and_surface	9	0.879612
+                      used_by_the_police	                 function	7	0.879612
+             made_of_different_materials	  visual-form_and_surface	6	0.879612
+                                is_juicy	                  tactile	21	0.881553
+                        used_for_holding	                 function	6	0.881553
+                      used_for_carpentry	                 function	8	0.883495
+                             has_drawers	  visual-form_and_surface	5	0.883495
+                            beh_-_crawls	            visual-motion	5	0.885437
+                           made_of_brick	  visual-form_and_surface	5	0.887379
+                                 a_fruit	                taxonomic	29	0.887379
+                              has_a_roof	  visual-form_and_surface	7	0.887379
+                        beh_-_eats_grass	            visual-motion	7	0.889320
+                     has_a_wooden_handle	  visual-form_and_surface	7	0.889320
+                           has_an_engine	  visual-form_and_surface	9	0.891262
+                                 is_warm	                  tactile	12	0.891262
+                         eaten_in_summer	            encyclopaedic	5	0.891262
+                              a_building	                taxonomic	6	0.895146
+                            beh_-_chirps	                    sound	6	0.899029
+                        used_for_cutting	                 function	9	0.899029
+                            made_of_wool	  visual-form_and_surface	9	0.899029
+                               an_animal	                taxonomic	97	0.899029
+                               is_smooth	                  tactile	8	0.900971
+                       used_for_sleeping	                 function	5	0.900971
+                     used_for_passengers	                 function	9	0.902913
+                         used_for_sports	                 function	5	0.902913
+                          worn_in_winter	            encyclopaedic	5	0.902913
+                          used_for_cargo	                 function	5	0.902913
+                         worn_for_warmth	                 function	14	0.904854
+                            has_4_wheels	  visual-form_and_surface	10	0.904854
+                       worn_for_covering	                 function	6	0.904854
+                             has_a_blade	  visual-form_and_surface	6	0.904854
+                                a_weapon	                taxonomic	28	0.904854
+                           made_of_paper	  visual-form_and_surface	9	0.906796
+                             has_sleeves	  visual-form_and_surface	6	0.906796
+                             beh_-_sings	                    sound	11	0.908738
+                          inbeh_-_floats	            visual-motion	7	0.908738
+                             has_pockets	  visual-form_and_surface	6	0.908738
+                 used_for_transportation	                 function	32	0.908738
+                               has_gills	  visual-form_and_surface	9	0.908738
+                        used_for_hunting	                 function	7	0.908738
+                            used_for_war	                 function	11	0.910680
+                              is_knitted	            encyclopaedic	5	0.910680
+                                has_fins	  visual-form_and_surface	11	0.910680
+                             worn_by_men	                 function	5	0.910680
+                          made_of_silver	  visual-form_and_surface	6	0.910680
+                                 a_house	                taxonomic	6	0.910680
+                               a_vehicle	                taxonomic	9	0.912621
+                          made_of_cotton	  visual-form_and_surface	12	0.914563
+                            an_appliance	                taxonomic	10	0.914563
+                            made_of_gold	  visual-form_and_surface	5	0.914563
+                            has_2_wheels	  visual-form_and_surface	5	0.914563
+                           inbeh_-_fires	                    sound	5	0.916505
+                        used_for_killing	                 function	18	0.918447
+                       requires_gasoline	            encyclopaedic	6	0.918447
+                        requires_drivers	            encyclopaedic	5	0.920388
+                            made_of_silk	  visual-form_and_surface	6	0.920388
+                                  a_tree	                taxonomic	5	0.922330
+                            worn_on_feet	                 function	6	0.922330
+                          comes_in_pairs	            encyclopaedic	7	0.922330
+                           worn_by_women	                 function	16	0.924272
+                                   a_gun	                taxonomic	6	0.930097
+                           used_on_water	            encyclopaedic	7	0.930097
+                           has_a_trigger	  visual-form_and_surface	5	0.933981
+                  inbeh_-_produces_noise	                    sound	7	0.935922
+                             has_numbers	  visual-form_and_surface	5	0.941748
+                                clothing	                taxonomic	32	0.941748
+                                 is_gold	            visual-colour	7	0.957282
+                             has_strings	  visual-form_and_surface	9	0.961165
+                          used_for_music	                 function	6	0.965049
+                                has_keys	  visual-form_and_surface	6	0.965049
+                           made_of_brass	  visual-form_and_surface	5	0.965049
+             used_by_blowing_air_through	                 function	7	0.968932
+                           used_in_bands	                 function	9	0.968932
+                      used_in_orchestras	                 function	6	0.972816
+                  inbeh_-_produces_music	                    sound	12	0.974757
+                    a_musical_instrument	                taxonomic	17	0.984466
 
 
 Grouping by first_word:
                     group	mu	n	med		min	mean	max
 ====================================================================================================
-                    comes	7.00	  1	0.31783		0.31783	0.31783	0.31783
-                     made	5.00	 16	0.38638		0.23527	0.41810	0.67588
-                    eaten	4.55	 11	0.44217		0.29210	0.43653	0.65254
-                    lives	4.46	 13	0.46444		0.29098	0.48471	0.71860
-                      has	4.32	 72	0.48253		0.28160	0.50544	0.86850
-                      beh	4.30	 27	0.48740		0.27890	0.48718	0.72891
-                        a	4.26	 19	0.50120		0.30755	0.52417	0.85897
-                    grows	3.86	  7	0.51044		0.39539	0.53782	0.68258
-                       is	4.32	 41	0.53933		0.29045	0.51498	0.85023
-                 requires	4.20	  5	0.54104		0.32541	0.52581	0.76067
-                     used	4.10	 67	0.55179		0.27339	0.52398	0.83867
-                    inbeh	4.38	  8	0.55425		0.29352	0.52496	0.69532
-                    found	3.78	  9	0.55481		0.33613	0.53228	0.75511
-                     worn	4.08	 12	0.59046		0.30514	0.56033	0.85110
-              bought/sold	4.00	  1	0.59844		0.59844	0.59844	0.59844
-               associated	3.00	  1	0.60410		0.60410	0.60410	0.60410
-                different	3.00	  2	0.61149		0.52583	0.61149	0.69716
-                   tastes	3.00	  3	0.65143		0.63596	0.65220	0.66920
-                       an	3.00	  1	0.66401		0.66401	0.66401	0.66401
+                different	35.00	  2	0.73010		0.65825	0.73010	0.80194
+                   hunted	27.00	  1	0.79417		0.79417	0.79417	0.79417
+                       is	21.31	 61	0.80000		0.63495	0.79780	0.95728
+                    lives	10.70	 10	0.80680		0.79223	0.81456	0.85437
+                      beh	13.17	 18	0.81359		0.73786	0.82762	0.90874
+                    found	12.60	  5	0.83883		0.81165	0.84233	0.86990
+                    eaten	7.86	  7	0.84272		0.75728	0.83329	0.89126
+                      has	12.76	 58	0.84466		0.69126	0.84319	0.96505
+                   tastes	21.67	  3	0.85243		0.84854	0.85890	0.87573
+                    grows	12.50	  4	0.85825		0.85437	0.86068	0.87184
+                        a	13.88	 24	0.85825		0.78835	0.86667	0.98447
+                furniture	11.00	  1	0.86019		0.86019	0.86019	0.86019
+                     used	8.80	 35	0.86602		0.72816	0.86840	0.97282
+                     made	19.63	 19	0.87767		0.75146	0.85079	0.96505
+                       an	39.67	  3	0.89903		0.87379	0.89579	0.91456
+                     worn	8.25	  8	0.90485		0.87184	0.90218	0.92427
+                 requires	5.50	  2	0.91942		0.91845	0.91942	0.92039
+                    comes	7.00	  1	0.92233		0.92233	0.92233	0.92233
+                    inbeh	7.75	  4	0.92621		0.90874	0.93398	0.97476
+                 clothing	32.00	  1	0.94175		0.94175	0.94175	0.94175
+
+
+Grouping by br_label:
+                    group	mu	n	med		min	mean	max
+====================================================================================================
+                    smell	14.00	  1	0.73786		0.73786	0.73786	0.73786
+            visual-colour	23.69	 16	0.78641		0.63495	0.78374	0.95728
+            visual-motion	14.79	 14	0.81262		0.75922	0.82108	0.90874
+            encyclopaedic	10.24	 46	0.82427		0.73786	0.83280	0.93010
+  visual-form_and_surface	17.63	 90	0.83592		0.65825	0.83366	0.96505
+                  tactile	15.83	 12	0.84272		0.69320	0.82411	0.90097
+                    taste	21.67	  3	0.85243		0.84854	0.85890	0.87573
+                taxonomic	17.07	 29	0.86019		0.78835	0.87205	0.98447
+                 function	10.46	 50	0.86408		0.72816	0.86334	0.97282
+                    sound	12.33	  6	0.91262		0.82718	0.91036	0.97476
