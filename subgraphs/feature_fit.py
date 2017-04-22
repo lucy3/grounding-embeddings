@@ -7,23 +7,24 @@ import os.path
 
 import numpy as np
 import matplotlib.pyplot as plt
+from sklearn import linear_model
 from sklearn.decomposition import PCA
 import domain_feat_freq
 
-EMBEDDING_NAME = "mcrae" # McRae
-# EMBEDDING_NAME = "glove.6B.300d" # Wikipedia 2014 + Gigaword 5
+# EMBEDDING_NAME = "mcrae" # McRae
+EMBEDDING_NAME = "glove.6B.300d" # Wikipedia 2014 + Gigaword 5
 # EMBEDDING_NAME = "glove.840B.300d" # Common Crawl
-# INPUT = "../glove/%s.txt" % EMBEDDING_NAME
-INPUT = "./all/mcrae_vectors.txt"
+INPUT = "../glove/%s.txt" % EMBEDDING_NAME
+# INPUT = "./all/mcrae_vectors.txt"
 
 FEATURES = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 VOCAB = "./all/vocab.txt"
 EMBEDDINGS = "./all/embeddings.%s.npy" % EMBEDDING_NAME
 
-OUTPUT = "./all/feature_fit/mcrae_mcrae.txt"
+OUTPUT = "./all/feature_fit/mcrae_wikigiga.txt"
 PEARSON = './all/pearson_corr/corr_mcrae_wikigiga.txt'
-WORDNET = './all/hier_clust/wordnet_match_mcrae.txt'
-GRAPH_DIR = './all/feature_fit/mcrae'
+WORDNET = './all/hier_clust/wordnet_match_wikigiga.txt'
+GRAPH_DIR = './all/feature_fit/wikigiga'
 
 Feature = namedtuple("Feature", ["name", "concepts", "wb_label", "wb_maj",
                                  "wb_min", "br_label", "disting"])
@@ -103,16 +104,69 @@ def analyze_feature(feature, features, word2idx, embeddings):
         metric: goodness metric, where higher is better
     """
     # Fetch available embeddings.
-    embeddings = [embeddings[word2idx[concept]]
-                  for concept in features[feature].concepts
-                  if concept in word2idx]
-    if len(embeddings) < 3 or len(embeddings) > 7:
+    concepts = [concept for concept in features[feature].concepts
+                if concept in word2idx]
+    # embeddings = [embeddings[word2idx[concept]]
+    #               for concept in concepts
+    #               if concept in word2idx]
+    if len(concepts) < 5:# or len(concepts) > 7:
         return
 
-    pca = PCA(n_components=1)
-    pca.fit(embeddings)
+    X = embeddings
+    y = np.zeros(len(word2idx))
+    for concept in concepts:
+        y[word2idx[concept]] = 1
 
-    return feature, len(embeddings), pca.explained_variance_ratio_[0]
+    # Pick C by cross-validation
+    C_scores = defaultdict(list)
+    for C in [0.001, 0.01, 0.05, 0.1, 0.5]:
+        # LOOCV
+        for concept in concepts:
+            idx = word2idx[concept]
+            X_loo = np.concatenate((X[:idx], X[idx+1:]))
+            y_loo = np.concatenate((y[:idx], y[idx+1:]))
+
+            reg = linear_model.LogisticRegression(class_weight="balanced",
+                                                  fit_intercept=False, C=C)
+            reg.fit(X_loo, y_loo)
+            C_scores[C].append(reg.score([X[idx]], [y[idx]]))
+
+    C_scores = [(C, np.mean(scores)) for C, scores in C_scores.items()]
+    C_scores = sorted(C_scores, key=lambda x: x[1], reverse=True)
+    print(C_scores)
+    best_C = C_scores[0][0]
+
+    reg = linear_model.LogisticRegression(class_weight="balanced",
+                                          fit_intercept=False, C=best_C)
+    reg.fit(X, y)
+    metric = reg.score(X, y)
+
+    # embeddings = np.array(embeddings)
+    # embeddings -= embeddings.mean()
+    # embeddings /= np.linalg.norm(embeddings, axis=0, keepdims=True)
+    # pca = PCA(n_components=2)
+    # pca.fit(embeddings)
+    # metric = pca.explained_variance_[0]
+
+    # embeddings = np.array(embeddings)
+    # mean_v = embeddings.mean(axis=0)
+    # dists = embeddings @ mean_v
+    # dists /= np.linalg.norm(embeddings, axis=1)
+    # dists /= np.linalg.norm(mean_v)
+    # metric = dists.mean()
+
+    # if feature[1] == "e":
+    #     transformed = pca.transform(embeddings)
+    #     # Plot the projection.
+    #     fig = plt.figure()
+    #     fig.suptitle("%s (%f)" % (feature, metric))
+    #     ax = fig.add_subplot(111)
+    #     ax.scatter(transformed[:, 0], transformed[:, 1])
+    #     for concept, embedding in zip(concepts, transformed):
+    #         ax.annotate(concept, embedding, horizontalalignment="center")
+    #     plt.show()
+
+    return feature, len(concepts), metric
 
 
 def produce_domain_graphs(fcat_med):
@@ -223,7 +277,7 @@ def produce_unified_graph(vocab, features, feature_data):
 
         xs.append(concept_pearson[concept])
         ys.append(concept_wordnet[concept])
-        zs.append(np.mean(weights))
+        zs.append(np.median(weights))
 
     # Resize Z values
     zs = np.array(zs)
@@ -256,8 +310,8 @@ def produce_unified_graph(vocab, features, feature_data):
     fig.suptitle("unified graph")
     ax = fig.add_subplot(111)
     ax.set_xlabel("pearson")
-    ax.set_ylabel("wordnet")
-    ax.scatter(xs, ys, c=cs, alpha=0.8)
+    ax.set_ylabel("feature_fit")
+    ax.scatter(xs, zs, c=cs, alpha=0.8)
 
     fig_path = os.path.join(GRAPH_DIR, "unified.png")
     fig.savefig(fig_path)
