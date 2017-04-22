@@ -122,7 +122,7 @@ def write_output(all_probs, params):
 			str(p[0]) + "; wordnet: " + str(p[1]) for p in params]
 		writer = csv.DictWriter(csvfile, delimiter='\t', fieldnames=fieldnames)
 		writer.writeheader()
-		for concept in all_probs:
+		for concept in sorted(all_probs.keys()):
 			row = {'concept': concept}
 			for p in params:
 				row["dendrogram: " + str(p[0]) +
