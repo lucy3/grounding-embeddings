@@ -287,6 +287,8 @@ def produce_unified_graph(vocab, features, feature_data):
     zs = np.clip(zs, 0, 0.7)
     zs = zs / zs.max()
 
+    # Plot WordNet vs. Pearson
+
     fig = plt.figure()
     fig.suptitle("unified graph")
     ax = fig.add_subplot(111)
@@ -294,7 +296,19 @@ def produce_unified_graph(vocab, features, feature_data):
     ax.set_ylabel("wordnet")
     ax.scatter(xs, ys, c=cs, alpha=0.8)
 
-    fig_path = os.path.join(GRAPH_DIR, "unified.png")
+    fig_path = os.path.join(GRAPH_DIR, "unified-pearson_wn.png")
+    fig.savefig(fig_path)
+
+    # Plot feature metric vs. Pearson
+
+    fig = plt.figure()
+    fig.suptitle("unified graph")
+    ax = fig.add_subplot(111)
+    ax.set_xlabel("pearson")
+    ax.set_ylabel("feature_fit")
+    ax.scatter(xs, zs, c=cs, alpha=0.8)
+
+    fig_path = os.path.join(GRAPH_DIR, "unified-pearson_feature.png")
     fig.savefig(fig_path)
 
 
