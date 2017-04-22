@@ -11,20 +11,22 @@ from sklearn import linear_model
 from sklearn.decomposition import PCA
 import domain_feat_freq
 
-# EMBEDDING_NAME = "mcrae" # McRae
-EMBEDDING_NAME = "glove.6B.300d" # Wikipedia 2014 + Gigaword 5
+EMBEDDING_NAME = "mcrae" # McRae
+# EMBEDDING_NAME = "glove.6B.300d" # Wikipedia 2014 + Gigaword 5
 # EMBEDDING_NAME = "glove.840B.300d" # Common Crawl
-INPUT = "../glove/%s.txt" % EMBEDDING_NAME
-# INPUT = "./all/mcrae_vectors.txt"
+# INPUT = "../glove/%s.txt" % EMBEDDING_NAME
+INPUT = "./all/mcrae_vectors.txt"
 
 FEATURES = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 VOCAB = "./all/vocab.txt"
 EMBEDDINGS = "./all/embeddings.%s.npy" % EMBEDDING_NAME
 
-OUTPUT = "./all/feature_fit/mcrae_wikigiga.txt"
-PEARSON = './all/pearson_corr/corr_mcrae_wikigiga.txt'
-WORDNET = './all/hier_clust/wordnet_match_wikigiga.txt'
-GRAPH_DIR = './all/feature_fit/wikigiga'
+OUTPUT = "./all/feature_fit/mcrae_mcrae.txt"
+PEARSON1_NAME = "mcrae_wikigiga"
+PEARSON1 = './all/pearson_corr/corr_%s.txt' % PEARSON1_NAME
+PEARSON2_NAME = "mcrae_ssembed"
+PEARSON2 = './all/pearson_corr/corr_%s.txt' % PEARSON2_NAME
+GRAPH_DIR = './all/feature_fit/mcrae'
 
 Feature = namedtuple("Feature", ["name", "concepts", "wb_label", "wb_maj",
                                  "wb_min", "br_label", "disting"])
@@ -202,15 +204,19 @@ def get_fcat_conc_freqs(vocab, weights=None):
 
 
 def produce_concept_graphs(fcat_med):
-    concept_pearson = get_values(PEARSON, 'Concept', 'correlation')
-    concept_wordnet = get_values(WORDNET, 'concept', 'dendrogram: 0.8; wordnet: 6')
-    assert concept_pearson.keys() == concept_wordnet.keys()
-    vocab = sorted(concept_pearson.keys())
+    """
+    TODO: If we still want to use this function, 
+    we should be sure to label the axes
+    """
+    concept_pearson1 = get_values(PEARSON1, 'Concept', 'correlation')
+    concept_pearson2 = get_values(PEARSON2, 'Concept', 'correlation')
+    assert concept_pearson1.keys() == concept_pearson2.keys()
+    vocab = sorted(concept_pearson1.keys())
     concept_matrix, fcat_list = get_fcat_conc_freqs(vocab, weights=fcat_med)
     print(concept_matrix)
 
-    xs = [concept_pearson[concept] for concept in vocab]
-    ys = [concept_wordnet[concept] for concept in vocab]
+    xs = [concept_pearson1[concept] for concept in vocab]
+    ys = [concept_pearson2[concept] for concept in vocab]
     concept_matrix = (concept_matrix - concept_matrix.min(axis=0)) / (concept_matrix.max(axis=0)
         - concept_matrix.min(axis=0))
     colormap = plt.get_cmap("cool")
@@ -231,10 +237,10 @@ def produce_concept_graphs(fcat_med):
 
 
 def produce_unified_graph(vocab, features, feature_data):
-    concept_pearson = get_values(PEARSON, "Concept", "correlation")
-    concept_wordnet = get_values(WORDNET, "concept", "dendrogram: 0.8; wordnet: 6")
-    assert concept_pearson.keys() == concept_wordnet.keys()
-    assert set(concept_pearson.keys()) == set(vocab)
+    concept_pearson1 = get_values(PEARSON1, "Concept", "correlation")
+    concept_pearson2 = get_values(PEARSON2, 'Concept', 'correlation')
+    assert concept_pearson1.keys() == concept_pearson2.keys()
+    assert set(concept_pearson1.keys()) == set(vocab)
 
     feature_map = {feature: weight for feature, _, weight in feature_data}
 
@@ -242,8 +248,8 @@ def produce_unified_graph(vocab, features, feature_data):
     for feature in features.values():
         this_features_concepts = set(vocab) & set(feature.concepts)
         if len(this_features_concepts) > 7:
-            pearsons = [concept_pearson[concept] for concept in this_features_concepts]
-            wordnets = [concept_wordnet[concept] for concept in this_features_concepts]
+            pearsons = [concept_pearson1[concept] for concept in this_features_concepts]
+            wordnets = [concept_pearson2[concept] for concept in this_features_concepts]
             print("%s\t%f\t%f\t%f\t%f" % (feature.name, np.var(pearsons),
                 np.mean(pearsons), np.var(wordnets), np.mean(wordnets)))
 
@@ -256,8 +262,8 @@ def produce_unified_graph(vocab, features, feature_data):
         if not weights:
             continue
 
-        xs.append(concept_pearson[concept])
-        ys.append(concept_wordnet[concept])
+        xs.append(concept_pearson1[concept])
+        ys.append(concept_pearson2[concept])
         zs.append(np.median(weights))
 
     # Resize Z values
@@ -276,8 +282,8 @@ def produce_unified_graph(vocab, features, feature_data):
     from mpl_toolkits.mplot3d import Axes3D
     fig = plt.figure()
     ax = fig.add_subplot(111, projection="3d")
-    ax.set_xlabel("pearson")
-    ax.set_ylabel("wordnet")
+    ax.set_xlabel(PEARSON1_NAME)
+    ax.set_ylabel(PEARSON2_NAME)
     ax.set_zlabel("feature weight")
     ax.scatter(xs, ys, zs, c=cs)
     plt.show()
@@ -287,28 +293,40 @@ def produce_unified_graph(vocab, features, feature_data):
     zs = np.clip(zs, 0, 0.7)
     zs = zs / zs.max()
 
-    # Plot WordNet vs. Pearson
+    # Plot Pearson1 vs. Pearson2
 
     fig = plt.figure()
     fig.suptitle("unified graph")
     ax = fig.add_subplot(111)
-    ax.set_xlabel("pearson")
-    ax.set_ylabel("wordnet")
+    ax.set_xlabel(PEARSON1_NAME)
+    ax.set_ylabel(PEARSON2_NAME)
     ax.scatter(xs, ys, c=cs, alpha=0.8)
 
-    fig_path = os.path.join(GRAPH_DIR, "unified-pearson_wn.png")
+    fig_path = os.path.join(GRAPH_DIR, "unified-%s-%s.png" % (PEARSON1_NAME, PEARSON2_NAME))
     fig.savefig(fig_path)
 
-    # Plot feature metric vs. Pearson
+    # Plot feature metric vs. Pearson1
 
     fig = plt.figure()
     fig.suptitle("unified graph")
     ax = fig.add_subplot(111)
-    ax.set_xlabel("pearson")
+    ax.set_xlabel(PEARSON1_NAME)
     ax.set_ylabel("feature_fit")
     ax.scatter(xs, zs, c=cs, alpha=0.8)
 
-    fig_path = os.path.join(GRAPH_DIR, "unified-pearson_feature.png")
+    fig_path = os.path.join(GRAPH_DIR, "unified-%s-feature.png" % PEARSON1_NAME)
+    fig.savefig(fig_path)
+
+    # Plot feature metric vs. Pearson2
+
+    fig = plt.figure()
+    fig.suptitle("unified graph")
+    ax = fig.add_subplot(111)
+    ax.set_xlabel(PEARSON2_NAME)
+    ax.set_ylabel("feature_fit")
+    ax.scatter(ys, zs, c=cs, alpha=0.8)
+
+    fig_path = os.path.join(GRAPH_DIR, "unified-%s-feature.png" % PEARSON2_NAME)
     fig.savefig(fig_path)
 
 
@@ -358,7 +376,7 @@ def main():
     produce_unified_graph(vocab, features, feature_data)
 
     #produce_domain_graphs(fcat_med) # this calls functions in domain_feat_freq.py
-    produce_concept_graphs(fcat_med) # this calls functions in here
+    #produce_concept_graphs(fcat_med) # this calls functions in here
 
 
 if __name__ == "__main__":
