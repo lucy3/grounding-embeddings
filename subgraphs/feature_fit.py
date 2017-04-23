@@ -24,7 +24,7 @@ EMBEDDINGS = "./all/embeddings.%s.npy" % EMBEDDING_NAME
 OUTPUT = "./all/feature_fit/mcrae_mcrae.txt"
 PEARSON1_NAME = "mcrae_wikigiga"
 PEARSON1 = './all/pearson_corr/corr_%s.txt' % PEARSON1_NAME
-PEARSON2_NAME = "mcrae_ssembed"
+PEARSON2_NAME = "mcrae_wordnet"
 PEARSON2 = './all/pearson_corr/corr_%s.txt' % PEARSON2_NAME
 GRAPH_DIR = './all/feature_fit/mcrae'
 
@@ -205,7 +205,7 @@ def get_fcat_conc_freqs(vocab, weights=None):
 
 def produce_concept_graphs(fcat_med):
     """
-    TODO: If we still want to use this function, 
+    TODO: If we still want to use this function,
     we should be sure to label the axes
     """
     concept_pearson1 = get_values(PEARSON1, 'Concept', 'correlation')
