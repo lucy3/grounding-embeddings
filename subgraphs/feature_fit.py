@@ -11,22 +11,28 @@ from sklearn import linear_model
 from sklearn.decomposition import PCA
 import domain_feat_freq
 
-EMBEDDING_NAME = "mcrae" # McRae
-# EMBEDDING_NAME = "glove.6B.300d" # Wikipedia 2014 + Gigaword 5
-# EMBEDDING_NAME = "glove.840B.300d" # Common Crawl
-# INPUT = "../glove/%s.txt" % EMBEDDING_NAME
-INPUT = "./all/mcrae_vectors.txt"
+# The "pivot" source is where we draw concept representations from. The
+# resulting feature_fit metric represents how well these representations encode
+# the relevant features. Each axis of the resulting graphs also involves the
+# pivot source.
+PIVOT = "wikigiga"
+if PIVOT == "mcrae":
+    INPUT = "./all/mcrae_vectors.txt"
+elif PIVOT == "wikigiga":
+    INPUT = "../glove/glove.6B.300d.txt"
+elif PIVOT == "cc":
+    INPUT = "../glove/glove.840B.300d.txt"
 
 FEATURES = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 VOCAB = "./all/vocab.txt"
-EMBEDDINGS = "./all/embeddings.%s.npy" % EMBEDDING_NAME
+EMBEDDINGS = "./all/embeddings.%s.npy" % PIVOT
 
-OUTPUT = "./all/feature_fit/mcrae_mcrae.txt"
-PEARSON1_NAME = "mcrae_wikigiga"
+OUTPUT = "./all/feature_fit/mcrae_%s.txt" % PIVOT
+PEARSON1_NAME = "mcrae_%s" % PIVOT
 PEARSON1 = './all/pearson_corr/corr_%s.txt' % PEARSON1_NAME
-PEARSON2_NAME = "mcrae_wordnet"
+PEARSON2_NAME = "%s_wordnet" % PIVOT
 PEARSON2 = './all/pearson_corr/corr_%s.txt' % PEARSON2_NAME
-GRAPH_DIR = './all/feature_fit/mcrae'
+GRAPH_DIR = './all/feature_fit/%s' % PIVOT
 
 Feature = namedtuple("Feature", ["name", "concepts", "wb_label", "wb_maj",
                                  "wb_min", "br_label", "disting"])
