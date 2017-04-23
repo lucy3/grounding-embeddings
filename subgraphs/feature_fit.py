@@ -356,12 +356,12 @@ def main():
             out.write("%40s\t%25s\t%i\t%f\n" %
                         (name, features[name].br_label, n_entries, score))
 
-            for grouping_fn_name in sorted(grouping_fns.keys()):
+            for grouping_fn_name, grouping_fn in grouping_fns.items():
                 grouping_fn = grouping_fns[grouping_fn_name]
                 group = grouping_fn(name)
                 groups[grouping_fn_name][group].append((score, n_entries))
 
-        for grouping_fn_name, groups_result in groups.items():
+        for grouping_fn_name, groups_result in sorted(groups.items()):
             out.write("\n\nGrouping by %s:\n" % grouping_fn_name)
             summary = {}
             for name, data in groups_result.items():

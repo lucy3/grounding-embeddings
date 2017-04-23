@@ -69,7 +69,7 @@ def main():
     report_closest(concepts, raw_matrix, None)
 
     # Learn model.
-    model = models.LsiModel(documents, id2word=dictionary, num_topics=50)
+    model = models.LsiModel(documents, id2word=dictionary, num_topics=300)
     pprint(model.print_topics())
 
     topic_matrix = np.zeros((len(concepts), model.num_topics))
