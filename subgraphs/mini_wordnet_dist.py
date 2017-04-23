@@ -2,12 +2,15 @@
 Playing around with path distance in WordNet
 """
 from nltk.corpus import wordnet as wn
+from nltk.corpus import wordnet_ic
 
 VOCAB = "./all/vocab.txt"
 
-OUTPUT = "./all/sim_wordnet.txt"
+OUTPUT = "./all/sim_wordnetres.txt"
 
 def main():
+    brown_ic = wordnet_ic.ic('ic-brown.dat')
+
     vocab_file = open(VOCAB, 'r')
     vocabulary = set()
     for line in vocab_file:
@@ -29,7 +32,8 @@ def main():
             synset1 = word_to_synset[words[i]]
             synset2 = word_to_synset[words[j]]
             # since path similarity isn't commutative
-            dist = max(synset1.path_similarity(synset2), synset2.path_similarity(synset1))
+            dist = max(synset1.res_similarity(synset2, brown_ic),
+                synset2.res_similarity(synset1, brown_ic))
             num_dists.add(dist)
             output.write(words[i] + ' ' + words[j] + ' ' + str(dist) + '\n')
 

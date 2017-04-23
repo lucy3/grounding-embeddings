@@ -15,7 +15,7 @@ import domain_feat_freq
 # resulting feature_fit metric represents how well these representations encode
 # the relevant features. Each axis of the resulting graphs also involves the
 # pivot source.
-PIVOT = "mcrae"
+PIVOT = "wikigiga"
 if PIVOT == "mcrae":
     INPUT = "./all/mcrae_vectors.txt"
 elif PIVOT == "wikigiga":
@@ -30,7 +30,7 @@ EMBEDDINGS = "./all/embeddings.%s.npy" % PIVOT
 OUTPUT = "./all/feature_fit/mcrae_%s.txt" % PIVOT
 PEARSON1_NAME = "mcrae_%s" % PIVOT if PIVOT != "mcrae" else "mcrae_wikigiga"
 PEARSON1 = './all/pearson_corr/corr_%s.txt' % PEARSON1_NAME
-PEARSON2_NAME = "%s_wordnet" % PIVOT
+PEARSON2_NAME = "%s_wordnetres" % PIVOT
 PEARSON2 = './all/pearson_corr/corr_%s.txt' % PEARSON2_NAME
 GRAPH_DIR = './all/feature_fit/%s' % PIVOT
 
