@@ -5,6 +5,7 @@ from pathlib import Path
 from pprint import pprint
 import csv
 import os.path
+import sys
 
 import numpy as np
 from numpy import ctypeslib
@@ -12,11 +13,12 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from sklearn import metrics
+from sklearn.base import clone
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import cross_val_score, KFold, StratifiedKFold
 from sklearn.multiclass import OneVsRestClassifier
 from sklearn.preprocessing import MultiLabelBinarizer
-from tqdm import tqdm
+from tqdm import tqdm, trange
 
 import domain_feat_freq
 import get_domains
@@ -25,7 +27,7 @@ import get_domains
 # resulting feature_fit metric represents how well these representations encode
 # the relevant features. Each axis of the resulting graphs also involves the
 # pivot source.
-PIVOT = "mcrae"
+PIVOT = "cc"
 if PIVOT == "mcrae":
     INPUT = "./all/mcrae_vectors.txt"
 elif PIVOT == "wikigiga":
@@ -135,26 +137,48 @@ def analyze_features(features, word2idx, embeddings):
     feature_names = sorted(features.keys())
     for f_idx, f_name in enumerate(feature_names):
         feature = features[f_name]
-        if len(feature.concepts) < 5:
+        concepts = [word2idx[c] for c in feature.concepts if c in word2idx]
+        if len(concepts) < 5:
             continue
 
-        for concept in feature.concepts:
-            try:
-                c_idx = word2idx[concept]
-            except KeyError:
-                pass
-            else:
-                Y[c_idx, f_idx] = 1
+        for c_idx in concepts:
+            Y[c_idx, f_idx] = 1
 
-    C_results = {}
-    for C_exp in range(-3, 1):
+    # Sample a few random features.
+    # For the sampled features, we'll do LOOCV to evaluate each possible C.
+    nonzero_features = Y.sum(axis=0).nonzero()[0]
+    samp_feats = np.random.choice(nonzero_features, replace=False, size=5)
+
+    # For each feature, retrieve concepts to sample as negative candidates in a
+    # ranking loss.
+    negsamp_concepts = [(1 - Y[:, f_idx]).nonzero()[0] for f_idx in samp_feats]
+
+    C_results = defaultdict(list)
+    for C_exp in trange(-3, 1, desc="C", file=sys.stdout):
         C = 10 ** C_exp
         reg = LogisticRegression(class_weight="balanced", fit_intercept=False,
                                  C=C)
-        cls = OneVsRestClassifier(reg, n_jobs=16)
+        cls = OneVsRestClassifier(reg, n_jobs=8)
 
-        scorer = metrics.make_scorer(metrics.label_ranking_average_precision_score)
-        C_results[C] = cross_val_score(cls, X, Y, scoring=scorer, cv=5, n_jobs=16)
+        for f_idx, negsamps in tqdm(zip(samp_feats, negsamp_concepts),
+                                    file=sys.stdout, desc="loocv outer"):
+            c_idxs = Y[:, f_idx].nonzero()[0]
+            for c_idx in tqdm(np.random.choice(c_idxs, replace=False, size=5),
+                              file=sys.stdout, desc="loocv inner"):
+                X_loo = np.concatenate([X[:c_idx], X[c_idx+1:]])
+                Y_loo = np.concatenate([Y[:c_idx], Y[c_idx+1:]])
+
+                cls_loo = clone(cls)
+                cls_loo.fit(X_loo, Y_loo)
+
+                # Draw negative samples for a ranking loss
+                negsamps = np.random.choice(negsamps, replace=False, size=5)
+                test = np.concatenate([X[c_idx:c_idx+1], X[negsamps]])
+                pred_prob = cls_loo.predict_proba(X)[:, f_idx]
+                score = pred_prob[0] - np.mean(pred_prob[1:])
+                C_results[C].append(score)
+
+        print(C, C_results[C])
 
     # Prefer stronger regularization; sort descending by metric, then by
     # negative C
