@@ -144,48 +144,58 @@ def analyze_features(features, word2idx, embeddings):
         for c_idx in concepts:
             Y[c_idx, f_idx] = 1
 
-    # Sample a few random features.
-    # For the sampled features, we'll do LOOCV to evaluate each possible C.
-    nonzero_features = Y.sum(axis=0).nonzero()[0]
-    samp_feats = np.random.choice(nonzero_features, replace=False, size=5)
+    # # Sample a few random features.
+    # # For the sampled features, we'll do LOOCV to evaluate each possible C.
+    # nonzero_features = Y.sum(axis=0).nonzero()[0]
+    # samp_feats = np.random.choice(nonzero_features, replace=False, size=5)
 
-    # For each feature, retrieve concepts to sample as negative candidates in a
-    # ranking loss.
-    negsamp_concepts = [(1 - Y[:, f_idx]).nonzero()[0] for f_idx in samp_feats]
+    # # For each feature, retrieve concepts to sample as negative candidates in a
+    # # ranking loss.
+    # negsamp_concepts = [(1 - Y[:, f_idx]).nonzero()[0] for f_idx in samp_feats]
 
-    C_results = defaultdict(list)
-    for C_exp in trange(-3, 1, desc="C", file=sys.stdout):
-        C = 10 ** C_exp
-        reg = LogisticRegression(class_weight="balanced", fit_intercept=False,
-                                 C=C)
-        cls = OneVsRestClassifier(reg, n_jobs=8)
+    # C_results = defaultdict(list)
+    # for C_exp in trange(-3, 1, desc="C", file=sys.stdout):
+    #     C = 10 ** C_exp
+    #     reg = LogisticRegression(class_weight="balanced", fit_intercept=False,
+    #                              C=C)
+    #     cls = OneVsRestClassifier(reg, n_jobs=8)
 
-        for f_idx, negsamps in tqdm(zip(samp_feats, negsamp_concepts),
-                                    file=sys.stdout, desc="loocv outer"):
-            c_idxs = Y[:, f_idx].nonzero()[0]
-            for c_idx in tqdm(np.random.choice(c_idxs, replace=False, size=5),
-                              file=sys.stdout, desc="loocv inner"):
-                X_loo = np.concatenate([X[:c_idx], X[c_idx+1:]])
-                Y_loo = np.concatenate([Y[:c_idx], Y[c_idx+1:]])
+    #     for f_idx, negsamps in tqdm(zip(samp_feats, negsamp_concepts),
+    #                                 file=sys.stdout, desc="loocv outer"):
+    #         c_idxs = Y[:, f_idx].nonzero()[0]
+    #         for c_idx in tqdm(np.random.choice(c_idxs, replace=False, size=5),
+    #                           file=sys.stdout, desc="loocv inner"):
+    #             X_loo = np.concatenate([X[:c_idx], X[c_idx+1:]])
+    #             Y_loo = np.concatenate([Y[:c_idx], Y[c_idx+1:]])
 
-                cls_loo = clone(cls)
-                cls_loo.fit(X_loo, Y_loo)
+    #             cls_loo = clone(cls)
+    #             cls_loo.fit(X_loo, Y_loo)
 
-                # Draw negative samples for a ranking loss
-                negsamps = np.random.choice(negsamps, replace=False, size=5)
-                test = np.concatenate([X[c_idx:c_idx+1], X[negsamps]])
-                pred_prob = cls_loo.predict_proba(X)[:, f_idx]
-                score = pred_prob[0] - np.mean(pred_prob[1:])
-                C_results[C].append(score)
+    #             # Draw negative samples for a ranking loss
+    #             negsamps = np.random.choice(negsamps, replace=False, size=5)
+    #             test = np.concatenate([X[c_idx:c_idx+1], X[negsamps]])
+    #             pred_prob = cls_loo.predict_proba(X)[:, f_idx]
+    #             score = pred_prob[0] - np.mean(pred_prob[1:])
+    #             C_results[C].append(score)
 
-        print(C, C_results[C])
+    #     print(C, C_results[C])
 
-    # Prefer stronger regularization; sort descending by metric, then by
-    # negative C
-    C_results = sorted([(np.mean(scores), -C) for C, scores in C_results.items()],
-                       reverse=True)
-    print(C_results)
-    best_C = -C_results[0][1]
+    # # Prefer stronger regularization; sort descending by metric, then by
+    # # negative C
+    # C_results = sorted([(np.mean(scores), -C) for C, scores in C_results.items()],
+    #                    reverse=True)
+    # print(C_results)
+    # best_C = -C_results[0][1]
+
+    # DEV: cached C values for the corpora we know
+    # TODO: try things lower than 1e-3; might be necessary for GloVe sources
+    if PIVOT == "mcrae":
+        best_C = 1.0
+    elif PIVOT == "wikigiga":
+        best_C = 0.001
+    elif PIVOT == "cc":
+        best_C = 0.001
+
     reg = LogisticRegression(class_weight="balanced", fit_intercept=False,
                              C=best_C)
     cls = OneVsRestClassifier(reg, n_jobs=16)
