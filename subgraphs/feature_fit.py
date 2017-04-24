@@ -1,11 +1,15 @@
 import codecs
 from collections import defaultdict, namedtuple
+from multiprocessing import Process, Pool, sharedctypes
 from pathlib import Path
 from pprint import pprint
 import csv
 import os.path
 
 import numpy as np
+from numpy import ctypeslib
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from sklearn import linear_model
 from sklearn.decomposition import PCA
@@ -103,7 +107,9 @@ def load_features_concepts():
     return features, concepts
 
 
-def analyze_feature(feature, features, word2idx, embeddings):
+embeddings_shared = None
+embedding_shape = None
+def analyze_feature(feature, features, word2idx):
     """
     Compute metric for a given feature.
 
@@ -112,6 +118,11 @@ def analyze_feature(feature, features, word2idx, embeddings):
         n_concepts: number of concepts which have this feature
         metric: goodness metric, where higher is better
     """
+
+    # Get numpy array from shared data
+    embeddings = ctypeslib.as_array(embeddings_shared)
+    embeddings = embeddings.reshape(embedding_shape)
+
     # Fetch available embeddings.
     concepts = [concept for concept in features[feature].concepts
                 if concept in word2idx]
@@ -446,8 +457,18 @@ def main():
     vocab, embeddings = load_embeddings(concepts)
     word2idx = {w: i for i, w in enumerate(vocab)}
 
-    feature_data = [analyze_feature(feature, features, word2idx, embeddings)
-                    for feature in features]
+    global embeddings_shared, embedding_shape
+    embedding_shape = embeddings.shape
+    embeddings.shape = embeddings.size
+    embeddings_shared = sharedctypes.RawArray('d', embeddings)
+
+    with Pool(processes=16, initargs=(embeddings_shared,)) as pool:
+        feature_data = [
+                pool.apply_async(analyze_feature,
+                                 (feature, features, word2idx))
+                for feature in features]
+        feature_data = [f.get(timeout=None) for f in feature_data]
+
     feature_data = sorted(filter(None, feature_data), key=lambda f: f[2])
 
     fcat_med = {}
