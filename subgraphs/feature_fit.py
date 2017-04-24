@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from sklearn import linear_model
 from sklearn.decomposition import PCA
 import domain_feat_freq
+import get_domains
 
 # The "pivot" source is where we draw concept representations from. The
 # resulting feature_fit metric represents how well these representations encode
@@ -159,12 +160,12 @@ def analyze_feature(feature, features, word2idx, embeddings):
 
 
 def produce_domain_graphs(fcat_med):
-    domain_pearson = domain_feat_freq.get_average(PEARSON, 'Concept',
+    domain_pearson1 = domain_feat_freq.get_average(PEARSON1, 'Concept',
         'correlation')
-    domain_wordnet = domain_feat_freq.get_average(WORDNET, 'concept',
-        'dendrogram: 0.8; wordnet: 6')
+    domain_pearson2 = domain_feat_freq.get_average(PEARSON2, 'Concept',
+        'correlation')
     domain_matrix, domains, fcat_list = domain_feat_freq.get_feat_freqs(weights=fcat_med)
-    domain_feat_freq.render_graphs(GRAPH_DIR, domain_pearson, domain_wordnet,
+    domain_feat_freq.render_graphs(GRAPH_DIR, domain_pearson1, domain_pearson2,
         domains, domain_matrix, fcat_list)
 
 
@@ -241,12 +242,111 @@ def produce_concept_graphs(fcat_med):
         fig_path = os.path.join(GRAPH_DIR, fcat)
         fig.savefig(fig_path + '-08-60-concepts-perc')
 
+def produce_unified_domain_graph(vocab, features, feature_data):
+    domain_pearson1 = domain_feat_freq.get_average(PEARSON1, 'Concept',
+        'correlation')
+    domain_pearson2 = domain_feat_freq.get_average(PEARSON2, 'Concept',
+        'correlation')
+    assert domain_pearson1.keys() == domain_pearson2.keys()
+
+    feature_map = {feature: weight for feature, _, weight in feature_data}
+
+    domain_concepts = get_domains.get_domain_concepts()
+    all_domains = sorted([d for d in domain_concepts.keys()
+        if len(domain_concepts[d]) > 7])
+
+    xs, ys, zs, labels = [], [], [], []
+    for domain in all_domains:
+        weights = [feature_map[feature.name]
+                   for feature in features.values()
+                   for concept in domain_concepts[domain]
+                   if concept in feature.concepts and feature.name
+                   in feature_map]
+        if not weights:
+            continue
+
+        xs.append(domain_pearson1[domain])
+        ys.append(domain_pearson2[domain])
+        zs.append(np.median(weights))
+        labels.append(domain)
+
+    # Resize Z values
+    zs = np.array(zs)
+    zs = (zs - zs.min()) / (zs.max() - zs.min())
+
+
+    # Render Z axis using colors
+    colormap = plt.get_cmap("cool")
+    cs = colormap(zs)
+
+    # Jitter points
+    xs += np.random.randn(len(xs)) * 0.01
+    ys += np.random.randn(len(ys)) * 0.01
+
+    from mpl_toolkits.mplot3d import Axes3D
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection="3d")
+    ax.set_xlabel(PEARSON1_NAME)
+    ax.set_ylabel(PEARSON2_NAME)
+    ax.set_zlabel("feature weight")
+    ax.scatter(xs, ys, zs, c=cs)
+    plt.show(fig)
+
+    # HACK: trying to make this approximately normal so that I can easily see
+    # the differences between points. shave off high outliers.
+    zs = np.clip(zs, 0, 0.7)
+    zs = zs / zs.max()
+
+    # Plot Pearson1 vs. Pearson2
+
+    fig = plt.figure()
+    fig.suptitle("unified graph")
+    ax = fig.add_subplot(111)
+    ax.set_xlabel(PEARSON1_NAME)
+    ax.set_ylabel(PEARSON2_NAME)
+    ax.scatter(xs, ys, c=cs, alpha=0.8)
+    for i, d in enumerate(labels):
+        ax.annotate(d, (xs[i], ys[i]))
+
+    fig_path = os.path.join(GRAPH_DIR, "unified_domain-%s-%s.png" % (PEARSON1_NAME, PEARSON2_NAME))
+    fig.savefig(fig_path)
+
+    # Plot feature metric vs. Pearson1
+
+    fig = plt.figure()
+    fig.suptitle("unified graph")
+    ax = fig.add_subplot(111)
+    ax.set_xlabel(PEARSON1_NAME)
+    ax.set_ylabel("feature_fit")
+    ax.scatter(xs, zs, c=cs, alpha=0.8)
+    for i, d in enumerate(labels):
+        ax.annotate(d, (xs[i], zs[i]))
+
+    fig_path = os.path.join(GRAPH_DIR, "unified_domain-%s-feature.png" % PEARSON1_NAME)
+    fig.savefig(fig_path)
+
+    # Plot feature metric vs. Pearson2
+
+    fig = plt.figure()
+    fig.suptitle("unified graph")
+    ax = fig.add_subplot(111)
+    ax.set_xlabel(PEARSON2_NAME)
+    ax.set_ylabel("feature_fit")
+    ax.scatter(ys, zs, c=cs, alpha=0.8)
+    for i, d in enumerate(labels):
+        ax.annotate(d, (ys[i], zs[i]))
+
+    fig_path = os.path.join(GRAPH_DIR, "unified_domain-%s-feature.png" % PEARSON2_NAME)
+    fig.savefig(fig_path)
+
 
 def produce_unified_graph(vocab, features, feature_data):
     concept_pearson1 = get_values(PEARSON1, "Concept", "correlation")
     concept_pearson2 = get_values(PEARSON2, 'Concept', 'correlation')
     assert concept_pearson1.keys() == concept_pearson2.keys()
     assert set(concept_pearson1.keys()) == set(vocab)
+
+    #concepts_of_interest = get_domains.get_domain_concepts()["furniture"]
 
     feature_map = {feature: weight for feature, _, weight in feature_data}
 
@@ -259,7 +359,7 @@ def produce_unified_graph(vocab, features, feature_data):
             print("%s\t%f\t%f\t%f\t%f" % (feature.name, np.var(pearsons),
                 np.mean(pearsons), np.var(wordnets), np.mean(wordnets)))
 
-    xs, ys, zs = [], [], []
+    xs, ys, zs, labels = [], [], [], []
     for concept in vocab:
         weights = [feature_map[feature.name]
                    for feature in features.values()
@@ -271,6 +371,7 @@ def produce_unified_graph(vocab, features, feature_data):
         xs.append(concept_pearson1[concept])
         ys.append(concept_pearson2[concept])
         zs.append(np.median(weights))
+        labels.append(concept)
 
     # Resize Z values
     zs = np.array(zs)
@@ -307,9 +408,13 @@ def produce_unified_graph(vocab, features, feature_data):
     ax.set_xlabel(PEARSON1_NAME)
     ax.set_ylabel(PEARSON2_NAME)
     ax.scatter(xs, ys, c=cs, alpha=0.8)
+    # for i, concept in enumerate(labels):
+    #     if concept in concepts_of_interest:
+    #         ax.annotate(concept, (xs[i], ys[i]))
 
     fig_path = os.path.join(GRAPH_DIR, "unified-%s-%s.png" % (PEARSON1_NAME, PEARSON2_NAME))
     fig.savefig(fig_path)
+    plt.close()
 
     # Plot feature metric vs. Pearson1
 
@@ -322,6 +427,7 @@ def produce_unified_graph(vocab, features, feature_data):
 
     fig_path = os.path.join(GRAPH_DIR, "unified-%s-feature.png" % PEARSON1_NAME)
     fig.savefig(fig_path)
+    plt.close()
 
     # Plot feature metric vs. Pearson2
 
@@ -334,6 +440,7 @@ def produce_unified_graph(vocab, features, feature_data):
 
     fig_path = os.path.join(GRAPH_DIR, "unified-%s-feature.png" % PEARSON2_NAME)
     fig.savefig(fig_path)
+    plt.close()
 
 
 def main():
@@ -345,7 +452,7 @@ def main():
                     for feature in features]
     feature_data = sorted(filter(None, feature_data), key=lambda f: f[2])
 
-    fcat_med = {} # {fcat: med}
+    fcat_med = {}
     with open(OUTPUT, "w") as out:
         grouping_fns = {
             "br_label": lambda name: features[name].br_label,
@@ -380,6 +487,7 @@ def main():
                 fcat_med[label_group] = pcts[1]
 
     produce_unified_graph(vocab, features, feature_data)
+    produce_unified_domain_graph(vocab, features, feature_data)
 
     #produce_domain_graphs(fcat_med) # this calls functions in domain_feat_freq.py
     #produce_concept_graphs(fcat_med) # this calls functions in here
