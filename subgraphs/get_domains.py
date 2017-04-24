@@ -64,7 +64,7 @@ def get_concept_domains():
 		else:
 			new_clusters.append(cluster)
 	new_clusters.append(new_clust)
-	print len(new_clusters)
+	print(len(new_clusters))
 
 	concept_domains = {c: [] for c in vocabulary}
 	for i, clust in enumerate(new_clusters):
