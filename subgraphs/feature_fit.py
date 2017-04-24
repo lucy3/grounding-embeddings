@@ -132,29 +132,11 @@ def analyze_feature(feature, features, word2idx, embeddings):
     metric = reg.score(X, y)
 
     # embeddings = np.array(embeddings)
-    # embeddings -= embeddings.mean()
-    # embeddings /= np.linalg.norm(embeddings, axis=0, keepdims=True)
-    # pca = PCA(n_components=2)
-    # pca.fit(embeddings)
-    # metric = pca.explained_variance_[0]
-
-    # embeddings = np.array(embeddings)
     # mean_v = embeddings.mean(axis=0)
     # dists = embeddings @ mean_v
     # dists /= np.linalg.norm(embeddings, axis=1)
     # dists /= np.linalg.norm(mean_v)
     # metric = dists.mean()
-
-    # if feature[1] == "e":
-    #     transformed = pca.transform(embeddings)
-    #     # Plot the projection.
-    #     fig = plt.figure()
-    #     fig.suptitle("%s (%f)" % (feature, metric))
-    #     ax = fig.add_subplot(111)
-    #     ax.scatter(transformed[:, 0], transformed[:, 1])
-    #     for concept, embedding in zip(concepts, transformed):
-    #         ax.annotate(concept, embedding, horizontalalignment="center")
-    #     plt.show()
 
     return feature, len(concepts), metric
 
