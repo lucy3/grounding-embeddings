@@ -13,6 +13,8 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from sklearn import linear_model
 from sklearn.decomposition import PCA
+from tqdm import tqdm
+
 import domain_feat_freq
 import get_domains
 
@@ -138,7 +140,7 @@ def analyze_feature(feature, features, word2idx):
         y[word2idx[concept]] = 1
 
     C_results = defaultdict(list)
-    for C in [0.00001, 0.0001, 0.001, 0.005, 0.01, 0.1]:
+    for C in [1e-9, 1e-8, 1e-7, 1e-6, 1e-5, 1e-4, 1e-3]:
         for i in range(len(concepts)):
             X_loo = np.concatenate((X[:i], X[i+1:]))
             y_loo = np.concatenate((y[:i], y[i+1:]))
@@ -152,9 +154,10 @@ def analyze_feature(feature, features, word2idx):
             C_results[C].append(prediction)
 
     C_results = sorted([(np.mean(preds), C) for C, preds in C_results.items()])
-    print(C_results)
+    tqdm.write("%30s\t%s" % (feature, C_results))
+    best_C = C_results[0][1]
     reg = linear_model.LogisticRegression(class_weight="balanced",
-                                          fit_intercept=False, C=0.001)
+                                          fit_intercept=False, C=best_C)
     reg.fit(X, y)
     metric = reg.score(X, y)
 
@@ -467,7 +470,8 @@ def main():
                 pool.apply_async(analyze_feature,
                                  (feature, features, word2idx))
                 for feature in features]
-        feature_data = [f.get(timeout=None) for f in feature_data]
+        feature_data = [f.get(timeout=None)
+                        for f in tqdm(feature_data, desc="feature metric")]
 
     feature_data = sorted(filter(None, feature_data), key=lambda f: f[2])
 
