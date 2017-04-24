@@ -16,7 +16,7 @@ import get_domains
 # resulting feature_fit metric represents how well these representations encode
 # the relevant features. Each axis of the resulting graphs also involves the
 # pivot source.
-PIVOT = "wikigiga"
+PIVOT = "mcrae"
 if PIVOT == "mcrae":
     INPUT = "./all/mcrae_vectors.txt"
 elif PIVOT == "wikigiga":
@@ -126,6 +126,22 @@ def analyze_feature(feature, features, word2idx, embeddings):
     for concept in concepts:
         y[word2idx[concept]] = 1
 
+    C_results = defaultdict(list)
+    for C in [0.00001, 0.0001, 0.001, 0.005, 0.01, 0.1]:
+        for i in range(len(concepts)):
+            X_loo = np.concatenate((X[:i], X[i+1:]))
+            y_loo = np.concatenate((y[:i], y[i+1:]))
+
+            reg_loo = linear_model.LogisticRegression(class_weight="balanced",
+                                                      fit_intercept=False,
+                                                      C=C)
+            reg_loo.fit(X_loo, y_loo)
+
+            prediction = reg_loo.score([X[i]], [y[i]])
+            C_results[C].append(prediction)
+
+    C_results = sorted([(np.mean(preds), C) for C, preds in C_results.items()])
+    print(C_results)
     reg = linear_model.LogisticRegression(class_weight="balanced",
                                           fit_intercept=False, C=0.001)
     reg.fit(X, y)
