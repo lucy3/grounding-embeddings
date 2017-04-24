@@ -155,10 +155,12 @@ def analyze_feature(feature, features, word2idx):
 
     # Descending sort, first by accuracy and then by C (C is inverse strength;
     # prefer less regularization if equal perf)
-    C_results = sorted([(np.mean(preds), C) for C, preds in C_results.items()],
+    C_results = sorted([(np.mean(preds), -C) for C, preds in C_results.items()],
                         reverse=True)
-    tqdm.write("%30s\t%s" % (feature, C_results))
-    best_C = C_results[0][1]
+    tqdm.write("%30s\t%s" % (feature,
+                             "; ".join("%.2f %.0e" % (result[0], -result[1])
+                                       for result in C_results)))
+    best_C = -C_results[0][1]
     reg = linear_model.LogisticRegression(class_weight="balanced",
                                           fit_intercept=False, C=best_C)
     reg.fit(X, y)
