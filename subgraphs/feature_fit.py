@@ -11,8 +11,11 @@ from numpy import ctypeslib
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from sklearn import linear_model
-from sklearn.decomposition import PCA
+from sklearn import metrics
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import cross_val_score, KFold, StratifiedKFold
+from sklearn.multiclass import OneVsRestClassifier
+from sklearn.preprocessing import MultiLabelBinarizer
 from tqdm import tqdm
 
 import domain_feat_freq
@@ -109,8 +112,70 @@ def load_features_concepts():
     return features, concepts
 
 
-embeddings_shared = None
-embedding_shape = None
+def analyze_features(features, word2idx, embeddings):
+    """
+    Compute metrics for all features.
+
+    Arguments:
+        features: dict of feature_name -> `Feature`
+        word2idx: concept name -> concept id dict
+        embeddings: numpy array of concept embeddings
+
+    Returns:
+        List of tuples with structure:
+            feature_name:
+            n_concepts: number of concepts which have this feature
+            metric: goodness metric, where higher is better
+    """
+
+    # Prepare for a multi-label logistic regression.
+    X = embeddings
+    Y = np.zeros((len(word2idx), len(features)))
+
+    feature_names = sorted(features.keys())
+    for f_idx, f_name in enumerate(feature_names):
+        feature = features[f_name]
+        if len(feature.concepts) < 5:
+            continue
+
+        for concept in feature.concepts:
+            try:
+                c_idx = word2idx[concept]
+            except KeyError:
+                pass
+            else:
+                Y[c_idx, f_idx] = 1
+
+    C_results = {}
+    for C_exp in range(-3, 1):
+        C = 10 ** C_exp
+        reg = LogisticRegression(class_weight="balanced", fit_intercept=False,
+                                 C=C)
+        cls = OneVsRestClassifier(reg, n_jobs=16)
+
+        scorer = metrics.make_scorer(metrics.label_ranking_average_precision_score)
+        C_results[C] = cross_val_score(cls, X, Y, scoring=scorer, cv=5, n_jobs=16)
+
+    # Prefer stronger regularization; sort descending by metric, then by
+    # negative C
+    C_results = sorted([(np.mean(scores), -C) for C, scores in C_results.items()],
+                       reverse=True)
+    print(C_results)
+    best_C = -C_results[0][1]
+    reg = LogisticRegression(class_weight="balanced", fit_intercept=False,
+                             C=best_C)
+    cls = OneVsRestClassifier(reg, n_jobs=16)
+    cls.fit(X, Y)
+
+    preds = cls.predict(X)
+    counts = Y.sum(axis=0)
+    do_ignore = counts == 0
+    ret_metrics = [metrics.f1_score(Y[:, i], preds[:, i]) if not ignore else None
+                   for i, ignore in enumerate(do_ignore)]
+
+    return zip(feature_names, counts, ret_metrics)
+
+
 def analyze_feature(feature, features, word2idx):
     """
     Compute metric for a given feature.
@@ -465,20 +530,9 @@ def main():
     vocab, embeddings = load_embeddings(concepts)
     word2idx = {w: i for i, w in enumerate(vocab)}
 
-    global embeddings_shared, embedding_shape
-    embedding_shape = embeddings.shape
-    embeddings.shape = embeddings.size
-    embeddings_shared = sharedctypes.RawArray('d', embeddings)
-
-    with Pool(processes=16, initargs=(embeddings_shared,)) as pool:
-        feature_data = [
-                pool.apply_async(analyze_feature,
-                                 (feature, features, word2idx))
-                for feature in features]
-        feature_data = [f.get(timeout=None)
-                        for f in tqdm(feature_data, desc="feature metric")]
-
-    feature_data = sorted(filter(None, feature_data), key=lambda f: f[2])
+    feature_data = analyze_features(features, word2idx, embeddings)
+    feature_data = sorted(filter(lambda f: f[2] is not None, feature_data),
+                          key=lambda f: f[2])
 
     fcat_med = {}
     with open(OUTPUT, "w") as out:
