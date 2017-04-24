@@ -140,7 +140,7 @@ def analyze_feature(feature, features, word2idx):
         y[word2idx[concept]] = 1
 
     C_results = defaultdict(list)
-    for C in [1e-9, 1e-8, 1e-7, 1e-6, 1e-5, 1e-4, 1e-3]:
+    for C in [1e-9, 1e-8, 1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1, 1.0]:
         for i in range(len(concepts)):
             X_loo = np.concatenate((X[:i], X[i+1:]))
             y_loo = np.concatenate((y[:i], y[i+1:]))
@@ -153,7 +153,10 @@ def analyze_feature(feature, features, word2idx):
             prediction = reg_loo.score([X[i]], [y[i]])
             C_results[C].append(prediction)
 
-    C_results = sorted([(np.mean(preds), C) for C, preds in C_results.items()])
+    # Descending sort, first by accuracy and then by C (C is inverse strength;
+    # prefer less regularization if equal perf)
+    C_results = sorted([(np.mean(preds), C) for C, preds in C_results.items()],
+                        reverse=True)
     tqdm.write("%30s\t%s" % (feature, C_results))
     best_C = C_results[0][1]
     reg = linear_model.LogisticRegression(class_weight="balanced",
