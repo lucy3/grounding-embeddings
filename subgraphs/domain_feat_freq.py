@@ -46,10 +46,7 @@ def get_feat_freqs(weights=None):
         reader = csv.DictReader(csvfile, delimiter='\t')
         for row in reader:
             if row["Concept"] in vocabulary:
-                if row["Concept"] == 'bluejay':     # weird edge case
-                    c_domains = concept_domains['jaybird']
-                else:
-                    c_domains = concept_domains[row["Concept"]]
+                c_domains = concept_domains[row["Concept"]]
                 for d in c_domains:
                     if d in domains:
                         domain_feats[d].append((row["BR_Label"], row["Prod_Freq"]))
@@ -81,10 +78,7 @@ def get_average(input_file, c_string, value):
     with open(input_file, 'rU') as csvfile:
         reader = csv.DictReader(csvfile, delimiter='\t')
         for row in reader:
-            if row[c_string] == 'bluejay':      # weird edge case
-                c_domains = concept_domains['jaybird']
-            else:
-                c_domains = concept_domains[row[c_string]]
+            c_domains = concept_domains[row[c_string]]
             for d in c_domains:
                 if row[value] == 'n/a':
                     row[value] = 0
@@ -92,9 +86,9 @@ def get_average(input_file, c_string, value):
                 domain_variance[d].append(float(row[value]))
     for d in domain_average:
         domain_average[d] /= len(domain_concepts[d])
-    print("Variance of domains for", input_file)
-    for d in domain_variance:
-        print(d, np.var(domain_variance[d]))
+    # print("Variance of domains for", input_file)
+    # for d in domain_variance:
+    #     print(d, np.var(domain_variance[d]))
     return domain_average
 
 def render_graphs(graph_dir, domain_pearson, domain_wordnet, domains, domain_matrix, fcat_list,

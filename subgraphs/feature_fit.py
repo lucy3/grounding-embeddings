@@ -455,6 +455,22 @@ def produce_unified_domain_graph(vocab, features, feature_data):
     fig_path = os.path.join(GRAPH_DIR, "unified_domain-%s-feature.png" % PEARSON2_NAME)
     fig.savefig(fig_path)
 
+def analyze_domains(labels, ff_scores):
+    concept_domains = get_domains.get_concept_domains()
+    x, y = [], []
+    for i, concept in enumerate(labels):
+        for d in concept_domains[concept]:
+            x.append(d)
+            y.append(ff_scores[i])
+    fig = plt.figure()
+    fig.suptitle("domain graph")
+    ax = fig.add_subplot(111)
+    ax.set_xlabel("domains")
+    ax.set_ylabel("feature fit")
+    ax.scatter(x, y)
+    fig_path = os.path.join(GRAPH_DIR, "feature-%s-domain.png" % PIVOT)
+    fig.savefig(fig_path)
+
 
 def produce_unified_graph(vocab, features, feature_data):
     concept_pearson1 = get_values(PEARSON1, "Concept", "correlation")
@@ -462,7 +478,7 @@ def produce_unified_graph(vocab, features, feature_data):
     assert concept_pearson1.keys() == concept_pearson2.keys()
     assert set(concept_pearson1.keys()) == set(vocab)
 
-    #concepts_of_interest = get_domains.get_domain_concepts()["furniture"]
+    concepts_of_interest = get_domains.get_domain_concepts()[3]
 
     feature_map = {feature: weight for feature, _, weight in feature_data}
 
@@ -488,6 +504,8 @@ def produce_unified_graph(vocab, features, feature_data):
         ys.append(concept_pearson2[concept])
         zs.append(np.median(weights))
         labels.append(concept)
+
+    analyze_domains(labels, zs)
 
     # Resize Z values
     zs = np.array(zs)
@@ -524,9 +542,9 @@ def produce_unified_graph(vocab, features, feature_data):
     ax.set_xlabel(PEARSON1_NAME)
     ax.set_ylabel(PEARSON2_NAME)
     ax.scatter(xs, ys, c=cs, alpha=0.8)
-    # for i, concept in enumerate(labels):
-    #     if concept in concepts_of_interest:
-    #         ax.annotate(concept, (xs[i], ys[i]))
+    for i, concept in enumerate(labels):
+        if concept in concepts_of_interest:
+            ax.annotate(concept, (xs[i], ys[i]))
 
     fig_path = os.path.join(GRAPH_DIR, "unified-%s-%s.png" % (PEARSON1_NAME, PEARSON2_NAME))
     fig.savefig(fig_path)
