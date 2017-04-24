@@ -36,7 +36,7 @@ def main():
     documents = [dictionary.doc2bow(document) for document in documents]
 
     # Learn model.
-    model = models.LdaModel(documents, id2word=dictionary, num_topics=20)
+    model = models.LdaModel(documents, id2word=dictionary, num_topics=15)
     pprint(model.print_topics())
 
     topic_matrix = np.zeros((len(concepts), model.num_topics))
