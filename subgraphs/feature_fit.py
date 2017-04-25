@@ -9,6 +9,7 @@ import sys
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
+import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
 from sklearn import metrics
 from sklearn.base import clone
@@ -421,7 +422,6 @@ def produce_unified_domain_graph(vocab, features, feature_data):
     for i, d in enumerate(labels):
         ax.annotate(d, (xs[i], ys[i]))
 
-    import matplotlib.mlab as mlab
     max_abs_x_var = np.abs(x_vars).max()
     max_abs_y_var = np.abs(y_vars).max()
     x_samp, y_samp = np.meshgrid(np.linspace(min(xs) - max_abs_x_var,
