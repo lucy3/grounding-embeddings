@@ -357,19 +357,22 @@ def produce_concept_graphs(fcat_med):
         fig.savefig(fig_path + '-08-60-concepts-perc')
 
 def produce_unified_domain_graph(vocab, features, feature_data):
-    domain_pearson1 = domain_feat_freq.get_average(PEARSON1, 'Concept',
-        'correlation')
-    domain_pearson2 = domain_feat_freq.get_average(PEARSON2, 'Concept',
-        'correlation')
-    assert domain_pearson1.keys() == domain_pearson2.keys()
+    domain_p1_means, domain_p1_vars = \
+            domain_feat_freq.get_average(PEARSON1, 'Concept',
+                                         'correlation')
+    domain_p2_means, domain_p2_vars = \
+            domain_feat_freq.get_average(PEARSON2, 'Concept',
+                                        'correlation')
+    assert domain_p1_means.keys() == domain_p2_means.keys()
 
     feature_map = {feature: weight for feature, _, weight in feature_data}
 
     domain_concepts = get_domains.get_domain_concepts()
+    # TODO: Arbitrary number
     all_domains = sorted([d for d in domain_concepts.keys()
         if len(domain_concepts[d]) > 7])
 
-    xs, ys, zs, labels = [], [], [], []
+    xs, ys, zs, x_vars, y_vars, labels = [], [], [], [], [], []
     for domain in all_domains:
         weights = [feature_map[feature.name]
                    for feature in features.values()
@@ -379,15 +382,16 @@ def produce_unified_domain_graph(vocab, features, feature_data):
         if not weights:
             continue
 
-        xs.append(domain_pearson1[domain])
-        ys.append(domain_pearson2[domain])
+        xs.append(domain_p1_means[domain])
+        ys.append(domain_p2_means[domain])
+        x_vars.append(domain_p1_vars[domain])
+        y_vars.append(domain_p2_vars[domain])
         zs.append(np.median(weights))
         labels.append(domain)
 
     # Resize Z values
     zs = np.array(zs)
     zs = (zs - zs.min()) / (zs.max() - zs.min())
-
 
     # Render Z axis using colors
     colormap = plt.get_cmap("cool")
@@ -416,6 +420,21 @@ def produce_unified_domain_graph(vocab, features, feature_data):
     ax.scatter(xs, ys, c=cs, alpha=0.8)
     for i, d in enumerate(labels):
         ax.annotate(d, (xs[i], ys[i]))
+
+    import matplotlib.mlab as mlab
+    max_abs_x_var = np.abs(x_vars).max()
+    max_abs_y_var = np.abs(y_vars).max()
+    x_samp, y_samp = np.meshgrid(np.linspace(min(xs) - max_abs_x_var,
+                                             max(xs) + max_abs_x_var,
+                                             1000),
+                                 np.linspace(min(ys) - max_abs_y_var,
+                                             max(ys) + max_abs_y_var,
+                                             1000))
+    for domain_x, domain_y, domain_x_var, domain_y_var in zip(xs, ys, x_vars, y_vars):
+        gauss = mlab.bivariate_normal(x_samp, y_samp,
+                                      mux=domain_x, sigmax=domain_x_var,
+                                      muy=domain_y, sigmay=domain_y_var)
+        plt.contour(x_samp, y_samp, gauss, alpha=0.8)
 
     fig_path = os.path.join(GRAPH_DIR, "unified_domain-%s-%s.png" % (PEARSON1_NAME, PEARSON2_NAME))
     fig.savefig(fig_path)

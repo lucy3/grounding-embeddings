@@ -74,7 +74,7 @@ def get_average(input_file, c_string, value):
     concept_domains = get_domains.get_concept_domains()
     domain_concepts = get_domains.get_domain_concepts()
     domain_average = {d: 0 for d in domain_concepts.keys()}
-    domain_variance = {d: [] for d in domain_concepts.keys()}
+    domain_vals = {d: [] for d in domain_concepts.keys()}
     with open(input_file, 'rU') as csvfile:
         reader = csv.DictReader(csvfile, delimiter='\t')
         for row in reader:
@@ -83,13 +83,14 @@ def get_average(input_file, c_string, value):
                 if row[value] == 'n/a':
                     row[value] = 0
                 domain_average[d] += float(row[value])
-                domain_variance[d].append(float(row[value]))
+                domain_vals[d].append(float(row[value]))
     for d in domain_average:
         domain_average[d] /= len(domain_concepts[d])
     # print("Variance of domains for", input_file)
-    # for d in domain_variance:
-    #     print(d, np.var(domain_variance[d]))
-    return domain_average
+    # for d in domain_vals:
+    #     print(d, np.var(domain_vals[d]))
+    domain_variance = {d: np.var(vals) for d, vals in domain_vals.items()}
+    return domain_average, domain_variance
 
 def render_graphs(graph_dir, domain_pearson, domain_wordnet, domains, domain_matrix, fcat_list,
                   colormap="cool"):
@@ -123,9 +124,9 @@ def render_graphs(graph_dir, domain_pearson, domain_wordnet, domains, domain_mat
         print("\n\n")
 
 def main():
-    domain_pearson = get_average(PEARSON, 'Concept',
+    domain_pearson, _ = get_average(PEARSON, 'Concept',
         'correlation')
-    domain_wordnet = get_average(WORDNET, 'concept',
+    domain_wordnet, _ = get_average(WORDNET, 'concept',
         'dendrogram: 0.8; wordnet: 7')
     domain_matrix, domains, fcat_list = get_feat_freqs()
 
