@@ -24,7 +24,7 @@ import get_domains
 # resulting feature_fit metric represents how well these representations encode
 # the relevant features. Each axis of the resulting graphs also involves the
 # pivot source.
-PIVOT = "mcrae"
+PIVOT = "cc"
 if PIVOT == "mcrae":
     INPUT = "./all/mcrae_vectors.txt"
 elif PIVOT == "wikigiga":
@@ -405,11 +405,6 @@ def produce_unified_domain_graph(vocab, features, feature_data):
     ax.scatter(xs, ys, zs, c=cs)
     plt.show(fig)
 
-    # HACK: trying to make this approximately normal so that I can easily see
-    # the differences between points. shave off high outliers.
-    zs = np.clip(zs, 0, 0.7)
-    zs = zs / zs.max()
-
     # Plot Pearson1 vs. Pearson2
 
     fig = plt.figure()
@@ -533,11 +528,6 @@ def produce_unified_graph(vocab, features, feature_data):
     ax.set_zlabel("feature weight")
     ax.scatter(xs, ys, zs, c=cs)
     plt.show()
-
-    # HACK: trying to make this approximately normal so that I can easily see
-    # the differences between points. shave off high outliers.
-    zs = np.clip(zs, 0, 0.7)
-    zs = zs / zs.max()
 
     # Plot Pearson1 vs. Pearson2
 
