@@ -45,7 +45,7 @@ def create_X(vocabulary):
 
 	return (X, labels)
 
-def get_concept_domains():
+def get_concept_domains(threshold=63): 
 	vocab_file = open(VOCAB, 'r')
 	vocabulary = set()
 	for line in vocab_file:
@@ -55,11 +55,11 @@ def get_concept_domains():
 
 	Z = hierarchy.linkage(X, method='average', metric='cosine')
 
-	sib_clusters = distance_siblings(Z, labels, 40) # 0.87
+	sib_clusters = distance_siblings(Z, labels, threshold)
 	new_clusters = []
 	new_clust = []
 	for cluster in sib_clusters:
-		if len(cluster) < 7:
+		if len(cluster) < 7: 
 			new_clust.extend(cluster)
 		else:
 			new_clusters.append(cluster)
