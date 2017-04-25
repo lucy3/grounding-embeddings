@@ -15,6 +15,7 @@ from sklearn.base import clone
 from sklearn.linear_model import LogisticRegression
 from sklearn.multiclass import OneVsRestClassifier
 from tqdm import tqdm, trange
+import seaborn as sns
 
 import domain_feat_freq
 import get_domains
@@ -23,7 +24,7 @@ import get_domains
 # resulting feature_fit metric represents how well these representations encode
 # the relevant features. Each axis of the resulting graphs also involves the
 # pivot source.
-PIVOT = "cc"
+PIVOT = "mcrae"
 if PIVOT == "mcrae":
     INPUT = "./all/mcrae_vectors.txt"
 elif PIVOT == "wikigiga":
@@ -454,17 +455,25 @@ def produce_unified_domain_graph(vocab, features, feature_data):
 def analyze_domains(labels, ff_scores):
     concept_domains = get_domains.get_concept_domains()
     x, y = [], []
+    domain_feat_fit = {}
     for i, concept in enumerate(labels):
         for d in concept_domains[concept]:
             x.append(d)
             y.append(ff_scores[i])
-    fig = plt.figure()
-    fig.suptitle("domain graph")
-    ax = fig.add_subplot(111)
-    ax.set_xlabel("domains")
-    ax.set_ylabel("feature fit")
-    ax.scatter(x, y)
+            if d in domain_feat_fit:
+                domain_feat_fit[d].append(ff_scores[i])
+            else:
+                domain_feat_fit[d] = [ff_scores[i]]
+    print("average variance: ", np.mean([np.var(domain_feat_fit[d]) for d in domain_feat_fit]))
+    domain_averages = [np.mean(domain_feat_fit[d]) for d in domain_feat_fit]
+    domains_sorted = [x for (y,x) in sorted(zip(domain_averages,domain_feat_fit.keys()))]
+    print("domains sorted by average feature_fit: ", domains_sorted)
+    sns.set_style("whitegrid")
+    sns_plot = sns.swarmplot(x, y)
+    sns_plot = sns.boxplot(x, y, showcaps=False,boxprops={'facecolor':'None'},
+        showfliers=False,whiskerprops={'linewidth':0})
     fig_path = os.path.join(GRAPH_DIR, "feature-%s-domain.png" % PIVOT)
+    fig = sns_plot.get_figure()
     fig.savefig(fig_path)
 
 
@@ -474,7 +483,7 @@ def produce_unified_graph(vocab, features, feature_data):
     assert concept_pearson1.keys() == concept_pearson2.keys()
     assert set(concept_pearson1.keys()) == set(vocab)
 
-    concepts_of_interest = get_domains.get_domain_concepts()[3]
+    #concepts_of_interest = get_domains.get_domain_concepts()[2]
 
     feature_map = {feature: weight for feature, _, weight in feature_data}
 
@@ -538,9 +547,9 @@ def produce_unified_graph(vocab, features, feature_data):
     ax.set_xlabel(PEARSON1_NAME)
     ax.set_ylabel(PEARSON2_NAME)
     ax.scatter(xs, ys, c=cs, alpha=0.8)
-    for i, concept in enumerate(labels):
-        if concept in concepts_of_interest:
-            ax.annotate(concept, (xs[i], ys[i]))
+    # for i, concept in enumerate(labels):
+    #     if concept in concepts_of_interest:
+    #         ax.annotate(concept, (xs[i], ys[i]))
 
     fig_path = os.path.join(GRAPH_DIR, "unified-%s-%s.png" % (PEARSON1_NAME, PEARSON2_NAME))
     fig.savefig(fig_path)
