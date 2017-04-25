@@ -15,7 +15,7 @@ def distance_siblings(Z, labels, threshold):
 	"""
 	Returns list of lists that are sibling clusters.
 	"""
-	membership = hierarchy.fcluster(Z, threshold, criterion='maxclust')
+	membership = hierarchy.fcluster(Z, threshold, criterion='maxclust') # maxclust
 	sib_clusters = [[] for x in range(max(membership) + 1)]
 	for i in range(len(membership)):
 		cluster_id = membership[i]
@@ -45,7 +45,7 @@ def create_X(vocabulary):
 
 	return (X, labels)
 
-def get_concept_domains(threshold=63): 
+def get_concept_domains(threshold=62): # threshold 62
 	vocab_file = open(VOCAB, 'r')
 	vocabulary = set()
 	for line in vocab_file:
@@ -59,7 +59,7 @@ def get_concept_domains(threshold=63):
 	new_clusters = []
 	new_clust = []
 	for cluster in sib_clusters:
-		if len(cluster) < 7: 
+		if len(cluster) < 3: # originally 7
 			new_clust.extend(cluster)
 		else:
 			new_clusters.append(cluster)

@@ -19,6 +19,7 @@ import seaborn as sns
 
 import domain_feat_freq
 import get_domains
+import random
 
 # The "pivot" source is where we draw concept representations from. The
 # resulting feature_fit metric represents how well these representations encode
@@ -460,9 +461,9 @@ def analyze_domains(labels, ff_scores):
             else:
                 domain_feat_fit[d] = [ff_scores[i]]
     print("average variance: ", np.mean([np.var(domain_feat_fit[d]) for d in domain_feat_fit]))
-    domain_averages = [np.mean(domain_feat_fit[d]) for d in domain_feat_fit]
-    domains_sorted = [x for (y,x) in sorted(zip(domain_averages,domain_feat_fit.keys()))]
-    print("domains sorted by average feature_fit: ", domains_sorted)
+    # domain_averages = [np.mean(domain_feat_fit[d]) for d in domain_feat_fit]
+    # domains_sorted = [x for (y,x) in sorted(zip(domain_averages,domain_feat_fit.keys()))]
+    # print("domains sorted by average feature_fit: ", domains_sorted)
     sns.set_style("whitegrid")
     sns_plot = sns.swarmplot(x, y)
     sns_plot = sns.boxplot(x, y, showcaps=False,boxprops={'facecolor':'None'},
@@ -480,6 +481,13 @@ def produce_unified_graph(vocab, features, feature_data):
 
     #concepts_of_interest = get_domains.get_domain_concepts()[2]
 
+    domain_concepts = get_domains.get_domain_concepts()
+    domain_choices = [16, 17, 18, 26, 30] #random.sample(domain_concepts.keys(), 5)
+    domain_color_choices = ["Salmon", "SpringGreen", "Tan", "LightBlue", "MediumPurple"]
+    interesting_domains = dict(zip(domain_choices,
+        domain_color_choices))
+    print("Color lengend", interesting_domains)
+
     feature_map = {feature: weight for feature, _, weight in feature_data}
 
     print("feature\tpvar\tpmean\twvar\twmean")
@@ -491,7 +499,7 @@ def produce_unified_graph(vocab, features, feature_data):
             print("%s\t%f\t%f\t%f\t%f" % (feature.name, np.var(pearsons),
                 np.mean(pearsons), np.var(wordnets), np.mean(wordnets)))
 
-    xs, ys, zs, labels = [], [], [], []
+    xs, ys, zs, labels, colors = [], [], [], [], []
     for concept in vocab:
         weights = [feature_map[feature.name]
                    for feature in features.values()
@@ -499,7 +507,11 @@ def produce_unified_graph(vocab, features, feature_data):
                         and feature.name in feature_map]
         if not weights:
             continue
-
+        colors.append("LightGray")
+        for d in interesting_domains:
+            if concept in domain_concepts[d] and np.median(weights) < 0.2:
+                colors.pop()
+                colors.append(interesting_domains[d])
         xs.append(concept_pearson1[concept])
         ys.append(concept_pearson2[concept])
         zs.append(np.median(weights))
@@ -536,10 +548,10 @@ def produce_unified_graph(vocab, features, feature_data):
     ax = fig.add_subplot(111)
     ax.set_xlabel(PEARSON1_NAME)
     ax.set_ylabel(PEARSON2_NAME)
-    ax.scatter(xs, ys, c=cs, alpha=0.8)
-    # for i, concept in enumerate(labels):
-    #     if concept in concepts_of_interest:
-    #         ax.annotate(concept, (xs[i], ys[i]))
+    ax.scatter(xs, ys, color=colors, alpha=0.8) # c=cs
+    for i, concept in enumerate(labels):
+        if zs[i] < 0.2:
+            ax.annotate(concept, (xs[i], ys[i]))
 
     fig_path = os.path.join(GRAPH_DIR, "unified-%s-%s.png" % (PEARSON1_NAME, PEARSON2_NAME))
     fig.savefig(fig_path)
