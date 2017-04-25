@@ -1,6 +1,5 @@
 import codecs
 from collections import defaultdict, namedtuple
-from multiprocessing import Process, Pool, sharedctypes
 from pathlib import Path
 from pprint import pprint
 import csv
@@ -8,16 +7,13 @@ import os.path
 import sys
 
 import numpy as np
-from numpy import ctypeslib
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from sklearn import metrics
 from sklearn.base import clone
 from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import cross_val_score, KFold, StratifiedKFold
 from sklearn.multiclass import OneVsRestClassifier
-from sklearn.preprocessing import MultiLabelBinarizer
 from tqdm import tqdm, trange
 
 import domain_feat_freq
