@@ -357,6 +357,28 @@ def produce_concept_graphs(fcat_med):
         fig_path = os.path.join(GRAPH_DIR, fcat)
         fig.savefig(fig_path + '-08-60-concepts-perc')
 
+
+def plot_gaussian_contour(xs, ys, vars_xs, vars_ys):
+    max_abs_x_var = np.abs(vars_xs).max()
+    max_abs_y_var = np.abs(vars_xs).max()
+    x_samp, y_samp = np.meshgrid(np.linspace(min(xs) - max_abs_x_var,
+                                             max(xs) + max_abs_x_var,
+                                             1000),
+                                 np.linspace(min(ys) - max_abs_y_var,
+                                             max(ys) + max_abs_y_var,
+                                             1000))
+
+    Cs = []
+    for x, y, x_var, y_var in zip(xs, ys, vars_xs, vars_ys):
+        gauss = mlab.bivariate_normal(x_samp, y_samp,
+                                      mux=x, sigmax=x_var,
+                                      muy=y, sigmay=y_var)
+        C = plt.contour(x_samp, y_samp, gauss, alpha=0.8)
+        Cs.append(C)
+
+    return Cs
+
+
 def produce_unified_domain_graph(vocab, features, feature_data):
     domain_p1_means, domain_p1_vars = \
             domain_feat_freq.get_average(PEARSON1, 'Concept',
@@ -373,7 +395,8 @@ def produce_unified_domain_graph(vocab, features, feature_data):
     all_domains = sorted([d for d in domain_concepts.keys()
         if len(domain_concepts[d]) > 7])
 
-    xs, ys, zs, x_vars, y_vars, labels = [], [], [], [], [], []
+    xs, ys, zs, labels = [], [], [], []
+    x_vars, y_vars, z_vars = [], [], []
     for domain in all_domains:
         weights = [feature_map[feature.name]
                    for feature in features.values()
@@ -385,9 +408,10 @@ def produce_unified_domain_graph(vocab, features, feature_data):
 
         xs.append(domain_p1_means[domain])
         ys.append(domain_p2_means[domain])
+        zs.append(np.median(weights))
         x_vars.append(domain_p1_vars[domain])
         y_vars.append(domain_p2_vars[domain])
-        zs.append(np.median(weights))
+        z_vars.append(np.var(weights))
         labels.append(domain)
 
     # Resize Z values
@@ -422,19 +446,7 @@ def produce_unified_domain_graph(vocab, features, feature_data):
     for i, d in enumerate(labels):
         ax.annotate(d, (xs[i], ys[i]))
 
-    max_abs_x_var = np.abs(x_vars).max()
-    max_abs_y_var = np.abs(y_vars).max()
-    x_samp, y_samp = np.meshgrid(np.linspace(min(xs) - max_abs_x_var,
-                                             max(xs) + max_abs_x_var,
-                                             1000),
-                                 np.linspace(min(ys) - max_abs_y_var,
-                                             max(ys) + max_abs_y_var,
-                                             1000))
-    for domain_x, domain_y, domain_x_var, domain_y_var in zip(xs, ys, x_vars, y_vars):
-        gauss = mlab.bivariate_normal(x_samp, y_samp,
-                                      mux=domain_x, sigmax=domain_x_var,
-                                      muy=domain_y, sigmay=domain_y_var)
-        plt.contour(x_samp, y_samp, gauss, alpha=0.8)
+    plot_gaussian_contour(xs, ys, x_vars, y_vars)
 
     fig_path = os.path.join(GRAPH_DIR, "unified_domain-%s-%s.png" % (PEARSON1_NAME, PEARSON2_NAME))
     fig.savefig(fig_path)
@@ -450,6 +462,8 @@ def produce_unified_domain_graph(vocab, features, feature_data):
     for i, d in enumerate(labels):
         ax.annotate(d, (xs[i], zs[i]))
 
+    plot_gaussian_contour(xs, zs, x_vars, z_vars)
+
     fig_path = os.path.join(GRAPH_DIR, "unified_domain-%s-feature.png" % PEARSON1_NAME)
     fig.savefig(fig_path)
 
@@ -464,8 +478,11 @@ def produce_unified_domain_graph(vocab, features, feature_data):
     for i, d in enumerate(labels):
         ax.annotate(d, (ys[i], zs[i]))
 
+    plot_gaussian_contour(ys, zs, y_vars, z_vars)
+
     fig_path = os.path.join(GRAPH_DIR, "unified_domain-%s-feature.png" % PEARSON2_NAME)
     fig.savefig(fig_path)
+
 
 def analyze_domains(labels, ff_scores):
     concept_domains = get_domains.get_concept_domains()
