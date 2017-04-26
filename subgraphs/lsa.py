@@ -15,7 +15,7 @@ elif SOURCE == "cslb":
     FEATURES = "../cslb/feature_matrix.dat"
 VOCAB = "./all/vocab_%s.txt" %  SOURCE
 OUT = "./all/%s_vectors.txt" % SOURCE
-OUT_DISTANCES = "./all/sim_%s.txt" % SOURCE
+OUT_DISTANCES = "./all/sim_%s_%s.txt" % (SOURCE, SOURCE)
 
 
 def load_concepts_features_mcrae():

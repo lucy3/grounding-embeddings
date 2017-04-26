@@ -25,7 +25,7 @@ import get_domains
 
 VOCAB_SOURCE = "cslb"
 SOURCE1 = "wordnetres"
-SOURCE2 = "wikigiga"
+SOURCE2 = "cc"
 
 VOCAB = "./all/vocab_%s.txt" % VOCAB_SOURCE
 INPUT_FILE1 = "./all/sim_%s_%s.txt" % (VOCAB_SOURCE, SOURCE1)
