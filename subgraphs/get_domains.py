@@ -6,8 +6,9 @@ from nltk.corpus import wordnet as wn
 from scipy.cluster import hierarchy
 import numpy as np
 
-VOCAB = "./all/vocab.txt"
-INPUT = "./all/mcrae_vectors.txt" # McRae
+SOURCE = "mcrae"
+VOCAB = "./all/vocab_%s.txt" % SOURCE
+INPUT = "./all/%s_vectors.txt" % SOURCE
 # DOMAINS = '../wndomains/wordnet-domains-3.2-wordnet-3.0.txt'
 DOMAINS = './all/lda.txt'
 
