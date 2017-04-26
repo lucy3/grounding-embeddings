@@ -178,7 +178,6 @@ def analyze_features(features, word2idx, embeddings):
     # Sample a few random features.
     # For the sampled features, we'll do LOOCV to evaluate each possible C.
     nonzero_features = Y.sum(axis=0).nonzero()[0]
-    nonzero_features = np.random.choice(nonzero_features, replace=False, size=5)
 
     C_results = defaultdict(list)
     with futures.ProcessPoolExecutor(10) as executor:
