@@ -23,10 +23,10 @@ from sklearn import linear_model
 from nltk.corpus import wordnet as wn
 import get_domains
 
-SOURCE1 = "mcrae"
-SOURCE2 = "wordnetres"
+SOURCE1 = "cslb"
+SOURCE2 = "wikigiga"
 
-VOCAB = "./vocab_%s.txt" % SOURCE1
+VOCAB = "./all/vocab_%s.txt" % SOURCE1
 INPUT_FILE1 = "./all/sim_%s.txt" % SOURCE1
 INPUT_FILE2 = "./all/sim_%s.txt" % SOURCE2
 OUTPUT_FILE = "./all/pearson_corr/corr_%s_%s.txt" % (SOURCE1, SOURCE2)
@@ -163,38 +163,39 @@ def main():
     neighbor_dist2 = get_neighbor_distance(INPUT_FILE2, vocabulary)
     pearson_co = defaultdict(float)
     for concept in vocabulary:
-            pearson_co[concept] = pearsonr(neighbor_dist1[concept], neighbor_dist2[concept])[0]
+        pearson_co[concept] = pearsonr(neighbor_dist1[concept], neighbor_dist2[concept])[0]
     sorted_pearson = sorted(pearson_co.items(), key=operator.itemgetter(1))
-    concept_stats, average_in_domain, domains = \
-            get_mcrae_freq(pearson_co)
 
-    # Attempt a baseline regression.
-    r2, _ = do_regression(sorted_pearson, concept_stats)
-    print("baseline regression: %5f" % r2)
+    # concept_stats, average_in_domain, domains = \
+    #         get_mcrae_freq(pearson_co)
 
-    augmented_concept_stats, augmented_labels = \
-            augment_concept_stats(concept_stats, domains)
-    r2, weights = do_regression(sorted_pearson, augmented_concept_stats)
-    print("augmented regression: %5f" % r2)
+    # # Attempt a baseline regression.
+    # r2, _ = do_regression(sorted_pearson, concept_stats)
+    # print("baseline regression: %5f" % r2)
 
-    augmented_weights = weights[-len(augmented_labels):]
-    augmented_weights = sorted(zip(augmented_weights, augmented_labels))
-    from pprint import pprint
-    pprint(list(augmented_weights))
+    # augmented_concept_stats, augmented_labels = \
+    #         augment_concept_stats(concept_stats, domains)
+    # r2, weights = do_regression(sorted_pearson, augmented_concept_stats)
+    # print("augmented regression: %5f" % r2)
 
-    # Print average correlations among domains
-    for tax_feature in sorted(average_in_domain.keys()):
-        print(tax_feature + "\t" + str(average_in_domain[tax_feature]))
+    # augmented_weights = weights[-len(augmented_labels):]
+    # augmented_weights = sorted(zip(augmented_weights, augmented_labels))
+    # from pprint import pprint
+    # pprint(list(augmented_weights))
+
+    # # Print average correlations among domains
+    # for tax_feature in sorted(average_in_domain.keys()):
+    #     print(tax_feature + "\t" + str(average_in_domain[tax_feature]))
 
     # write everything to an output file
     output = open(OUTPUT_FILE, 'w')
-    headers = ["Concept", "correlation", "log(BNC_freq)", "num_feats_tax",
-               "familiarity", "tot_num_feats", "polysemy"]
-    headers += augmented_labels
+    headers = ["Concept", "correlation"]#, "log(BNC_freq)", "num_feats_tax",
+               # "familiarity", "tot_num_feats", "polysemy"]
+    # headers += augmented_labels
     output.write("%s\n" % "\t".join(headers))
     for pair in sorted_pearson:
-        row_stats = "\t".join(str(stat) for stat in augmented_concept_stats[pair[0]])
-        output.write(pair[0] + '\t' + str(pair[1]) + '\t' + row_stats + '\n')
+        # row_stats = "\t".join(str(stat) for stat in augmented_concept_stats[pair[0]])
+        output.write(pair[0] + '\t' + str(pair[1]) + "\n")# + '\t' + row_stats + '\n')
     output.close()
 
 if __name__ == '__main__':
