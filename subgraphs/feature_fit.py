@@ -41,7 +41,7 @@ elif PIVOT == "cc":
 SOURCE = "mcrae"
 FEATURES = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 VOCAB = "./all/vocab_%s.txt" % SOURCE
-EMBEDDINGS = "./all/embeddings.%s.npy" % PIVOT
+EMBEDDINGS = "./all/embeddings.%s.%s.npy" % (SOURCE, PIVOT)
 
 OUTPUT = "./all/feature_fit/%s_%s.txt" % (SOURCE, PIVOT)
 PEARSON1_NAME = "%s_%s" % (SOURCE,
