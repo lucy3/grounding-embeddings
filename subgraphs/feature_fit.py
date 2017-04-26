@@ -199,44 +199,44 @@ def analyze_features(features, word2idx, embeddings):
         for c_idx in concepts:
             Y[c_idx, f_idx] = 1
 
-    # Sample a few random features.
-    # For the sampled features, we'll do LOOCV to evaluate each possible C.
-    nonzero_features = Y.sum(axis=0).nonzero()[0]
+    # # Sample a few random features.
+    # # For the sampled features, we'll do LOOCV to evaluate each possible C.
+    # nonzero_features = Y.sum(axis=0).nonzero()[0]
 
-    C_results = defaultdict(list)
-    with futures.ProcessPoolExecutor(10) as executor:
-        C_futures = []
+    # C_results = defaultdict(list)
+    # with futures.ProcessPoolExecutor(10) as executor:
+    #     C_futures = []
 
-        C_choices = [10 ** exp for exp in range(-3, 1)]
-        C_choices += [5 * (10 ** exp) for exp in range(-3, 1)]
-        for C in C_choices:
-            reg = LogisticRegression(class_weight="balanced", fit_intercept=False,
-                                     C=C)
+    #     C_choices = [10 ** exp for exp in range(-3, 1)]
+    #     C_choices += [5 * (10 ** exp) for exp in range(-3, 1)]
+    #     for C in C_choices:
+    #         reg = LogisticRegression(class_weight="balanced", fit_intercept=False,
+    #                                  C=C)
 
-            for f_idx in nonzero_features:
-                C_futures.append(executor.submit(loocv_feature,
-                                                 C, X, Y[:, f_idx], f_idx, reg))
+    #         for f_idx in nonzero_features:
+    #             C_futures.append(executor.submit(loocv_feature,
+    #                                              C, X, Y[:, f_idx], f_idx, reg))
 
-        for future in tqdm(futures.as_completed(C_futures), total=len(C_futures),
-                           file=sys.stdout):
-            C, scores = future.result()
-            C_results[C].extend(scores)
+    #     for future in tqdm(futures.as_completed(C_futures), total=len(C_futures),
+    #                        file=sys.stdout):
+    #         C, scores = future.result()
+    #         C_results[C].extend(scores)
 
-    # Prefer stronger regularization; sort descending by metric, then by
-    # negative C
-    C_results = sorted([(np.mean(scores), -C) for C, scores in C_results.items()],
-                       reverse=True)
-    print(C_results)
-    best_C = -C_results[0][1]
+    # # Prefer stronger regularization; sort descending by metric, then by
+    # # negative C
+    # C_results = sorted([(np.mean(scores), -C) for C, scores in C_results.items()],
+    #                    reverse=True)
+    # print(C_results)
+    # best_C = -C_results[0][1]
 
-    # # DEV: cached C values for the corpora we know
-    # # TODO: try things lower than 1e-3; might be necessary for GloVe sources
-    # if PIVOT == "mcrae":
-    #     best_C = 1.0
-    # elif PIVOT == "wikigiga":
-    #     best_C = 0.001
-    # elif PIVOT == "cc":
-    #     best_C = 0.001
+    # DEV: cached C values for the corpora we know
+    # TODO: try things lower than 1e-3; might be necessary for GloVe sources
+    if PIVOT == "mcrae":
+        best_C = 1.0
+    elif PIVOT == "wikigiga":
+        best_C = 0.001
+    elif PIVOT == "cc":
+        best_C = 0.001
 
     reg = LogisticRegression(class_weight="balanced", fit_intercept=False,
                              C=best_C)
@@ -567,7 +567,8 @@ def do_cluster(vocab, features, feature_data):
     #     for k in range(10, 101):
     #         Z_futures.append(executor.submit(try_cluster, k, X))
 
-    # for Z_future in tqdm(futures.as_completed(Z_futures), total=len(Z_futures), file=sys.stdout):
+    # for Z_future in tqdm(futures.as_completed(Z_futures),
+    #                      total=len(Z_futures), file=sys.stdout):
     #     k, Z_k = Z_future.result()
     #     sib_clusters = distance_siblings(Z_k, labels, k)
     #     domains = {d: concepts for d, concepts in enumerate(sib_clusters) if concepts}
@@ -577,25 +578,23 @@ def do_cluster(vocab, features, feature_data):
     #     #     domains[domain_idx].append(label)
 
     #     # Compute average variance of metric within domain.
+    #     n_singletons = len([d for d, cs in domains.items() if len(cs) == 1])
     #     domains = {d: np.var([concept_vals[c] for c in cs if c in concept_vals])
     #                for d, cs in domains.items()}
     #     d_metric = np.mean(list(domains.values()))
-    #     # TODO: Prefer clusterings with fewer singletons
-    #     print("%03i\t%5f" % (k, d_metric))
-
-    # # TODO: select using the validation above
+    #     print("%03i\t%5f\t%i" % (k, d_metric, n_singletons))
 
     Z = linkage(X, method="average", metric=cluster_metric_fn)
-    sib_clusters = distance_siblings(Z, labels, 62)
+    sib_clusters = distance_siblings(Z, labels, 40)
     results = []
-    for sib_cluster in sib_clusters:
+    for i, sib_cluster in enumerate(sib_clusters):
         if not sib_cluster: next
         weights = [concept_vals[c] for c in sib_cluster if c in concept_vals]
-        results.append((np.mean(weights), np.var(weights), sib_cluster))
+        results.append((i, np.mean(weights), np.var(weights), sib_cluster))
 
-    results = sorted(results, key=lambda x: x[1])
-    for mean, var, items in results:
-        print("%5f\t%5f\t%s" % (mean, var, " ".join(items)))
+    results = sorted(results, key=lambda x: x[2])
+    for idx, mean, var, items in results:
+        print("%i\t%5f\t%5f\t%s" % (idx, mean, var, " ".join(items)))
 
     return {i: concepts for i, concepts in enumerate(sib_clusters)
             if len(concepts) > 0}
