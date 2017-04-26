@@ -337,18 +337,17 @@ def plot_gaussian_contour(xs, ys, vars_xs, vars_ys):
     return Cs
 
 
-def produce_unified_domain_graph(vocab, features, feature_data):
+def produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=None):
     domain_p1_means, domain_p1_vars = \
             domain_feat_freq.get_average(PEARSON1, 'Concept',
-                                         'correlation')
+                                         'correlation', domain_concepts=domain_concepts)
     domain_p2_means, domain_p2_vars = \
             domain_feat_freq.get_average(PEARSON2, 'Concept',
-                                        'correlation')
+                                        'correlation', domain_concepts=domain_concepts)
     assert domain_p1_means.keys() == domain_p2_means.keys()
 
     feature_map = {feature: weight for feature, _, weight in feature_data}
 
-    domain_concepts = get_domains.get_domain_concepts()
     # TODO: Arbitrary number
     all_domains = sorted([d for d in domain_concepts.keys()
         if len(domain_concepts[d]) > 7])
@@ -622,7 +621,8 @@ def do_cluster(vocab, features, feature_data):
     for mean, var, items in results:
         print("%5f\t%5f\t%s" % (mean, var, " ".join(items)))
 
-    return {i: concepts for i, concepts in enumerate(sib_clusters)}
+    return {i: concepts for i, concepts in enumerate(sib_clusters)
+            if len(concepts) > 0}
 
 
 def main():
@@ -671,7 +671,7 @@ def main():
     domain_concepts = do_cluster(vocab, features, feature_data)
 
     produce_unified_graph(vocab, features, feature_data, domain_concepts=domain_concepts)
-    # produce_unified_domain_graph(vocab, features, feature_data)
+    produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=domain_concepts)
 
     #produce_domain_graphs(fcat_med) # this calls functions in domain_feat_freq.py
     #produce_concept_graphs(fcat_med) # this calls functions in here

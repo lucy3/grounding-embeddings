@@ -70,9 +70,11 @@ def get_feat_freqs(weights=None):
 
     return(domain_matrix, domains, fcat_list)
 
-def get_average(input_file, c_string, value):
-    concept_domains = get_domains.get_concept_domains()
-    domain_concepts = get_domains.get_domain_concepts()
+def get_average(input_file, c_string, value, domain_concepts=None):
+    if domain_concepts is None:
+        domain_concepts = get_domains.get_domain_concepts()
+    concept_domains = {c: [d] for d, cs in domain_concepts.items() for c in cs}
+
     domain_average = {d: 0 for d in domain_concepts.keys()}
     domain_vals = {d: [] for d in domain_concepts.keys()}
     with open(input_file, 'rU') as csvfile:
