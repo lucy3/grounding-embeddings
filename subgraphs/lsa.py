@@ -7,13 +7,18 @@ import numpy as np
 from scipy.spatial import distance
 
 
-FEATURES = "../mcrae/CONCS_FEATS_concstats_brm.txt"
+SOURCE = "cslb"
+
+if SOURCE == "mcrae":
+    FEATURES = "../mcrae/CONCS_FEATS_concstats_brm.txt"
+elif SOURCE == "cslb":
+    FEATURES = "../cslb/feature_matrix.dat"
 VOCAB = "./all/vocab.txt"
-OUT = "./all/mcrae_vectors.txt"
-OUT_DISTANCES = "./all/sim_mcrae.txt"
+OUT = "./all/%s_vectors.txt" % SOURCE
+OUT_DISTANCES = "./all/sim_%s.txt" % SOURCE
 
 
-def load_concepts_features():
+def load_concepts_features_mcrae():
     concepts = defaultdict(list)
 
     with open(VOCAB, "r") as vocab_f:
@@ -28,6 +33,24 @@ def load_concepts_features():
             prod_freq = int(fields[6])
             if concept_name in vocab:
                 concepts[concept_name].extend([feature_name])# * prod_freq)
+
+    return concepts
+
+
+def load_concepts_features_cslb():
+    concepts = defaultdict(list)
+    features = []
+
+    # TODO filter with vocab
+
+    with open(FEATURES, "r") as features_f:
+        features = next(features_f).strip().split("\t")[1:]
+        for line in features_f:
+            fields = line.strip().split("\t")
+            concept = fields[0]
+            for feature, count in zip(features, fields[1:]):
+                if float(count) > 0:
+                    concepts[concept].append(feature)
 
     return concepts
 
@@ -47,7 +70,10 @@ def report_closest(concepts, matrix, sample_concepts, n=50):
 
 
 def main():
-    concepts_features = load_concepts_features()
+    if SOURCE == "mcrae":
+        concepts_features = load_concepts_features_mcrae()
+    elif SOURCE == "cslb":
+        concepts_features = load_concepts_features_cslb()
     concepts = list(sorted(concepts_features.keys()))
 
     # Prep for LSA.
