@@ -12,6 +12,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
+from scipy.spatial import distance
 from sklearn import metrics
 from sklearn.base import clone
 from sklearn.linear_model import LogisticRegression
@@ -441,8 +442,9 @@ def produce_unified_domain_graph(vocab, features, feature_data):
     fig.savefig(fig_path)
 
 
-def analyze_domains(labels, ff_scores):
-    concept_domains = get_domains.get_concept_domains()
+def analyze_domains(labels, ff_scores, concept_domains=None):
+    if concept_domains is None:
+        concept_domains = get_domains.get_concept_domains()
     x, y = [], []
     domain_feat_fit = {}
     for i, concept in enumerate(labels):
@@ -466,7 +468,7 @@ def analyze_domains(labels, ff_scores):
     fig.savefig(fig_path)
 
 
-def produce_unified_graph(vocab, features, feature_data):
+def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
     concept_pearson1 = get_values(PEARSON1, "Concept", "correlation")
     concept_pearson2 = get_values(PEARSON2, 'Concept', 'correlation')
     assert concept_pearson1.keys() == concept_pearson2.keys()
@@ -474,7 +476,8 @@ def produce_unified_graph(vocab, features, feature_data):
 
     #concepts_of_interest = get_domains.get_domain_concepts()[2]
 
-    domain_concepts = get_domains.get_domain_concepts()
+    if domain_concepts is None:
+        domain_concepts = get_domains.get_domain_concepts()
     domain_choices = [16, 17, 18, 26, 30] #random.sample(domain_concepts.keys(), 5)
     domain_color_choices = ["Salmon", "SpringGreen", "Tan", "LightBlue", "MediumPurple"]
     interesting_domains = dict(zip(domain_choices,
@@ -510,7 +513,8 @@ def produce_unified_graph(vocab, features, feature_data):
         zs.append(np.median(weights))
         labels.append(concept)
 
-    analyze_domains(labels, zs)
+    concept_domains = {c: [d] for d, cs in domain_concepts.items() for c in cs}
+    analyze_domains(labels, zs, concept_domains=concept_domains)
 
     # Resize Z values
     zs = np.array(zs)
@@ -577,6 +581,50 @@ def produce_unified_graph(vocab, features, feature_data):
     plt.close()
 
 
+def do_cluster(vocab, features, feature_data):
+    from get_domains import create_X, distance_siblings
+    from scipy.cluster.hierarchy import linkage
+    X, labels = create_X(vocab)
+    assert set(labels) == set(vocab)
+
+    # Add a new column to X: avg feature_fit metric
+    feature_dict = {k: val for k, _, val in feature_data}
+    concept_vals = defaultdict(list)
+    for f_name, feature in features.items():
+        for concept in feature.concepts:
+            if concept in vocab and f_name in feature_dict:
+                concept_vals[concept].append(feature_dict[f_name])
+    concept_vals = {c: np.mean(vals) for c, vals in concept_vals.items()}
+
+    mean_metric = [concept_vals.get(label, np.nan) for label in labels]
+    X = np.append(np.array([mean_metric]).T, X, axis=1)
+
+    def metric_fn(x, y):
+        x_weight, y_weight = x[0], y[0]
+        x_emb, y_emb = x[1:], y[1:]
+
+        emb_dist = distance.cosine(x_emb, y_emb)
+        if np.isnan(x_weight) or np.isnan(y_weight):
+            return emb_dist
+        else:
+            weight_dist = (x_weight - y_weight) ** 2
+            return emb_dist + 100 * weight_dist
+
+    Z = linkage(X, method="average", metric=metric_fn)
+    sib_clusters = distance_siblings(Z, labels, 62)
+    results = []
+    for sib_cluster in sib_clusters:
+        if not sib_cluster: next
+        weights = [concept_vals[c] for c in sib_cluster if c in concept_vals]
+        results.append((np.mean(weights), np.var(weights), sib_cluster))
+
+    results = sorted(results, key=lambda x: x[1])
+    for mean, var, items in results:
+        print("%5f\t%5f\t%s" % (mean, var, " ".join(items)))
+
+    return {i: concepts for i, concepts in enumerate(sib_clusters)}
+
+
 def main():
     features, concepts = load_features_concepts()
     vocab, embeddings = load_embeddings(concepts)
@@ -620,8 +668,10 @@ def main():
                           % (label_group, n_concepts, n, pcts[1], pcts[0], mean, pcts[2]))
                 fcat_med[label_group] = pcts[1]
 
-    produce_unified_graph(vocab, features, feature_data)
-    produce_unified_domain_graph(vocab, features, feature_data)
+    domain_concepts = do_cluster(vocab, features, feature_data)
+
+    produce_unified_graph(vocab, features, feature_data, domain_concepts=domain_concepts)
+    # produce_unified_domain_graph(vocab, features, feature_data)
 
     #produce_domain_graphs(fcat_med) # this calls functions in domain_feat_freq.py
     #produce_concept_graphs(fcat_med) # this calls functions in here
