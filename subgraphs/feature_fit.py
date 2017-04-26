@@ -580,6 +580,23 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
     plt.close()
 
 
+def cluster_metric_fn(x, y):
+    x_weight, y_weight = x[0], y[0]
+    x_emb, y_emb = x[1:], y[1:]
+
+    emb_dist = distance.cosine(x_emb, y_emb)
+    if np.isnan(x_weight) or np.isnan(y_weight):
+        return emb_dist
+    else:
+        weight_dist = (x_weight - y_weight) ** 2
+        return emb_dist + 100 * weight_dist
+
+
+def try_cluster(k, X):
+    from scipy.cluster.hierarchy import linkage
+    return k, linkage(X, method="average", metric=cluster_metric_fn)
+
+
 def do_cluster(vocab, features, feature_data):
     from get_domains import create_X, distance_siblings
     from scipy.cluster.hierarchy import linkage
@@ -598,18 +615,30 @@ def do_cluster(vocab, features, feature_data):
     mean_metric = [concept_vals.get(label, np.nan) for label in labels]
     X = np.append(np.array([mean_metric]).T, X, axis=1)
 
-    def metric_fn(x, y):
-        x_weight, y_weight = x[0], y[0]
-        x_emb, y_emb = x[1:], y[1:]
+    # with futures.ProcessPoolExecutor(20) as executor:
+    #     Z_futures = []
+    #     for k in range(10, 101):
+    #         Z_futures.append(executor.submit(try_cluster, k, X))
 
-        emb_dist = distance.cosine(x_emb, y_emb)
-        if np.isnan(x_weight) or np.isnan(y_weight):
-            return emb_dist
-        else:
-            weight_dist = (x_weight - y_weight) ** 2
-            return emb_dist + 100 * weight_dist
+    # for Z_future in tqdm(futures.as_completed(Z_futures), total=len(Z_futures), file=sys.stdout):
+    #     k, Z_k = Z_future.result()
+    #     sib_clusters = distance_siblings(Z_k, labels, k)
+    #     domains = {d: concepts for d, concepts in enumerate(sib_clusters) if concepts}
 
-    Z = linkage(X, method="average", metric=metric_fn)
+    #     # domains = defaultdict(list)
+    #     # for label, domain_idx in zip(labels, domain_maps):
+    #     #     domains[domain_idx].append(label)
+
+    #     # Compute average variance of metric within domain.
+    #     domains = {d: np.var([concept_vals[c] for c in cs if c in concept_vals])
+    #                for d, cs in domains.items()}
+    #     d_metric = np.mean(list(domains.values()))
+    #     # TODO: Prefer clusterings with fewer singletons
+    #     print("%03i\t%5f" % (k, d_metric))
+
+    # # TODO: select using the validation above
+
+    Z = linkage(X, method="average", metric=cluster_metric_fn)
     sib_clusters = distance_siblings(Z, labels, 62)
     results = []
     for sib_cluster in sib_clusters:
