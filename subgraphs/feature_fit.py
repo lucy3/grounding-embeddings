@@ -115,34 +115,31 @@ def load_features_concepts():
     return features, concepts
 
 
-def loocv_feature(C, X, Y, f_idx, clf, n_concept_samples=5):
+def loocv_feature(C, X, y, f_idx, clf, n_concept_samples=5):
     """
     Evaluate LOOCV regression on a sampled feature subset for a given
     classifier instance.
     """
     scores = []
 
-    # For each feature, find all concepts which *do not* have this feature
-    negative_candidates = (1 - Y[:, f_idx]).nonzero()[0]
-
     # Find all concepts which (1) do or (2) do not have this feature
-    c_idxs = Y[:, f_idx].nonzero()[0]
-    c_not_idxs = (1 - Y[:, f_idx]).nonzero()[0]
+    c_idxs = y.nonzero()[0]
+    c_not_idxs = (1 - y).nonzero()[0]
 
     n_f_concepts = min(len(c_idxs), n_concept_samples)
     f_concepts = np.random.choice(c_idxs, replace=False, size=n_f_concepts)
     for c_idx in f_concepts:
         X_loo = np.concatenate([X[:c_idx], X[c_idx+1:]])
-        Y_loo = np.concatenate([Y[:c_idx], Y[c_idx+1:]])
+        y_loo = np.concatenate([y[:c_idx], y[c_idx+1:]])
 
         clf_loo = clone(clf)
-        clf_loo.fit(X_loo, Y_loo)
+        clf_loo.fit(X_loo, y_loo)
 
         # Draw negative samples for a ranking loss
         test = np.concatenate([X[c_idx:c_idx+1], X[c_not_idxs]])
-        pred_prob = clf_loo.predict_proba(X)[:, f_idx]
+        pred_prob = clf_loo.predict_proba(X)[:, 1]
 
-        score = np.log(pred_prob[0]) - np.mean(np.log(pred_prob[1:]))
+        score = np.log(pred_prob[0]) + np.mean(np.log(1 - pred_prob[1:]))
         scores.append(score)
 
     return C, scores
@@ -181,21 +178,21 @@ def analyze_features(features, word2idx, embeddings):
     # Sample a few random features.
     # For the sampled features, we'll do LOOCV to evaluate each possible C.
     nonzero_features = Y.sum(axis=0).nonzero()[0]
+    nonzero_features = np.random.choice(nonzero_features, replace=False, size=5)
 
     C_results = defaultdict(list)
     with futures.ProcessPoolExecutor(10) as executor:
         C_futures = []
 
-        C_choices = [10 ** exp for exp in range(-5, 1)]
-        C_choices += [5 * (10 ** exp) for exp in range(-5, 1)]
+        C_choices = [10 ** exp for exp in range(-3, 1)]
+        C_choices += [5 * (10 ** exp) for exp in range(-3, 1)]
         for C in C_choices:
             reg = LogisticRegression(class_weight="balanced", fit_intercept=False,
                                      C=C)
-            clf = OneVsRestClassifier(reg, n_jobs=2)
 
-            for f_idx in nonzero_features[np.random.choice(len(nonzero_features), replace=False, size=10)]:
+            for f_idx in nonzero_features:
                 C_futures.append(executor.submit(loocv_feature,
-                                                 C, X, Y, f_idx, clf))
+                                                 C, X, Y[:, f_idx], f_idx, reg))
 
         for future in tqdm(futures.as_completed(C_futures), total=len(C_futures),
                            file=sys.stdout):
