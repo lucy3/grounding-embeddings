@@ -1,5 +1,6 @@
 import codecs
 from collections import defaultdict, namedtuple
+from concurrent import futures
 from pathlib import Path
 from pprint import pprint
 import csv
@@ -113,6 +114,39 @@ def load_features_concepts():
     return features, concepts
 
 
+def loocv_feature(C, X, Y, f_idx, clf, n_concept_samples=5):
+    """
+    Evaluate LOOCV regression on a sampled feature subset for a given
+    classifier instance.
+    """
+    scores = []
+
+    # For each feature, find all concepts which *do not* have this feature
+    negative_candidates = (1 - Y[:, f_idx]).nonzero()[0]
+
+    # Find all concepts which (1) do or (2) do not have this feature
+    c_idxs = Y[:, f_idx].nonzero()[0]
+    c_not_idxs = (1 - Y[:, f_idx]).nonzero()[0]
+
+    n_f_concepts = min(len(c_idxs), n_concept_samples)
+    f_concepts = np.random.choice(c_idxs, replace=False, size=n_f_concepts)
+    for c_idx in f_concepts:
+        X_loo = np.concatenate([X[:c_idx], X[c_idx+1:]])
+        Y_loo = np.concatenate([Y[:c_idx], Y[c_idx+1:]])
+
+        clf_loo = clone(clf)
+        clf_loo.fit(X_loo, Y_loo)
+
+        # Draw negative samples for a ranking loss
+        test = np.concatenate([X[c_idx:c_idx+1], X[c_not_idxs]])
+        pred_prob = clf_loo.predict_proba(X)[:, f_idx]
+
+        score = np.log(pred_prob[0]) - np.mean(np.log(pred_prob[1:]))
+        scores.append(score)
+
+    return C, scores
+
+
 def analyze_features(features, word2idx, embeddings):
     """
     Compute metrics for all features.
@@ -143,57 +177,45 @@ def analyze_features(features, word2idx, embeddings):
         for c_idx in concepts:
             Y[c_idx, f_idx] = 1
 
-    # # Sample a few random features.
-    # # For the sampled features, we'll do LOOCV to evaluate each possible C.
-    # nonzero_features = Y.sum(axis=0).nonzero()[0]
-    # samp_feats = np.random.choice(nonzero_features, replace=False, size=5)
+    # Sample a few random features.
+    # For the sampled features, we'll do LOOCV to evaluate each possible C.
+    nonzero_features = Y.sum(axis=0).nonzero()[0]
 
-    # # For each feature, retrieve concepts to sample as negative candidates in a
-    # # ranking loss.
-    # negsamp_concepts = [(1 - Y[:, f_idx]).nonzero()[0] for f_idx in samp_feats]
+    C_results = defaultdict(list)
+    with futures.ProcessPoolExecutor(10) as executor:
+        C_futures = []
 
-    # C_results = defaultdict(list)
-    # for C_exp in trange(-3, 1, desc="C", file=sys.stdout):
-    #     C = 10 ** C_exp
-    #     reg = LogisticRegression(class_weight="balanced", fit_intercept=False,
-    #                              C=C)
-    #     cls = OneVsRestClassifier(reg, n_jobs=8)
+        C_choices = [10 ** exp for exp in range(-5, 1)]
+        C_choices += [5 * (10 ** exp) for exp in range(-5, 1)]
+        for C in C_choices:
+            reg = LogisticRegression(class_weight="balanced", fit_intercept=False,
+                                     C=C)
+            clf = OneVsRestClassifier(reg, n_jobs=2)
 
-    #     for f_idx, negsamps in tqdm(zip(samp_feats, negsamp_concepts),
-    #                                 file=sys.stdout, desc="loocv outer"):
-    #         c_idxs = Y[:, f_idx].nonzero()[0]
-    #         for c_idx in tqdm(np.random.choice(c_idxs, replace=False, size=5),
-    #                           file=sys.stdout, desc="loocv inner"):
-    #             X_loo = np.concatenate([X[:c_idx], X[c_idx+1:]])
-    #             Y_loo = np.concatenate([Y[:c_idx], Y[c_idx+1:]])
+            for f_idx in nonzero_features[np.random.choice(len(nonzero_features), replace=False, size=10)]:
+                C_futures.append(executor.submit(loocv_feature,
+                                                 C, X, Y, f_idx, clf))
 
-    #             cls_loo = clone(cls)
-    #             cls_loo.fit(X_loo, Y_loo)
+        for future in tqdm(futures.as_completed(C_futures), total=len(C_futures),
+                           file=sys.stdout):
+            C, scores = future.result()
+            C_results[C].extend(scores)
 
-    #             # Draw negative samples for a ranking loss
-    #             negsamps = np.random.choice(negsamps, replace=False, size=5)
-    #             test = np.concatenate([X[c_idx:c_idx+1], X[negsamps]])
-    #             pred_prob = cls_loo.predict_proba(X)[:, f_idx]
-    #             score = pred_prob[0] - np.mean(pred_prob[1:])
-    #             C_results[C].append(score)
+    # Prefer stronger regularization; sort descending by metric, then by
+    # negative C
+    C_results = sorted([(np.mean(scores), -C) for C, scores in C_results.items()],
+                       reverse=True)
+    print(C_results)
+    best_C = -C_results[0][1]
 
-    #     print(C, C_results[C])
-
-    # # Prefer stronger regularization; sort descending by metric, then by
-    # # negative C
-    # C_results = sorted([(np.mean(scores), -C) for C, scores in C_results.items()],
-    #                    reverse=True)
-    # print(C_results)
-    # best_C = -C_results[0][1]
-
-    # DEV: cached C values for the corpora we know
-    # TODO: try things lower than 1e-3; might be necessary for GloVe sources
-    if PIVOT == "mcrae":
-        best_C = 1.0
-    elif PIVOT == "wikigiga":
-        best_C = 0.001
-    elif PIVOT == "cc":
-        best_C = 0.001
+    # # DEV: cached C values for the corpora we know
+    # # TODO: try things lower than 1e-3; might be necessary for GloVe sources
+    # if PIVOT == "mcrae":
+    #     best_C = 1.0
+    # elif PIVOT == "wikigiga":
+    #     best_C = 0.001
+    # elif PIVOT == "cc":
+    #     best_C = 0.001
 
     reg = LogisticRegression(class_weight="balanced", fit_intercept=False,
                              C=best_C)
