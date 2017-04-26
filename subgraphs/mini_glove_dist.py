@@ -15,13 +15,17 @@ vocab.txt is a list of concepts from McRae without underscores
 from collections import defaultdict
 from scipy import spatial
 
-GLOVE_INPUT = "../glove/glove.6B.300d.txt" # Wikipedia 2014 + Gigaword 5
-# GLOVE_INPUT = "../glove/glove.840B.300d.txt" # Common Crawl
+SOURCE1 = "cslb"
+SOURCE2 = 'wikigiga'
+if SOURCE2 == 'wikigiga':
+	GLOVE_INPUT = "../glove/glove.6B.300d.txt" # Wikipedia 2014 + Gigaword 5
+else:
+	GLOVE_INPUT = "../glove/glove.840B.300d.txt" # Common Crawl
 # GLOVE_INPUT = "../glove/glove.twitter.27B.200d.txt" # Twitter
 # VOCAB = "./fruitveg/vocab_fruitveg.txt"
 # OUTPUT = "./fruitveg/fruitveg_sim_glove.txt"
-VOCAB = "./all/vocab.txt"
-OUTPUT = "./all/sim_glove.txt"
+VOCAB = "./all/vocab_%s.txt" % SOURCE1
+OUTPUT = "./all/sim_%s_%s.txt" % (SOURCE1, SOURCE2)
 # OUTPUT = "./all/sim_glove_cc.txt"
 # OUTPUT = "./all/sim_glove_tw.txt"
 

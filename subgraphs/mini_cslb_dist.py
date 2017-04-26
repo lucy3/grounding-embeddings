@@ -15,7 +15,8 @@ def create_vocab_file(vocab):
 			for line in glove_file:
 				g_vocab.add(line.split()[0])
 		vocab -= (vocab - (g_vocab & vocab))
-	print(len(vocab)) # should be 5 less
+	vocab.remove("porsche")
+	print(len(vocab)) # should be 6 less
 
 	vocab_file = open(VOCAB, 'w')
 	for word in vocab:
@@ -30,20 +31,24 @@ def process_feature_concepts():
 	ours = []
 	f_per_c = []
 	with open(FEATURE_CONCEPTS, 'r') as file:
-		features = file.readline().split()[1:]
-		c_per_f = np.zeros(len(features))
+		feature_names = file.readline().split()[1:]
+		c_per_f = np.zeros(len(feature_names))
 		for line in file:
 			l = line.split()
 			concept = l[0]
 			features = np.array([float(x) for x in l[1:]])
 			if concept in vocabulary:
 				ours.append(features)
+			if concept == "accordion":
+				print [feature_names[i] for i in range(len(features)) if features[i] > 0]
 			f_per_c.append(np.count_nonzero(features))
 			for i in range(len(features)):
 				if features[i] != 0:
 					c_per_f[i] += 1
 			# if "_" not in concept:
 			# 	vocab.add(concept)
+	print(f_per_c)
+	print(c_per_f)
 	print("# features per concept:")
 	print("mean\tmedian\tmin\tmax")
 	print("%f %f %f %f" % (np.mean(f_per_c), np.median(f_per_c), np.min(f_per_c),
@@ -56,6 +61,8 @@ def process_feature_concepts():
 	print(sum(i >= 5 for i in c_per_f))
 	print("num features total")
 	print(len(c_per_f))
+	print("num concepts")
+	print(len(f_per_c))
 
 	f_per_c = []
 	ours = np.array(ours)
@@ -78,6 +85,8 @@ def process_feature_concepts():
 	print(sum(i >= 5 for i in c_per_f))
 	print("num features total")
 	print(len(c_per_f))
+	print("num concepts")
+	print(len(f_per_c))
 
 
 	#create_vocab_file(vocab)

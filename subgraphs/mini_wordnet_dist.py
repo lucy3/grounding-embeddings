@@ -4,9 +4,10 @@ Playing around with path distance in WordNet
 from nltk.corpus import wordnet as wn
 from nltk.corpus import wordnet_ic
 
-VOCAB = "./all/vocab.txt"
+SOURCE = "cslb"
+VOCAB = "./all/vocab_%s.txt" % SOURCE
 
-OUTPUT = "./all/sim_wordnetres.txt"
+OUTPUT = "./all/sim_%s_wordnetres.txt" % SOURCE
 
 def main():
     brown_ic = wordnet_ic.ic('ic-brown.dat')
@@ -20,6 +21,14 @@ def main():
     for concept in vocabulary:
         if concept == 'bluejay':
             senses = wn.synsets('jaybird')
+        elif concept == 'rollerskate':
+            senses = wn.synsets('roller_skate')
+        elif concept == 'wetsuit':
+            senses = wn.synsets('wet_suit')
+        elif concept == 'yoyo':
+            senses = wn.synsets('yo-yo')
+        elif concept == 'deckchair':
+            senses = wn.synsets('deck_chair')
         else:
             senses = wn.synsets(concept)
         word_to_synset[concept] = senses[0]

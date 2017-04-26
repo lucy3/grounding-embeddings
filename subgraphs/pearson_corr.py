@@ -23,13 +23,14 @@ from sklearn import linear_model
 from nltk.corpus import wordnet as wn
 import get_domains
 
-SOURCE1 = "cslb"
+VOCAB_SOURCE = "cslb"
+SOURCE1 = "wordnetres"
 SOURCE2 = "wikigiga"
 
-VOCAB = "./all/vocab_%s.txt" % SOURCE1
-INPUT_FILE1 = "./all/sim_%s.txt" % SOURCE1
-INPUT_FILE2 = "./all/sim_%s.txt" % SOURCE2
-OUTPUT_FILE = "./all/pearson_corr/corr_%s_%s.txt" % (SOURCE1, SOURCE2)
+VOCAB = "./all/vocab_%s.txt" % VOCAB_SOURCE
+INPUT_FILE1 = "./all/sim_%s_%s.txt" % (VOCAB_SOURCE, SOURCE1)
+INPUT_FILE2 = "./all/sim_%s_%s.txt" % (VOCAB_SOURCE, SOURCE2)
+OUTPUT_FILE = "./all/pearson_corr/%s/corr_%s_%s.txt" % (VOCAB_SOURCE, SOURCE1, SOURCE2)
 CONC_BRM = "../mcrae/CONCS_brm.txt"
 CONCSTATS = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 
@@ -152,7 +153,6 @@ def augment_concept_stats(concept_stats, concept_domains):
 
 
 def main():
-    # get vocabulary
     vocab_file = open(VOCAB, 'r')
     vocabulary = []
     for line in vocab_file:
