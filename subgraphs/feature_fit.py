@@ -31,17 +31,21 @@ import random
 PIVOT = "cc"
 if PIVOT == "mcrae":
     INPUT = "./all/mcrae_vectors.txt"
+elif PIVOT == "cslb":
+    INPUT = "./all/cslb_vectors.txt"
 elif PIVOT == "wikigiga":
     INPUT = "../glove/glove.6B.300d.txt"
 elif PIVOT == "cc":
     INPUT = "../glove/glove.840B.300d.txt"
 
+SOURCE = "mcrae"
 FEATURES = "../mcrae/CONCS_FEATS_concstats_brm.txt"
-VOCAB = "./all/vocab.txt"
-EMBEDDINGS = "./all/embeddings.%s.npy" % PIVOT
+VOCAB = "./all/vocab_%s.txt" % SOURCE
+EMBEDDINGS = "./all/embeddings.%s.%s.npy" % (SOURCE, PIVOT)
 
-OUTPUT = "./all/feature_fit/mcrae_%s.txt" % PIVOT
-PEARSON1_NAME = "mcrae_%s" % PIVOT if PIVOT != "mcrae" else "mcrae_wikigiga"
+OUTPUT = "./all/feature_fit/%s_%s.txt" % (SOURCE, PIVOT)
+PEARSON1_NAME = "%s_%s" % (SOURCE,
+                           PIVOT if PIVOT != SOURCE else "%s_wikigiga" % SOURCE)
 PEARSON1 = './all/pearson_corr/corr_%s.txt' % PEARSON1_NAME
 PEARSON2_NAME = "%s_wordnetres" % PIVOT
 PEARSON2 = './all/pearson_corr/corr_%s.txt' % PEARSON2_NAME

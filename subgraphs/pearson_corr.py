@@ -23,12 +23,13 @@ from sklearn import linear_model
 from nltk.corpus import wordnet as wn
 import get_domains
 
-VOCAB = "./all/vocab.txt"
-INPUT_FILE1 = "./all/sim_mcrae.txt"
-# INPUT_FILE1 = "./all/sim_glove_cc.txt"
-# INPUT_FILE1 = "./all/sim_glove.txt"
-INPUT_FILE2 = "./all/sim_wordnetres.txt"
-OUTPUT_FILE = "./all/pearson_corr/corr_mcrae_wordnetres.txt"
+SOURCE1 = "mcrae"
+SOURCE2 = "wordnetres"
+
+VOCAB = "./vocab_%s.txt" % SOURCE1
+INPUT_FILE1 = "./all/sim_%s.txt" % SOURCE1
+INPUT_FILE2 = "./all/sim_%s.txt" % SOURCE2
+OUTPUT_FILE = "./all/pearson_corr/corr_%s_%s.txt" % (SOURCE1, SOURCE2)
 CONC_BRM = "../mcrae/CONCS_brm.txt"
 CONCSTATS = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 
