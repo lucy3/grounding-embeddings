@@ -59,34 +59,27 @@ Feature = namedtuple("Feature", ["name", "concepts", "wb_label", "wb_maj",
 
 
 def load_embeddings(concepts):
+    assert Path(VOCAB).is_file()
+    with open(VOCAB, "r") as vocab_f:
+        vocab = [line.strip() for line in vocab_f]
+
     if Path(EMBEDDINGS).is_file():
         embeddings = np.load(EMBEDDINGS)
-
-        assert Path(VOCAB).is_file()
-        with open(VOCAB, "r") as vocab_f:
-            vocab = [line.strip() for line in vocab_f]
         assert len(embeddings) == len(vocab), "%i %i" % (len(embeddings), len(vocab))
     else:
-        # TODO Lucy says to stop writing the vocab!!!
-        vocab, embeddings = [], []
+        embeddings = {}
         with open(INPUT, "r") as glove_f:
             for line in glove_f:
                 fields = line.strip().split()
                 word = fields[0]
-                if word in concepts:
+                if word in concepts and word in vocab:
                     vec = [float(x) for x in fields[1:]]
-                    embeddings.append(vec)
-                    vocab.append(word)
+                    embeddings[word] = vec
 
-        voc_embeddings = sorted(zip(vocab, embeddings), key=lambda x: x[0])
-        vocab = [x[0] for x in voc_embeddings]
-        embeddings = [x[1] for x in voc_embeddings]
+        embeddings = [embeddings[x] for x in vocab]
 
         embeddings = np.array(embeddings)
         np.save(EMBEDDINGS, embeddings)
-
-        with open(VOCAB, "w") as vocab_f:
-            vocab_f.write("\n".join(vocab))
 
     return vocab, embeddings
 
