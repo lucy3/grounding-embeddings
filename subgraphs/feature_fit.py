@@ -20,6 +20,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.multiclass import OneVsRestClassifier
 from tqdm import tqdm, trange
 import seaborn as sns
+from scipy import stats
 
 import domain_feat_freq
 import get_domains
@@ -493,6 +494,13 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
     ax.set_zlabel("feature weight")
     ax.scatter(xs, ys, zs, c=cs)
     plt.show()
+
+    slope, intercept, r_value, p_value, std_err = stats.linregress(xs, ys)
+    print("Pearson vs Pearson")
+    print("slope", slope, "r squared", r_value)
+    slope, intercept, r_value, p_value, std_err = stats.linregress(xs, zs)
+    print("Pearson vs Feature Fit")
+    print("slope", slope, "r squared", r_value)
 
     # Plot Pearson1 vs. Pearson2
 
