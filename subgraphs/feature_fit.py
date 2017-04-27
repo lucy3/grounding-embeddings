@@ -483,9 +483,9 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
     ax.set_xlabel(PEARSON1_NAME)
     ax.set_ylabel(PEARSON2_NAME)
     ax.scatter(xs, ys, color=cs, alpha=0.8) # c=cs
-    for i, concept in enumerate(labels):
-        if zs[i] < 0.2:
-            ax.annotate(concept, (xs[i], ys[i]))
+    # for i, concept in enumerate(labels):
+    #     if zs[i] < 0.2:
+    #         ax.annotate(concept, (xs[i], ys[i]))
 
     fig_path = os.path.join(GRAPH_DIR, "unified-%s-%s.png" % (PEARSON1_NAME, PEARSON2_NAME))
     fig.savefig(fig_path)
