@@ -414,13 +414,13 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
 
     #concepts_of_interest = get_domains.get_domain_concepts()[2]
 
-    if domain_concepts is None:
-        domain_concepts = get_domains.get_domain_concepts()
-    domain_choices = [16, 17, 18, 26, 30] #random.sample(domain_concepts.keys(), 5)
-    domain_color_choices = ["Salmon", "SpringGreen", "Tan", "LightBlue", "MediumPurple"]
-    interesting_domains = dict(zip(domain_choices,
-        domain_color_choices))
-    print("Color lengend", interesting_domains)
+    # if domain_concepts is None:
+    #     domain_concepts = get_domains.get_domain_concepts()
+    # domain_choices = [16, 17, 18, 26, 30] #random.sample(domain_concepts.keys(), 5)
+    # domain_color_choices = ["Salmon", "SpringGreen", "Tan", "LightBlue", "MediumPurple"]
+    # interesting_domains = dict(zip(domain_choices,
+    #     domain_color_choices))
+    # print("Color lengend", interesting_domains)
 
     feature_map = {feature: weight for feature, _, weight in feature_data}
 
@@ -441,11 +441,10 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
                         and feature.name in feature_map]
         if not weights:
             continue
-        colors.append("LightGray")
-        for d in interesting_domains:
-            if concept in domain_concepts[d] and np.median(weights) < 0.2:
-                colors.pop()
-                colors.append(interesting_domains[d])
+        # for d in interesting_domains:
+        #     if concept in domain_concepts[d] and np.median(weights) < 0.2:
+        #         colors.pop()
+        #         colors.append(interesting_domains[d])
         xs.append(concept_pearson1[concept])
         ys.append(concept_pearson2[concept])
         zs.append(np.median(weights))
@@ -483,7 +482,7 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
     ax = fig.add_subplot(111)
     ax.set_xlabel(PEARSON1_NAME)
     ax.set_ylabel(PEARSON2_NAME)
-    ax.scatter(xs, ys, color=colors, alpha=0.8) # c=cs
+    ax.scatter(xs, ys, color=cs, alpha=0.8) # c=cs
     for i, concept in enumerate(labels):
         if zs[i] < 0.2:
             ax.annotate(concept, (xs[i], ys[i]))
