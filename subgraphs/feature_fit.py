@@ -1,5 +1,5 @@
 import codecs
-from collections import defaultdict, namedtuple
+from collections import defaultdict, namedtuple, Counter
 from concurrent import futures
 from pathlib import Path
 from pprint import pprint
@@ -67,6 +67,7 @@ def load_embeddings(concepts):
             vocab = [line.strip() for line in vocab_f]
         assert len(embeddings) == len(vocab), "%i %i" % (len(embeddings), len(vocab))
     else:
+        # TODO Lucy says to stop writing the vocab!!!
         vocab, embeddings = [], []
         with open(INPUT, "r") as glove_f:
             for line in glove_f:
@@ -115,8 +116,6 @@ def load_features_concepts():
                 concepts.add(concept_name)
 
         lengths = [len(f.concepts) for f in features.values()]
-        from collections import Counter
-        from pprint import pprint
         print("# of features with particular number of associated concepts:")
         pprint(Counter(lengths))
 
