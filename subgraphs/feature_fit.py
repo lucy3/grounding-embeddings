@@ -55,6 +55,16 @@ PEARSON2_NAME = "wordnetres_%s" % PIVOT
 PEARSON2 = './all/pearson_corr/%s/corr_%s.txt' % (SOURCE, PEARSON2_NAME)
 GRAPH_DIR = './all/feature_fit/%s/%s' % (SOURCE, PIVOT)
 
+if PIVOT == "wikigiga":
+	PIVOT_FORMAL = "Wikipedia+Gigaword"
+elif PIVOT == "cc":
+	PIVOT_FORMAL = "Common Crawl"
+
+if SOURCE == "cslb":
+	SOURCE_FORMAL = "CSLB"
+elif SOURCE == "mcrae":
+	SOURCE_FORMAL = "McRae"
+
 Feature = namedtuple("Feature", ["name", "concepts", "wb_label", "wb_maj",
                                  "wb_min", "br_label", "disting"])
 
@@ -335,13 +345,13 @@ def produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=
     # Plot Pearson1 vs. Pearson2
 
     fig = plt.figure()
-    fig.suptitle("unified graph")
+    #fig.suptitle("unified graph")
     ax = fig.add_subplot(111)
-    ax.set_xlabel(PEARSON1_NAME)
-    ax.set_ylabel(PEARSON2_NAME)
+    ax.set_xlabel("Pearson corr between " + SOURCE_FORMAL + " and " + PIVOT_FORMAL)
+    ax.set_ylabel("Pearson corr between WordNet and " + PIVOT_FORMAL)
     ax.scatter(xs, ys, c=cs, alpha=0.8)
     for i, d in enumerate(labels):
-        ax.annotate(d, (xs[i], ys[i]), fontsize=15)
+        ax.annotate(d, (xs[i], ys[i]), fontsize=20)
 
     plot_gaussian_contour(xs, ys, x_vars, y_vars)
 
@@ -399,9 +409,11 @@ def analyze_domains(labels, ff_scores, concept_domains=None):
     # domains_sorted = [x for (y,x) in sorted(zip(domain_averages,domain_feat_fit.keys()))]
     # print("domains sorted by average feature_fit: ", domains_sorted)
     sns.set_style("whitegrid")
-    sns_plot = sns.swarmplot(x, y)
+    fig, ax = plt.subplots(figsize=(12, 4.8))
+    sns_plot = sns.swarmplot(x, y, ax=ax)
     sns_plot = sns.boxplot(x, y, showcaps=False,boxprops={'facecolor':'None'},
-        showfliers=False,whiskerprops={'linewidth':0})
+        showfliers=False,whiskerprops={'linewidth':0}, ax=ax)
+    sns_plot.set(xlabel='domain ID', ylabel='feature fit score')
     fig_path = os.path.join(GRAPH_DIR, "feature-%s-domain.svg" % PIVOT)
     fig = sns_plot.get_figure()
     fig.savefig(fig_path)
@@ -487,8 +499,8 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
     fig = plt.figure()
     #fig.suptitle("unified graph")
     ax = fig.add_subplot(111)
-    ax.set_xlabel("Pearson corr between " + SOURCE + " and " + PIVOT)
-    ax.set_ylabel("Pearson corr between WordNet and " + PIVOT)
+    ax.set_xlabel("Pearson corr between " + SOURCE_FORMAL + " and " + PIVOT_FORMAL)
+    ax.set_ylabel("Pearson corr between WordNet and " + PIVOT_FORMAL)
     # plot points of interest in front of other points
     for _m, _c, _x, _y in zip(markers, colors, xs, ys):
     	if _m == 'o':
