@@ -24,13 +24,13 @@ from nltk.corpus import wordnet as wn
 import get_domains
 
 VOCAB_SOURCE = "cslb"
-SOURCE1 = "wordnetres"
-SOURCE2 = "cc"
+SOURCE = "wordnetres"
+PIVOT = "cc"
 
 VOCAB = "./all/vocab_%s.txt" % VOCAB_SOURCE
-INPUT_FILE1 = "./all/sim_%s_%s.txt" % (VOCAB_SOURCE, SOURCE1)
-INPUT_FILE2 = "./all/sim_%s_%s.txt" % (VOCAB_SOURCE, SOURCE2)
-OUTPUT_FILE = "./all/pearson_corr/%s/corr_%s_%s.txt" % (VOCAB_SOURCE, SOURCE1, SOURCE2)
+INPUT_FILE1 = "./all/sim_%s_%s.txt" % (VOCAB_SOURCE, SOURCE)
+INPUT_FILE2 = "./all/sim_%s_%s.txt" % (VOCAB_SOURCE, PIVOT)
+OUTPUT_FILE = "./all/pearson_corr/%s/corr_%s_%s.txt" % (VOCAB_SOURCE, SOURCE, PIVOT)
 CONC_BRM = "../mcrae/CONCS_brm.txt"
 CONCSTATS = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 

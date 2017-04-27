@@ -49,9 +49,9 @@ EMBEDDINGS = "./all/embeddings.%s.%s.npy" % (SOURCE, PIVOT)
 OUTPUT = "./all/feature_fit/%s_%s.txt" % (SOURCE, PIVOT)
 PEARSON1_NAME = "%s_%s" % (SOURCE,
                            PIVOT if PIVOT != SOURCE else "%s_wikigiga" % SOURCE)
-PEARSON1 = './all/pearson_corr/corr_%s.txt' % PEARSON1_NAME
+PEARSON1 = './all/pearson_corr/%s/corr_%s.txt' % (SOURCE, PEARSON1_NAME)
 PEARSON2_NAME = "%s_wordnetres" % PIVOT
-PEARSON2 = './all/pearson_corr/corr_%s.txt' % PEARSON2_NAME
+PEARSON2 = './all/pearson_corr/%s/corr_%s.txt' % (SOURCE, PEARSON2_NAME)
 GRAPH_DIR = './all/feature_fit/%s' % PIVOT
 
 Feature = namedtuple("Feature", ["name", "concepts", "wb_label", "wb_maj",
