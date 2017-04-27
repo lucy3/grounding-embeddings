@@ -3,6 +3,7 @@ from collections import defaultdict, namedtuple, Counter
 from concurrent import futures
 from pathlib import Path
 from pprint import pprint
+import random
 import csv
 import os.path
 import sys
@@ -625,6 +626,34 @@ def do_cluster(vocab, features, feature_data):
             if len(concepts) > 0}
 
 
+def produce_feature_fit_bars(feature_groups, features_per_category=4):
+    """
+    Produce feature_fit bar charts with random samples from feature categories.
+    """
+
+    # HACK: fixed sort
+    group_names = ["visual perceptual", "encyclopaedic", "other perceptual", "functional", "taxonomic"]
+
+    fig, axes = plt.subplots(ncols=len(feature_groups), sharey=True, figsize=(15, 5))
+    for group_name, ax in zip(group_names, axes):
+        group = sorted(feature_groups[group_name], key=lambda x: x[1])
+
+        # Randomly sample low and high features
+        low = random.sample(group[:int(len(group)/4)], int(features_per_category/2))
+        high = random.sample(group[int(len(group)/4*3):], int(features_per_category/2))
+        features_i = low + high
+
+        data = sorted([(name, score) for name, score, _ in features_i],
+                      key=lambda x: x[1])
+        bp = sns.barplot(x=[name for name, _ in data], y=[score for _, score in data], ax=ax)
+        bp.set_xticklabels([name for name, _ in data], rotation=45)
+        ax.set_title(group_name)
+
+    plt.tight_layout()
+    fig_path = os.path.join(GRAPH_DIR, "feature_fit.png")
+    fig.savefig(fig_path)
+
+
 def main():
     features, concepts = load_features_concepts()
     vocab, embeddings = load_embeddings(concepts)
@@ -648,17 +677,17 @@ def main():
             for grouping_fn_name, grouping_fn in grouping_fns.items():
                 grouping_fn = grouping_fns[grouping_fn_name]
                 group = grouping_fn(name)
-                groups[grouping_fn_name][group].append((score, n_entries))
+                groups[grouping_fn_name][group].append((name, score, n_entries))
 
         for grouping_fn_name, groups_result in sorted(groups.items()):
             out.write("\n\nGrouping by %s:\n" % grouping_fn_name)
             summary = {}
-            for name, data in groups_result.items():
-                data = np.array(data)
-                scores = data[:, 0]
-                n_entries = data[:, 1]
-                summary[name] = (len(data), np.mean(scores), np.percentile(scores, (0, 50, 100)),
-                                np.mean(n_entries))
+            for group_name, group_data in groups_result.items():
+                scores = np.array([group_data_i[1] for group_data_i in group_data])
+                n_entries = np.array([group_data_i[2] for group_data_i in group_data])
+                summary[group_name] = (len(group_data), np.mean(scores),
+                                       np.percentile(scores, (0, 50, 100)),
+                                       np.mean(n_entries))
             summary = sorted(summary.items(), key=lambda x: x[1][2][1])
 
             out.write("%25s\tmu\tn\tmed\t\tmin\tmean\tmax\n" % "group")
@@ -668,8 +697,9 @@ def main():
                           % (label_group, n_concepts, n, pcts[1], pcts[0], mean, pcts[2]))
                 fcat_med[label_group] = pcts[1]
 
-    domain_concepts = do_cluster(vocab, features, feature_data)
+    produce_feature_fit_bars(groups["br_label"])
 
+    domain_concepts = do_cluster(vocab, features, feature_data)
     produce_unified_graph(vocab, features, feature_data, domain_concepts=domain_concepts)
     produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=domain_concepts)
 
