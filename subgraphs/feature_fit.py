@@ -29,7 +29,7 @@ import random
 # resulting feature_fit metric represents how well these representations encode
 # the relevant features. Each axis of the resulting graphs also involves the
 # pivot source.
-PIVOT = "cc"
+PIVOT = "wikigiga"
 if PIVOT == "mcrae":
     INPUT = "./all/mcrae_vectors.txt"
 elif PIVOT == "cslb":
@@ -39,7 +39,7 @@ elif PIVOT == "wikigiga":
 elif PIVOT == "cc":
     INPUT = "../glove/glove.840B.300d.txt"
 
-SOURCE = "mcrae"
+SOURCE = "cslb"
 if SOURCE == "mcrae":
     FEATURES = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 else:
@@ -319,9 +319,9 @@ def produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=
     colormap = plt.get_cmap("cool")
     cs = colormap(zs)
 
-    # Jitter points
-    xs += np.random.randn(len(xs)) * 0.01
-    ys += np.random.randn(len(ys)) * 0.01
+    # # Jitter points
+    # xs += np.random.randn(len(xs)) * 0.01
+    # ys += np.random.randn(len(ys)) * 0.01
 
     from mpl_toolkits.mplot3d import Axes3D
     fig = plt.figure()
@@ -341,7 +341,7 @@ def produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=
     ax.set_ylabel(PEARSON2_NAME)
     ax.scatter(xs, ys, c=cs, alpha=0.8)
     for i, d in enumerate(labels):
-        ax.annotate(d, (xs[i], ys[i]))
+        ax.annotate(d, (xs[i], ys[i]), fontsize=15)
 
     plot_gaussian_contour(xs, ys, x_vars, y_vars)
 
@@ -415,13 +415,15 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
 
     #concepts_of_interest = get_domains.get_domain_concepts()[2]
 
-    # if domain_concepts is None:
-    #     domain_concepts = get_domains.get_domain_concepts()
-    # domain_choices = [16, 17, 18, 26, 30] #random.sample(domain_concepts.keys(), 5)
-    # domain_color_choices = ["Salmon", "SpringGreen", "Tan", "LightBlue", "MediumPurple"]
-    # interesting_domains = dict(zip(domain_choices,
-    #     domain_color_choices))
-    # print("Color lengend", interesting_domains)
+    if domain_concepts is None:
+        domain_concepts = get_domains.get_domain_concepts()
+    domain_choices = [2, 12] #random.sample(domain_concepts.keys(), 5)
+    domain_color_choices = ["DarkCyan", "Sienna"]#, "LightBlue", "SpringGreen", "MediumPurple"]
+    interesting_domains = dict(zip(domain_choices,
+        domain_color_choices))
+    marker_choices = ["s", "d"]
+    interesting_domains_markers = dict(zip(domain_choices, marker_choices))
+    print("Color lengend", interesting_domains)
 
     feature_map = {feature: weight for feature, _, weight in feature_data}
 
@@ -434,7 +436,7 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
             print("%s\t%f\t%f\t%f\t%f" % (feature.name, np.var(pearsons),
                 np.mean(pearsons), np.var(wordnets), np.mean(wordnets)))
 
-    xs, ys, zs, labels, colors = [], [], [], [], []
+    xs, ys, zs, labels, colors, markers = [], [], [], [], [], []
     for concept in vocab:
         weights = [feature_map[feature.name]
                    for feature in features.values()
@@ -442,10 +444,14 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
                         and feature.name in feature_map]
         if not weights:
             continue
-        # for d in interesting_domains:
-        #     if concept in domain_concepts[d] and np.median(weights) < 0.2:
-        #         colors.pop()
-        #         colors.append(interesting_domains[d])
+        colors.append("LightGray")
+        markers.append("o")
+        for d in interesting_domains:
+            if concept in domain_concepts[d]:
+                colors.pop()
+                colors.append(interesting_domains[d])
+                markers.pop()
+                markers.append(interesting_domains_markers[d])
         xs.append(concept_pearson1[concept])
         ys.append(concept_pearson2[concept])
         zs.append(np.median(weights))
@@ -479,14 +485,21 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
     # Plot Pearson1 vs. Pearson2
 
     fig = plt.figure()
-    fig.suptitle("unified graph")
+    #fig.suptitle("unified graph")
     ax = fig.add_subplot(111)
-    ax.set_xlabel(PEARSON1_NAME)
-    ax.set_ylabel(PEARSON2_NAME)
-    ax.scatter(xs, ys, color=cs, alpha=0.8) # c=cs
-    # for i, concept in enumerate(labels):
-    #     if zs[i] < 0.2:
-    #         ax.annotate(concept, (xs[i], ys[i]))
+    ax.set_xlabel("Pearson corr between " + SOURCE + " and " + PIVOT)
+    ax.set_ylabel("Pearson corr between WordNet and " + PIVOT)
+    # plot points of interest in front of other points
+    for _m, _c, _x, _y in zip(markers, colors, xs, ys):
+    	if _m == 'o':
+    		ax.scatter(_x, _y, marker=_m, c=_c, alpha=0.8)
+    for _m, _c, _x, _y in zip(markers, colors, xs, ys):
+    	if _m != 'o':
+    		ax.scatter(_x, _y, marker=_m, c=_c, alpha=0.8)
+    # ax.scatter(xs, ys, c=_c, marker=_m, alpha=0.8) # c=cs
+    for i, concept in enumerate(labels):
+        if colors[i] != "LightGray":
+            ax.annotate(concept, (xs[i], ys[i]))
 
     fig_path = os.path.join(GRAPH_DIR, "unified-%s-%s.svg" % (PEARSON1_NAME, PEARSON2_NAME))
     fig.savefig(fig_path)

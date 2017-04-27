@@ -15,23 +15,23 @@ import numpy as np
 from collections import defaultdict
 
 INPUT = "../mcrae/CONCS_FEATS_concstats_brm.txt"
-VOCAB = "./all/vocab.txt"
+VOCAB = "./all/vocab_mcrae.txt"
 #OUTPUT = "./all/mcrae_vectors.txt"
 
 def main():
-	# vocab_file = open(VOCAB, 'r')
-	# vocabulary = set()
-	# for line in vocab_file:
-	# 	vocabulary.add(line.strip())
+	vocab_file = open(VOCAB, 'r')
+	vocabulary = set()
+	for line in vocab_file:
+		vocabulary.add(line.strip())
 
 	features = set()
 	concepts_feats = defaultdict(list)
 	with open(INPUT, 'r') as csvfile:
 		reader = csv.DictReader(csvfile, delimiter='\t')
 		for row in reader:
-			#if row["Concept"] in vocabulary:
-			concepts_feats[row["Concept"]].append((row["Feature"], row["Prod_Freq"]))
-			features.add(row["Feature"])
+			if row["Concept"] in vocabulary:
+				concepts_feats[row["Concept"]].append((row["Feature"], row["Prod_Freq"]))
+				features.add(row["Feature"])
 	feature_list = sorted(list(features))
 	concept_vecs = {word: np.zeros(len(feature_list)) for word in concepts_feats.keys()}
 	for concept in concepts_feats:
@@ -45,7 +45,7 @@ def main():
 	for c in concept_vecs:
 		f_per_c.append(np.count_nonzero(concept_vecs[c]))
 		for i in range(len(concept_vecs[c])):
-			if concept_vecs[c][i] != 0: 
+			if concept_vecs[c][i] != 0:
 				c_per_f[i] += 1
 	print("# features per concept:")
 	print("mean\tmedian\tmin\tmax")
