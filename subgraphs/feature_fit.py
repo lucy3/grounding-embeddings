@@ -356,7 +356,7 @@ def produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=
         ax.annotate(d, (xs[i], ys[i]), fontsize=20)
 
     plot_gaussian_contour(xs, ys, x_vars, y_vars)
-
+    plt.tight_layout()
     fig_path = os.path.join(GRAPH_DIR, "unified_domain-%s-%s.svg" % (PEARSON1_NAME, PEARSON2_NAME))
     fig.savefig(fig_path)
 
@@ -372,7 +372,7 @@ def produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=
         ax.annotate(d, (xs[i], zs[i]))
 
     plot_gaussian_contour(xs, zs, x_vars, z_vars)
-
+    plt.tight_layout()
     fig_path = os.path.join(GRAPH_DIR, "unified_domain-%s-feature.svg" % PEARSON1_NAME)
     fig.savefig(fig_path)
 
@@ -388,7 +388,7 @@ def produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=
         ax.annotate(d, (ys[i], zs[i]))
 
     plot_gaussian_contour(ys, zs, y_vars, z_vars)
-
+    plt.tight_layout()
     fig_path = os.path.join(GRAPH_DIR, "unified_domain-%s-feature.svg" % PEARSON2_NAME)
     fig.savefig(fig_path)
 
@@ -417,6 +417,7 @@ def analyze_domains(labels, ff_scores, concept_domains=None):
         showfliers=False,whiskerprops={'linewidth':0}, ax=ax)
     sns_plot.set(xlabel='domain ID', ylabel='feature fit score')
     fig_path = os.path.join(GRAPH_DIR, "feature-%s-domain.svg" % PIVOT)
+    plt.tight_layout()
     fig = sns_plot.get_figure()
     fig.savefig(fig_path)
 
@@ -522,6 +523,7 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
         if colors[i] != "LightGray":
             ax.annotate(concept, (xs[i], ys[i]))
 
+    plt.tight_layout()
     fig_path = os.path.join(GRAPH_DIR, "unified-%s-%s.svg" % (PEARSON1_NAME, PEARSON2_NAME))
     fig.savefig(fig_path)
     plt.close()
@@ -535,6 +537,7 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
     ax.set_ylabel("feature_fit")
     ax.scatter(xs, zs, c=cs, alpha=0.8)
 
+    plt.tight_layout()
     fig_path = os.path.join(GRAPH_DIR, "unified-%s-feature.svg" % PEARSON1_NAME)
     fig.savefig(fig_path)
     plt.close()
@@ -548,6 +551,7 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
     ax.set_ylabel("feature_fit")
     ax.scatter(ys, zs, c=cs, alpha=0.8)
 
+    plt.tight_layout()
     fig_path = os.path.join(GRAPH_DIR, "unified-%s-feature.svg" % PEARSON2_NAME)
     fig.savefig(fig_path)
     plt.close()
