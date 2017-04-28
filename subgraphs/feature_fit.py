@@ -1,6 +1,7 @@
 import codecs
 from collections import defaultdict, namedtuple, Counter
 from concurrent import futures
+import itertools
 from pathlib import Path
 from pprint import pprint
 import random
@@ -659,6 +660,43 @@ def produce_feature_fit_bars(feature_groups, features_per_category=4):
     fig.savefig(fig_path)
 
 
+def do_bootstrap_test(feature_groups, pop1, pop2, n_bootstrap_samples=1000,
+                      percentiles=(5, 95)):
+    """
+    Do a percentile bootstrap test on the difference of medians among features
+    from different groups of categories.
+
+    The hypothesis here is:
+
+        median(features from pop2) - median(features from pop1) > 0
+    """
+
+    # Concatenate all features from pop1, pop2 into flat groups.
+    # TODO: maybe stratified sampling would be better?
+    pop1_features = list(itertools.chain.from_iterable(
+            feature_groups[group] for group in pop1))
+    pop2_features = list(itertools.chain.from_iterable(
+            feature_groups[group] for group in pop2))
+
+    # Convert these into easy-to-use NP arrays..
+    pop1_features = np.array([score for _, score, _ in pop1_features])
+    pop2_features = np.array([score for _, score, _ in pop2_features])
+
+    diffs = []
+    for _ in range(n_bootstrap_samples):
+        pop1_samples = np.random.choice(pop1_features, size=len(pop1_features),
+                                        replace=True)
+        pop2_samples = np.random.choice(pop2_features, size=len(pop2_features),
+                                        replace=True)
+
+        diff = np.mean(pop2_samples) - np.mean(pop1_samples)
+        diffs.append(diff)
+
+    result = np.percentile(diffs, percentiles)
+    print(result)
+    return result
+
+
 def main():
     features, concepts = load_features_concepts()
     vocab, embeddings = load_embeddings(concepts)
@@ -703,6 +741,9 @@ def main():
                 fcat_med[label_group] = pcts[1]
 
     produce_feature_fit_bars(groups["br_label"])
+    do_bootstrap_test(groups["br_label"],
+                      ["visual perceptual", "other perceptual"],
+                      ["encyclopaedic", "taxonomic", "function"])
 
     domain_concepts = do_cluster(vocab, features, feature_data)
     produce_unified_graph(vocab, features, feature_data, domain_concepts=domain_concepts)
