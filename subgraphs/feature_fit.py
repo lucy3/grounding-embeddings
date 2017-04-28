@@ -238,6 +238,8 @@ def analyze_features(features, word2idx, embeddings):
     # DEV: cached C values for the corpora we know
     if PIVOT == "mcrae":
         best_C = 1.0
+    elif PIVOT == "cslb":
+        best_C = 0.005
     elif PIVOT == "wikigiga":
         best_C = 0.001
     elif PIVOT == "cc":
