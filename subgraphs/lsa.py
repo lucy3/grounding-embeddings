@@ -12,7 +12,7 @@ SOURCE = "cslb"
 if SOURCE == "mcrae":
     FEATURES = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 elif SOURCE == "cslb":
-    FEATURES = "../cslb/feature_matrix.dat"
+    FEATURES = "../cslb/norms.dat"
 VOCAB = "./all/vocab_%s.txt" %  SOURCE
 OUT = "./all/%s_vectors.txt" % SOURCE
 OUT_DISTANCES = "./all/sim_%s_%s.txt" % (SOURCE, SOURCE)
@@ -45,14 +45,12 @@ def load_concepts_features_cslb():
         vocab = [line.strip() for line in vocab_f]
 
     with open(FEATURES, "r") as features_f:
-        features = next(features_f).strip().split("\t")[1:]
-        for line in features_f:
-            fields = line.strip().split("\t")
-            concept = fields[0]
-            if concept in vocab:
-                for feature, count in zip(features, fields[1:]):
-                    if float(count) > 0:
-                        concepts[concept].append(feature)
+        reader = csv.DictReader(features_f, delimiter="\t")
+        for row in reader:
+            concept_name = row["concept"]
+            feature_name = "_".join(row["feature"].split())
+            if concept_name in vocab:
+                concepts[concept_name].append(feature_name)
 
     return concepts
 
