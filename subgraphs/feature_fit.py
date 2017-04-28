@@ -511,17 +511,18 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
     ax = fig.add_subplot(111)
     ax.set_xlabel("Pearson corr between " + SOURCE_FORMAL + " and " + PIVOT_FORMAL)
     ax.set_ylabel("Pearson corr between WordNet and " + PIVOT_FORMAL)
-    # plot points of interest in front of other points
-    for _m, _c, _x, _y in zip(markers, colors, xs, ys):
-    	if _m == 'o':
-    		ax.scatter(_x, _y, marker=_m, c=_c, alpha=0.8)
-    for _m, _c, _x, _y in zip(markers, colors, xs, ys):
-    	if _m != 'o':
-    		ax.scatter(_x, _y, marker=_m, c=_c, alpha=0.8)
-    # ax.scatter(xs, ys, c=_c, marker=_m, alpha=0.8) # c=cs
-    for i, concept in enumerate(labels):
-        if colors[i] != "LightGray":
-            ax.annotate(concept, (xs[i], ys[i]))
+    ax.scatter(xs, ys, c=cs)
+    # # plot points of interest in front of other points
+    # for _m, _c, _x, _y in zip(markers, colors, xs, ys):
+    # 	if _m == 'o':
+    # 		ax.scatter(_x, _y, marker=_m, c=_c, alpha=0.8)
+    # for _m, _c, _x, _y in zip(markers, colors, xs, ys):
+    # 	if _m != 'o':
+    # 		ax.scatter(_x, _y, marker=_m, c=_c, alpha=0.8)
+    # # ax.scatter(xs, ys, c=_c, marker=_m, alpha=0.8) # c=cs
+    # for i, concept in enumerate(labels):
+    #     if colors[i] != "LightGray":
+    #         ax.annotate(concept, (xs[i], ys[i]))
 
     plt.tight_layout()
     fig_path = os.path.join(GRAPH_DIR, "unified-%s-%s.png" % (PEARSON1_NAME, PEARSON2_NAME))
