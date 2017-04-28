@@ -25,7 +25,7 @@ import get_domains
 
 VOCAB_SOURCE = "cslb"
 SOURCE = "wordnetres"
-PIVOT = "cc"
+PIVOT = "word2vec"
 
 VOCAB = "./all/vocab_%s.txt" % VOCAB_SOURCE
 INPUT_FILE1 = "./all/sim_%s_%s.txt" % (VOCAB_SOURCE, SOURCE)
