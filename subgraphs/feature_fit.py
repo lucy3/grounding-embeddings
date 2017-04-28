@@ -620,16 +620,17 @@ def do_cluster(vocab, features, feature_data):
     Z = linkage(X, method="average", metric=cluster_metric_fn)
     sib_clusters = distance_siblings(Z, labels, 40)
     results = []
-    for i, sib_cluster in enumerate(sib_clusters):
+    for sib_cluster in sib_clusters:
         if not sib_cluster: next
         weights = [concept_vals[c] for c in sib_cluster if c in concept_vals]
-        results.append((i, np.mean(weights), np.var(weights), sib_cluster))
+        results.append((np.mean(weights), np.var(weights), sib_cluster))
 
-    results = sorted(results, key=lambda x: x[2])
+    results = sorted(results, key=lambda x: x[0])
+    results = [(i,) + result for i, result in enumerate(results)]
     for idx, mean, var, items in results:
         print("%i\t%5f\t%5f\t%s" % (idx, mean, var, " ".join(items)))
 
-    return {i: concepts for i, concepts in enumerate(sib_clusters)
+    return {i: concepts for i, _, _, concepts in results
             if len(concepts) > 0}
 
 
