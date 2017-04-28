@@ -236,7 +236,6 @@ def analyze_features(features, word2idx, embeddings):
     # best_C = -C_results[0][1]
 
     # DEV: cached C values for the corpora we know
-    # TODO: try things lower than 1e-3; might be necessary for GloVe sources
     if PIVOT == "mcrae":
         best_C = 1.0
     elif PIVOT == "wikigiga":
