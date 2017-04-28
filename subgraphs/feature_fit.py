@@ -273,19 +273,32 @@ def get_values(input_file, c_string, value):
 def plot_gaussian_contour(xs, ys, vars_xs, vars_ys):
     max_abs_x_var = np.abs(vars_xs).max()
     max_abs_y_var = np.abs(vars_xs).max()
-    x_samp, y_samp = np.meshgrid(np.linspace(min(xs) - max_abs_x_var,
-                                             max(xs) + max_abs_x_var,
+    x_samp, y_samp = np.meshgrid(np.linspace(min(0, min(xs) - max_abs_x_var),
+                                             max(0.8, max(xs) + max_abs_x_var),
                                              1000),
-                                 np.linspace(min(ys) - max_abs_y_var,
-                                             max(ys) + max_abs_y_var,
+                                 np.linspace(min(0, min(ys) - max_abs_y_var),
+                                             max(0.8, max(ys) + max_abs_y_var),
                                              1000))
 
     Cs = []
     for x, y, x_var, y_var in zip(xs, ys, vars_xs, vars_ys):
+        x_stddev = np.sqrt(x_var)
+        y_stddev = np.sqrt(y_var)
+
         gauss = mlab.bivariate_normal(x_samp, y_samp,
-                                      mux=x, sigmax=x_var,
-                                      muy=y, sigmay=y_var)
-        C = plt.contour(x_samp, y_samp, gauss, alpha=0.8)
+                                      mux=x, sigmax=x_stddev,
+                                      muy=y, sigmay=y_stddev)
+
+        # Draw level curves at 1 and 2 stddev away
+        x_level = x + np.array([0.5]) * x_stddev
+        y_level = y + np.array([0.5]) * y_stddev
+        levels = mlab.bivariate_normal(x_level, y_level,
+                                       mux=x, sigmax=x_stddev,
+                                       muy=y, sigmay=y_stddev)
+        levels = list(sorted(levels))
+
+        C = plt.contour(x_samp, y_samp, gauss, levels=levels,
+                        colors="black", alpha=0.8)
         Cs.append(C)
 
     return Cs
