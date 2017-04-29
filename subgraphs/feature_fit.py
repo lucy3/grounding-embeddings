@@ -810,9 +810,9 @@ def main():
                 fcat_mean[label_group] = mean
 
     #produce_feature_fit_bars(groups["br_label"])
-    do_bootstrap_test(groups["br_label"],
-                      ["visual perceptual", "other perceptual"],
-                      ["encyclopaedic", "taxonomic", "function"])
+    #do_bootstrap_test(groups["br_label"],
+                      #["visual perceptual", "other perceptual"],
+                      #["encyclopaedic", "taxonomic", "function"])
 
     swarm_feature_cats(groups["br_label"], fcat_mean)
 
