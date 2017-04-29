@@ -21,18 +21,24 @@ import numpy as np
 from scipy.stats.stats import pearsonr
 from sklearn import linear_model
 from nltk.corpus import wordnet as wn
+from nltk.corpus import brown
 import get_domains
+import math
+from collections import Counter
 
-VOCAB_SOURCE = "cslb"
-SOURCE = "wordnetres"
-PIVOT = "word2vec"
+VOCAB_SOURCE = "mcrae"
+SOURCE = "mcrae"
+PIVOT = "cc"
 
 VOCAB = "./all/vocab_%s.txt" % VOCAB_SOURCE
 INPUT_FILE1 = "./all/sim_%s_%s.txt" % (VOCAB_SOURCE, SOURCE)
 INPUT_FILE2 = "./all/sim_%s_%s.txt" % (VOCAB_SOURCE, PIVOT)
 OUTPUT_FILE = "./all/pearson_corr/%s/corr_%s_%s.txt" % (VOCAB_SOURCE, SOURCE, PIVOT)
-CONC_BRM = "../mcrae/CONCS_brm.txt"
-CONCSTATS = "../mcrae/CONCS_FEATS_concstats_brm.txt"
+
+if VOCAB_SOURCE == "mcrae":
+    CONCSTATS = "../mcrae/CONCS_FEATS_concstats_brm.txt"
+elif VOCAB_SOURCE == "cslb":
+    CONCSTATS = "../cslb/norms.dat"
 
 def get_cosine_dist(input_file):
     """
@@ -81,19 +87,47 @@ def get_mcrae_freq(pearson_co):
     """
     concept_stats = defaultdict(list)
     prod_freqs = defaultdict(int)
+    num_feats = defaultdict(int)
+    if VOCAB_SOURCE == "mcrae":
+        concept_header = 'Concept'
+        pf_header = 'Prod_Freq'
+    elif VOCAB_SOURCE == "cslb":
+        concept_header = 'concept'
+        pf_header = 'pf'
     with open(CONCSTATS, 'r') as csvfile:
-        reader = csv.DictReader(csvfile, delimiter='\t')
-        for row in reader:
-            prod_freqs[row["Concept"]] += int(row["Prod_Freq"])
+            reader = csv.DictReader(csvfile, delimiter='\t')
+            for row in reader:
+                prod_freqs[row[concept_header]] += int(row[pf_header])
+                num_feats[row[concept_header]] += 1
 
-    with open(CONC_BRM, 'r') as csvfile:
-        reader = csv.DictReader(csvfile, delimiter='\t')
-        for row in reader:
-            concept = row["Concept"]
-            row_stats = (np.log(int(row["BNC"])), row["Num_Feats_Tax"],
-                         row["Familiarity"], prod_freqs[concept],
-                         len(wn.synsets(concept)))
-            concept_stats[concept] = row_stats
+    assert len(prod_freqs.keys()) == len(num_feats.keys())
+
+    wordcounts = Counter(brown.words())
+    for concept in prod_freqs.keys():
+        if concept == 'bluejay':
+            senses = wn.synsets('jaybird')
+        elif concept == 'rollerskate':
+            senses = wn.synsets('roller_skate')
+        elif concept == 'wetsuit':
+            senses = wn.synsets('wet_suit')
+        elif concept == 'yoyo':
+            senses = wn.synsets('yo-yo')
+        elif concept == 'deckchair':
+            senses = wn.synsets('deck_chair')
+        else:
+            senses = wn.synsets(concept)
+        count = wordcounts[concept]
+        if count == 0:
+            frequency = 0
+        else:
+            frequency = math.log(count)
+        if len(senses) == 0:
+            row_stats = (0, num_feats[concept],
+                    prod_freqs[concept], 0)
+        else:
+            row_stats = (frequency,
+                num_feats[concept], prod_freqs[concept], len(senses))
+        concept_stats[concept] = row_stats
 
     concept_domains = get_domains.get_concept_domains()
     sum_in_domain = defaultdict(float)
@@ -166,36 +200,36 @@ def main():
         pearson_co[concept] = pearsonr(neighbor_dist1[concept], neighbor_dist2[concept])[0]
     sorted_pearson = sorted(pearson_co.items(), key=operator.itemgetter(1))
 
-    # concept_stats, average_in_domain, domains = \
-    #         get_mcrae_freq(pearson_co)
+    concept_stats, average_in_domain, domains = \
+            get_mcrae_freq(pearson_co)
 
-    # # Attempt a baseline regression.
-    # r2, _ = do_regression(sorted_pearson, concept_stats)
-    # print("baseline regression: %5f" % r2)
+    # Attempt a baseline regression.
+    r2, _ = do_regression(sorted_pearson, concept_stats)
+    print("baseline regression: %5f" % r2)
 
-    # augmented_concept_stats, augmented_labels = \
-    #         augment_concept_stats(concept_stats, domains)
-    # r2, weights = do_regression(sorted_pearson, augmented_concept_stats)
-    # print("augmented regression: %5f" % r2)
+    augmented_concept_stats, augmented_labels = \
+            augment_concept_stats(concept_stats, domains)
+    r2, weights = do_regression(sorted_pearson, augmented_concept_stats)
+    print("augmented regression: %5f" % r2)
 
-    # augmented_weights = weights[-len(augmented_labels):]
-    # augmented_weights = sorted(zip(augmented_weights, augmented_labels))
-    # from pprint import pprint
-    # pprint(list(augmented_weights))
+    augmented_weights = weights[-len(augmented_labels):]
+    augmented_weights = sorted(zip(augmented_weights, augmented_labels))
+    from pprint import pprint
+    pprint(list(augmented_weights))
 
-    # # Print average correlations among domains
-    # for tax_feature in sorted(average_in_domain.keys()):
-    #     print(tax_feature + "\t" + str(average_in_domain[tax_feature]))
+    # Print average correlations among domains
+    for tax_feature in sorted(average_in_domain.keys()):
+        print(str(tax_feature) + "\t" + str(average_in_domain[tax_feature]))
 
     # write everything to an output file
     output = open(OUTPUT_FILE, 'w')
-    headers = ["Concept", "correlation"]#, "log(BNC_freq)", "num_feats_tax",
-               # "familiarity", "tot_num_feats", "polysemy"]
+    headers = ["Concept", "correlation", "log_brown_freq", "num_feats",
+               "tot_prod_freq", "polysemy"]
     # headers += augmented_labels
     output.write("%s\n" % "\t".join(headers))
     for pair in sorted_pearson:
-        # row_stats = "\t".join(str(stat) for stat in augmented_concept_stats[pair[0]])
-        output.write(pair[0] + '\t' + str(pair[1]) + "\n")# + '\t' + row_stats + '\n')
+        row_stats = "\t".join(str(stat) for stat in augmented_concept_stats[pair[0]])
+        output.write(pair[0] + '\t' + str(pair[1]) + '\t' + row_stats + '\n')
     output.close()
 
 if __name__ == '__main__':
