@@ -42,7 +42,7 @@ elif PIVOT == "wikigiga":
 elif PIVOT == "cc":
     INPUT = "../glove/glove.840B.300d.txt"
 
-SOURCE = "cslb"
+SOURCE = "mcrae"
 if SOURCE == "mcrae":
     FEATURES = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 else:
@@ -191,27 +191,32 @@ def analyze_features(features, word2idx, embeddings):
             metric: goodness metric, where higher is better
     """
 
-    # Prepare for a multi-label logistic regression.
-    X = embeddings
-    Y = np.zeros((len(word2idx), len(features)))
-
-    feature_names = sorted(features.keys())
-    for f_idx, f_name in enumerate(feature_names):
-        feature = features[f_name]
+    usable_features = []
+    feature_concepts = {}
+    for feature_name in sorted(features.keys()):
+        feature = features[feature_name]
         concepts = [word2idx[c] for c in feature.concepts if c in word2idx]
         if len(concepts) < 5:
             continue
 
-        for c_idx in concepts:
+        usable_features.append(feature.name)
+        feature_concepts[feature.name] = concepts
+
+    # Prepare for a multi-label logistic regression.
+    X = embeddings
+    Y = np.zeros((len(word2idx), len(usable_features)))
+
+    for f_idx, f_name in enumerate(usable_features):
+        for c_idx in feature_concepts[f_name]:
             Y[c_idx, f_idx] = 1
 
-    # # Sample a few random features.
-    # # For the sampled features, we'll do LOOCV to evaluate each possible C.
-    # nonzero_features = Y.sum(axis=0).nonzero()[0]
+    print(Y.sum(axis=0))
+    print(Y.shape)
 
-    # C_results = defaultdict(list)
-    # with futures.ProcessPoolExecutor(10) as executor:
-    #     C_futures = []
+    # Sample a few random features.
+    # For the sampled features, we'll do LOOCV to evaluate each possible C.
+    nonzero_features = Y.sum(axis=0).nonzero()[0]
+    print(nonzero_features)
 
     #     C_choices = [10 ** exp for exp in range(-3, 1)]
     #     C_choices += [5 * (10 ** exp) for exp in range(-3, 1)]
@@ -245,7 +250,7 @@ def analyze_features(features, word2idx, embeddings):
     elif PIVOT == "cc":
         best_C = 0.001
 
-    reg = LogisticRegression(class_weight="balanced", fit_intercept=False,
+    reg = LogisticRegression(fit_intercept=False,
                              C=best_C)
     cls = OneVsRestClassifier(reg, n_jobs=16)
     cls.fit(X, Y)
@@ -256,7 +261,7 @@ def analyze_features(features, word2idx, embeddings):
     ret_metrics = [metrics.f1_score(Y[:, i], preds[:, i]) if not ignore else None
                    for i, ignore in enumerate(do_ignore)]
 
-    return zip(feature_names, counts, ret_metrics)
+    return zip(usable_features, counts, ret_metrics)
 
 
 def get_values(input_file, c_string, value):
