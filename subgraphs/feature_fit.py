@@ -51,8 +51,7 @@ VOCAB = "./all/vocab_%s.txt" % SOURCE
 EMBEDDINGS = "./all/embeddings.%s.%s.npy" % (SOURCE, PIVOT)
 
 OUTPUT = "./all/feature_fit/%s/%s.txt" % (SOURCE, PIVOT)
-PEARSON1_NAME = "%s_%s" % (SOURCE,
-                           PIVOT if PIVOT != SOURCE else "%s_wikigiga" % SOURCE)
+PEARSON1_NAME = "%s_%s" % (SOURCE, PIVOT) if PIVOT != SOURCE else "%s_wikigiga" % SOURCE
 PEARSON1 = './all/pearson_corr/%s/corr_%s.txt' % (SOURCE, PEARSON1_NAME)
 PEARSON2_NAME = "wordnetres_%s" % PIVOT
 PEARSON2 = './all/pearson_corr/%s/corr_%s.txt' % (SOURCE, PEARSON2_NAME)
@@ -686,6 +685,8 @@ def produce_feature_fit_bars(feature_groups, features_per_category=4):
     group_names = ["visual perceptual", "encyclopaedic", "other perceptual", "functional", "taxonomic"]
 
     fig, axes = plt.subplots(ncols=len(feature_groups), sharey=True, figsize=(15, 5))
+    if not isinstance(axes, (tuple, list)):
+        axes = [axes]
     for group_name, ax in zip(group_names, axes):
         group = sorted(feature_groups[group_name], key=lambda x: x[1])
 
