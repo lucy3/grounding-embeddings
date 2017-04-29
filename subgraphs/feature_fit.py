@@ -176,29 +176,38 @@ def loocv_features(features, X, Y, clf_base):
     loocv_features.X = X
     loocv_features.Y = Y
 
-    with futures.ProcessPoolExecutor(10) as executor:
+    # Run LOOCV of cross product on features and C choices
+    C_futures = {}
+    C_results = defaultdict(dict)
+    with futures.ThreadPoolExecutor(20) as executor:
         for f_idx, _ in enumerate(features):
-            C_futures[f_idx].append(executor.submit(
-                loocv_feature_outer, clf_base, X, Y[:, f_idx], f_idx))
+            C_futures[f_idx] = loocv_feature_outer(executor, clf_base, f_idx)
 
         all_futures = list(itertools.chain.from_iterable(C_futures.values()))
         for future in tqdm(futures.as_completed(all_futures), total=len(all_futures),
                            file=sys.stdout):
-            f_idx, best_C = future.result()
-            best_Cs[best_C] += 1
-            results[features[f_idx]] = best_C
+            f_idx, C, scores = future.result()
+            C_results[f_idx][C] = scores
+
+    # Find best C for each feature
+    final_results = {}
+    best_Cs = Counter()
+    for f_idx, Cs in C_results.items():
+        best_C = max(Cs, key=lambda C: np.median(Cs[C]))
+        best_Cs[best_C] += 1
+        final_results[features[f_idx]] = best_C
 
     print(best_Cs)
-    return results
+    return final_results
 
 
-def loocv_feature_outer(clf_base, X, y, f_idx, **kwargs):
+def loocv_feature_outer(pool, clf_base, f_idx):
     Cs = [10 ** exp for exp in range(-4, 2)]
     Cs += [5 * (10 ** exp) for exp in range(-4, 2)]
 
-    C_results = dict(loocv_feature(C, X, y, f_idx, clf_base(C=C),
-                                   **kwargs)
-                     for C in Cs)
+    return [pool.submit(loocv_feature, C, f_idx, clf_base(C=C))
+            for C in Cs]
+
 
     best_C = max(C_results, key=lambda C: np.median(C_results[C]))
     # clf = clf_base(C=best_C)
@@ -208,11 +217,16 @@ def loocv_feature_outer(clf_base, X, y, f_idx, **kwargs):
     return f_idx, best_C
 
 
-def loocv_feature(C, X, y, f_idx, clf, n_concept_samples=10):
+def loocv_feature(C, f_idx, clf, n_concept_samples=10):
     """
     Evaluate LOOCV regression on a sampled feature subset for a given
     classifier instance.
     """
+
+    # Retrieve shared vars.
+    X = loocv_features.X
+    y = loocv_features.Y[:, f_idx]
+
     scores = []
 
     # Find all concepts which (1) do or (2) do not have this feature
@@ -238,7 +252,7 @@ def loocv_feature(C, X, y, f_idx, clf, n_concept_samples=10):
         score = np.log(pred_prob[0]) + np.mean(np.log(1 - pred_prob[1:]))
         scores.append(score)
 
-    return C, scores
+    return f_idx, C, scores
 
 
 def analyze_features(features, word2idx, embeddings):
@@ -285,12 +299,12 @@ def analyze_features(features, word2idx, embeddings):
     Cs = load_loocv(usable_features, X, Y, clf_base)
     clfs = {}
     for f_idx, f_name in enumerate(usable_features):
-        clfs[feature] = clf_base(C=Cs[feature])
-        clfs[feature].fit(X, Y[:, f_idx])
+        clfs[f_idx] = clf_base(C=Cs[f_name])
+        clfs[f_idx].fit(X, Y[:, f_idx])
 
     counts = Y.sum(axis=0)
     ret_metrics = [metrics.f1_score(Y[:, f_idx],
-                                    results[f_idx].predict(X))
+                                    clfs[f_idx].predict(X))
                    for f_idx, _ in enumerate(usable_features)]
 
     # HACK: for dev
