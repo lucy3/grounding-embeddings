@@ -167,7 +167,7 @@ def loocv_feature(C, X, y, f_idx, clf, n_concept_samples=10):
 
         # Draw negative samples for a ranking loss
         test = np.concatenate([X[c_idx:c_idx+1], X[c_not_idxs]])
-        pred_prob = clf_loo.predict_proba(X)[:, 1]
+        pred_prob = clf_loo.predict_proba(test)[:, 1]
 
         score = np.log(pred_prob[0]) + np.mean(np.log(1 - pred_prob[1:]))
         scores.append(score)
