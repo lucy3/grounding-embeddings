@@ -42,7 +42,7 @@ elif PIVOT == "wikigiga":
 elif PIVOT == "cc":
     INPUT = "../glove/glove.840B.300d.txt"
 
-SOURCE = "cslb"
+SOURCE = "mcrae"
 if SOURCE == "mcrae":
     FEATURES = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 else:
@@ -51,8 +51,7 @@ VOCAB = "./all/vocab_%s.txt" % SOURCE
 EMBEDDINGS = "./all/embeddings.%s.%s.npy" % (SOURCE, PIVOT)
 
 OUTPUT = "./all/feature_fit/%s/%s.txt" % (SOURCE, PIVOT)
-PEARSON1_NAME = "%s_%s" % (SOURCE,
-                           PIVOT if PIVOT != SOURCE else "%s_wikigiga" % SOURCE)
+PEARSON1_NAME = "%s_%s" % (SOURCE, PIVOT) if PIVOT != SOURCE else "%s_wikigiga" % SOURCE
 PEARSON1 = './all/pearson_corr/%s/corr_%s.txt' % (SOURCE, PEARSON1_NAME)
 PEARSON2_NAME = "wordnetres_%s" % PIVOT
 PEARSON2 = './all/pearson_corr/%s/corr_%s.txt' % (SOURCE, PEARSON2_NAME)
@@ -145,7 +144,7 @@ def load_features_concepts():
     return features, concepts
 
 
-def loocv_feature(C, X, y, f_idx, clf, n_concept_samples=5):
+def loocv_feature(C, X, y, f_idx, clf, n_concept_samples=10):
     """
     Evaluate LOOCV regression on a sampled feature subset for a given
     classifier instance.
@@ -167,12 +166,27 @@ def loocv_feature(C, X, y, f_idx, clf, n_concept_samples=5):
 
         # Draw negative samples for a ranking loss
         test = np.concatenate([X[c_idx:c_idx+1], X[c_not_idxs]])
-        pred_prob = clf_loo.predict_proba(X)[:, 1]
+        pred_prob = clf_loo.predict_proba(test)[:, 1]
 
         score = np.log(pred_prob[0]) + np.mean(np.log(1 - pred_prob[1:]))
         scores.append(score)
 
     return C, scores
+
+
+def loocv_feature_outer(Cs, X, y, f_idx, **kwargs):
+    C_results = dict(loocv_feature(C, X, y, f_idx,
+                                   LogisticRegression(class_weight="balanced",
+                                                      fit_intercept=False, C=C),
+                                   **kwargs)
+                     for C in Cs)
+
+    best_C = max(C_results, key=lambda C: np.median(C_results[C]))
+    clf = LogisticRegression(class_weight="balanced", fit_intercept=False, C=best_C)
+    clf.fit(X, y)
+    pred = clf.predict(X)
+    print(metrics.precision_score(y, pred), metrics.recall_score(y, pred), metrics.f1_score(y, pred))
+    return f_idx, best_C, clf
 
 
 def analyze_features(features, word2idx, embeddings):
@@ -191,42 +205,52 @@ def analyze_features(features, word2idx, embeddings):
             metric: goodness metric, where higher is better
     """
 
-    # Prepare for a multi-label logistic regression.
-    X = embeddings
-    Y = np.zeros((len(word2idx), len(features)))
-
-    feature_names = sorted(features.keys())
-    for f_idx, f_name in enumerate(feature_names):
-        feature = features[f_name]
+    usable_features = []
+    feature_concepts = {}
+    for feature_name in sorted(features.keys()):
+        feature = features[feature_name]
         concepts = [word2idx[c] for c in feature.concepts if c in word2idx]
         if len(concepts) < 5:
             continue
 
-        for c_idx in concepts:
+        usable_features.append(feature.name)
+        feature_concepts[feature.name] = concepts
+
+    # Prepare for a multi-label logistic regression.
+    X = embeddings
+    Y = np.zeros((len(word2idx), len(usable_features)))
+
+    for f_idx, f_name in enumerate(usable_features):
+        for c_idx in feature_concepts[f_name]:
             Y[c_idx, f_idx] = 1
 
-    # # Sample a few random features.
-    # # For the sampled features, we'll do LOOCV to evaluate each possible C.
-    # nonzero_features = Y.sum(axis=0).nonzero()[0]
+    print(Y.sum(axis=0))
+    print(Y.shape)
 
-    # C_results = defaultdict(list)
-    # with futures.ProcessPoolExecutor(10) as executor:
-    #     C_futures = []
+    # Sample a few random features.
+    # For the sampled features, we'll do LOOCV to evaluate each possible C.
+    nonzero_features = Y.sum(axis=0).nonzero()[0]
+    print(nonzero_features)
 
-    #     C_choices = [10 ** exp for exp in range(-3, 1)]
-    #     C_choices += [5 * (10 ** exp) for exp in range(-3, 1)]
-    #     for C in C_choices:
-    #         reg = LogisticRegression(class_weight="balanced", fit_intercept=False,
-    #                                  C=C)
+    C_futures = defaultdict(list)
+    results = {}
+    best_Cs = Counter()
+    with futures.ProcessPoolExecutor(10) as executor:
+        C_choices = [10 ** exp for exp in range(-4, 1)]
+        C_choices += [5 * (10 ** exp) for exp in range(-4, 1)]
 
-    #         for f_idx in nonzero_features:
-    #             C_futures.append(executor.submit(loocv_feature,
-    #                                              C, X, Y[:, f_idx], f_idx, reg))
+        for f_idx in nonzero_features:
+            C_futures[f_idx].append(executor.submit(
+                loocv_feature_outer, C_choices, X, Y[:, f_idx], f_idx))
 
-    #     for future in tqdm(futures.as_completed(C_futures), total=len(C_futures),
-    #                        file=sys.stdout):
-    #         C, scores = future.result()
-    #         C_results[C].extend(scores)
+        all_futures = list(itertools.chain.from_iterable(C_futures.values()))
+        for future in tqdm(futures.as_completed(all_futures), total=len(all_futures),
+                           file=sys.stdout):
+            f_idx, best_C, f_clf = future.result()
+            best_Cs[best_C] += 1
+            results[f_idx] = f_clf
+
+    print(best_Cs)
 
     # # Prefer stronger regularization; sort descending by metric, then by
     # # negative C
@@ -235,28 +259,33 @@ def analyze_features(features, word2idx, embeddings):
     # print(C_results)
     # best_C = -C_results[0][1]
 
-    # DEV: cached C values for the corpora we know
-    if PIVOT == "mcrae":
-        best_C = 1.0
-    elif PIVOT == "cslb":
-        best_C = 0.005
-    elif PIVOT == "wikigiga":
-        best_C = 0.001
-    elif PIVOT == "cc":
-        best_C = 0.001
+    # # DEV: cached C values for the corpora we know
+    # if PIVOT == "mcrae":
+    #     best_C = 1.0
+    # elif PIVOT == "cslb":
+    #     best_C = 0.005
+    # elif PIVOT == "wikigiga":
+    #     best_C = 0.001
+    # elif PIVOT == "cc":
+    #     best_C = 0.001
 
-    reg = LogisticRegression(class_weight="balanced", fit_intercept=False,
-                             C=best_C)
-    cls = OneVsRestClassifier(reg, n_jobs=16)
-    cls.fit(X, Y)
+    # reg = LogisticRegression(fit_intercept=False,
+    #                          C=best_C)
+    # cls = OneVsRestClassifier(reg, n_jobs=16)
+    # cls.fit(X, Y)
 
-    preds = cls.predict(X)
     counts = Y.sum(axis=0)
-    do_ignore = counts == 0
-    ret_metrics = [metrics.f1_score(Y[:, i], preds[:, i]) if not ignore else None
-                   for i, ignore in enumerate(do_ignore)]
+    nonzero_features = nonzero_features[:len(results)] # DEV
+    ret_metrics = [metrics.f1_score(Y[:, f_idx],
+                                    results[f_idx].predict(X))
+                   for f_idx in nonzero_features]
+#    assert len(ret_metrics) == len(usable_features)
 
-    return zip(feature_names, counts, ret_metrics)
+    # HACK: for dev
+    usable_features = usable_features[:len(ret_metrics)]
+    counts = counts[:len(ret_metrics)]
+
+    return zip(usable_features, counts, ret_metrics)
 
 
 def get_values(input_file, c_string, value):
@@ -656,6 +685,8 @@ def produce_feature_fit_bars(feature_groups, features_per_category=4):
     group_names = ["visual perceptual", "encyclopaedic", "other perceptual", "functional", "taxonomic"]
 
     fig, axes = plt.subplots(ncols=len(feature_groups), sharey=True, figsize=(15, 5))
+    if not isinstance(axes, (tuple, list)):
+        axes = [axes]
     for group_name, ax in zip(group_names, axes):
         group = sorted(feature_groups[group_name], key=lambda x: x[1])
 
@@ -741,8 +772,7 @@ def main():
     word2idx = {w: i for i, w in enumerate(vocab)}
 
     feature_data = analyze_features(features, word2idx, embeddings)
-    feature_data = sorted(filter(lambda f: f[2] is not None, feature_data),
-                          key=lambda f: f[2])
+    feature_data = sorted(feature_data, key=lambda f: f[2])
 
     fcat_mean = {}
     with open(OUTPUT, "w") as out:
