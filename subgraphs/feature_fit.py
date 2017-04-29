@@ -108,17 +108,14 @@ def load_features_concepts():
 
     if SOURCE == "mcrae":
         with open(FEATURES, "r") as features_f:
-            for line in features_f:
-                fields = line.strip().split("\t")
-                concept_name, feature_name = fields[:2]
-                if concept_name == "Concept" or concept_name == "dunebuggy":
-                    # Header row / row we are going to ignore!
-                    continue
-                if feature_name not in features:
-                    features[feature_name] = Feature(
-                            feature_name, set(), fields[3], fields[4], 
-                            fields[5], fields[6], fields[10])
-
+            reader = csv.DictReader(features_f, delimiter='\t')
+            for row in reader:
+                concept_name = row["Concept"]
+                feature_name = row["Feature"]
+                if feature_name not in features: 
+                    features[feature_name] = Feature(feature_name, set(),
+                            row["WB_Label"], row["WB_Maj"], row["WB_Min"], row["BR_Label"],
+                            row["Disting"])
                 features[feature_name].concepts.add(concept_name)
                 concepts.add(concept_name)
 
@@ -135,7 +132,6 @@ def load_features_concepts():
                 if feature_name not in features:
                     features[feature_name] = Feature(feature_name, set(),
                         "", "", "", row["feature type"], "")
-
                 features[feature_name].concepts.add(concept_name)
                 concepts.add(concept_name)
         lengths = [len(f.concepts) for f in features.values()]
