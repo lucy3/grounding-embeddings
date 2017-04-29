@@ -1,23 +1,7 @@
                              beh_-_jumps	            visual-motion	5	0.588235
-                            beh_-_chirps	                    sound	6	0.857143
-                             has_drawers	  visual-form_and_surface	5	0.909091
-                           inbeh_-_fires	                    sound	5	0.909091
-                              a_building	                taxonomic	6	0.923077
                                    a_gun	                taxonomic	6	0.923077
-                               has_horns	  visual-form_and_surface	6	0.923077
-                                 is_cold	                  tactile	6	0.923077
-                        used_for_hunting	                 function	7	0.933333
-                               has_gills	  visual-form_and_surface	9	0.947368
-                              has_hooves	  visual-form_and_surface	9	0.947368
-                             has_windows	  visual-form_and_surface	9	0.947368
-                            an_appliance	                taxonomic	10	0.952381
-                      beh_-_builds_nests	            encyclopaedic	10	0.952381
-                              has_scales	  visual-form_and_surface	10	0.952381
-                                has_fins	  visual-form_and_surface	11	0.956522
-                        used_for_cooking	                 function	13	0.962963
-                                a_weapon	                taxonomic	28	0.982456
-                         beh_-_lays_eggs	            encyclopaedic	32	0.984615
                                   a_bird	                taxonomic	39	1.000000
+                              a_building	                taxonomic	6	1.000000
                              a_carnivore	                taxonomic	11	1.000000
                                    a_cat	                taxonomic	5	1.000000
                              a_container	                taxonomic	5	1.000000
@@ -38,9 +22,13 @@
                                a_utensil	                taxonomic	12	1.000000
                              a_vegetable	                taxonomic	28	1.000000
                                a_vehicle	                taxonomic	9	1.000000
+                                a_weapon	                taxonomic	28	1.000000
                                an_animal	                taxonomic	97	1.000000
+                            an_appliance	                taxonomic	10	1.000000
                                an_insect	                taxonomic	12	1.000000
+                      beh_-_builds_nests	            encyclopaedic	10	1.000000
                         beh_-_cannot_fly	            encyclopaedic	7	1.000000
+                            beh_-_chirps	                    sound	6	1.000000
                             beh_-_crawls	            visual-motion	5	1.000000
                               beh_-_eats	            visual-motion	39	1.000000
                          beh_-_eats_fish	            visual-motion	7	1.000000
@@ -49,6 +37,7 @@
                       beh_-_eats_insects	            visual-motion	5	1.000000
                              beh_-_flies	            visual-motion	45	1.000000
                              beh_-_hunts	            encyclopaedic	5	1.000000
+                         beh_-_lays_eggs	            encyclopaedic	32	1.000000
                           beh_-_migrates	            encyclopaedic	5	1.000000
                               beh_-_runs	            visual-motion	5	1.000000
                              beh_-_sings	                    sound	11	1.000000
@@ -100,14 +89,19 @@
                              has_buttons	  visual-form_and_surface	12	1.000000
                                has_claws	  visual-form_and_surface	9	1.000000
                                has_doors	  visual-form_and_surface	15	1.000000
+                             has_drawers	  visual-form_and_surface	5	1.000000
                                 has_ears	  visual-form_and_surface	5	1.000000
                                 has_eyes	  visual-form_and_surface	16	1.000000
                             has_feathers	  visual-form_and_surface	38	1.000000
                                 has_feet	  visual-form_and_surface	9	1.000000
+                                has_fins	  visual-form_and_surface	11	1.000000
                                  has_fur	  visual-form_and_surface	21	1.000000
+                               has_gills	  visual-form_and_surface	9	1.000000
                                 has_hair	  visual-form_and_surface	8	1.000000
                              has_handles	  visual-form_and_surface	7	1.000000
                                has_holes	  visual-form_and_surface	6	1.000000
+                              has_hooves	  visual-form_and_surface	9	1.000000
+                               has_horns	  visual-form_and_surface	6	1.000000
                                 has_keys	  visual-form_and_surface	6	1.000000
                               has_leaves	  visual-form_and_surface	15	1.000000
                                 has_legs	  visual-form_and_surface	43	1.000000
@@ -116,6 +110,7 @@
                             has_patterns	  visual-form_and_surface	5	1.000000
                                 has_peel	  visual-form_and_surface	6	1.000000
                              has_pockets	  visual-form_and_surface	6	1.000000
+                              has_scales	  visual-form_and_surface	10	1.000000
                                has_seeds	  visual-form_and_surface	21	1.000000
                              has_shelves	  visual-form_and_surface	6	1.000000
                                 has_skin	  visual-form_and_surface	16	1.000000
@@ -125,8 +120,10 @@
                          has_webbed_feet	  visual-form_and_surface	6	1.000000
                               has_wheels	  visual-form_and_surface	21	1.000000
                             has_whiskers	  visual-form_and_surface	8	1.000000
+                             has_windows	  visual-form_and_surface	9	1.000000
                                has_wings	  visual-form_and_surface	43	1.000000
                         hunted_by_people	                 function	27	1.000000
+                           inbeh_-_fires	                    sound	5	1.000000
                           inbeh_-_floats	            visual-motion	7	1.000000
                   inbeh_-_produces_music	                    sound	12	1.000000
                   inbeh_-_produces_noise	                    sound	7	1.000000
@@ -136,6 +133,7 @@
                             is_breakable	            encyclopaedic	10	1.000000
                                 is_brown	            visual-colour	51	1.000000
                                is_citrus	            encyclopaedic	5	1.000000
+                                 is_cold	                  tactile	6	1.000000
                             is_colourful	            visual-colour	18	1.000000
                           is_comfortable	                  tactile	15	1.000000
                               is_crunchy	                  tactile	11	1.000000
@@ -236,12 +234,14 @@
                 used_for_carrying_things	                 function	8	1.000000
                        used_for_cleaning	                 function	5	1.000000
                    used_for_construction	                 function	8	1.000000
+                        used_for_cooking	                 function	13	1.000000
                         used_for_cutting	                 function	9	1.000000
                          used_for_eating	                 function	5	1.000000
                         used_for_fishing	                 function	5	1.000000
                            used_for_food	                 function	7	1.000000
                         used_for_holding	                 function	6	1.000000
                  used_for_holding_things	                 function	13	1.000000
+                        used_for_hunting	                 function	7	1.000000
                           used_for_juice	                 function	7	1.000000
                         used_for_killing	                 function	18	1.000000
                           used_for_music	                 function	6	1.000000
@@ -270,38 +270,38 @@
 Grouping by br_label:
                     group	mu	n	med		min	mean	max
 ====================================================================================================
-            encyclopaedic	10.24	 46	1.00000		0.95238	0.99863	1.00000
-                  tactile	15.83	 12	1.00000		0.92308	0.99359	1.00000
-            visual-motion	14.79	 14	1.00000		0.58824	0.97059	1.00000
-                taxonomic	17.07	 29	1.00000		0.92308	0.99245	1.00000
-                    sound	12.33	  6	1.00000		0.85714	0.96104	1.00000
-  visual-form_and_surface	17.63	 90	1.00000		0.90909	0.99537	1.00000
-                 function	10.46	 50	1.00000		0.93333	0.99793	1.00000
-                    taste	21.67	  3	1.00000		1.00000	1.00000	1.00000
             visual-colour	23.69	 16	1.00000		1.00000	1.00000	1.00000
+                    sound	12.33	  6	1.00000		1.00000	1.00000	1.00000
+                taxonomic	17.07	 29	1.00000		0.92308	0.99735	1.00000
+                 function	10.46	 50	1.00000		1.00000	1.00000	1.00000
+                  tactile	15.83	 12	1.00000		1.00000	1.00000	1.00000
+            visual-motion	14.79	 14	1.00000		0.58824	0.97059	1.00000
+                    taste	21.67	  3	1.00000		1.00000	1.00000	1.00000
                     smell	14.00	  1	1.00000		1.00000	1.00000	1.00000
+            encyclopaedic	10.24	 46	1.00000		1.00000	1.00000	1.00000
+  visual-form_and_surface	17.63	 90	1.00000		1.00000	1.00000	1.00000
 
 
 Grouping by first_word:
                     group	mu	n	med		min	mean	max
 ====================================================================================================
-                   tastes	21.67	  3	1.00000		1.00000	1.00000	1.00000
+                   hunted	27.00	  1	1.00000		1.00000	1.00000	1.00000
+                furniture	11.00	  1	1.00000		1.00000	1.00000	1.00000
+                      beh	13.17	 18	1.00000		0.58824	0.97712	1.00000
                     comes	7.00	  1	1.00000		1.00000	1.00000	1.00000
-                        a	13.88	 24	1.00000		0.92308	0.99286	1.00000
+                    lives	10.70	 10	1.00000		1.00000	1.00000	1.00000
+                      has	12.76	 58	1.00000		1.00000	1.00000	1.00000
+                   tastes	21.67	  3	1.00000		1.00000	1.00000	1.00000
+                    grows	12.50	  4	1.00000		1.00000	1.00000	1.00000
+                 requires	5.50	  2	1.00000		1.00000	1.00000	1.00000
+                    found	12.60	  5	1.00000		1.00000	1.00000	1.00000
+                     worn	8.25	  8	1.00000		1.00000	1.00000	1.00000
+                     made	19.63	 19	1.00000		1.00000	1.00000	1.00000
+                       is	21.31	 61	1.00000		1.00000	1.00000	1.00000
+                    eaten	7.86	  7	1.00000		1.00000	1.00000	1.00000
+                     used	8.80	 35	1.00000		1.00000	1.00000	1.00000
+                    inbeh	7.75	  4	1.00000		1.00000	1.00000	1.00000
                  clothing	32.00	  1	1.00000		1.00000	1.00000	1.00000
                 different	35.00	  2	1.00000		1.00000	1.00000	1.00000
-                      beh	13.17	 18	1.00000		0.58824	0.96569	1.00000
-                    lives	10.70	 10	1.00000		1.00000	1.00000	1.00000
-                     used	8.80	 35	1.00000		0.93333	0.99704	1.00000
-                    eaten	7.86	  7	1.00000		1.00000	1.00000	1.00000
-                     made	19.63	 19	1.00000		1.00000	1.00000	1.00000
-                    grows	12.50	  4	1.00000		1.00000	1.00000	1.00000
-                       an	39.67	  3	1.00000		0.95238	0.98413	1.00000
-                    inbeh	7.75	  4	1.00000		0.90909	0.97727	1.00000
-                     worn	8.25	  8	1.00000		1.00000	1.00000	1.00000
-                    found	12.60	  5	1.00000		1.00000	1.00000	1.00000
-                      has	12.76	 58	1.00000		0.90909	0.99281	1.00000
-                       is	21.31	 61	1.00000		0.92308	0.99874	1.00000
-                   hunted	27.00	  1	1.00000		1.00000	1.00000	1.00000
-                 requires	5.50	  2	1.00000		1.00000	1.00000	1.00000
-                furniture	11.00	  1	1.00000		1.00000	1.00000	1.00000
+                        a	13.88	 24	1.00000		0.92308	0.99679	1.00000
+                       an	39.67	  3	1.00000		1.00000	1.00000	1.00000
