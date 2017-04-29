@@ -1,6 +1,7 @@
 import codecs
 from collections import defaultdict, namedtuple, Counter
 from concurrent import futures
+from functools import partial
 import itertools
 from pathlib import Path
 from pprint import pprint
@@ -50,6 +51,7 @@ else:
 VOCAB = "./all/vocab_%s.txt" % SOURCE
 EMBEDDINGS = "./all/embeddings.%s.%s.npy" % (SOURCE, PIVOT)
 
+CV_OUTPUT = "./all/feature_fit/%s/Cs_%s.txt" % (SOURCE, PIVOT)
 OUTPUT = "./all/feature_fit/%s/%s.txt" % (SOURCE, PIVOT)
 PEARSON1_NAME = "%s_%s" % (SOURCE, PIVOT) if PIVOT != SOURCE else "%s_wikigiga" % SOURCE
 PEARSON1 = './all/pearson_corr/%s/corr_%s.txt' % (SOURCE, PEARSON1_NAME)
@@ -112,7 +114,7 @@ def load_features_concepts():
             for row in reader:
                 concept_name = row["Concept"]
                 feature_name = row["Feature"]
-                if feature_name not in features: 
+                if feature_name not in features:
                     features[feature_name] = Feature(feature_name, set(),
                             row["WB_Label"], row["WB_Maj"], row["WB_Min"], row["BR_Label"],
                             row["Disting"])
@@ -141,6 +143,71 @@ def load_features_concepts():
     return features, concepts
 
 
+def load_loocv(features, *loocv_args):
+    """
+    Load (either by reading from a file, or by computing) LOOCV-validated
+    regularization coefficients for each feature in `features`.
+    """
+
+    loocv_path = Path(CV_OUTPUT)
+    if loocv_path.exists():
+        with loocv_path.open("r") as loocv_f:
+            Cs = {}
+            for line in loocv_f:
+                feature, C = line.strip().split("\t")
+                Cs[feature] = float(C)
+    else:
+        Cs = loocv_features(features, *loocv_args)
+        with loocv_path.open("w") as loocv_f:
+            for feature, C in Cs.items():
+                loocv_f.write("%s\t%f\n" % (feature, C))
+
+    assert set(features) == set(Cs.keys())
+
+    return Cs
+
+
+def loocv_features(features, X, Y, clf_base):
+    """
+    Run LOOCV for all features.
+    """
+
+    # Share as global variables
+    loocv_features.X = X
+    loocv_features.Y = Y
+
+    with futures.ProcessPoolExecutor(10) as executor:
+        for f_idx, _ in enumerate(features):
+            C_futures[f_idx].append(executor.submit(
+                loocv_feature_outer, clf_base, X, Y[:, f_idx], f_idx))
+
+        all_futures = list(itertools.chain.from_iterable(C_futures.values()))
+        for future in tqdm(futures.as_completed(all_futures), total=len(all_futures),
+                           file=sys.stdout):
+            f_idx, best_C = future.result()
+            best_Cs[best_C] += 1
+            results[features[f_idx]] = best_C
+
+    print(best_Cs)
+    return results
+
+
+def loocv_feature_outer(clf_base, X, y, f_idx, **kwargs):
+    Cs = [10 ** exp for exp in range(-4, 2)]
+    Cs += [5 * (10 ** exp) for exp in range(-4, 2)]
+
+    C_results = dict(loocv_feature(C, X, y, f_idx, clf_base(C=C),
+                                   **kwargs)
+                     for C in Cs)
+
+    best_C = max(C_results, key=lambda C: np.median(C_results[C]))
+    # clf = clf_base(C=best_C)
+    # clf.fit(X, y)
+    # pred = clf.predict(X)
+    # print(metrics.precision_score(y, pred), metrics.recall_score(y, pred), metrics.f1_score(y, pred))
+    return f_idx, best_C
+
+
 def loocv_feature(C, X, y, f_idx, clf, n_concept_samples=10):
     """
     Evaluate LOOCV regression on a sampled feature subset for a given
@@ -152,8 +219,11 @@ def loocv_feature(C, X, y, f_idx, clf, n_concept_samples=10):
     c_idxs = y.nonzero()[0]
     c_not_idxs = (1 - y).nonzero()[0]
 
-    n_f_concepts = min(len(c_idxs), n_concept_samples)
-    f_concepts = np.random.choice(c_idxs, replace=False, size=n_f_concepts)
+    # Sample negative candidates.
+    n_concept_samples = min(len(c_idxs), n_concept_samples)
+    f_concepts = np.random.choice(c_idxs, replace=False,
+                                  size=n_concept_samples)
+
     for c_idx in f_concepts:
         X_loo = np.concatenate([X[:c_idx], X[c_idx+1:]])
         y_loo = np.concatenate([y[:c_idx], y[c_idx+1:]])
@@ -169,21 +239,6 @@ def loocv_feature(C, X, y, f_idx, clf, n_concept_samples=10):
         scores.append(score)
 
     return C, scores
-
-
-def loocv_feature_outer(Cs, X, y, f_idx, **kwargs):
-    C_results = dict(loocv_feature(C, X, y, f_idx,
-                                   LogisticRegression(class_weight="balanced",
-                                                      fit_intercept=False, C=C),
-                                   **kwargs)
-                     for C in Cs)
-
-    best_C = max(C_results, key=lambda C: np.median(C_results[C]))
-    clf = LogisticRegression(class_weight="balanced", fit_intercept=False, C=best_C)
-    clf.fit(X, y)
-    pred = clf.predict(X)
-    print(metrics.precision_score(y, pred), metrics.recall_score(y, pred), metrics.f1_score(y, pred))
-    return f_idx, best_C, clf
 
 
 def analyze_features(features, word2idx, embeddings):
@@ -221,62 +276,22 @@ def analyze_features(features, word2idx, embeddings):
         for c_idx in feature_concepts[f_name]:
             Y[c_idx, f_idx] = 1
 
-    print(Y.sum(axis=0))
-    print(Y.shape)
+    ############
+    # Load LOOCV-validated regression models for each feature.
 
-    # Sample a few random features.
-    # For the sampled features, we'll do LOOCV to evaluate each possible C.
-    nonzero_features = Y.sum(axis=0).nonzero()[0]
-    print(nonzero_features)
+    clf_base = partial(LogisticRegression, class_weight="balanced",
+                       fit_intercept=False)
 
-    C_futures = defaultdict(list)
-    results = {}
-    best_Cs = Counter()
-    with futures.ProcessPoolExecutor(10) as executor:
-        C_choices = [10 ** exp for exp in range(-4, 2)]
-        C_choices += [5 * (10 ** exp) for exp in range(-4, 2)]
-
-        for f_idx in nonzero_features:
-            C_futures[f_idx].append(executor.submit(
-                loocv_feature_outer, C_choices, X, Y[:, f_idx], f_idx))
-
-        all_futures = list(itertools.chain.from_iterable(C_futures.values()))
-        for future in tqdm(futures.as_completed(all_futures), total=len(all_futures),
-                           file=sys.stdout):
-            f_idx, best_C, f_clf = future.result()
-            best_Cs[best_C] += 1
-            results[f_idx] = f_clf
-
-    print(best_Cs)
-
-    # # Prefer stronger regularization; sort descending by metric, then by
-    # # negative C
-    # C_results = sorted([(np.mean(scores), -C) for C, scores in C_results.items()],
-    #                    reverse=True)
-    # print(C_results)
-    # best_C = -C_results[0][1]
-
-    # # DEV: cached C values for the corpora we know
-    # if PIVOT == "mcrae":
-    #     best_C = 1.0
-    # elif PIVOT == "cslb":
-    #     best_C = 0.005
-    # elif PIVOT == "wikigiga":
-    #     best_C = 0.001
-    # elif PIVOT == "cc":
-    #     best_C = 0.001
-
-    # reg = LogisticRegression(fit_intercept=False,
-    #                          C=best_C)
-    # cls = OneVsRestClassifier(reg, n_jobs=16)
-    # cls.fit(X, Y)
+    Cs = load_loocv(usable_features, X, Y, clf_base)
+    clfs = {}
+    for f_idx, f_name in enumerate(usable_features):
+        clfs[feature] = clf_base(C=Cs[feature])
+        clfs[feature].fit(X, Y[:, f_idx])
 
     counts = Y.sum(axis=0)
-    nonzero_features = nonzero_features[:len(results)] # DEV
     ret_metrics = [metrics.f1_score(Y[:, f_idx],
                                     results[f_idx].predict(X))
-                   for f_idx in nonzero_features]
-#    assert len(ret_metrics) == len(usable_features)
+                   for f_idx, _ in enumerate(usable_features)]
 
     # HACK: for dev
     usable_features = usable_features[:len(ret_metrics)]
@@ -740,7 +755,7 @@ def do_bootstrap_test(feature_groups, pop1, pop2, n_bootstrap_samples=1000,
     return result
 
 def swarm_feature_cats(feature_groups, fcat_mean):
-    fcats_sorted = sorted(feature_groups.keys(), key=lambda k: fcat_mean[k]) 
+    fcats_sorted = sorted(feature_groups.keys(), key=lambda k: fcat_mean[k])
     x, y = [], []
     for fg in fcats_sorted:
         for _, score, _ in feature_groups[fg]:
