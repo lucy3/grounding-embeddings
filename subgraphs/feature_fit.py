@@ -53,6 +53,8 @@ EMBEDDINGS = "./all/embeddings.%s.%s.npy" % (SOURCE, PIVOT)
 
 CV_OUTPUT = "./all/feature_fit/%s/Cs_%s.txt" % (SOURCE, PIVOT)
 OUTPUT = "./all/feature_fit/%s/%s.txt" % (SOURCE, PIVOT)
+CLUSTER_OUTPUT = "./all/feature_fit/%s/%s/clusters.txt" % (SOURCE, PIVOT)
+
 PEARSON1_NAME = "%s_%s" % (SOURCE, PIVOT) if PIVOT != SOURCE else "%s_wikigiga" % SOURCE
 PEARSON1 = './all/pearson_corr/%s/corr_%s.txt' % (SOURCE, PEARSON1_NAME)
 PEARSON2_NAME = "wordnetres_%s" % PIVOT
@@ -683,8 +685,10 @@ def do_cluster(vocab, features, feature_data):
 
     results = sorted(results, key=lambda x: x[0])
     results = [(i,) + result for i, result in enumerate(results)]
-    for idx, mean, var, items in results:
-        print("%i\t%5f\t%5f\t%s" % (idx, mean, var, " ".join(items)))
+    with open(CLUSTER_OUTPUT, "w") as cluster_f:
+        for idx, mean, var, items in results:
+            out_str = "%i\t%5f\t%5f\t%s\n" % (idx, mean, var, " ".join(items))
+            cluster_f.write(out_str)
 
     return {i: concepts for i, _, _, concepts in results
             if len(concepts) > 0}
