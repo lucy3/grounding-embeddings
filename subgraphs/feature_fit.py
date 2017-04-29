@@ -59,14 +59,14 @@ PEARSON2 = './all/pearson_corr/%s/corr_%s.txt' % (SOURCE, PEARSON2_NAME)
 GRAPH_DIR = './all/feature_fit/%s/%s' % (SOURCE, PIVOT)
 
 if PIVOT == "wikigiga":
-	PIVOT_FORMAL = "Wikipedia+Gigaword"
+    PIVOT_FORMAL = "Wikipedia+Gigaword"
 elif PIVOT == "cc":
-	PIVOT_FORMAL = "Common Crawl"
+    PIVOT_FORMAL = "Common Crawl"
 
 if SOURCE == "cslb":
-	SOURCE_FORMAL = "CSLB"
+    SOURCE_FORMAL = "CSLB"
 elif SOURCE == "mcrae":
-	SOURCE_FORMAL = "McRae"
+    SOURCE_FORMAL = "McRae"
 
 Feature = namedtuple("Feature", ["name", "concepts", "wb_label", "wb_maj",
                                  "wb_min", "br_label", "disting"])
@@ -529,11 +529,11 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
     ax.scatter(xs, ys, c=cs)
     # # plot points of interest in front of other points
     # for _m, _c, _x, _y in zip(markers, colors, xs, ys):
-    # 	if _m == 'o':
-    # 		ax.scatter(_x, _y, marker=_m, c=_c, alpha=0.8)
+    #   if _m == 'o':
+    #       ax.scatter(_x, _y, marker=_m, c=_c, alpha=0.8)
     # for _m, _c, _x, _y in zip(markers, colors, xs, ys):
-    # 	if _m != 'o':
-    # 		ax.scatter(_x, _y, marker=_m, c=_c, alpha=0.8)
+    #   if _m != 'o':
+    #       ax.scatter(_x, _y, marker=_m, c=_c, alpha=0.8)
     # # ax.scatter(xs, ys, c=_c, marker=_m, alpha=0.8) # c=cs
     # for i, concept in enumerate(labels):
     #     if colors[i] != "LightGray":
@@ -711,6 +711,29 @@ def do_bootstrap_test(feature_groups, pop1, pop2, n_bootstrap_samples=1000,
     print(result)
     return result
 
+def swarm_feature_cats(feature_groups, fcat_mean):
+    fcats_sorted = sorted(feature_groups.keys(), key=lambda k: fcat_mean[k]) 
+    x, y = [], []
+    for fg in fcats_sorted:
+        for _, score, _ in feature_groups[fg]:
+            if fg == "visual-form_and_surface":
+                x.append("visual-\nform_and_surface")
+            elif fg == "taste" or fg == 'smell' or fg == 'sound':
+                x.append("taste/smell/\nsound")
+            else:
+                x.append(fg)
+            y.append(score)
+    sns.set_style("whitegrid")
+    fig, ax = plt.subplots(figsize=(10, 4.8))
+    sns_plot = sns.swarmplot(x, y, ax=ax)
+    sns_plot = sns.boxplot(x, y, showcaps=False,boxprops={'facecolor':'None'},
+        showfliers=False,whiskerprops={'linewidth':0}, ax=ax)
+    sns_plot.set(xlabel='feature category', ylabel='feature fit score')
+    fig_path = os.path.join(GRAPH_DIR, "feature-%s-%s-category.png" % (SOURCE, PIVOT))
+    plt.tight_layout()
+    fig = sns_plot.get_figure()
+    fig.savefig(fig_path)
+
 
 def main():
     features, concepts = load_features_concepts()
@@ -721,7 +744,7 @@ def main():
     feature_data = sorted(filter(lambda f: f[2] is not None, feature_data),
                           key=lambda f: f[2])
 
-    fcat_med = {}
+    fcat_mean = {}
     with open(OUTPUT, "w") as out:
         grouping_fns = {
             "br_label": lambda name: features[name].br_label,
@@ -753,12 +776,14 @@ def main():
             for label_group, (n, mean, pcts, n_concepts) in summary:
                 out.write("%25s\t%.2f\t%3i\t%.5f\t\t%.5f\t%.5f\t%.5f\n"
                           % (label_group, n_concepts, n, pcts[1], pcts[0], mean, pcts[2]))
-                fcat_med[label_group] = pcts[1]
+                fcat_mean[label_group] = mean
 
     produce_feature_fit_bars(groups["br_label"])
     do_bootstrap_test(groups["br_label"],
                       ["visual perceptual", "other perceptual"],
                       ["encyclopaedic", "taxonomic", "function"])
+
+    swarm_feature_cats(groups["br_label"], fcat_mean)
 
     domain_concepts = do_cluster(vocab, features, feature_data)
     produce_unified_graph(vocab, features, feature_data, domain_concepts=domain_concepts)
