@@ -217,10 +217,10 @@ def loocv_feature_outer(pool, clf_base, f_idx):
     return f_idx, best_C
 
 
-def loocv_feature(C, f_idx, clf, n_concept_samples=10):
+def loocv_feature(C, f_idx, clf):
     """
-    Evaluate LOOCV regression on a sampled feature subset for a given
-    classifier instance.
+    Evaluate LOOCV regression on a given feature with a given classifier
+    instance.
     """
 
     # Retrieve shared vars.
@@ -233,12 +233,8 @@ def loocv_feature(C, f_idx, clf, n_concept_samples=10):
     c_idxs = y.nonzero()[0]
     c_not_idxs = (1 - y).nonzero()[0]
 
-    # Sample negative candidates.
-    n_concept_samples = min(len(c_idxs), n_concept_samples)
-    f_concepts = np.random.choice(c_idxs, replace=False,
-                                  size=n_concept_samples)
-
-    for c_idx in f_concepts:
+    # Leave-one-out.
+    for c_idx in c_idxs:
         X_loo = np.concatenate([X[:c_idx], X[c_idx+1:]])
         y_loo = np.concatenate([y[:c_idx], y[c_idx+1:]])
 
