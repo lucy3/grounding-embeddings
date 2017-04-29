@@ -116,7 +116,8 @@ def load_features_concepts():
                     continue
                 if feature_name not in features:
                     features[feature_name] = Feature(
-                            feature_name, set(), *fields[2:6], fields[10])
+                            feature_name, set(), fields[3], fields[4], 
+                            fields[5], fields[6], fields[10])
 
                 features[feature_name].concepts.add(concept_name)
                 concepts.add(concept_name)
@@ -808,7 +809,7 @@ def main():
                           % (label_group, n_concepts, n, pcts[1], pcts[0], mean, pcts[2]))
                 fcat_mean[label_group] = mean
 
-    produce_feature_fit_bars(groups["br_label"])
+    #produce_feature_fit_bars(groups["br_label"])
     do_bootstrap_test(groups["br_label"],
                       ["visual perceptual", "other perceptual"],
                       ["encyclopaedic", "taxonomic", "function"])
