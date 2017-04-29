@@ -544,10 +544,10 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
 
     slope, intercept, r_value, p_value, std_err = stats.linregress(xs, ys)
     print("Pearson vs Pearson")
-    print("slope", slope, "r squared", r_value)
+    print("slope", slope, "r", r_value)
     slope, intercept, r_value, p_value, std_err = stats.linregress(xs, zs)
     print("Pearson vs Feature Fit")
-    print("slope", slope, "r squared", r_value)
+    print("slope", slope, "r", r_value)
 
     # Plot Pearson1 vs. Pearson2
 
