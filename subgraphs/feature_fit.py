@@ -204,8 +204,9 @@ def loocv_features(features, X, Y, clf_base):
 
 
 def loocv_feature_outer(pool, clf_base, f_idx):
-    Cs = [10 ** exp for exp in range(-4, 2)]
+    Cs = [10 ** exp for exp in range(-4, 4)]
     Cs += [5 * (10 ** exp) for exp in range(-4, 2)]
+    Cs += [75, 25]
 
     return [pool.submit(loocv_feature, C, f_idx, clf_base(C=C))
             for C in Cs]
