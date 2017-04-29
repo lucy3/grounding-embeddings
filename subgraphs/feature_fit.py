@@ -209,14 +209,6 @@ def loocv_feature_outer(pool, clf_base, f_idx):
             for C in Cs]
 
 
-    best_C = max(C_results, key=lambda C: np.median(C_results[C]))
-    # clf = clf_base(C=best_C)
-    # clf.fit(X, y)
-    # pred = clf.predict(X)
-    # print(metrics.precision_score(y, pred), metrics.recall_score(y, pred), metrics.f1_score(y, pred))
-    return f_idx, best_C
-
-
 def loocv_feature(C, f_idx, clf):
     """
     Evaluate LOOCV regression on a given feature with a given classifier
