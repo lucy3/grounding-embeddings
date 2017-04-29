@@ -237,10 +237,10 @@ def analyze_features(features, word2idx, embeddings):
     results = {}
     best_Cs = Counter()
     with futures.ProcessPoolExecutor(10) as executor:
-        C_choices = [10 ** exp for exp in range(-8, -3)]#1)]
-        C_choices += [5 * (10 ** exp) for exp in range(-8, -3)]#1)]
+        C_choices = [10 ** exp for exp in range(-4, -1)]
+        C_choices += [5 * (10 ** exp) for exp in range(-4, -1)]
 
-        for f_idx in nonzero_features[:100]:
+        for f_idx in nonzero_features:
             C_futures[f_idx].append(executor.submit(
                 loocv_feature_outer, C_choices, X, Y[:, f_idx], f_idx))
 
