@@ -1,0 +1,41 @@
+0	  nan	  nan	
+1	0.917647	0.000000	flea
+2	0.998851	0.000035	alligator bear beaver bison buffalo bull calf camel caribou cat catfish cheetah chimp chipmunk clam cod cougar cow coyote crab crocodile deer dog dolphin donkey eel elephant elk fawn fox frog giraffe goat goldfish gopher gorilla guppy hamster hare horse hyena iguana lamb leopard lion lobster mackerel mink minnow moose mouse octopus otter ox panther perch pig platypus pony porcupine python rabbit raccoon rat rattlesnake salamander salmon sardine seal sheep shrimp skunk squid squirrel tiger toad tortoise trout tuna turtle walrus whale zebra
+3	0.999160	0.000034	ant beetle blackbird bluejay budgie butterfly buzzard canary chickadee chicken cockroach crow dove duck eagle emu falcon finch flamingo goose grasshopper hawk hornet housefly moth nightingale oriole ostrich owl parakeet partridge peacock pelican penguin pheasant pigeon raven robin rooster seagull sparrow spider starling stork swan turkey vulture wasp woodpecker
+4	0.999529	0.000004	armour ashtray axe basket baton bayonet bazooka bolts bomb bookcase bridge broom brush bucket buckle bullet cage cannon catapult chain chisel clamp coin colander comb corkscrew crossbow crowbar dagger door doorknob drain drill fork gate grater grenade gun hammer harpoon hatchet hoe hook kettle key knife ladle level machete mirror missile paintbrush pan pearl peg pen pin pistol pliers pot racquet rake rattle razor revolver rifle rocket scissors screwdriver screws shelves shield shotgun shovel skillet skis sled sledgehammer sleigh slingshot spade spatula spear spoon stick strainer sword tack tap thimble tomahawk tongs tractor tray tripod umbrella urn wheel whip whistle wrench
+5	1.000000	0.000000	book magazine
+6	1.000000	0.000000	bouquet
+7	1.000000	0.000000	cathedral chapel church
+8	1.000000	0.000000	pyramid
+9	1.000000	0.000000	sack trailer
+10	1.000000	0.000000	tent
+11	1.000000	0.000000	apartment bedroom bungalow cabin caterpillar cottage groundhog house hut inn worm
+12	1.000000	0.000000	beehive dandelion
+13	1.000000	0.000000	apple asparagus avocado banana beans beets biscuit blueberry bread broccoli cabbage cake cantaloupe carrot cauliflower celery cheese cherry coconut corn cranberry cucumber eggplant garlic grape grapefruit honeydew lemon lettuce lime mandarin mushroom nectarine olive onions orange parsley peach pear peas pickle pie pineapple plum potato prune pumpkin radish raisin raspberry rhubarb rice snail spinach strawberry tangerine tomato turnip walnut yam zucchini
+14	1.000000	0.000000	birch cedar hose oak pine seaweed vine willow
+15	1.000000	0.000000	cigar cigarette rope
+16	1.000000	0.000000	emerald
+17	1.000000	0.000000	bag banner bottle bowl cup dish envelope jar menu mug napkin plate saucer
+18	1.000000	0.000000	earmuffs helmet muzzle
+19	1.000000	0.000000	ball balloon brick crayon doll kite marble rock shell stone toy
+20	1.000000	0.000000	candle
+21	1.000000	0.000000	carpet mat
+22	1.000000	0.000000	apron belt blouse boots bra camisole cape cloak coat curtains drapes dress gloves gown jacket jeans leotards mittens nightgown nylons pajamas pants parka robe scarf shawl shirt shoes skirt slippers socks sweater swimsuit tie trousers vest
+23	1.000000	0.000000	microscope projector
+24	1.000000	0.000000	bathtub faucet sink toilet
+25	1.000000	0.000000	limousine veil
+26	1.000000	0.000000	pepper
+27	1.000000	0.000000	bed bench chair couch cushion desk pillow rocker sofa table
+28	1.000000	0.000000	football saddle sandals sandpaper
+29	1.000000	0.000000	bracelet crown medal necklace
+30	1.000000	0.000000	clock thermometer wand
+31	1.000000	0.000000	pencil ruler wall
+32	1.000000	0.000000	telephone
+33	1.000000	0.000000	chandelier lamp lantern
+34	1.000000	0.000000	radio stereo
+35	1.000000	0.000000	blender dishwasher elevator escalator microwave mixer oven stove toaster
+36	1.000000	0.000000	airplane ambulance bike boat buggy bus canoe car cart helicopter jeep jet motorcycle raft sailboat scooter ship skateboard submarine subway surfboard taxi train tricycle trolley truck unicycle van wagon wheelbarrow yacht
+37	1.000000	0.000000	anchor typewriter
+38	1.000000	0.000000	accordion bagpipe banjo cello clarinet drum flute guitar harmonica harp harpsichord piano saxophone trombone trumpet tuba violin
+39	1.000000	0.000000	barn barrel basement box building bureau cabinet cellar closet cork cupboard dresser fence freezer fridge garage pier shack shed skyscraper
+40	1.000000	0.000000	certificate
