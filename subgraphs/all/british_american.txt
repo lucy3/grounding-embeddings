@@ -1,0 +1,9 @@
+whiskey	whisky
+catalogue	catalog
+armour	armor
+plough	plow
+tyre	tire
+aeroplane	airplane
+pyjamas	pajamas
+doughnut	donut
+axe	ax

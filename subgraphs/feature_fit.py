@@ -42,6 +42,8 @@ elif PIVOT == "wikigiga":
     INPUT = "../glove/glove.6B.300d.txt"
 elif PIVOT == "cc":
     INPUT = "../glove/glove.840B.300d.txt"
+elif PIVOT == "word2vec":
+    INPUT = "../word2vec/GoogleNews-vectors-negative300.bin"
 
 SOURCE = "mcrae"
 if SOURCE == "mcrae":
@@ -88,6 +90,19 @@ def load_embeddings(concepts):
     if Path(EMBEDDINGS).is_file():
         embeddings = np.load(EMBEDDINGS)
         assert len(embeddings) == len(vocab), "%i %i" % (len(embeddings), len(vocab))
+    elif PIVOT == "word2vec":
+        from gensim.models.keyedvectors import KeyedVectors
+        model = KeyedVectors.load_word2vec_format(INPUT, binary=True)
+
+        embeddings = []
+        for concept in vocab:
+            w2v_concept = concept
+            if concept == "axe": w2v_concept = "ax"
+            elif concept == "armour": w2v_concept = "armor"
+            embeddings.append(model[w2v_concept])
+
+        embeddings = np.array(embeddings)
+        np.save(EMBEDDINGS, embeddings)
     else:
         embeddings = {}
         with open(INPUT, "r") as glove_f:
@@ -737,7 +752,7 @@ def produce_feature_fit_bars(feature_groups, features_per_category=4):
     fig.savefig(fig_path)
 
 
-def do_bootstrap_test(feature_groups, pop1, pop2, n_bootstrap_samples=100000,
+def do_bootstrap_test(feature_groups, pop1, pop2, n_bootstrap_samples=10000,
                       percentiles=(5, 95)):
     """
     Do a percentile bootstrap test on the difference of medians among features
