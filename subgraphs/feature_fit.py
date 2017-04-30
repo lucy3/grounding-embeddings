@@ -869,7 +869,7 @@ def main():
     if SOURCE == "cslb":
         do_bootstrap_test(groups["br_label"],
                           ["visual perceptual", "other perceptual"],
-                          ["taxonomic", "function"])
+                          ["taxonomic", "functional"])
     elif SOURCE == "mcrae":
         do_bootstrap_test(groups["br_label"],
                           ["visual-motion", "visual-form_and_surface", "visual-colour",
