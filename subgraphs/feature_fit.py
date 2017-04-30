@@ -45,7 +45,7 @@ elif PIVOT == "cc":
 elif PIVOT == "word2vec":
     INPUT = "../word2vec/GoogleNews-vectors-negative300.bin"
 
-SOURCE = "cslb"
+SOURCE = "mcrae"
 if SOURCE == "mcrae":
     FEATURES = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 else:
@@ -657,7 +657,7 @@ def cluster_metric_fn(x, y):
         return emb_dist
     else:
         weight_dist = (x_weight - y_weight) ** 2
-        return emb_dist + 10 * weight_dist
+        return emb_dist + 50 * weight_dist
 
 
 def try_cluster(k, X):
