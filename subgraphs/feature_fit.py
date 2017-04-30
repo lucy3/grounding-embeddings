@@ -51,15 +51,20 @@ else:
 VOCAB = "./all/vocab_%s.txt" % SOURCE
 EMBEDDINGS = "./all/embeddings.%s.%s.npy" % (SOURCE, PIVOT)
 
-CV_OUTPUT = "./all/feature_fit/%s/Cs_%s.txt" % (SOURCE, PIVOT)
-OUTPUT = "./all/feature_fit/%s/%s.txt" % (SOURCE, PIVOT)
-CLUSTER_OUTPUT = "./all/feature_fit/%s/%s/clusters.txt" % (SOURCE, PIVOT)
-
+# Auxiliary input paths
 PEARSON1_NAME = "%s_%s" % (SOURCE, PIVOT) if PIVOT != SOURCE else "%s_wikigiga" % SOURCE
 PEARSON1 = './all/pearson_corr/%s/corr_%s.txt' % (SOURCE, PEARSON1_NAME)
 PEARSON2_NAME = "wordnetres_%s" % PIVOT
 PEARSON2 = './all/pearson_corr/%s/corr_%s.txt' % (SOURCE, PEARSON2_NAME)
 GRAPH_DIR = './all/feature_fit/%s/%s' % (SOURCE, PIVOT)
+
+# Output paths
+OUT_DIR = "./all/feature_fit/%s/%s" % (SOURCE, PIVOT)
+CV_OUTPUT = "%s/Cs.txt" % OUT_DIR
+FF_OUTPUT = "%s/features.txt" % OUT_DIR
+GROUP_OUTPUT = "%s/groups.txt" % OUT_DIR
+CLUSTER_OUTPUT = "%s/clusters.txt" % OUT_DIR
+LOG = "%s/log.txt" % OUT_DIR
 
 if PIVOT == "wikigiga":
     PIVOT_FORMAL = "Wikipedia+Gigaword"
@@ -294,7 +299,8 @@ def analyze_features(features, word2idx, embeddings):
 
     Cs = load_loocv(usable_features, X, Y, clf_base)
     clfs = {}
-    for f_idx, f_name in enumerate(usable_features):
+    for f_idx, f_name in tqdm(enumerate(usable_features),
+                              desc="Training feature classifiers"):
         clfs[f_idx] = clf_base(C=Cs[f_name])
         clfs[f_idx].fit(X, Y[:, f_idx])
 
@@ -799,23 +805,28 @@ def main():
     feature_data = sorted(feature_data, key=lambda f: f[2])
 
     fcat_mean = {}
-    with open(OUTPUT, "w") as out:
-        grouping_fns = {
-            "br_label": lambda name: features[name].br_label,
-            "first_word": lambda name: name.split("_")[0],
-        }
-        groups = {k: defaultdict(list) for k in grouping_fns}
+
+    grouping_fns = {
+        "br_label": lambda name: features[name].br_label,
+        "first_word": lambda name: name.split("_")[0],
+    }
+    groups = {k: defaultdict(list) for k in grouping_fns}
+
+    # Output raw feature data and group features
+    with open(FF_OUTPUT, "w") as ff_out:
         for name, n_entries, score in feature_data:
-            out.write("%40s\t%25s\t%i\t%f\n" %
-                        (name, features[name].br_label, n_entries, score))
+            ff_out.write("%s\t%s\t%i\t%f\n" %
+                         (name, features[name].br_label, n_entries, score))
 
             for grouping_fn_name, grouping_fn in grouping_fns.items():
                 grouping_fn = grouping_fns[grouping_fn_name]
                 group = grouping_fn(name)
                 groups[grouping_fn_name][group].append((name, score, n_entries))
 
+    # Output grouped feature information
+    with open(GROUP_OUTPUT, "w") as group_out:
         for grouping_fn_name, groups_result in sorted(groups.items()):
-            out.write("\n\nGrouping by %s:\n" % grouping_fn_name)
+            group_out.write("\n\nGrouping by %s:\n" % grouping_fn_name)
             summary = {}
             for group_name, group_data in groups_result.items():
                 scores = np.array([group_data_i[1] for group_data_i in group_data])
@@ -825,11 +836,12 @@ def main():
                                        np.mean(n_entries))
             summary = sorted(summary.items(), key=lambda x: x[1][2][1])
 
-            out.write("%25s\tmu\tn\tmed\t\tmin\tmean\tmax\n" % "group")
-            out.write(("=" * 100) + "\n")
+            group_out.write("%25s\tmu\tn\tmed\t\tmin\tmean\tmax\n" % "group")
+            group_out.write(("=" * 100) + "\n")
             for label_group, (n, mean, pcts, n_concepts) in summary:
-                out.write("%25s\t%.2f\t%3i\t%.5f\t\t%.5f\t%.5f\t%.5f\n"
-                          % (label_group, n_concepts, n, pcts[1], pcts[0], mean, pcts[2]))
+                group_out.write("%25s\t%.2f\t%3i\t%.5f\t\t%.5f\t%.5f\t%.5f\n"
+                                % (label_group, n_concepts, n, pcts[1], pcts[0],
+                                   mean, pcts[2]))
                 fcat_mean[label_group] = mean
 
     #produce_feature_fit_bars(groups["br_label"])
