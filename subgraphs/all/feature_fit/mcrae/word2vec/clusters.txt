@@ -1,0 +1,41 @@
+0	  nan	  nan	
+1	0.299050	0.000000	doll
+2	0.391856	0.000000	bouquet
+3	0.449415	0.000037	armour mirror toilet toy
+4	0.478138	0.000007	certificate tent
+5	0.510642	0.000001	emerald pliers rope
+6	0.526918	0.000026	dandelion saucer
+7	0.550377	0.000055	bathtub cathedral lantern
+8	0.589843	0.000159	ashtray bag belt bottle brush candle carpet chain chandelier cheese cigarette jar mat sack typewriter
+9	0.605223	0.000000	basement
+10	0.633222	0.000246	ball biscuit brick clock coconut cup dish hose marble mouse pearl pie plate raccoon rat rattle rock shell snail stone thermometer walnut wheel
+11	0.643010	0.000000	beehive
+12	0.662571	0.000508	garlic onions
+13	0.667004	0.000310	bolts crayon curtains drapes earmuffs envelope helmet kite napkin pen pin screws tack thimble tie
+14	0.672632	0.000074	telephone unicycle wall
+15	0.699777	0.000451	carrot cucumber eggplant potato radish zucchini
+16	0.706000	0.000450	boots gloves mittens scarf shoes socks
+17	0.706975	0.000448	bedroom bureau cellar chapel church dresser freezer fridge
+18	0.718356	0.000468	ant bear beetle bison buffalo butterfly buzzard cat caterpillar cheetah chimp chipmunk cockroach cow coyote dolphin donkey elephant emu flamingo flea frog giraffe gorilla hare housefly hyena iguana lobster ostrich ox penguin rabbit seagull seal shrimp spider squirrel swan tiger toad vulture walrus worm
+19	0.725248	0.000121	apartment apron balloon barn bed bowl bra building bungalow cigar clamp cottage crown hammer house limousine magazine muzzle nylons pencil pillow ruler saddle sandpaper screwdriver seaweed sink skirt skyscraper swimsuit tray veil wand whip
+20	0.740092	0.000311	apple blueberry bread cake cantaloupe cherry corn cranberry grape grapefruit honeydew lemon nectarine peach pickle pineapple plum prune pumpkin
+21	0.767052	0.000233	ambulance anchor axe banner barrel boat box bracelet buggy cannon coin crowbar doorknob faucet flute helicopter hook inn key medal mug necklace pier pot raft sailboat shack shelves spear stick submarine sword tractor tricycle urn wagon wheelbarrow wrench
+22	0.781617	0.000245	beets cabbage camel caribou cauliflower cougar deer elk fawn football fox groundhog horse lamb mink moose olive pepper pig pony porcupine rattlesnake rice sheep skunk turnip yam zebra
+23	0.795216	0.000310	jeep stereo subway taxi
+24	0.800576	0.000567	blouse camisole cape cloak coat dress jacket jeans pants robe shawl shirt sweater trousers
+25	0.810975	0.000297	bagpipe banjo broom buckle cabinet cage cello closet colander comb cupboard fork grater hoe knife level microscope oven paintbrush piano projector rake shed sledgehammer spatula spoon strainer tongs whistle
+26	0.814667	0.000460	beaver bluejay budgie bull catfish chickadee clam crab crow dog dove duck eagle eel falcon goat goose grasshopper hawk hornet leopard lion moth oriole otter owl panther peacock pelican pigeon platypus raven robin rooster stork tortoise turkey turtle wasp whale woodpecker
+27	0.826490	0.000372	asparagus banana beans birch cedar celery lettuce mandarin oak orange parsley pear peas raisin rhubarb spinach tangerine vine willow
+28	0.832928	0.000528	bomb gun missile pistol rifle slingshot
+29	0.840235	0.000272	bike bus canoe car cart couch cushion ship skateboard skis surfboard table trailer truck van yacht
+30	0.858853	0.000399	accordion baton blender bookcase bridge bucket catapult clarinet dishwasher door drill drum escalator fence pan peg racquet rocket saxophone scissors shield shovel skillet sled sleigh spade tomahawk trombone trumpet tuba umbrella
+31	0.872421	0.000309	alligator avocado broccoli crocodile goldfish lime mackerel mushroom octopus perch python raspberry salamander salmon sardine squid strawberry tomato trout tuna
+32	0.884355	0.000252	gown leotards nightgown pajamas parka sandals slippers
+33	0.902587	0.000282	bayonet bazooka bench blackbird bullet canary chair chicken cork crossbow dagger desk drain elevator finch garage gopher grenade hamster harmonica harpoon hut machete motorcycle parakeet partridge pheasant razor revolver scooter shotgun sofa sparrow starling tap trolley
+34	0.921352	0.000125	microwave mixer radio vest
+35	0.937330	0.000101	book menu
+36	0.949424	0.000048	airplane basket jet lamp pine pyramid train
+37	0.969378	0.000718	calf cod guppy minnow
+38	0.982431	0.000434	cabin gate guitar harp harpsichord rocker violin
+39	0.986937	0.000175	chisel corkscrew hatchet kettle ladle stove toaster tripod
+40	1.000000	0.000000	nightingale
