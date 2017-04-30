@@ -45,10 +45,10 @@ elif PIVOT == "cc":
 elif PIVOT == "word2vec":
     INPUT = "../word2vec/GoogleNews-vectors-negative300.bin"
 
-SOURCE = "cslb"
+SOURCE = "cslb_cutoff"
 if SOURCE == "mcrae":
     FEATURES = "../mcrae/CONCS_FEATS_concstats_brm.txt"
-else:
+elif SOURCE == "cslb" or SOURCE == "cslb_cutoff":
     FEATURES = "../cslb/norms.dat"
 VOCAB = "./all/vocab_%s.txt" % SOURCE
 EMBEDDINGS = "./all/embeddings.%s.%s.npy" % (SOURCE, PIVOT)
@@ -157,24 +157,26 @@ def load_features_concepts():
                 features[feature_name].concepts.add(concept_name)
                 concepts.add(concept_name)
 
-        lengths = [len(f.concepts) for f in features.values()]
-        print("# of features with particular number of associated concepts:")
-        pprint(Counter(lengths))
-
-    if SOURCE == "cslb":
+    elif SOURCE.startswith("cslb"):
         with open(FEATURES, "r") as features_f:
             reader = csv.DictReader(features_f, delimiter='\t')
             for row in reader:
                 concept_name = row["concept"]
                 feature_name = "_".join(row["feature"].split())
+
+                if SOURCE == "cslb_cutoff":
+                    pf = float(row["pf"])
+                    if pf < 5: continue
+
                 if feature_name not in features:
                     features[feature_name] = Feature(feature_name, set(),
                         "", "", "", row["feature type"], "")
                 features[feature_name].concepts.add(concept_name)
                 concepts.add(concept_name)
-        lengths = [len(f.concepts) for f in features.values()]
-        print("# of features with particular number of associated concepts:")
-        pprint(Counter(lengths))
+
+    lengths = [len(f.concepts) for f in features.values()]
+    print("# of features with particular number of associated concepts:")
+    pprint(Counter(lengths))
 
     return features, concepts
 
