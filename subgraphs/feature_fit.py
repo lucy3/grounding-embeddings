@@ -117,8 +117,13 @@ def load_features_concepts():
                 concept_name = row["Concept"]
                 feature_name = row["Feature"]
                 if feature_name not in features:
+                    br_label = row["BR_Label"]
+                    # NB: override feature category for beh-, inbeh-
+                    if "beh_-" in feature_name:
+                        br_label = "function"
+
                     features[feature_name] = Feature(feature_name, set(),
-                            row["WB_Label"], row["WB_Maj"], row["WB_Min"], row["BR_Label"],
+                            row["WB_Label"], row["WB_Maj"], row["WB_Min"], br_label,
                             row["Disting"])
                 features[feature_name].concepts.add(concept_name)
                 concepts.add(concept_name)
