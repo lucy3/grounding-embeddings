@@ -33,7 +33,7 @@ import random
 # resulting feature_fit metric represents how well these representations encode
 # the relevant features. Each axis of the resulting graphs also involves the
 # pivot source.
-PIVOT = "cc"
+PIVOT = "word2vec"
 if PIVOT == "mcrae":
     INPUT = "./all/mcrae_vectors.txt"
 elif PIVOT == "cslb":
@@ -45,7 +45,7 @@ elif PIVOT == "cc":
 elif PIVOT == "word2vec":
     INPUT = "../word2vec/GoogleNews-vectors-negative300.bin"
 
-SOURCE = "cslb"
+SOURCE = "mcrae"
 if SOURCE == "mcrae":
     FEATURES = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 else:
@@ -72,6 +72,8 @@ if PIVOT == "wikigiga":
     PIVOT_FORMAL = "Wikipedia+Gigaword"
 elif PIVOT == "cc":
     PIVOT_FORMAL = "Common Crawl"
+elif PIVOT == "word2vec":
+    PIVOT_FORMAL = "Word2Vec"
 
 if SOURCE == "cslb":
     SOURCE_FORMAL = "CSLB"
@@ -655,7 +657,7 @@ def cluster_metric_fn(x, y):
         return emb_dist
     else:
         weight_dist = (x_weight - y_weight) ** 2
-        return emb_dist + 100 * weight_dist
+        return emb_dist + 10 * weight_dist
 
 
 def try_cluster(k, X):
