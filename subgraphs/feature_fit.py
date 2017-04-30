@@ -866,12 +866,15 @@ def main():
                 fcat_mean[label_group] = mean
 
     #produce_feature_fit_bars(groups["br_label"])
-    #do_bootstrap_test(groups["br_label"],
-                      #["visual perceptual", "other perceptual"],
-                      #["encyclopaedic", "taxonomic", "function"])
-    do_bootstrap_test(groups["br_label"],
-                      ["visual-motion", "visual-form_and_surface", "visual-colour"],
-                      ["encyclopaedic", "function", "taxonomic"])
+    if SOURCE == "cslb":
+        do_bootstrap_test(groups["br_label"],
+                          ["visual perceptual", "other perceptual"],
+                          ["taxonomic", "function"])
+    elif SOURCE == "mcrae":
+        do_bootstrap_test(groups["br_label"],
+                          ["visual-motion", "visual-form_and_surface", "visual-colour",
+                           "sound", "tactile", "smell", "taste"],
+                          ["function", "taxonomic"])
 
     swarm_feature_cats(groups["br_label"], fcat_mean)
 
