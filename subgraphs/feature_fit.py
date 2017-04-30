@@ -33,7 +33,7 @@ import random
 # resulting feature_fit metric represents how well these representations encode
 # the relevant features. Each axis of the resulting graphs also involves the
 # pivot source.
-PIVOT = "word2vec"
+PIVOT = "cc"
 if PIVOT == "mcrae":
     INPUT = "./all/mcrae_vectors.txt"
 elif PIVOT == "cslb":
@@ -324,23 +324,27 @@ def analyze_features(features, word2idx, embeddings):
                        fit_intercept=False)
 
     Cs = load_loocv(usable_features, X, Y, clf_base)
-    clfs = {}
+    preds = []
+    top_false_positives = []
     for f_idx, f_name in tqdm(enumerate(usable_features),
                               total=len(usable_features),
                               desc="Training feature classifiers"):
-        clfs[f_idx] = clf_base(C=Cs[f_name])
-        clfs[f_idx].fit(X, Y[:, f_idx])
+        clf = clf_base(C=Cs[f_name])
+        clf.fit(X, Y[:, f_idx])
+        preds.append(clf.predict(X))
+
+        # Find top-scoring false positives
+        X_neg = X[Y[:, f_idx] == 0]
+        neg_proba = clf.predict_proba(X_neg)[:, 1]
+        neg_proba = neg_proba[neg_proba > 0.5]
+        top_false_i = np.argsort(neg_proba)[::-1][:5]
+        top_false_positives.append(top_false_i)
 
     counts = Y.sum(axis=0)
-    ret_metrics = [metrics.f1_score(Y[:, f_idx],
-                                    clfs[f_idx].predict(X))
-                   for f_idx, _ in enumerate(usable_features)]
+    ret_metrics = [metrics.f1_score(Y[:, f_idx], preds_i)
+                   for f_idx, preds_i in enumerate(preds)]
 
-    # HACK: for dev
-    usable_features = usable_features[:len(ret_metrics)]
-    counts = counts[:len(ret_metrics)]
-
-    return zip(usable_features, counts, ret_metrics)
+    return zip(usable_features, counts, top_false_positives, ret_metrics)
 
 
 def get_values(input_file, c_string, value):
@@ -834,7 +838,7 @@ def main():
     word2idx = {w: i for i, w in enumerate(vocab)}
 
     feature_data = analyze_features(features, word2idx, embeddings)
-    feature_data = sorted(feature_data, key=lambda f: f[2])
+    feature_data = sorted(feature_data, key=lambda f: f[3])
 
     fcat_mean = {}
 
@@ -846,7 +850,7 @@ def main():
 
     # Output raw feature data and group features
     with open(FF_OUTPUT, "w") as ff_out:
-        for name, n_entries, score in feature_data:
+        for name, n_entries, _, score in feature_data:
             ff_out.write("%s\t%s\t%i\t%f\n" %
                          (name, features[name].br_label, n_entries, score))
 
@@ -854,6 +858,7 @@ def main():
                 grouping_fn = grouping_fns[grouping_fn_name]
                 group = grouping_fn(name)
                 groups[grouping_fn_name][group].append((name, score, n_entries))
+
 
     # Output grouped feature information
     with open(GROUP_OUTPUT, "w") as group_out:
@@ -876,6 +881,10 @@ def main():
                                    mean, pcts[2]))
                 fcat_mean[label_group] = mean
 
+    # Output top false positives
+    for name, n_entries, false_positives, score in feature_data:
+        print("%s\t%s" % (name, " ".join([vocab[idx] for idx in false_positives])))
+
     #produce_feature_fit_bars(groups["br_label"])
     if SOURCE == "cslb":
         do_bootstrap_test(groups["br_label"],
@@ -889,6 +898,7 @@ def main():
 
     swarm_feature_cats(groups["br_label"], fcat_mean)
 
+    feature_data = [(name, n_entries, score) for name, n_entries, _, score in feature_data]
     domain_concepts = do_cluster(vocab, features, feature_data)
     produce_unified_graph(vocab, features, feature_data, domain_concepts=domain_concepts)
     produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=domain_concepts)
