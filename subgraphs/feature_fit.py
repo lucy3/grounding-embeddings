@@ -33,7 +33,7 @@ import random
 # resulting feature_fit metric represents how well these representations encode
 # the relevant features. Each axis of the resulting graphs also involves the
 # pivot source.
-PIVOT = "wikigiga"
+PIVOT = "cc"
 if PIVOT == "mcrae":
     INPUT = "./all/mcrae_vectors.txt"
 elif PIVOT == "cslb":
@@ -45,7 +45,7 @@ elif PIVOT == "cc":
 elif PIVOT == "word2vec":
     INPUT = "../word2vec/GoogleNews-vectors-negative300.bin"
 
-SOURCE = "mcrae"
+SOURCE = "cslb"
 if SOURCE == "mcrae":
     FEATURES = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 else:
