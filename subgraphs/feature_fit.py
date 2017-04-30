@@ -300,6 +300,7 @@ def analyze_features(features, word2idx, embeddings):
     Cs = load_loocv(usable_features, X, Y, clf_base)
     clfs = {}
     for f_idx, f_name in tqdm(enumerate(usable_features),
+                              total=len(usable_features),
                               desc="Training feature classifiers"):
         clfs[f_idx] = clf_base(C=Cs[f_name])
         clfs[f_idx].fit(X, Y[:, f_idx])
@@ -736,7 +737,7 @@ def produce_feature_fit_bars(feature_groups, features_per_category=4):
     fig.savefig(fig_path)
 
 
-def do_bootstrap_test(feature_groups, pop1, pop2, n_bootstrap_samples=1000,
+def do_bootstrap_test(feature_groups, pop1, pop2, n_bootstrap_samples=100000,
                       percentiles=(5, 95)):
     """
     Do a percentile bootstrap test on the difference of medians among features
@@ -758,18 +759,23 @@ def do_bootstrap_test(feature_groups, pop1, pop2, n_bootstrap_samples=1000,
     pop1_features = np.array([score for _, score, _ in pop1_features])
     pop2_features = np.array([score for _, score, _ in pop2_features])
 
+    tqdm.write("======= BOOTSTRAP ========")
     diffs = []
-    for _ in range(n_bootstrap_samples):
+    for _ in trange(n_bootstrap_samples, desc="bootstrap"):
         pop1_samples = np.random.choice(pop1_features, size=len(pop1_features),
                                         replace=True)
         pop2_samples = np.random.choice(pop2_features, size=len(pop2_features),
                                         replace=True)
 
-        diff = np.mean(pop2_samples) - np.mean(pop1_samples)
+        diff = np.median(pop2_samples) - np.median(pop1_samples)
         diffs.append(diff)
 
     result = np.percentile(diffs, percentiles)
-    print(result)
+
+    tqdm.write("pop1: " + (" ".join(pop1)))
+    tqdm.write("pop2: " + (" ".join(pop2)))
+    tqdm.write("%i%% CI on (pop2 - pop1): %s" % (percentiles[1], result))
+    tqdm.write("==========================")
     return result
 
 def swarm_feature_cats(feature_groups, fcat_mean):
@@ -848,6 +854,9 @@ def main():
     #do_bootstrap_test(groups["br_label"],
                       #["visual perceptual", "other perceptual"],
                       #["encyclopaedic", "taxonomic", "function"])
+    do_bootstrap_test(groups["br_label"],
+                      ["visual-motion", "visual-form_and_surface", "visual-colour"],
+                      ["encyclopaedic", "function", "taxonomic"])
 
     swarm_feature_cats(groups["br_label"], fcat_mean)
 
