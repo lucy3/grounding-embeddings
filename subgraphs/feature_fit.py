@@ -33,7 +33,7 @@ import random
 # resulting feature_fit metric represents how well these representations encode
 # the relevant features. Each axis of the resulting graphs also involves the
 # pivot source.
-PIVOT = "cc"
+PIVOT = "word2vec"
 if PIVOT == "mcrae":
     INPUT = "./all/mcrae_vectors.txt"
 elif PIVOT == "cslb":
@@ -101,6 +101,13 @@ def load_embeddings(concepts):
             w2v_concept = concept
             if concept == "axe": w2v_concept = "ax"
             elif concept == "armour": w2v_concept = "armor"
+            elif concept == "doughnut": w2v_concept = "donut"
+            elif concept == "pyjamas": w2v_concept = "pajamas"
+            elif concept == "aeroplane": w2v_concept = "airplane"
+            elif concept == "tyre": w2v_concept = "tire"
+            elif concept == "plough": w2v_concept = "plow"
+            elif concept == "catalogue": w2v_concept = "catalog"
+            elif concept == "whisky": w2v_concept = "whiskey"
             embeddings.append(model[w2v_concept])
 
         embeddings = np.array(embeddings)
