@@ -70,11 +70,11 @@ CONCEPT_OUTPUT = "%s/concepts.txt" % OUT_DIR
 LOG = "%s/log.txt" % OUT_DIR
 
 if PIVOT == "wikigiga":
-    PIVOT_FORMAL = "Wikipedia+Gigaword GloVe"
+    PIVOT_FORMAL = "GloVe-WG"
 elif PIVOT == "cc":
-    PIVOT_FORMAL = "Common Crawl GloVe"
+    PIVOT_FORMAL = "GloVe-CC"
 elif PIVOT == "word2vec":
-    PIVOT_FORMAL = "Google News word2vec"
+    PIVOT_FORMAL = "word2vec"
 
 if SOURCE == "cslb":
     SOURCE_FORMAL = "CSLB"
@@ -522,7 +522,7 @@ def analyze_domains(labels, ff_scores, concept_domains=None):
     sns_plot = sns.swarmplot(x, y, ax=ax)
     sns_plot = sns.boxplot(x, y, showcaps=False,boxprops={'facecolor':'None'},
         showfliers=False,whiskerprops={'linewidth':0}, ax=ax)
-    sns_plot.set(xlabel='domain ID', ylabel='feature fit score')
+    sns_plot.set(xlabel='Domain ID', ylabel='Median feature fit score')
     fig_path = os.path.join(GRAPH_DIR, "feature-%s-domain.png" % PIVOT)
     plt.tight_layout()
     fig = sns_plot.get_figure()
@@ -618,8 +618,8 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
     fig = plt.figure()
     #fig.suptitle("unified graph")
     ax = fig.add_subplot(111)
-    ax.set_xlabel("ρ(" + PIVOT_FORMAL + "," + SOURCE_FORMAL + ")")
-    ax.set_ylabel("ρ(" + PIVOT_FORMAL + ", WordNet)")
+    ax.set_xlabel("m(" + PIVOT_FORMAL + "," + SOURCE_FORMAL + ")")
+    ax.set_ylabel("m(" + PIVOT_FORMAL + ", WordNet)")
     ax.scatter(xs, ys, c=cs)
     # # plot points of interest in front of other points
     # for _m, _c, _x, _y in zip(markers, colors, xs, ys):
@@ -642,8 +642,8 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
 
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    ax.set_xlabel("ρ(" + PIVOT_FORMAL + "," + SOURCE_FORMAL + ")")
-    ax.set_ylabel("feature fit")
+    ax.set_xlabel("m(" + PIVOT_FORMAL + "," + SOURCE_FORMAL + ")")
+    ax.set_ylabel("Median feature fit score")
     ax.scatter(xs, zs, c=cs, alpha=0.8)
 
     plt.tight_layout()
@@ -656,7 +656,7 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
     fig = plt.figure()
     ax = fig.add_subplot(111)
     ax.set_xlabel(PEARSON2_NAME)
-    ax.set_ylabel("feature_fit")
+    ax.set_ylabel("Median feature fit score")
     ax.scatter(ys, zs, c=cs, alpha=0.8)
 
     plt.tight_layout()
@@ -829,7 +829,7 @@ def swarm_feature_cats(feature_groups, fcat_median):
     sns_plot = sns.swarmplot(x, y, ax=ax)
     sns_plot = sns.boxplot(x, y, showcaps=False,boxprops={'facecolor':'None'},
         showfliers=False,whiskerprops={'linewidth':0}, ax=ax)
-    sns_plot.set(xlabel='feature category', ylabel='feature fit score')
+    sns_plot.set(xlabel='Feature category', ylabel='Feature fit score')
     fig_path = os.path.join(GRAPH_DIR, "feature-%s-%s-category.png" % (SOURCE, PIVOT))
     plt.tight_layout()
     fig = sns_plot.get_figure()
