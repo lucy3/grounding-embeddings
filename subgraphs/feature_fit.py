@@ -401,6 +401,9 @@ def produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=
                                         'correlation', domain_concepts=domain_concepts)
     assert domain_p1_means.keys() == domain_p2_means.keys()
 
+    print("average domain pearson variance", 
+        sum(domain_p1_vars[d] for d in domain_p1_vars) / len(domain_p1_vars))
+
     feature_map = {feature: weight for feature, _, weight in feature_data}
 
     # TODO: Arbitrary number
@@ -668,7 +671,7 @@ def cluster_metric_fn(x, y):
         return emb_dist
     else:
         weight_dist = (x_weight - y_weight) ** 2
-        return emb_dist + 100 * weight_dist
+        return emb_dist + 50 * weight_dist
 
 
 def try_cluster(k, X):
@@ -689,7 +692,7 @@ def do_cluster(vocab, features, feature_data):
         for concept in feature.concepts:
             if concept in vocab and f_name in feature_dict:
                 concept_vals[concept].append(feature_dict[f_name])
-    concept_vals = {c: np.mean(vals) for c, vals in concept_vals.items()}
+    concept_vals = {c: np.median(vals) for c, vals in concept_vals.items()}
 
     mean_metric = [concept_vals.get(label, np.nan) for label in labels]
     X = np.append(np.array([mean_metric]).T, X, axis=1)
@@ -722,7 +725,7 @@ def do_cluster(vocab, features, feature_data):
     for sib_cluster in sib_clusters:
         if not sib_cluster: next
         weights = [concept_vals[c] for c in sib_cluster if c in concept_vals]
-        results.append((np.mean(weights), np.var(weights), sib_cluster))
+        results.append((np.median(weights), np.var(weights), sib_cluster))
 
     results = sorted(results, key=lambda x: x[0])
     results = [(i,) + result for i, result in enumerate(results)]
