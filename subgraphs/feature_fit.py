@@ -45,7 +45,7 @@ elif PIVOT == "cc":
 elif PIVOT == "word2vec":
     INPUT = "../word2vec/GoogleNews-vectors-negative300.bin"
 
-SOURCE = "cslb_cutoff"
+SOURCE = "cslb"
 if SOURCE == "mcrae":
     FEATURES = "../mcrae/CONCS_FEATS_concstats_brm.txt"
 elif SOURCE == "cslb" or SOURCE == "cslb_cutoff":
@@ -69,11 +69,11 @@ CLUSTER_OUTPUT = "%s/clusters.txt" % OUT_DIR
 LOG = "%s/log.txt" % OUT_DIR
 
 if PIVOT == "wikigiga":
-    PIVOT_FORMAL = "Wikipedia+Gigaword"
+    PIVOT_FORMAL = "Wikipedia+Gigaword GloVe"
 elif PIVOT == "cc":
-    PIVOT_FORMAL = "Common Crawl"
+    PIVOT_FORMAL = "Common Crawl GloVe"
 elif PIVOT == "word2vec":
-    PIVOT_FORMAL = "Word2Vec"
+    PIVOT_FORMAL = "Google News word2vec"
 
 if SOURCE == "cslb":
     SOURCE_FORMAL = "CSLB"
@@ -452,8 +452,8 @@ def produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=
     fig = plt.figure()
     #fig.suptitle("unified graph")
     ax = fig.add_subplot(111)
-    ax.set_xlabel("Pearson corr between " + SOURCE_FORMAL + " and " + PIVOT_FORMAL)
-    ax.set_ylabel("Pearson corr between WordNet and " + PIVOT_FORMAL)
+    ax.set_xlabel("ρ(" + PIVOT_FORMAL + "," + SOURCE_FORMAL + ")")
+    ax.set_ylabel("ρ(" + PIVOT_FORMAL + ", WordNet)")
     ax.scatter(xs, ys, c=cs, alpha=0.8)
     for i, d in enumerate(labels):
         ax.annotate(d, (xs[i], ys[i]), fontsize=20)
@@ -468,8 +468,8 @@ def produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=
     fig = plt.figure()
     fig.suptitle("unified graph")
     ax = fig.add_subplot(111)
-    ax.set_xlabel(PEARSON1_NAME)
-    ax.set_ylabel("feature_fit")
+    ax.set_xlabel("ρ(" + PIVOT_FORMAL + "," + SOURCE_FORMAL + ")")
+    ax.set_ylabel("feature fit")
     ax.scatter(xs, zs, c=cs, alpha=0.8)
     for i, d in enumerate(labels):
         ax.annotate(d, (xs[i], zs[i]))
@@ -612,8 +612,8 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
     fig = plt.figure()
     #fig.suptitle("unified graph")
     ax = fig.add_subplot(111)
-    ax.set_xlabel("Pearson corr between " + SOURCE_FORMAL + " and " + PIVOT_FORMAL)
-    ax.set_ylabel("Pearson corr between WordNet and " + PIVOT_FORMAL)
+    ax.set_xlabel("ρ(" + PIVOT_FORMAL + "," + SOURCE_FORMAL + ")")
+    ax.set_ylabel("ρ(" + PIVOT_FORMAL + ", WordNet)")
     ax.scatter(xs, ys, c=cs)
     # # plot points of interest in front of other points
     # for _m, _c, _x, _y in zip(markers, colors, xs, ys):
@@ -635,10 +635,9 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
     # Plot feature metric vs. Pearson1
 
     fig = plt.figure()
-    fig.suptitle("unified graph")
     ax = fig.add_subplot(111)
-    ax.set_xlabel(PEARSON1_NAME)
-    ax.set_ylabel("feature_fit")
+    ax.set_xlabel("ρ(" + PIVOT_FORMAL + "," + SOURCE_FORMAL + ")")
+    ax.set_ylabel("feature fit")
     ax.scatter(xs, zs, c=cs, alpha=0.8)
 
     plt.tight_layout()
@@ -649,7 +648,6 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
     # Plot feature metric vs. Pearson2
 
     fig = plt.figure()
-    fig.suptitle("unified graph")
     ax = fig.add_subplot(111)
     ax.set_xlabel(PEARSON2_NAME)
     ax.set_ylabel("feature_fit")
@@ -670,7 +668,7 @@ def cluster_metric_fn(x, y):
         return emb_dist
     else:
         weight_dist = (x_weight - y_weight) ** 2
-        return emb_dist + 50 * weight_dist
+        return emb_dist + 100 * weight_dist
 
 
 def try_cluster(k, X):
