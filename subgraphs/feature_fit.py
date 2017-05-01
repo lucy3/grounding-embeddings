@@ -66,6 +66,7 @@ CV_OUTPUT = "%s/Cs.txt" % OUT_DIR
 FF_OUTPUT = "%s/features.txt" % OUT_DIR
 GROUP_OUTPUT = "%s/groups.txt" % OUT_DIR
 CLUSTER_OUTPUT = "%s/clusters.txt" % OUT_DIR
+CONCEPT_OUTPUT = "%s/concepts.txt" % OUT_DIR
 LOG = "%s/log.txt" % OUT_DIR
 
 if PIVOT == "wikigiga":
@@ -578,6 +579,8 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
         zs.append(np.median(weights))
         labels.append(concept)
 
+        print("%s\t%f" % (concept, np.median(weights)))
+
     concept_domains = {c: [d] for d, cs in domain_concepts.items() for c in cs}
     analyze_domains(labels, zs, concept_domains=concept_domains)
 
@@ -881,6 +884,16 @@ def main():
                                 % (label_group, n_concepts, n, pcts[1], pcts[0],
                                    mean, pcts[2]))
                 fcat_mean[label_group] = mean
+
+    # Output per-concept scores
+    with open(CONCEPT_OUTPUT, "w") as concept_f:
+        for concept in vocab:
+            metrics = [score for name, _, _, score in feature_data
+                       if concept in features[name].concepts]
+            if not metrics: continue
+
+            c_score = np.median(metrics)
+            concept_f.write("%s\t%f\n" % (concept, c_score))
 
     # Output top false positives
     for name, n_entries, false_positives, score in feature_data:
