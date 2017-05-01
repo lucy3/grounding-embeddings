@@ -402,7 +402,7 @@ def produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=
                                         'correlation', domain_concepts=domain_concepts)
     assert domain_p1_means.keys() == domain_p2_means.keys()
 
-    print("average domain pearson variance", 
+    print("average domain pearson variance",
         sum(domain_p1_vars[d] for d in domain_p1_vars) / len(domain_p1_vars))
 
     feature_map = {feature: weight for feature, _, weight in feature_data}
@@ -812,8 +812,8 @@ def do_bootstrap_test(feature_groups, pop1, pop2, n_bootstrap_samples=10000,
     tqdm.write("==========================")
     return result
 
-def swarm_feature_cats(feature_groups, fcat_mean):
-    fcats_sorted = sorted(feature_groups.keys(), key=lambda k: fcat_mean[k])
+def swarm_feature_cats(feature_groups, fcat_median):
+    fcats_sorted = sorted(feature_groups.keys(), key=lambda k: fcat_median[k])
     x, y = [], []
     for fg in fcats_sorted:
         for _, score, _ in feature_groups[fg]:
@@ -845,6 +845,7 @@ def main():
     feature_data = sorted(feature_data, key=lambda f: f[3])
 
     fcat_mean = {}
+    fcat_median = {}
 
     grouping_fns = {
         "br_label": lambda name: features[name].br_label,
@@ -884,6 +885,7 @@ def main():
                                 % (label_group, n_concepts, n, pcts[1], pcts[0],
                                    mean, pcts[2]))
                 fcat_mean[label_group] = mean
+                fcat_median[label_group] = pcts[1]
 
     # Output per-concept scores
     with open(CONCEPT_OUTPUT, "w") as concept_f:
@@ -910,7 +912,7 @@ def main():
                            "sound", "tactile", "smell", "taste"],
                           ["function", "taxonomic"])
 
-    swarm_feature_cats(groups["br_label"], fcat_mean)
+    swarm_feature_cats(groups["br_label"], fcat_median)
 
     feature_data = [(name, n_entries, score) for name, n_entries, _, score in feature_data]
     domain_concepts = do_cluster(vocab, features, feature_data)
