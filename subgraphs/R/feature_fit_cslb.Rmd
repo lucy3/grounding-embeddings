@@ -1,0 +1,86 @@
+---
+title: "feature fit significance test"
+output: html_notebook
+---
+
+Constants
+
+```{r}
+PIVOT <- "cc"
+SOURCE <- "cslb"
+
+PEARSON_FILE <- paste0("../all/pearson_corr/", SOURCE, "/corr_", SOURCE, "_", PIVOT, ".txt")
+FF_FILE <- paste0("../all/feature_fit/", SOURCE, "/", PIVOT, "/concepts.txt")
+```
+
+
+```{r}
+pearson <- read.table(PEARSON_FILE, sep="\t", header=TRUE, stringsAsFactors = FALSE)
+ff_data <- read.table(FF_FILE, sep="\t", stringsAsFactors = FALSE)
+```
+
+```{r}
+colnames(pearson)
+colnames(ff_data)
+```
+
+```{r}
+# Log-transform some counts
+pearson["num_feats"] <- log(pearson["num_feats"])
+pearson["tot_prod_freq"] <- log(pearson["tot_prod_freq"])
+```
+
+
+```{r}
+boxplot(pearson["correlation"])
+stripchart(pearson["correlation"], vertical = TRUE,
+           method = "jitter", add = TRUE, pch = 20, col = 'blue')
+title("pearson values")
+```
+
+Add feature fit values as another column.
+
+```{r}
+pearson["feature_fit"] <- ff_data[match(pearson$Concept, ff_data$V1),c("V2")]
+```
+
+```{r}
+boxplot(pearson["feature_fit"])
+stripchart(pearson["feature_fit"], vertical = TRUE,
+           method = "jitter", add = TRUE, pch = 20, col = 'blue')
+title("feature_fit values")
+```
+
+
+```{r}
+summary(pearson$feature_fit)
+```
+
+Baseline regression: use frequency, etc. lexical features, but leave out taxonomy features.
+
+```{r}
+colnames(pearson)
+```
+
+```{r}
+baseline_lm <- lm(pearson$feature_fit ~ pearson$log_brown_freq + pearson$num_feats + pearson$tot_prod_freq + pearson$polysemy)
+summary(baseline_lm)
+```
+
+Full model, including domain features
+
+```{r}
+full_lm <- lm(pearson$feature_fit ~ pearson$log_brown_freq + pearson$num_feats + pearson$tot_prod_freq + pearson$polysemy + pearson$correlation)
+summary(full_lm)
+```
+
+## Comparing models
+
+```{r}
+anova(baseline_lm, full_lm)
+```
+
+```{r}
+anova(full_lm)
+```
+
