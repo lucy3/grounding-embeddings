@@ -26,9 +26,9 @@ import get_domains
 import math
 from collections import Counter
 
-VOCAB_SOURCE = "mcrae"
-SOURCE = "wordnetres"
-PIVOT = "word2vec"
+VOCAB_SOURCE = "cslb"
+SOURCE = "cslb"
+PIVOT = "wikigiga"
 
 VOCAB = "./all/vocab_%s.txt" % VOCAB_SOURCE
 INPUT_FILE1 = "./all/sim_%s_%s.txt" % (VOCAB_SOURCE, SOURCE)
@@ -225,7 +225,7 @@ def main():
     output = open(OUTPUT_FILE, 'w')
     headers = ["Concept", "correlation", "log_brown_freq", "num_feats",
                "tot_prod_freq", "polysemy"]
-    # headers += augmented_labels
+    headers += map(str, augmented_labels)
     output.write("%s\n" % "\t".join(headers))
     for pair in sorted_pearson:
         row_stats = "\t".join(str(stat) for stat in augmented_concept_stats[pair[0]])
