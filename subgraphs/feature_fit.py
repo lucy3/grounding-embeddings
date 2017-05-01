@@ -581,17 +581,16 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
 
         print("%s\t%f" % (concept, np.median(weights)))
 
+    zs = np.array(zs)
+    zs *= 100
+
     concept_domains = {c: [d] for d, cs in domain_concepts.items() for c in cs}
     analyze_domains(labels, zs, concept_domains=concept_domains)
 
-    # Resize Z values
-    zs = np.array(zs)
-    zs = (zs - zs.min()) / (zs.max() - zs.min())
-
-
     # Render Z axis using colors
     colormap = plt.get_cmap("cool")
-    cs = colormap(zs)
+    zs_shift = (zs - zs.min()) / (zs.max() - zs.min())
+    cs = colormap(zs_shift)
 
     # Jitter points
     xs += np.random.randn(len(xs)) * 0.01
