@@ -11,8 +11,8 @@ import os.path
 import sys
 
 import numpy as np
-import matplotlib
-matplotlib.use("Agg")
+import matplotlib as mpl
+mpl.use("Agg")
 import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
 from scipy.spatial import distance
@@ -453,6 +453,9 @@ def produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=
 
     # Plot Pearson1 vs. Pearson2
 
+    old_font_size = mpl.rcParams["font.size"]
+    mpl.rcParams["font.size"] = 20
+
     fig = plt.figure()
     #fig.suptitle("unified graph")
     ax = fig.add_subplot(111)
@@ -498,6 +501,8 @@ def produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=
     plt.tight_layout()
     fig_path = os.path.join(GRAPH_DIR, "unified_domain-%s-feature.eps" % PEARSON2_NAME)
     fig.savefig(fig_path)
+
+    mpl.rcParams["font.size"] = old_font_size
 
 
 def analyze_domains(labels, ff_scores, concept_domains=None):
@@ -619,7 +624,7 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
     ax = fig.add_subplot(111)
     ax.set_xlabel("m(" + PIVOT_FORMAL + "," + SOURCE_FORMAL + ")")
     ax.set_ylabel("m(" + PIVOT_FORMAL + ", WordNet)")
-    ax.scatter(xs, ys, c=cs)
+    ax.scatter(xs, ys, c=cs, alpha=0.8)
     # # plot points of interest in front of other points
     # for _m, _c, _x, _y in zip(markers, colors, xs, ys):
     #   if _m == 'o':
