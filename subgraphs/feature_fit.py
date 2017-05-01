@@ -823,6 +823,7 @@ def swarm_feature_cats(feature_groups, fcat_median):
             else:
                 x.append(fg)
             y.append(score)
+    y *= 100
     sns.set_style("whitegrid")
     fig, ax = plt.subplots(figsize=(10, 4.8))
     sns_plot = sns.swarmplot(x, y, ax=ax)

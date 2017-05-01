@@ -51,32 +51,32 @@ def main():
     plt.rcParams.update({'font.size': 12})
     ax = fig.add_subplot(111)
     axes = plt.gca()
-    axes.set_xlim([-0.05,1.05])
-    axes.set_ylim([-0.05,1.05])
+    axes.set_xlim([-0.05,105])
+    axes.set_ylim([-0.05,105])
     ax.set_xlabel(SOURCE1 + " feature fit")
     ax.set_ylabel(FORMAL_SOURCE2 + " feature fit")
-    ax.scatter(xs, ys, color=colors, linewidth=0.0)
+    ax.scatter(xs*100, ys*100, color=colors, linewidth=0.0)
     slope, intercept, r_value, p_value, std_err = stats.linregress(xs, ys)
     print("slope", slope, "r", r_value)
-    plt.plot(xs, slope*xs + intercept, '-', color="DarkBlue", linewidth=2.0)
+    plt.plot(xs*100, slope*xs*100 + intercept, '-', color="DarkBlue", linewidth=2.0)
     plt.tight_layout()
-    fig_path = os.path.join(GRAPH_DIR, "%s-%s.png" % (SOURCE1, SOURCE2))
+    fig_path = os.path.join(GRAPH_DIR, "%s-%s.eps" % (SOURCE1, SOURCE2))
     plt.savefig(fig_path, bbox_inches='tight')
     plt.close()
 
-    for i in range(len(sort_feats)):
-        fig = plt.figure()
-        plt.title(sort_feats[i])
-        ax = fig.add_subplot(111)
-        ax.set_xlabel(SOURCE1 + " feature fit")
-        ax.set_ylabel(FORMAL_SOURCE2 + " feature fit")
-        for j in range(len(zs)):
-            if zs[j] == sort_feats[i]:
-                ax.scatter(xs[j], ys[j], c=colors_dict[sort_feats[i]])
-        plt.tight_layout()
-        fig_path = os.path.join(GRAPH_DIR, "%s-%s-%s.png" % (sort_feats[i], SOURCE1, SOURCE2))
-        fig.savefig(fig_path)
-        plt.close()
+    # for i in range(len(sort_feats)):
+    #     fig = plt.figure()
+    #     plt.title(sort_feats[i])
+    #     ax = fig.add_subplot(111)
+    #     ax.set_xlabel(SOURCE1 + " feature fit")
+    #     ax.set_ylabel(FORMAL_SOURCE2 + " feature fit")
+    #     for j in range(len(zs)):
+    #         if zs[j] == sort_feats[i]:
+    #             ax.scatter(xs[j], ys[j], c=colors_dict[sort_feats[i]])
+    #     plt.tight_layout()
+    #     fig_path = os.path.join(GRAPH_DIR, "%s-%s-%s.eps" % (sort_feats[i], SOURCE1, SOURCE2))
+    #     fig.savefig(fig_path)
+    #     plt.close()
 
 if __name__ == '__main__':
     main()
