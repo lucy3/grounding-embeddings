@@ -81,6 +81,9 @@ if SOURCE == "cslb":
 elif SOURCE == "mcrae":
     SOURCE_FORMAL = "McRae"
 
+SAVEFIG_KWARGS = {"transparent": True, "bbox_inches": "tight", "pad_inches": 0}
+
+
 Feature = namedtuple("Feature", ["name", "concepts", "wb_label", "wb_maj",
                                  "wb_min", "br_label", "disting"])
 
@@ -453,9 +456,6 @@ def produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=
 
     # Plot Pearson1 vs. Pearson2
 
-    old_font_size = mpl.rcParams["font.size"]
-    mpl.rcParams["font.size"] = 20
-
     fig = plt.figure()
     #fig.suptitle("unified graph")
     ax = fig.add_subplot(111)
@@ -468,7 +468,7 @@ def produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=
     plot_gaussian_contour(xs, ys, x_vars, y_vars)
     plt.tight_layout()
     fig_path = os.path.join(GRAPH_DIR, "unified_domain-%s-%s.eps" % (PEARSON1_NAME, PEARSON2_NAME))
-    fig.savefig(fig_path)
+    fig.savefig(fig_path, **SAVEFIG_KWARGS)
 
     # Plot feature metric vs. Pearson1
 
@@ -484,7 +484,7 @@ def produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=
     plot_gaussian_contour(xs, zs, x_vars, z_vars)
     plt.tight_layout()
     fig_path = os.path.join(GRAPH_DIR, "unified_domain-%s-feature.eps" % PEARSON1_NAME)
-    fig.savefig(fig_path)
+    fig.savefig(fig_path, **SAVEFIG_KWARGS)
 
     # Plot feature metric vs. Pearson2
 
@@ -500,9 +500,7 @@ def produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=
     plot_gaussian_contour(ys, zs, y_vars, z_vars)
     plt.tight_layout()
     fig_path = os.path.join(GRAPH_DIR, "unified_domain-%s-feature.eps" % PEARSON2_NAME)
-    fig.savefig(fig_path)
-
-    mpl.rcParams["font.size"] = old_font_size
+    fig.savefig(fig_path, **SAVEFIG_KWARGS)
 
 
 def analyze_domains(labels, ff_scores, concept_domains=None):
@@ -531,7 +529,7 @@ def analyze_domains(labels, ff_scores, concept_domains=None):
     fig_path = os.path.join(GRAPH_DIR, "feature-%s-domain.eps" % PIVOT)
     plt.tight_layout()
     fig = sns_plot.get_figure()
-    fig.savefig(fig_path)
+    fig.savefig(fig_path, **SAVEFIG_KWARGS)
 
 
 def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
@@ -639,7 +637,7 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
 
     plt.tight_layout()
     fig_path = os.path.join(GRAPH_DIR, "unified-%s-%s.eps" % (PEARSON1_NAME, PEARSON2_NAME))
-    fig.savefig(fig_path)
+    fig.savefig(fig_path, **SAVEFIG_KWARGS)
     plt.close()
 
     # Plot feature metric vs. Pearson1
@@ -652,7 +650,7 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
 
     plt.tight_layout()
     fig_path = os.path.join(GRAPH_DIR, "unified-%s-feature.eps" % PEARSON1_NAME)
-    fig.savefig(fig_path)
+    fig.savefig(fig_path, **SAVEFIG_KWARGS)
     plt.close()
 
     # Plot feature metric vs. Pearson2
@@ -665,7 +663,7 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
 
     plt.tight_layout()
     fig_path = os.path.join(GRAPH_DIR, "unified-%s-feature.eps" % PEARSON2_NAME)
-    fig.savefig(fig_path)
+    fig.savefig(fig_path, **SAVEFIG_KWARGS)
     plt.close()
 
 
@@ -772,7 +770,7 @@ def produce_feature_fit_bars(feature_groups, features_per_category=4):
 
     plt.tight_layout()
     fig_path = os.path.join(GRAPH_DIR, "feature_fit.eps")
-    fig.savefig(fig_path)
+    fig.savefig(fig_path, **SAVEFIG_KWARGS)
 
 
 def do_bootstrap_test(feature_groups, pop1, pop2, n_bootstrap_samples=10000,
@@ -839,7 +837,7 @@ def swarm_feature_cats(feature_groups, fcat_median):
     fig_path = os.path.join(GRAPH_DIR, "feature-%s-%s-category.eps" % (SOURCE, PIVOT))
     plt.tight_layout()
     fig = sns_plot.get_figure()
-    fig.savefig(fig_path)
+    fig.savefig(fig_path, **SAVEFIG_KWARGS)
 
 
 def main():
@@ -922,7 +920,9 @@ def main():
 
     feature_data = [(name, n_entries, score) for name, n_entries, _, score in feature_data]
     domain_concepts = do_cluster(vocab, features, feature_data)
-    produce_unified_graph(vocab, features, feature_data, domain_concepts=domain_concepts)
+
+    with plt.style.context({"font.size": 15}):
+        produce_unified_graph(vocab, features, feature_data, domain_concepts=domain_concepts)
     produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=domain_concepts)
 
 
