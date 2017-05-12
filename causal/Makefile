@@ -44,4 +44,4 @@ clean:
 	rm -f filter_glove $(datadir)/cooccurrence.filtered.bin $(datadir)/cooccur.npz \
 		$(datadir)/vocab.keep.txt
 
-all: vocab.keep.txt cooccurence.filtered.bin cooccur.npz ppmi_out.txt
+all: vocab.keep.txt cooccurrence.filtered.bin cooccur.npz ppmi_out.txt
