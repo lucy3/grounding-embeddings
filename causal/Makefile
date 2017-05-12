@@ -29,14 +29,14 @@ $(datadir)/cooccurrence.filtered.bin: filter_glove
 filter_glove:
 	$(GCC) filter_glove.cc -o filter_glove
 
-$(datadir)/cooccur.npz: cooccurrence.filtered.bin
+$(datadir)/cooccur.npz: $(datadir)/cooccurrence.filtered.bin
 	python convert_to_npy.py --vocab_file $(datadir)/vocab.txt \
 		--cooccur_file $(datadir)/cooccurrence.filtered.bin --out_file $(datadir)/cooccur.npz
 
-ppmi_out.txt: vocab.keep.txt cooccur.npz
+ppmi_out.txt: $(datadir)/vocab.keep.txt $(datadir)/cooccur.npz
 	python main.py --mode ppmi --norms-file $(norms) --vocab-file $(datadir)/vocab.txt \
 		--filtered-vocab-file $(datadir)/vocab.keep.txt --cooccur-file $(datadir)/cooccur.npz \
-		> ppmi_out.txt
+		--cooccur-pmi-file $(datadir)/cooccur.pmi.npz > ppmi_out.txt
 
 ###############
 
