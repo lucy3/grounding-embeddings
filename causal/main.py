@@ -187,6 +187,8 @@ def main():
         words = set()
         for feature in features.values():
             words |= set(feature.cooccur_targets)
+        for concept in concepts.keys():
+            words.add(concept)
 
         with open(args.filtered_vocab_file, "w") as filtered_vocab_f:
             for word in sorted(words):
