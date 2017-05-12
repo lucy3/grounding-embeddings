@@ -75,7 +75,6 @@ int filter_binary(const std::string& input_file, const std::string& output_file,
 
 
 int main(int argc, char *argv[]) {
-    std::cout << argc;
     std::set<int> keep;
 
     std::string datadir = argv[1];

@@ -14,7 +14,7 @@ cooccur.npz: $(datadir)/cooccur.npz
 
 
 $(datadir)/vocab.keep.txt:
-	python main.py --mode write-vocab --norms-file $(norms) --vocab-file $(datadir)/vocab.txt \
+	python main.py --mode write-vocab --norms-file $(norms) \
 		--filtered-vocab-file $(datadir)/vocab.keep.txt
 
 $(datadir)/cooccurrence.bin: $(datadir)/vocab.txt
