@@ -85,6 +85,8 @@ p.add_argument("--mode", choices=["write-vocab", "ppmi"])
 args = p.parse_args()
 
 
+# TODO maybe stop doing this brute-force and just weight PMIs by IDF within
+# the CSLB corpus?
 FEATURE_STOPWORDS = frozenset([
     "beh-", "inbeh-", "used", "to", "long", "eaten", "by", "found", "the",
     "made", "is", "has", "a", "in", "worn", "on", "of", "an", "for", "shaped",

@@ -50,7 +50,7 @@ def main():
             print("Skipping ", feature)
             continue
 
-        xs.append(np.medianan(ppmis))
+        xs.append(np.median(ppmis))
         ys.append(feature_fit)
         ls.append(feature)
 
