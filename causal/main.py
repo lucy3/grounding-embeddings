@@ -129,10 +129,13 @@ def save_lil(filename, lil):
     np.savez(filename, data=coo.data, row=coo.row, col=coo.col, shape=coo.shape)
 
 
-def load_cooccur():
+def load_vocab():
     with open(args.vocab_file, "r") as vocab_f:
         vocab = [line.strip().split()[0] for line in vocab_f]
+    return vocab
 
+
+def load_cooccur():
     pmi_path = Path(args.cooccur_pmi_file)
     if pmi_path.exists():
         cooccur = load_lil(args.cooccur_pmi_file)
@@ -140,7 +143,7 @@ def load_cooccur():
         cooccur = load_lil(args.cooccur_file)
         cooccur = convert_pmi(cooccur)
         save_lil(args.cooccur_pmi_file, cooccur)
-    return vocab, cooccur
+    return cooccur
 
 
 def load_features_concepts(min_concepts=5):
@@ -229,7 +232,7 @@ def morphify(word):
     return result
 
 
-def write_vocab(features, concepts):
+def write_vocab(glove_vocab, features, concepts):
     # Write a filtered vocab with the relevant words.
     words = set()
     for feature in features.values():
@@ -237,6 +240,8 @@ def write_vocab(features, concepts):
 
     for concept in concepts.keys():
         words.add(concept)
+
+    words = words & set(glove_vocab)
 
     with open(args.filtered_vocab_file, "w") as filtered_vocab_f:
         for word in sorted(words):
@@ -274,12 +279,13 @@ def do_ppmi_analysis(vocab, features, ppmi):
 
 
 def main():
+    vocab = load_vocab()
     features, concepts = load_features_concepts()
 
     if args.mode == "write-vocab":
-        write_vocab(features, concepts)
+        write_vocab(vocab, features, concepts)
     elif args.mode == "ppmi":
-        vocab, cooccur = load_cooccur()
+        cooccur = load_cooccur()
         do_ppmi_analysis(vocab, features, cooccur)
 
 
