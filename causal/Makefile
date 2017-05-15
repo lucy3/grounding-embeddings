@@ -14,7 +14,7 @@ cooccur.npz: $(datadir)/cooccur.npz
 
 
 $(datadir)/vocab.keep.txt:
-	python main.py --mode write-vocab --norms-file $(norms) \
+	python main.py --mode write-vocab --norms-file $(norms) --vocab-file $(datadir)/vocab.txt \
 		--filtered-vocab-file $(datadir)/vocab.keep.txt
 
 $(datadir)/cooccurrence.bin: $(datadir)/vocab.txt
@@ -42,6 +42,6 @@ ppmi_out.txt: $(datadir)/vocab.keep.txt $(datadir)/cooccur.npz
 
 clean:
 	rm -f filter_glove $(datadir)/cooccurrence.filtered.bin $(datadir)/cooccur.npz \
-		$(datadir)/vocab.keep.txt
+		$(datadir)/cooccur.pmi.npz $(datadir)/vocab.keep.txt
 
 all: vocab.keep.txt cooccurrence.filtered.bin cooccur.npz ppmi_out.txt
