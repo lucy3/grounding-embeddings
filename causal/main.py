@@ -19,7 +19,7 @@ class Feature(object):
         self.count = 0
 
     def process_description(self, desc):
-        return " ".join([word for word in desc.split()
+        return " ".join([word for word in desc.replace("_", " ").split()
                          if word not in FEATURE_STOPWORDS])
 
     @property
