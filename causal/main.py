@@ -6,8 +6,14 @@ from pathlib import Path
 from pprint import pprint
 import re
 
+from nltk.corpus import wordnet as wn
 import numpy as np
+import pattern.en as pattern
+from pattern.text import TENSES
 from scipy.sparse import coo_matrix, lil_matrix
+
+
+from util import cached_property
 
 
 class Feature(object):
@@ -27,15 +33,44 @@ class Feature(object):
         return [self.process_description(alt)
                 for alt in self.alternatives]
 
-    @property
+    @cached_property
     def cooccur_targets(self):
         main_str = self.process_description(self.name)
         alt_strs = self.processed_alternatives
 
         ret = main_str.split()
         for alt_str in alt_strs:
-            ret.extend(alt_str.split())
-        return set(ret)
+            words = alt_str.split()
+            ret.extend(words)
+
+            # Augment with related words, drawn from WordNet
+            for word in words:
+                related = [related_word for related_word, p in morphify(word)
+                           if p > 0.5]
+                ret.extend(related)
+
+        new_ret = set()
+        # Add all the inflections!!!
+        for word in ret:
+            new_ret.add(word)
+
+            # Plural+singular
+            new_ret.add(pattern.pluralize(word))
+            new_ret.add(pattern.singularize(word))
+
+            # comparatives
+            comparative = pattern.comparative(word)
+            if "more" not in comparative:
+                new_ret.add(comparative)
+            superlative = pattern.superlative(word)
+            if "most" not in superlative:
+                new_ret.add(superlative)
+
+            for id, tense in TENSES.items():
+                if id is None: continue
+                new_ret.add(pattern.conjugate(word, tense))
+
+        return set(new_ret) - set([None])
 
 
 p = ArgumentParser()
@@ -71,7 +106,13 @@ FEATURE_STOPWORDS = frozenset([
     "form", "under", "eat", "feed", "likes", "see", "x", "useful", "given",
     "provided", "can't", "covers", "coloured", "pieces", "cases", "lives",
     "originates", "live", "kept", "common", "added", "content", "their", "my",
-    "but", "best", "good", "doing", "are", "three", "two",
+    "but", "best", "good", "doing", "are", "three", "two", "through", "other",
+    "varying", "number", "needs", "always", "set", "there", "properly", "way",
+    "do", "who", "those", "out", "off", "near", "high", "close", "above",
+    "locations", "where", "provides", "object", "objects", "item", "items",
+    "aimed", "designed", "seen", "attracted", "tend", "other", "help",
+    "demonstrate", "demonstrates", "requires", "perform", "carries", "out",
+    "meant", "provide", "one's", "least", "set",
 ])
 
 
@@ -154,6 +195,52 @@ def convert_pmi(cooccur):
     return ret
 
 
+def morphify(word):
+    # Stolen from http://stackoverflow.com/a/29342127/176075
+    # slightly modified..
+    synsets = wn.synsets(word)
+
+    # Word not found
+    if not synsets:
+        return []
+
+    # Get all  lemmas of the word
+    lemmas = [l for s in synsets for l in s.lemmas()]
+
+    # Get related forms
+    derivationally_related_forms = [(l, l.derivationally_related_forms())
+                                    for l in lemmas]
+
+    # filter only the targeted pos
+    related_lemmas = [l for drf in derivationally_related_forms
+                      for l in drf[1]]
+
+    # Extract the words from the lemmas
+    words = [l.name() for l in related_lemmas]
+    len_words = len(words)
+
+    # Build the result in the form of a list containing tuples (word, probability)
+    result = [(w, float(words.count(w))/len_words) for w in set(words)]
+    result.sort(key=lambda w: -w[1])
+
+    # return all the possibilities sorted by probability
+    return result
+
+
+def write_vocab(features, concepts):
+    # Write a filtered vocab with the relevant words.
+    words = set()
+    for feature in features.values():
+        words |= set(feature.cooccur_targets)
+
+    for concept in concepts.keys():
+        words.add(concept)
+
+    with open(args.filtered_vocab_file, "w") as filtered_vocab_f:
+        for word in sorted(words):
+            filtered_vocab_f.write(word + "\n")
+
+
 def do_ppmi_analysis(vocab, features, ppmi):
     # NB: not PPMI right now, but PMI
     vocab2idx = {word: i for i, word in enumerate(vocab)}
@@ -163,8 +250,12 @@ def do_ppmi_analysis(vocab, features, ppmi):
 
         for concept in sorted(feature.concepts):
             try:
-                c_idx = vocab2idx[concept]
+                c_idxs = [vocab2idx[concept]]
             except KeyError: continue
+
+            try:
+                c_idxs.append(vocab2idx[pattern.pluralize(concept)])
+            except KeyError: pass
 
             ppmis = []
             for alt_tok in feature.cooccur_targets:
@@ -172,27 +263,19 @@ def do_ppmi_analysis(vocab, features, ppmi):
                     alt_idx = vocab2idx[alt_tok]
                 except KeyError: continue
 
-                # Only count if it's actually in the sparse matrix
-                if alt_idx in ppmi.rows[c_idx]:
-                    ppmis.append(ppmi[c_idx, alt_idx])
+                for c_idx in c_idxs:
+                    # Only count if it's actually in the sparse matrix
+                    if alt_idx in ppmi.rows[c_idx]:
+                        ppmis.append(ppmi[c_idx, alt_idx])
 
-            print("%s\t%s\t%f\t%s" % (feature_name, concept, np.mean(ppmis), " ".join(feature.cooccur_targets)))
+            print("%s\t%s\t%f\t%s" % (feature_name, concept, np.median(ppmis), " ".join(feature.cooccur_targets)))
 
 
 def main():
     features, concepts = load_features_concepts()
 
     if args.mode == "write-vocab":
-        # Write a filtered vocab with the relevant words.
-        words = set()
-        for feature in features.values():
-            words |= set(feature.cooccur_targets)
-        for concept in concepts.keys():
-            words.add(concept)
-
-        with open(args.filtered_vocab_file, "w") as filtered_vocab_f:
-            for word in sorted(words):
-                filtered_vocab_f.write(word + "\n")
+        write_vocab(features, concepts)
     elif args.mode == "ppmi":
         vocab, cooccur = load_cooccur()
         do_ppmi_analysis(vocab, features, cooccur)
