@@ -254,6 +254,7 @@ def do_ppmi_analysis(vocab, features, ppmi):
 
     for feature_name in sorted(features.keys()):
         feature = features[feature_name]
+        concept_scores = {}
 
         for concept in sorted(feature.concepts):
             try:
@@ -275,7 +276,14 @@ def do_ppmi_analysis(vocab, features, ppmi):
                     if alt_idx in ppmi.rows[c_idx]:
                         ppmis.append(ppmi[c_idx, alt_idx])
 
-            print("%s\t%s\t%f\t%s" % (feature_name, concept, np.median(ppmis), " ".join(feature.cooccur_targets)))
+            if len(ppmis) > 0:
+                concept_scores[concept] = np.max(ppmis)
+
+        concept_scores = sorted(concept_scores.items(), key=lambda x: x[1], reverse=True)
+        for concept, score in concept_scores:
+            print("%s\t%s\t%f" % (feature_name, concept, score))
+
+        print()
 
 
 def main():
