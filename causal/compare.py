@@ -14,21 +14,22 @@ args = p.parse_args()
 
 
 def load_ppmi():
-    feature_ppmis = defaultdict(list)
-    concept_ppmis = defaultdict(list)
+    feature_ppmis = defaultdict(lambda: ([], []))
+    concept_ppmis = defaultdict(lambda: ([], []))
 
     with open(args.ppmi_file, "r") as ppmi_f:
         for line in ppmi_f:
             fields = line.strip().split("\t")
-            if len(fields) < 3: continue
+            if len(fields) < 4: continue
 
-            feature, concept, ppmi = fields[:3]
+            feature, concept, ppmi, is_positive = fields[:4]
+            idx = 1 if is_positive == "True" else 0
 
             # Normalize feature name to match feature_fit output
             feature = feature.replace(" ", "_")
-            feature_ppmis[feature].append(float(ppmi))
+            feature_ppmis[feature][idx].append(float(ppmi))
 
-            concept_ppmis[concept].append(float(ppmi))
+            concept_ppmis[concept][idx].append(float(ppmi))
 
     return feature_ppmis, concept_ppmis
 
@@ -60,17 +61,17 @@ def load_concept_fit():
     return concept_fits
 
 
-def discrete_cmap(N, base_cmap=None):
-    """Create an N-bin discrete colormap from the specified input map"""
+def normalize_feature_ppmis(feature_ppmis):
+    """
+    Normalize PMI values collected for positive feature-concept associations
+    by taking into account other negative feature-concept associations.
+    """
 
-    # Note that if base_cmap is a string or None, you can simply do
-    #    return plt.cm.get_cmap(base_cmap, N)
-    # The following works for string, None, or a colormap instance:
+    ret = {}
+    for feature, (neg_scores, pos_scores) in feature_ppmis.items():
+        ret[feature] = np.median(pos_scores) - np.median(neg_scores)
 
-    base = plt.cm.get_cmap(base_cmap)
-    color_list = base(np.linspace(0, 1, N))
-    cmap_name = base.name + str(N)
-    return base.from_list(cmap_name, color_list, N)
+    return ret
 
 
 def plot_feature_fit(feature_ppmis, feature_fits, cats):
@@ -79,14 +80,14 @@ def plot_feature_fit(feature_ppmis, feature_fits, cats):
     cmap = plt.cm.get_cmap("Set1", len(all_cats))
 
     xs, ys, cs, ls = [], [], [], []
-    for feature, ppmis in feature_ppmis.items():
+    for feature, score in feature_ppmis.items():
         try:
             feature_fit = feature_fits[feature]
         except KeyError:
             print("Skipping ", feature)
             continue
 
-        xs.append(np.median(ppmis))
+        xs.append(score)
         ys.append(feature_fit)
         cs.append(cmap(cat_ids[cats[feature]]))
         ls.append(feature)
@@ -94,14 +95,14 @@ def plot_feature_fit(feature_ppmis, feature_fits, cats):
     print(len(xs))
 
     plt.scatter(xs, ys, c=cs)
-    plt.xlabel("avg pmi across concepts")
+    plt.xlabel("avg pmi across concepts (baselined by neg concepts)")
     plt.ylabel("feature fit")
     plt.show()
 
 
 def plot_concept_fit(concept_ppmis, concept_fits):
     xs, ys, ls = [], [], []
-    for concept, ppmis in concept_ppmis.items():
+    for concept, (_, ppmis) in concept_ppmis.items():
         try:
             concept_fit = concept_fits[concept]
         except KeyError:
@@ -120,6 +121,8 @@ def plot_concept_fit(concept_ppmis, concept_fits):
 
 def main():
     feature_ppmis, concept_ppmis = load_ppmi()
+    feature_ppmis = normalize_feature_ppmis(feature_ppmis)
+
     feature_fits, cats = load_feature_fit()
     concept_fits = load_concept_fit()
 

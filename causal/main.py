@@ -5,6 +5,7 @@ from itertools import chain
 from pathlib import Path
 from pprint import pprint
 import re
+import sys
 
 from nltk.corpus import wordnet as wn
 import numpy as np
@@ -248,7 +249,7 @@ def write_vocab(glove_vocab, features, concepts):
             filtered_vocab_f.write(word + "\n")
 
 
-def do_ppmi_analysis(vocab, features, ppmi):
+def do_ppmi_analysis(vocab, features, concepts, ppmi):
     # NB: not PPMI right now, but PMI
     vocab2idx = {word: i for i, word in enumerate(vocab)}
 
@@ -256,7 +257,7 @@ def do_ppmi_analysis(vocab, features, ppmi):
         feature = features[feature_name]
         concept_scores = {}
 
-        for concept in sorted(feature.concepts):
+        for concept in concepts:
             try:
                 c_idxs = [vocab2idx[concept]]
             except KeyError: continue
@@ -277,13 +278,16 @@ def do_ppmi_analysis(vocab, features, ppmi):
                         ppmis.append(ppmi[c_idx, alt_idx])
 
             if len(ppmis) > 0:
-                concept_scores[concept] = np.max(ppmis)
+                is_positive = concept in feature.concepts
+                concept_scores[concept] = (np.max(ppmis), is_positive)
 
-        concept_scores = sorted(concept_scores.items(), key=lambda x: x[1], reverse=True)
-        for concept, score in concept_scores:
-            print("%s\t%s\t%f" % (feature_name, concept, score))
+        concept_scores = sorted(concept_scores.items(), key=lambda x: x[1][0],
+                                reverse=True)
+        for concept, (score, is_positive) in concept_scores:
+            print("%s\t%s\t%f\t%s" % (feature_name, concept, score, is_positive))
 
         print()
+        sys.stdout.flush()
 
 
 def main():
@@ -294,7 +298,7 @@ def main():
         write_vocab(vocab, features, concepts)
     elif args.mode == "ppmi":
         cooccur = load_cooccur()
-        do_ppmi_analysis(vocab, features, cooccur)
+        do_ppmi_analysis(vocab, features, concepts, cooccur)
 
 
 if __name__ == '__main__':
