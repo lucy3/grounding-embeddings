@@ -114,7 +114,7 @@ FEATURE_STOPWORDS = frozenset([
     "locations", "where", "provides", "object", "objects", "item", "items",
     "aimed", "designed", "seen", "attracted", "tend", "other", "help",
     "demonstrate", "demonstrates", "requires", "perform", "carries", "out",
-    "meant", "provide", "one's", "least", "set",
+    "meant", "provide", "one's", "least", "set", "such",
 ])
 
 
