@@ -10,6 +10,7 @@ import csv
 import os.path
 import sys
 
+from gensim.models.keyedvectors import KeyedVectors
 import numpy as np
 import matplotlib as mpl
 mpl.use("Agg")
@@ -25,6 +26,8 @@ from scipy import stats
 
 import domain_feat_freq
 import get_domains
+from util import get_map_from_tsv
+
 
 # The "pivot" source is where we draw concept representations from. The
 # resulting feature_fit metric represents how well these representations encode
@@ -36,13 +39,13 @@ if PIVOT == "mcrae":
 elif PIVOT == "cslb":
     INPUT = "./all/cslb_vectors.txt"
 elif PIVOT == "wikigiga":
-    INPUT = "../glove/glove.6B.300d.txt"
+    INPUT = "../glove/glove.6B.300d.w2v.txt"
 elif PIVOT == "cc":
-    INPUT = "../glove/glove.840B.300d.txt"
+    INPUT = "../glove/glove.840B.300d.w2v.txt"
 elif PIVOT == "word2vec":
     INPUT = "../word2vec/GoogleNews-vectors-negative300.bin"
 elif PIVOT == "mygiga":
-    INPUT = "/john0/scr1/jgauthie/vectors.en.txt"
+    INPUT = "/john0/scr1/jgauthie/vectors.en.w2v.txt"
 
 SOURCE = "cslb"
 if SOURCE == "mcrae":
@@ -51,6 +54,7 @@ elif SOURCE == "cslb" or SOURCE == "cslb_cutoff":
     FEATURES = "../cslb/norms.dat"
 VOCAB = "./all/vocab_%s.txt" % SOURCE
 EMBEDDINGS = "./all/embeddings.%s.%s.npy" % (SOURCE, PIVOT)
+ALL_EMBEDDINGS = "./all/embeddings_all.%s.%s.bin" % (SOURCE, PIVOT)
 
 # Auxiliary input paths
 PEARSON1_NAME = "%s_%s" % (SOURCE, PIVOT) if PIVOT != SOURCE else "%s_wikigiga" % SOURCE
@@ -91,7 +95,22 @@ AnalyzeResult = namedtuple("AnalyzeResult",
                            ["feature", "n_concepts", "clf", "metric"])
 
 
-def load_embeddings(concepts):
+def load_all_embeddings():
+    if Path(ALL_EMBEDDINGS).is_file():
+        embeddings = KeyedVectors.load(ALL_EMBEDDINGS)
+    elif PIVOT == "word2vec":
+        embeddings = KeyedVectors.load_word2vec_format(INPUT, binary=True)
+    else:
+        # GloVe format
+        embeddings = KeyedVectors.load_word2vec_format(INPUT, binary=False)
+
+    if not Path(ALL_EMBEDDINGS).is_file():
+        embeddings.save(ALL_EMBEDDINGS)
+
+    return embeddings
+
+
+def load_filtered_embeddings(concepts, all_embeddings):
     assert Path(VOCAB).is_file()
     with open(VOCAB, "r") as vocab_f:
         vocab = [line.strip() for line in vocab_f]
@@ -99,10 +118,7 @@ def load_embeddings(concepts):
     if Path(EMBEDDINGS).is_file():
         embeddings = np.load(EMBEDDINGS)
         assert len(embeddings) == len(vocab), "%i %i" % (len(embeddings), len(vocab))
-    elif PIVOT == "word2vec":
-        from gensim.models.keyedvectors import KeyedVectors
-        model = KeyedVectors.load_word2vec_format(INPUT, binary=True)
-
+    else:
         embeddings = []
         for concept in vocab:
             w2v_concept = concept
@@ -115,24 +131,11 @@ def load_embeddings(concepts):
             elif concept == "plough": w2v_concept = "plow"
             elif concept == "catalogue": w2v_concept = "catalog"
             elif concept == "whisky": w2v_concept = "whiskey"
-            embeddings.append(model[w2v_concept])
+            embeddings.append(all_embeddings[w2v_concept])
 
-        embeddings = np.array(embeddings)
-        np.save(EMBEDDINGS, embeddings)
-    else:
-        embeddings = {}
-        with open(INPUT, "r") as glove_f:
-            for line in glove_f:
-                fields = line.strip().split()
-                word = fields[0]
-                if word in concepts and word in vocab:
-                    vec = [float(x) for x in fields[1:]]
-                    embeddings[word] = vec
-
-        embeddings = [embeddings[x] for x in vocab]
-
-        embeddings = np.array(embeddings)
-        np.save(EMBEDDINGS, embeddings)
+    embeddings = np.asarray(embeddings)
+    if not Path(EMBEDDINGS).exists():
+        np.save(embeddings, EMBEDDINGS)
 
     return vocab, embeddings
 
@@ -357,15 +360,13 @@ def analyze_features(features, word2idx, embeddings, clfs=None):
     return results
 
 
-def get_values(input_file, c_string, value):
-    concept_values = {}
-    with open(input_file, 'rU') as csvfile:
-        reader = csv.DictReader(csvfile, delimiter='\t')
-        for row in reader:
-            if row[value] == 'n/a':
-                row[value] = 0
-            concept_values[row[c_string]] = float(row[value])
-    return concept_values
+def analyze_classifiers(clfs):
+    """
+    Analyze the learned weights of feature classifiers.
+    """
+
+    # Reload word embeddings -- whole vocabulary, not just words which appear
+    # in the source.
 
 
 def plot_gaussian_contour(xs, ys, vars_xs, vars_ys):
@@ -539,8 +540,8 @@ def analyze_domains(labels, ff_scores, concept_domains=None):
 
 
 def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
-    concept_pearson1 = get_values(PEARSON1, "Concept", "correlation")
-    concept_pearson2 = get_values(PEARSON2, 'Concept', 'correlation')
+    concept_pearson1 = get_map_from_tsv(PEARSON1, "Concept", "correlation")
+    concept_pearson2 = get_map_from_tsv(PEARSON2, 'Concept', 'correlation')
     assert concept_pearson1.keys() == concept_pearson2.keys()
     assert set(concept_pearson1.keys()) == set(vocab)
 
@@ -791,7 +792,6 @@ def do_bootstrap_test(feature_groups, pop1, pop2, n_bootstrap_samples=10000,
     """
 
     # Concatenate all features from pop1, pop2 into flat groups.
-    # TODO: maybe stratified sampling would be better?
     pop1_features = list(itertools.chain.from_iterable(
             feature_groups[group] for group in pop1))
     pop2_features = list(itertools.chain.from_iterable(
@@ -819,6 +819,7 @@ def do_bootstrap_test(feature_groups, pop1, pop2, n_bootstrap_samples=10000,
     tqdm.write("%i%% CI on (pop2 - pop1): %s" % (percentiles[1], result))
     tqdm.write("==========================")
     return result
+
 
 def swarm_feature_cats(feature_groups, fcat_median):
     fcats_sorted = sorted(feature_groups.keys(), key=lambda k: fcat_median[k])
@@ -850,12 +851,14 @@ def swarm_feature_cats(feature_groups, fcat_median):
 
 def main():
     features, concepts = load_features_concepts()
-    vocab, embeddings = load_embeddings(concepts)
+    all_embeddings = load_all_embeddings()
+    vocab, embeddings = load_filtered_embeddings(concepts, all_embeddings)
     word2idx = {w: i for i, w in enumerate(vocab)}
 
     clfs = None
-    if Path(CLASSIFIER_OUTPUT).exists():
-        with Path(CLASSIFIER_OUTPUT).open("rb") as clf_f:
+    clf_path = Path(CLASSIFIER_OUTPUT)
+    if clf_path.exists():
+        with clf_path.open("rb") as clf_f:
             print("Loading classifiers from pickled dump.")
             clfs = pickle.load(clf_f)
 
@@ -872,10 +875,11 @@ def main():
     groups = {k: defaultdict(list) for k in grouping_fns}
 
     # Pickle classifiers
-    with open(CLASSIFIER_OUTPUT, "wb") as clf_out:
-        clf_dump = {result.feature.name: result.clf
-                    for result in feature_data}
-        pickle.dump(clf_dump, clf_out)
+    if not clf_path.exists():
+        with clf_path.open("wb") as clf_out:
+            clf_dump = {result.feature.name: result.clf
+                        for result in feature_data}
+            pickle.dump(clf_dump, clf_out)
 
     # Output raw feature data and group features
     with open(FF_OUTPUT, "w") as ff_out:
