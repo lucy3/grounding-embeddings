@@ -289,7 +289,7 @@ def loocv_feature(C, f_idx, clf):
     return f_idx, C, scores
 
 
-def analyze_features(features, word2idx, embeddings):
+def analyze_features(features, word2idx, embeddings, clfs=None):
     """
     Compute metrics for all features.
 
@@ -297,6 +297,8 @@ def analyze_features(features, word2idx, embeddings):
         features: dict of feature_name -> `Feature`
         word2idx: concept name -> concept id dict
         embeddings: numpy array of concept embeddings
+        clfs: optional pretrained feature classifiers. If not provided, these
+            will be trained on-the-spot.
 
     Returns:
         List of `AnalyzeResult` namedtuples for all features which satisfied
@@ -339,8 +341,12 @@ def analyze_features(features, word2idx, embeddings):
     for f_idx, f_name in tqdm(enumerate(usable_features),
                               total=len(usable_features),
                               desc="Training feature classifiers"):
-        clf = clf_base(C=Cs[f_name])
-        clf.fit(X, Y[:, f_idx])
+        if clfs is not None:
+            try:
+                clf = clfs[f_name]
+            except KeyError:
+                clf = clf_base(C=Cs[f_name])
+                clf.fit(X, Y[:, f_idx])
 
         preds = clf.predict(X)
         metric = metrics.f1_score(Y[:, f_idx], preds)
@@ -847,7 +853,13 @@ def main():
     vocab, embeddings = load_embeddings(concepts)
     word2idx = {w: i for i, w in enumerate(vocab)}
 
-    feature_data = analyze_features(features, word2idx, embeddings)
+    clfs = None
+    if Path(CLASSIFIER_OUTPUT).exists():
+        with Path(CLASSIFIER_OUTPUT).open("rb") as clf_f:
+            print("Loading classifiers from pickled dump.")
+            clfs = pickle.load(clf_f)
+
+    feature_data = analyze_features(features, word2idx, embeddings, clfs=clfs)
     feature_data = sorted(feature_data, key=lambda f: f.metric)
 
     fcat_mean = {}
