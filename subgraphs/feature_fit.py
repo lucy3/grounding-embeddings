@@ -1,4 +1,3 @@
-import codecs
 from collections import defaultdict, namedtuple, Counter
 from concurrent import futures
 from functools import partial
@@ -21,14 +20,11 @@ import seaborn as sns
 from sklearn import metrics
 from sklearn.base import clone
 from sklearn.linear_model import LogisticRegression
-from sklearn.multiclass import OneVsRestClassifier
 from tqdm import tqdm, trange
-import seaborn as sns
 from scipy import stats
 
 import domain_feat_freq
 import get_domains
-import random
 
 # The "pivot" source is where we draw concept representations from. The
 # resulting feature_fit metric represents how well these representations encode
