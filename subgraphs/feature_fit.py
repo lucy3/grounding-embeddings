@@ -89,6 +89,8 @@ SAVEFIG_KWARGS = {"transparent": True, "bbox_inches": "tight", "pad_inches": 0}
 
 Feature = namedtuple("Feature", ["name", "concepts", "wb_label", "wb_maj",
                                  "wb_min", "br_label", "disting"])
+AnalyzeResult = namedtuple("AnalyzeResult",
+                           ["feature", "n_concepts", "clf", "metric"])
 
 
 def load_embeddings(concepts):
@@ -299,13 +301,12 @@ def analyze_features(features, word2idx, embeddings):
         embeddings: numpy array of concept embeddings
 
     Returns:
-        List of tuples with structure:
-            feature_name:
-            n_concepts: number of concepts which have this feature
-            concept_probs: concept probs where element i corresponds to
-                $p(feature|concept)$
-                for this feature on concept i. Note we score all concepts, not
-                just those which have the feature in question.
+        List of `AnalyzeResult` namedtuples for all features which satisfied
+        internal constraints. Fields:
+            feature: `Feature` tuple
+            n_concepts: # concepts included in feature analysis
+            clf: trained sklearn binary classifier for feature, accepting
+                embeddings as input
             metric: summary goodness metric, where higher is better
     """
 
@@ -335,27 +336,21 @@ def analyze_features(features, word2idx, embeddings):
                        fit_intercept=False)
 
     Cs = load_loocv(usable_features, X, Y, clf_base)
-    preds, probas = [], []
+    counts = Y.sum(axis=0)
+    results = []
     for f_idx, f_name in tqdm(enumerate(usable_features),
                               total=len(usable_features),
                               desc="Training feature classifiers"):
         clf = clf_base(C=Cs[f_name])
         clf.fit(X, Y[:, f_idx])
-        preds.append(clf.predict(X))
-        probas.append(clf.predict_proba(X)[:, 1])
 
-        # # Find top-scoring false positives
-        # X_neg = X[Y[:, f_idx] == 0]
-        # neg_proba = clf.predict_proba(X_neg)[:, 1]
-        # neg_proba = neg_proba[neg_proba > 0.5]
-        # top_false_i = np.argsort(neg_proba)[::-1][:5]
-        # top_false_positives.append(top_false_i)
+        preds = clf.predict(X)
+        metric = metrics.f1_score(Y[:, f_idx], preds)
 
-    counts = Y.sum(axis=0)
-    ret_metrics = [metrics.f1_score(Y[:, f_idx], preds_i)
-                   for f_idx, preds_i in enumerate(preds)]
+        results.append(AnalyzeResult(features[f_name], counts[f_idx],
+                                     clf, metric))
 
-    return zip(usable_features, counts, probas, ret_metrics)
+    return results
 
 
 def get_values(input_file, c_string, value):
@@ -799,8 +794,8 @@ def do_bootstrap_test(feature_groups, pop1, pop2, n_bootstrap_samples=10000,
             feature_groups[group] for group in pop2))
 
     # Convert these into easy-to-use NP arrays..
-    pop1_features = np.array([score for _, score, _ in pop1_features])
-    pop2_features = np.array([score for _, score, _ in pop2_features])
+    pop1_features = np.array([result.metric for result in pop1_features])
+    pop2_features = np.array([result.metric for result in pop2_features])
 
     tqdm.write("======= BOOTSTRAP ========")
     diffs = []
@@ -825,14 +820,16 @@ def swarm_feature_cats(feature_groups, fcat_median):
     fcats_sorted = sorted(feature_groups.keys(), key=lambda k: fcat_median[k])
     x, y = [], []
     for fg in fcats_sorted:
-        for _, score, _ in feature_groups[fg]:
+        for result in feature_groups[fg]:
             if fg == "visual-form_and_surface":
                 x.append("visual-\nform_and_surface")
             elif fg == "taste" or fg == 'smell' or fg == 'sound':
                 x.append("taste/smell/\nsound")
             else:
                 x.append(fg)
-            y.append(score)
+
+            y.append(result.metric)
+
     y = np.array(y)
     y *= 100
     sns.set_style("whitegrid")
@@ -853,7 +850,7 @@ def main():
     word2idx = {w: i for i, w in enumerate(vocab)}
 
     feature_data = analyze_features(features, word2idx, embeddings)
-    feature_data = sorted(feature_data, key=lambda f: f[3])
+    feature_data = sorted(feature_data, key=lambda f: f.metric)
 
     fcat_mean = {}
     fcat_median = {}
@@ -866,23 +863,28 @@ def main():
 
     # Output raw feature data and group features
     with open(FF_OUTPUT, "w") as ff_out:
-        for name, n_entries, _, score in feature_data:
+        for result in feature_data:
             ff_out.write("%s\t%s\t%i\t%f\n" %
-                         (name, features[name].br_label, n_entries, score))
+                         (result.feature.name, result.feature.br_label,
+                          result.n_concepts, result.metric))
 
             for grouping_fn_name, grouping_fn in grouping_fns.items():
                 grouping_fn = grouping_fns[grouping_fn_name]
-                group = grouping_fn(name)
-                groups[grouping_fn_name][group].append((name, score, n_entries))
+                group = grouping_fn(result.feature.name)
+                groups[grouping_fn_name][group].append(result)
 
     # Output really raw feature data
     with open(FF_ALL_OUTPUT, "w") as ff_out:
-        for name, _, concept_probs, _ in feature_data:
+        for result in feature_data:
+            concept_probs = result.clf.predict_proba(embeddings)[:, 1]
+            assert len(concept_probs) == len(vocab)
+
             cf_sorted = sorted(zip(concept_probs, vocab), reverse=True)
             for concept_prob, concept in cf_sorted:
-                is_positive = concept in features[name].concepts
+                is_positive = concept in result.feature.concepts
                 ff_out.write("%s\t%s\t%f\t%i\n"
-                             % (name, concept, concept_prob, is_positive))
+                             % (result.feature.name, concept,
+                                concept_prob, is_positive))
 
     # Output grouped feature information
     with open(GROUP_OUTPUT, "w") as group_out:
@@ -890,11 +892,15 @@ def main():
             group_out.write("\n\nGrouping by %s:\n" % grouping_fn_name)
             summary = {}
             for group_name, group_data in groups_result.items():
-                scores = np.array([group_data_i[1] for group_data_i in group_data])
-                n_entries = np.array([group_data_i[2] for group_data_i in group_data])
+                scores = np.array([group_data_i.metric
+                                   for group_data_i in group_data])
+                n_entries = np.array([group_data_i.n_concepts
+                                      for group_data_i in group_data])
+
                 summary[group_name] = (len(group_data), np.mean(scores),
                                        np.percentile(scores, (0, 50, 100)),
                                        np.mean(n_entries))
+            # Sort by median.
             summary = sorted(summary.items(), key=lambda x: x[1][2][1])
 
             group_out.write("%25s\tmu\tn\tmed\t\tmin\tmean\tmax\n" % "group")
@@ -909,8 +915,8 @@ def main():
     # Output per-concept scores
     with open(CONCEPT_OUTPUT, "w") as concept_f:
         for concept in vocab:
-            metrics = [score for name, _, _, score in feature_data
-                       if concept in features[name].concepts]
+            metrics = [result.metric for result in feature_data
+                       if concept in result.feature.concepts]
             if not metrics: continue
 
             c_score = np.median(metrics)
@@ -929,7 +935,8 @@ def main():
 
     swarm_feature_cats(groups["br_label"], fcat_median)
 
-    feature_data = [(name, n_entries, score) for name, n_entries, _, score in feature_data]
+    feature_data = [(result.feature.name, result.n_concepts, result.metric)
+                    for result in feature_data]
     domain_concepts = do_cluster(vocab, features, feature_data)
 
     with plt.style.context({"font.size": 15}):
