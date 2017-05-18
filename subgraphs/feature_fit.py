@@ -360,13 +360,18 @@ def analyze_features(features, word2idx, embeddings, clfs=None):
     return results
 
 
-def analyze_classifiers(clfs):
+def analyze_classifiers(clfs, all_embeddings):
     """
     Analyze the learned weights of feature classifiers.
     """
 
-    # Reload word embeddings -- whole vocabulary, not just words which appear
-    # in the source.
+    nearby_words = {}
+    for feature, clf in clfs.items():
+        nearby_words[feature] = all_embeddings.similar_by_vector(clf.coef_.flatten(), topn=20, restrict_vocab=1000)
+        print(feature)
+        print("\t", " ".join([x[0] for x in nearby_words[feature]]))
+
+    return nearby_words
 
 
 def plot_gaussian_contour(xs, ys, vars_xs, vars_ys):
@@ -865,6 +870,9 @@ def main():
     feature_data = analyze_features(features, word2idx, embeddings, clfs=clfs)
     feature_data = sorted(feature_data, key=lambda f: f.metric)
 
+    clfs = {result.feature.name: result.clf for result in feature_data}
+    analyze_classifiers(clfs, all_embeddings)
+
     fcat_mean = {}
     fcat_median = {}
 
@@ -877,9 +885,7 @@ def main():
     # Pickle classifiers
     if not clf_path.exists():
         with clf_path.open("wb") as clf_out:
-            clf_dump = {result.feature.name: result.clf
-                        for result in feature_data}
-            pickle.dump(clf_dump, clf_out)
+            pickle.dump(clfs, clf_out)
 
     # Output raw feature data and group features
     with open(FF_OUTPUT, "w") as ff_out:
