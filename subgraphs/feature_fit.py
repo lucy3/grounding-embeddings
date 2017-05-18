@@ -4,6 +4,7 @@ from concurrent import futures
 from functools import partial
 import itertools
 from pathlib import Path
+import pickle
 from pprint import pprint
 import random
 import csv
@@ -70,6 +71,7 @@ FF_ALL_OUTPUT = "%s/features_concepts.txt" % OUT_DIR
 GROUP_OUTPUT = "%s/groups.txt" % OUT_DIR
 CLUSTER_OUTPUT = "%s/clusters.txt" % OUT_DIR
 CONCEPT_OUTPUT = "%s/concepts.txt" % OUT_DIR
+CLASSIFIER_OUTPUT = "%s/classifiers.pkl" % OUT_DIR
 LOG = "%s/log.txt" % OUT_DIR
 
 if PIVOT == "wikigiga":
@@ -860,6 +862,12 @@ def main():
         "first_word": lambda name: name.split("_")[0],
     }
     groups = {k: defaultdict(list) for k in grouping_fns}
+
+    # Pickle classifiers
+    with open(CLASSIFIER_OUTPUT, "wb") as clf_out:
+        clf_dump = {result.feature.name: result.clf
+                    for result in feature_data}
+        pickle.dump(clf_dump, clf_out)
 
     # Output raw feature data and group features
     with open(FF_OUTPUT, "w") as ff_out:
