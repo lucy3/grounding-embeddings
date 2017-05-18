@@ -66,6 +66,7 @@ GRAPH_DIR = './all/feature_fit/%s/%s' % (SOURCE, PIVOT)
 OUT_DIR = "./all/feature_fit/%s/%s" % (SOURCE, PIVOT)
 CV_OUTPUT = "%s/Cs.txt" % OUT_DIR
 FF_OUTPUT = "%s/features.txt" % OUT_DIR
+FF_ALL_OUTPUT = "%s/features_concepts.txt" % OUT_DIR
 GROUP_OUTPUT = "%s/groups.txt" % OUT_DIR
 CLUSTER_OUTPUT = "%s/clusters.txt" % OUT_DIR
 CONCEPT_OUTPUT = "%s/concepts.txt" % OUT_DIR
@@ -301,7 +302,11 @@ def analyze_features(features, word2idx, embeddings):
         List of tuples with structure:
             feature_name:
             n_concepts: number of concepts which have this feature
-            metric: goodness metric, where higher is better
+            concept_probs: concept probs where element i corresponds to
+                $p(feature|concept)$
+                for this feature on concept i. Note we score all concepts, not
+                just those which have the feature in question.
+            metric: summary goodness metric, where higher is better
     """
 
     usable_features = []
@@ -330,27 +335,27 @@ def analyze_features(features, word2idx, embeddings):
                        fit_intercept=False)
 
     Cs = load_loocv(usable_features, X, Y, clf_base)
-    preds = []
-    top_false_positives = []
+    preds, probas = [], []
     for f_idx, f_name in tqdm(enumerate(usable_features),
                               total=len(usable_features),
                               desc="Training feature classifiers"):
         clf = clf_base(C=Cs[f_name])
         clf.fit(X, Y[:, f_idx])
         preds.append(clf.predict(X))
+        probas.append(clf.predict_proba(X)[:, 1])
 
-        # Find top-scoring false positives
-        X_neg = X[Y[:, f_idx] == 0]
-        neg_proba = clf.predict_proba(X_neg)[:, 1]
-        neg_proba = neg_proba[neg_proba > 0.5]
-        top_false_i = np.argsort(neg_proba)[::-1][:5]
-        top_false_positives.append(top_false_i)
+        # # Find top-scoring false positives
+        # X_neg = X[Y[:, f_idx] == 0]
+        # neg_proba = clf.predict_proba(X_neg)[:, 1]
+        # neg_proba = neg_proba[neg_proba > 0.5]
+        # top_false_i = np.argsort(neg_proba)[::-1][:5]
+        # top_false_positives.append(top_false_i)
 
     counts = Y.sum(axis=0)
     ret_metrics = [metrics.f1_score(Y[:, f_idx], preds_i)
                    for f_idx, preds_i in enumerate(preds)]
 
-    return zip(usable_features, counts, top_false_positives, ret_metrics)
+    return zip(usable_features, counts, probas, ret_metrics)
 
 
 def get_values(input_file, c_string, value):
@@ -870,6 +875,14 @@ def main():
                 group = grouping_fn(name)
                 groups[grouping_fn_name][group].append((name, score, n_entries))
 
+    # Output really raw feature data
+    with open(FF_ALL_OUTPUT, "w") as ff_out:
+        for name, _, concept_probs, _ in feature_data:
+            cf_sorted = sorted(zip(concept_probs, vocab), reverse=True)
+            for concept_prob, concept in cf_sorted:
+                is_positive = concept in features[name].concepts
+                ff_out.write("%s\t%s\t%f\t%i\n"
+                             % (name, concept, concept_prob, is_positive))
 
     # Output grouped feature information
     with open(GROUP_OUTPUT, "w") as group_out:
@@ -902,10 +915,6 @@ def main():
 
             c_score = np.median(metrics)
             concept_f.write("%s\t%f\n" % (concept, c_score))
-
-    # Output top false positives
-    for name, n_entries, false_positives, score in feature_data:
-        print("%s\t%s" % (name, " ".join([vocab[idx] for idx in false_positives])))
 
     #produce_feature_fit_bars(groups["br_label"])
     if SOURCE == "cslb":
