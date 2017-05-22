@@ -34,6 +34,7 @@ from util import get_map_from_tsv
 # the relevant features. Each axis of the resulting graphs also involves the
 # pivot source.
 PIVOT = "mygiga"
+INPUT_FVOCAB = None
 if PIVOT == "mcrae":
     INPUT = "./all/mcrae_vectors.txt"
 elif PIVOT == "cslb":
@@ -46,6 +47,7 @@ elif PIVOT == "word2vec":
     INPUT = "../word2vec/GoogleNews-vectors-negative300.bin"
 elif PIVOT == "mygiga":
     INPUT = "/john0/scr1/jgauthie/vectors.en.w2v.txt"
+    INPUT_FVOCAB = "/john0/scr1/jgauthie/vocab.txt"
 
 SOURCE = "cslb"
 if SOURCE == "mcrae":
@@ -72,6 +74,7 @@ GROUP_OUTPUT = "%s/groups.txt" % OUT_DIR
 CLUSTER_OUTPUT = "%s/clusters.txt" % OUT_DIR
 CONCEPT_OUTPUT = "%s/concepts.txt" % OUT_DIR
 CLASSIFIER_OUTPUT = "%s/classifiers.pkl" % OUT_DIR
+CLASSIFIER_NEIGHBOR_OUTPUT = "%s/classifier_neighbors.txt" % OUT_DIR
 LOG = "%s/log.txt" % OUT_DIR
 
 if PIVOT == "wikigiga":
@@ -102,7 +105,8 @@ def load_all_embeddings():
         embeddings = KeyedVectors.load_word2vec_format(INPUT, binary=True)
     else:
         # GloVe format
-        embeddings = KeyedVectors.load_word2vec_format(INPUT, binary=False)
+        embeddings = KeyedVectors.load_word2vec_format(INPUT, binary=False,
+                                                       fvocab=INPUT_FVOCAB)
 
     if not Path(ALL_EMBEDDINGS).is_file():
         embeddings.save(ALL_EMBEDDINGS)
@@ -360,16 +364,43 @@ def analyze_features(features, word2idx, embeddings, clfs=None):
     return results
 
 
-def analyze_classifiers(clfs, all_embeddings):
+def analyze_classifiers(analyze_results, all_embeddings, min_count=300):
     """
     Analyze the learned weights of feature classifiers.
+
+    Arguments:
+        analyze_results: list of AnalyzeResult tuples
     """
 
+    clf_coefs = np.concatenate([result.clf.coef_ for result in analyze_results])
+    clf_coefs /= np.linalg.norm(clf_coefs, axis=1, keepdims=True)
+    all_embeddings.init_sims()
+    sims = np.dot(clf_coefs, all_embeddings.syn0norm.T)
+
+    # Cache counts for faster inner loop
+    word_counts = {word.index: word.count for word in all_embeddings.vocab.values()}
+    word_counts = [word_counts[i] for i in range(len(word_counts))]
+
     nearby_words = {}
-    for feature, clf in clfs.items():
-        nearby_words[feature] = all_embeddings.similar_by_vector(clf.coef_.flatten(), topn=20, restrict_vocab=1000)
-        print(feature)
-        print("\t", " ".join([x[0] for x in nearby_words[feature]]))
+    for result, r_sims in tqdm(zip(analyze_results, sims),
+                               desc="Analyzing classifiers",
+                               total=len(analyze_results)):
+        feature = result.feature.name
+        clf = result.clf
+
+        r_sims_sort = r_sims.argsort()[::-1]
+        nearby_f = []
+        for r_sim_idx in r_sims_sort:
+            if len(nearby_f) == 10:
+                break
+            count = word_counts[r_sim_idx]
+            if count is None or count < min_count:
+                continue
+
+            word = all_embeddings.index2word[r_sim_idx]
+            nearby_f.append((word, r_sims[r_sim_idx]))
+
+        nearby_words[feature] = nearby_f
 
     return nearby_words
 
@@ -870,9 +901,6 @@ def main():
     feature_data = analyze_features(features, word2idx, embeddings, clfs=clfs)
     feature_data = sorted(feature_data, key=lambda f: f.metric)
 
-    clfs = {result.feature.name: result.clf for result in feature_data}
-    analyze_classifiers(clfs, all_embeddings)
-
     fcat_mean = {}
     fcat_median = {}
 
@@ -885,7 +913,15 @@ def main():
     # Pickle classifiers
     if not clf_path.exists():
         with clf_path.open("wb") as clf_out:
+            clfs = {result.feature.name: result.clf for result in feature_data}
             pickle.dump(clfs, clf_out)
+
+    classifier_nearby = analyze_classifiers(feature_data, all_embeddings)
+    with open(CLASSIFIER_NEIGHBOR_OUTPUT, "w") as f:
+        for feature, nearby in classifier_nearby.items():
+            f.write("%s\n" % feature)
+            for w, sim in nearby:
+                f.write("\t%.5f\t%s\n" % (sim, w))
 
     # Output raw feature data and group features
     with open(FF_OUTPUT, "w") as ff_out:
