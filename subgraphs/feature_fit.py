@@ -918,8 +918,11 @@ def main():
 
     classifier_nearby = analyze_classifiers(feature_data, all_embeddings)
     with open(CLASSIFIER_NEIGHBOR_OUTPUT, "w") as f:
-        for feature, nearby in classifier_nearby.items():
-            f.write("%s\n" % feature)
+        for result in feature_data:
+            feature = result.feature.name
+            nearby = classifier_nearby[feature]
+
+            f.write("%s\t%.5f\n" % (feature, result.metric))
             for w, sim in nearby:
                 f.write("\t%.5f\t%s\n" % (sim, w))
 
