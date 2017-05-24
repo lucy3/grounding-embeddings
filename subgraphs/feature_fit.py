@@ -349,12 +349,12 @@ def analyze_features(features, word2idx, embeddings, clfs=None):
     for f_idx, f_name in tqdm(enumerate(usable_features),
                               total=len(usable_features),
                               desc="Training feature classifiers"):
+        clf = None
         if clfs is not None:
-            try:
-                clf = clfs[f_name]
-            except KeyError:
-                clf = clf_base(C=Cs[f_name])
-                clf.fit(X, Y[:, f_idx])
+            clf = clfs.get(f_name)
+        if clf is None:
+            clf = clf_base(C=Cs[f_name])
+            clf.fit(X, Y[:, f_idx])
 
         preds = clf.predict(X)
         metric = metrics.f1_score(Y[:, f_idx], preds)
