@@ -1,5 +1,5 @@
 """
-This computes cosine distances based on GloVe data. 
+This computes cosine distances based on GloVe data.
 
 vocab_fruitveg.txt is hand-picked list of fruits/vegs
 from the McRae concept dataset.
@@ -34,7 +34,7 @@ def main():
 	vocabulary = set()
 	for line in vocab_file:
 		vocabulary.add(line.strip())
-		
+
 	f = open(GLOVE_INPUT, 'r')
 	vectors = defaultdict(list)
 	for line in f:
@@ -43,7 +43,7 @@ def main():
 			vectors[word_vec[0]] = [float(x) for x in word_vec[1:]]
 
 	output = open(OUTPUT, 'w')
-	words = vectors.keys()
+	words = list(vectors.keys())
 	for i in range(len(words)):
 		for j in range(i+1, len(words)):
 			dist = 1- spatial.distance.cosine(vectors[words[i]], vectors[words[j]])
