@@ -515,7 +515,7 @@ def produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=
 
     plot_gaussian_contour(xs, ys, x_vars, y_vars)
     plt.tight_layout()
-    fig_path = os.path.join(GRAPH_DIR, "unified_domain-%s-%s.eps" % (PEARSON1_NAME, PEARSON2_NAME))
+    fig_path = os.path.join(GRAPH_DIR, "unified_domain-%s-%s.png" % (PEARSON1_NAME, PEARSON2_NAME))
     fig.savefig(fig_path, **SAVEFIG_KWARGS)
 
     # Plot feature metric vs. Pearson1
@@ -531,7 +531,7 @@ def produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=
 
     plot_gaussian_contour(xs, zs, x_vars, z_vars)
     plt.tight_layout()
-    fig_path = os.path.join(GRAPH_DIR, "unified_domain-%s-feature.eps" % PEARSON1_NAME)
+    fig_path = os.path.join(GRAPH_DIR, "unified_domain-%s-feature.png" % PEARSON1_NAME)
     fig.savefig(fig_path, **SAVEFIG_KWARGS)
 
     # Plot feature metric vs. Pearson2
@@ -547,7 +547,7 @@ def produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=
 
     plot_gaussian_contour(ys, zs, y_vars, z_vars)
     plt.tight_layout()
-    fig_path = os.path.join(GRAPH_DIR, "unified_domain-%s-feature.eps" % PEARSON2_NAME)
+    fig_path = os.path.join(GRAPH_DIR, "unified_domain-%s-feature.png" % PEARSON2_NAME)
     fig.savefig(fig_path, **SAVEFIG_KWARGS)
 
 
@@ -574,7 +574,7 @@ def analyze_domains(labels, ff_scores, concept_domains=None):
     sns_plot = sns.boxplot(x, y, showcaps=False,boxprops={'facecolor':'None'},
         showfliers=False,whiskerprops={'linewidth':0}, ax=ax)
     sns_plot.set(xlabel='Domain ID', ylabel='Median feature fit score')
-    fig_path = os.path.join(GRAPH_DIR, "feature-%s-domain.eps" % PIVOT)
+    fig_path = os.path.join(GRAPH_DIR, "feature-%s-domain.png" % PIVOT)
     plt.tight_layout()
     fig = sns_plot.get_figure()
     fig.savefig(fig_path, **SAVEFIG_KWARGS)
@@ -684,7 +684,7 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
     #         ax.annotate(concept, (xs[i], ys[i]))
 
     plt.tight_layout()
-    fig_path = os.path.join(GRAPH_DIR, "unified-%s-%s.eps" % (PEARSON1_NAME, PEARSON2_NAME))
+    fig_path = os.path.join(GRAPH_DIR, "unified-%s-%s.png" % (PEARSON1_NAME, PEARSON2_NAME))
     fig.savefig(fig_path, **SAVEFIG_KWARGS)
     plt.close()
 
@@ -697,7 +697,7 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
     ax.scatter(xs, zs, c=cs, alpha=0.8)
 
     plt.tight_layout()
-    fig_path = os.path.join(GRAPH_DIR, "unified-%s-feature.eps" % PEARSON1_NAME)
+    fig_path = os.path.join(GRAPH_DIR, "unified-%s-feature.png" % PEARSON1_NAME)
     fig.savefig(fig_path, **SAVEFIG_KWARGS)
     plt.close()
 
@@ -710,7 +710,7 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
     ax.scatter(ys, zs, c=cs, alpha=0.8)
 
     plt.tight_layout()
-    fig_path = os.path.join(GRAPH_DIR, "unified-%s-feature.eps" % PEARSON2_NAME)
+    fig_path = os.path.join(GRAPH_DIR, "unified-%s-feature.png" % PEARSON2_NAME)
     fig.savefig(fig_path, **SAVEFIG_KWARGS)
     plt.close()
 
@@ -817,7 +817,7 @@ def produce_feature_fit_bars(feature_groups, features_per_category=4):
         ax.set_title(group_name)
 
     plt.tight_layout()
-    fig_path = os.path.join(GRAPH_DIR, "feature_fit.eps")
+    fig_path = os.path.join(GRAPH_DIR, "feature_fit.png")
     fig.savefig(fig_path, **SAVEFIG_KWARGS)
 
 
@@ -884,7 +884,7 @@ def swarm_feature_cats(feature_groups, fcat_median):
     sns_plot = sns.boxplot(x, y, showcaps=False,boxprops={'facecolor':'None'},
         showfliers=False,whiskerprops={'linewidth':0}, ax=ax)
     sns_plot.set(xlabel='Feature category', ylabel='Feature fit score')
-    fig_path = os.path.join(GRAPH_DIR, "feature-%s-%s-category.eps" % (SOURCE, PIVOT))
+    fig_path = os.path.join(GRAPH_DIR, "feature-%s-%s-category.png" % (SOURCE, PIVOT))
     plt.tight_layout()
     fig = sns_plot.get_figure()
     fig.savefig(fig_path, **SAVEFIG_KWARGS)
