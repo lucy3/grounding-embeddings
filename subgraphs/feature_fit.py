@@ -9,6 +9,7 @@ import random
 import csv
 import os.path
 import sys
+import string
 
 from gensim.models.keyedvectors import KeyedVectors
 import numpy as np
@@ -381,6 +382,8 @@ def analyze_classifiers(analyze_results, all_embeddings, min_count=300):
     word_counts = {word.index: word.count for word in all_embeddings.vocab.values()}
     word_counts = [word_counts[i] for i in range(len(word_counts))]
 
+    lowercase = set(string.ascii_lowercase)
+
     nearby_words = {}
     for result, r_sims in tqdm(zip(analyze_results, sims),
                                desc="Analyzing classifiers",
@@ -391,13 +394,15 @@ def analyze_classifiers(analyze_results, all_embeddings, min_count=300):
         r_sims_sort = r_sims.argsort()[::-1]
         nearby_f = []
         for r_sim_idx in r_sims_sort:
-            if len(nearby_f) == 10:
+            if len(nearby_f) == 50:
                 break
             count = word_counts[r_sim_idx]
             if count is None or count < min_count:
                 continue
 
             word = all_embeddings.index2word[r_sim_idx]
+            if not word[0] in lowercase:
+                continue
             nearby_f.append((word, r_sims[r_sim_idx]))
 
         nearby_words[feature] = nearby_f
