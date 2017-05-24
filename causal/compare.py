@@ -5,60 +5,14 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 
+from util import load_ppmi, load_feature_fit, load_concept_fit
+
 
 p = ArgumentParser()
 p.add_argument("--ppmi-file", required=True)
 p.add_argument("--feature-fit-dir", required=True)
 
 args = p.parse_args()
-
-
-def load_ppmi():
-    feature_ppmis = defaultdict(lambda: ([], []))
-    concept_ppmis = defaultdict(lambda: ([], []))
-
-    with open(args.ppmi_file, "r") as ppmi_f:
-        for line in ppmi_f:
-            fields = line.strip().split("\t")
-            if len(fields) < 4: continue
-
-            feature, concept, ppmi, is_positive = fields[:4]
-            idx = 1 if is_positive == "True" else 0
-
-            # Normalize feature name to match feature_fit output
-            feature = feature.replace(" ", "_")
-            feature_ppmis[feature][idx].append(float(ppmi))
-
-            concept_ppmis[concept][idx].append(float(ppmi))
-
-    return feature_ppmis, concept_ppmis
-
-
-def load_feature_fit():
-    feature_fits = {}
-    feature_categories = {}
-
-    with Path(args.feature_fit_dir, "features.txt").open() as f:
-        for line in f:
-            fields = line.strip().split("\t")
-            if len(fields) < 4: continue
-
-            feature, category, score = fields[0], fields[1], fields[3]
-            feature_fits[feature] = float(score)
-            feature_categories[feature] = category
-
-    return feature_fits, feature_categories
-
-
-def load_concept_fit():
-    concept_fits = {}
-
-    with Path(args.feature_fit_dir, "concepts.txt").open() as f:
-        for line in f:
-            concept, score = line.strip().split()
-            concept_fits[concept] = float(score)
-
-    return concept_fits
 
 
 def normalize_feature_ppmis(feature_ppmis):
@@ -120,11 +74,11 @@ def plot_concept_fit(concept_ppmis, concept_fits):
 
 
 def main():
-    feature_ppmis, concept_ppmis = load_ppmi()
+    feature_ppmis, concept_ppmis = load_ppmi(args.ppmi_file)
     feature_ppmis = normalize_feature_ppmis(feature_ppmis)
 
-    feature_fits, cats = load_feature_fit()
-    concept_fits = load_concept_fit()
+    feature_fits, cats = load_feature_fit(args.feature_fit_dir)
+    concept_fits = load_concept_fit(args.feature_fit_dir)
 
     plot_feature_fit(feature_ppmis, feature_fits, cats)
     plot_concept_fit(concept_ppmis, concept_fits)
