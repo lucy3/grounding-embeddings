@@ -101,7 +101,7 @@ def build_clfs(features, feature_ppmis):
     for feature in tqdm(features, desc="Training classifiers"):
         neg_pmis, pos_pmis = feature_ppmis[feature]
 
-        X = np.concatenate((neg_pmis, pos_pmis), axis=0)
+        X = np.concatenate((neg_pmis, pos_pmis))[:, np.newaxis]
         y = np.concatenate((np.zeros_like(neg_pmis), np.ones_like(pos_pmis)),
                            axis=0)
         clfs[feature] = LogisticRegression()
@@ -114,8 +114,6 @@ def build_clfs(features, feature_ppmis):
 
 def main():
     features, feature_ppmis, concept_ppmis = load_ppmi(args.ppmi_file)
-    feature_ppmis = normalize_feature_ppmis(feature_ppmis)
-
     feature_fits, cats = load_feature_fit(args.feature_fit_dir)
     concept_fits = load_concept_fit(args.feature_fit_dir)
 
@@ -123,6 +121,9 @@ def main():
     clfs, metrics = build_clfs(features, feature_ppmis)
     for feature in clfs:
         print("%s\t%.5f" % (feature, metrics[feature]))
+
+    # Normalize for visualization purposes
+    feature_ppmis = normalize_feature_ppmis(feature_ppmis)
 
     plot_feature_fit(feature_ppmis, feature_fits, cats)
     plot_concept_fit(concept_ppmis, concept_fits)

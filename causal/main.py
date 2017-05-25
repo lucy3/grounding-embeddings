@@ -8,6 +8,7 @@ import re
 import sys
 
 import numpy as np
+import pattern.en as pattern
 from scipy.sparse import coo_matrix, lil_matrix
 
 from util import Feature
