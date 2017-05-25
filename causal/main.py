@@ -102,7 +102,7 @@ def convert_ppmi(cooccur):
         for i_y, count_xy in zip(cooccur.rows[i_x], data_x):
             p_yx = count_xy / count_x_all
             p_y = uni_probs[i_y]
-            ret[i_x, i_y] = np.max(0, np.log(p_yx) - np.log(p_y))
+            ret[i_x, i_y] = max(0, np.log(p_yx) - np.log(p_y))
 
     return ret
 

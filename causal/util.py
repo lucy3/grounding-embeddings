@@ -144,6 +144,7 @@ def morphify(word):
 
 
 def load_ppmi(ppmi_file):
+    features = {}
     feature_ppmis = defaultdict(lambda: ([], []))
     concept_ppmis = defaultdict(lambda: ([], []))
 
@@ -152,7 +153,7 @@ def load_ppmi(ppmi_file):
             fields = line.strip().split("\t")
             if len(fields) < 5: continue
 
-            feature, _, concept, ppmi, is_positive = fields[:5]
+            feature, category, concept, ppmi, is_positive = fields[:5]
             idx = 1 if is_positive == "True" else 0
 
             # Normalize feature name to match feature_fit output
@@ -161,7 +162,11 @@ def load_ppmi(ppmi_file):
 
             concept_ppmis[concept][idx].append(float(ppmi))
 
-    return feature_ppmis, concept_ppmis
+            if feature not in features:
+                features[feature] = Feature(feature, category)
+            features[feature].concepts.append(concept)
+
+    return features, feature_ppmis, concept_ppmis
 
 
 def load_feature_fit(fit_dir):

@@ -4,6 +4,9 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import f1_score
+from tqdm import tqdm
 
 from util import load_ppmi, load_feature_fit, load_concept_fit, \
         load_concept_corr
@@ -93,12 +96,33 @@ def plot_concept_corr(concept_ppmis, concept_corr):
     plt.show()
 
 
+def build_clfs(features, feature_ppmis):
+    clfs, metrics = {}, {}
+    for feature in tqdm(features, desc="Training classifiers"):
+        neg_pmis, pos_pmis = feature_ppmis[feature]
+
+        X = np.concatenate((neg_pmis, pos_pmis), axis=0)
+        y = np.concatenate((np.zeros_like(neg_pmis), np.ones_like(pos_pmis)),
+                           axis=0)
+        clfs[feature] = LogisticRegression()
+        clfs[feature].fit(X, y)
+
+        metrics[feature] = f1_score(y, clfs[feature].predict(X))
+
+    return clfs, metrics
+
+
 def main():
-    feature_ppmis, concept_ppmis = load_ppmi(args.ppmi_file)
+    features, feature_ppmis, concept_ppmis = load_ppmi(args.ppmi_file)
     feature_ppmis = normalize_feature_ppmis(feature_ppmis)
 
     feature_fits, cats = load_feature_fit(args.feature_fit_dir)
     concept_fits = load_concept_fit(args.feature_fit_dir)
+
+    # Learn a classifier for each feature
+    clfs, metrics = build_clfs(features, feature_ppmis)
+    for feature in clfs:
+        print("%s\t%.5f" % (feature, metrics[feature]))
 
     plot_feature_fit(feature_ppmis, feature_fits, cats)
     plot_concept_fit(concept_ppmis, concept_fits)
