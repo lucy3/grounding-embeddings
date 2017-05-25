@@ -142,6 +142,8 @@ def load_filtered_embeddings(concepts, all_embeddings):
     if not Path(EMBEDDINGS).exists():
         np.save(embeddings, EMBEDDINGS)
 
+    embeddings /= np.linalg.norm(embeddings, axis=1, keepdims=True)
+
     return vocab, embeddings
 
 
@@ -255,9 +257,8 @@ def loocv_features(features, X, Y, clf_base):
 
 
 def loocv_feature_outer(pool, clf_base, f_idx):
-    Cs = [10 ** exp for exp in range(-4, 4)]
-    Cs += [5 * (10 ** exp) for exp in range(-4, 2)]
-    Cs += [75, 25]
+    Cs = [10 ** exp for exp in range(-4, 1)]
+    Cs += [5 * (10 ** exp) for exp in range(-4, 0)]
 
     return [pool.submit(loocv_feature, C, f_idx, clf_base(C=C))
             for C in Cs]
