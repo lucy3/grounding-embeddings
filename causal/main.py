@@ -79,7 +79,7 @@ p.add_argument("--norms-file", default="./cslb/norms.dat")
 p.add_argument("--cooccur-file", default="./cooccur.npz")
 p.add_argument("--vocab-file", default="./vocab.txt")
 p.add_argument("--filtered-vocab-file", default="./vocab.keep.txt")
-p.add_argument("--cooccur-pmi-file", default="./cooccur.pmi.npz")
+p.add_argument("--cooccur-ppmi-file", default="./cooccur.ppmi.npz")
 
 p.add_argument("--mode", choices=["write-vocab", "ppmi"])
 
@@ -137,13 +137,13 @@ def load_vocab():
 
 
 def load_cooccur():
-    pmi_path = Path(args.cooccur_pmi_file)
+    pmi_path = Path(args.cooccur_ppmi_file)
     if pmi_path.exists():
-        cooccur = load_lil(args.cooccur_pmi_file)
+        cooccur = load_lil(args.cooccur_ppmi_file)
     else:
         cooccur = load_lil(args.cooccur_file)
-        cooccur = convert_pmi(cooccur)
-        save_lil(args.cooccur_pmi_file, cooccur)
+        cooccur = convert_ppmi(cooccur)
+        save_lil(args.cooccur_ppmi_file, cooccur)
     return cooccur
 
 
@@ -175,7 +175,7 @@ def load_features_concepts(min_concepts=5):
     return features, concepts
 
 
-def convert_pmi(cooccur):
+def convert_ppmi(cooccur):
     """
     Convert the co-occurrence matrix to PPMI
     """
@@ -196,7 +196,7 @@ def convert_pmi(cooccur):
         for i_y, count_xy in zip(cooccur.rows[i_x], data_x):
             p_yx = count_xy / count_x_all
             p_y = uni_probs[i_y]
-            ret[i_x, i_y] = np.log(p_yx) - np.log(p_y)
+            ret[i_x, i_y] = np.max(0, np.log(p_yx) - np.log(p_y))
 
     return ret
 

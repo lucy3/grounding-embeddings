@@ -36,12 +36,12 @@ $(datadir)/cooccur.npz: $(datadir)/cooccurrence.filtered.bin
 ppmi_out.txt: $(datadir)/vocab.keep.txt $(datadir)/cooccur.npz
 	python main.py --mode ppmi --norms-file $(norms) --vocab-file $(datadir)/vocab.txt \
 		--filtered-vocab-file $(datadir)/vocab.keep.txt --cooccur-file $(datadir)/cooccur.npz \
-		--cooccur-pmi-file $(datadir)/cooccur.pmi.npz > ppmi_out.txt
+		--cooccur-ppmi-file $(datadir)/cooccur.ppmi.npz > ppmi_out.txt
 
 ###############
 
 clean:
 	rm -f filter_glove $(datadir)/cooccurrence.filtered.bin $(datadir)/cooccur.npz \
-		$(datadir)/cooccur.pmi.npz $(datadir)/vocab.keep.txt
+		$(datadir)/cooccur.ppmi.npz $(datadir)/vocab.keep.txt
 
 all: vocab.keep.txt cooccurrence.filtered.bin cooccur.npz ppmi_out.txt
