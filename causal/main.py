@@ -7,71 +7,10 @@ from pprint import pprint
 import re
 import sys
 
-from nltk.corpus import wordnet as wn
 import numpy as np
-import pattern.en as pattern
-from pattern.text import TENSES
 from scipy.sparse import coo_matrix, lil_matrix
 
-
-from util import cached_property
-
-
-class Feature(object):
-    def __init__(self, name, category):
-        self.name = name
-        self.category = category
-        self.concepts = []
-        self.alternatives = set()
-        self.count = 0
-
-    def process_description(self, desc):
-        return " ".join([word for word in desc.replace("_", " ").split()
-                         if word not in FEATURE_STOPWORDS])
-
-    @property
-    def processed_alternatives(self):
-        return [self.process_description(alt)
-                for alt in self.alternatives]
-
-    @cached_property
-    def cooccur_targets(self):
-        main_str = self.process_description(self.name)
-        alt_strs = self.processed_alternatives
-
-        ret = main_str.split()
-        for alt_str in alt_strs:
-            words = alt_str.split()
-            ret.extend(words)
-
-            # Augment with related words, drawn from WordNet
-            for word in words:
-                related = [related_word for related_word, p in morphify(word)
-                           if p > 0.5]
-                ret.extend(related)
-
-        new_ret = set()
-        # Add all the inflections!!!
-        for word in ret:
-            new_ret.add(word)
-
-            # Plural+singular
-            new_ret.add(pattern.pluralize(word))
-            new_ret.add(pattern.singularize(word))
-
-            # comparatives
-            comparative = pattern.comparative(word)
-            if "more" not in comparative:
-                new_ret.add(comparative)
-            superlative = pattern.superlative(word)
-            if "most" not in superlative:
-                new_ret.add(superlative)
-
-            for id, tense in TENSES.items():
-                if id is None: continue
-                new_ret.add(pattern.conjugate(word, tense))
-
-        return set(new_ret) - set([None])
+from util import Feature
 
 
 p = ArgumentParser()
@@ -84,39 +23,6 @@ p.add_argument("--cooccur-ppmi-file", default="./cooccur.ppmi.npz")
 p.add_argument("--mode", choices=["write-vocab", "ppmi"])
 
 args = p.parse_args()
-
-
-# TODO maybe stop doing this brute-force and just weight PMIs by IDF within
-# the CSLB corpus?
-FEATURE_STOPWORDS = frozenset([
-    "beh-", "inbeh-", "used", "to", "long", "eaten", "by", "found", "the",
-    "made", "is", "has", "a", "in", "worn", "on", "of", "an", "for", "shaped",
-    "like", "does", "not", "similar", "get", "attached", "along", "at", "with",
-    "associated", "you", "contains", "as", "go", "and", "what", "your", "make",
-    "look", "function", "up", "enable", "keep", "over", "leave", "allow", "when",
-    "use", "aid", "capable", "lot", "considered", "its", "things", "come",
-    "comes", "if", "more", "than", "onto", "into", "be", "very", "goes",
-    "about", "makes", "from", "or", "able", "something", "takes", "time",
-    "getting", "most", "being", "become", "variety", "many", "around", "kind",
-    "can", "which", "it", "we", "take", "back", "consists", "consist",
-    "several", "much", "can", "cause", "popular", "type", "feel", "outside",
-    "needed", "need", "versatile", "containing", "some", "any", "all",
-    "different", "looks", "connotation", "vary", "one", "single", "comprise",
-    "comprised", "symbol", "one", "gets", "too", "let", "inside", "have",
-    "material", "act", "acts", "said", "regarded", "source", "create", "so",
-    "ability", "while", "that", "uses", "available", "characterised",
-    "contain", "anymore", "been", "may", "no", "longer", "now", "was",
-    "form", "under", "eat", "feed", "likes", "see", "x", "useful", "given",
-    "provided", "can't", "covers", "coloured", "pieces", "cases", "lives",
-    "originates", "live", "kept", "common", "added", "content", "their", "my",
-    "but", "best", "good", "doing", "are", "three", "two", "through", "other",
-    "varying", "number", "needs", "always", "set", "there", "properly", "way",
-    "do", "who", "those", "out", "off", "near", "high", "close", "above",
-    "locations", "where", "provides", "object", "objects", "item", "items",
-    "aimed", "designed", "seen", "attracted", "tend", "other", "help",
-    "demonstrate", "demonstrates", "requires", "perform", "carries", "out",
-    "meant", "provide", "one's", "least", "set", "such",
-])
 
 
 def load_lil(filename):
@@ -199,38 +105,6 @@ def convert_ppmi(cooccur):
             ret[i_x, i_y] = np.max(0, np.log(p_yx) - np.log(p_y))
 
     return ret
-
-
-def morphify(word):
-    # Stolen from http://stackoverflow.com/a/29342127/176075
-    # slightly modified..
-    synsets = wn.synsets(word)
-
-    # Word not found
-    if not synsets:
-        return []
-
-    # Get all  lemmas of the word
-    lemmas = [l for s in synsets for l in s.lemmas()]
-
-    # Get related forms
-    derivationally_related_forms = [(l, l.derivationally_related_forms())
-                                    for l in lemmas]
-
-    # filter only the targeted pos
-    related_lemmas = [l for drf in derivationally_related_forms
-                      for l in drf[1]]
-
-    # Extract the words from the lemmas
-    words = [l.name() for l in related_lemmas]
-    len_words = len(words)
-
-    # Build the result in the form of a list containing tuples (word, probability)
-    result = [(w, float(words.count(w))/len_words) for w in set(words)]
-    result.sort(key=lambda w: -w[1])
-
-    # return all the possibilities sorted by probability
-    return result
 
 
 def write_vocab(glove_vocab, features, concepts):
