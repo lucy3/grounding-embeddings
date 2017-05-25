@@ -5,12 +5,14 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 
-from util import load_ppmi, load_feature_fit, load_concept_fit
+from util import load_ppmi, load_feature_fit, load_concept_fit, \
+        load_concept_corr
 
 
 p = ArgumentParser()
 p.add_argument("--ppmi-file", required=True)
 p.add_argument("--feature-fit-dir", required=True)
+p.add_argument("--corr-file", help="Path to concept correlation file")
 
 args = p.parse_args()
 
@@ -73,6 +75,24 @@ def plot_concept_fit(concept_ppmis, concept_fits):
     plt.show()
 
 
+def plot_concept_corr(concept_ppmis, concept_corr):
+    xs, ys = [], []
+    for concept, (_, ppmis) in concept_ppmis.items():
+        try:
+            concept_corr_i = concept_corr[concept]
+        except KeyError:
+            print("Skipping ", concept)
+            continue
+
+        xs.append(concept_corr_i)
+        ys.append(np.median(ppmis))
+
+    plt.scatter(xs, ys)
+    plt.xlabel("concept corr")
+    plt.ylabel("median pmi across features")
+    plt.show()
+
+
 def main():
     feature_ppmis, concept_ppmis = load_ppmi(args.ppmi_file)
     feature_ppmis = normalize_feature_ppmis(feature_ppmis)
@@ -82,6 +102,10 @@ def main():
 
     plot_feature_fit(feature_ppmis, feature_fits, cats)
     plot_concept_fit(concept_ppmis, concept_fits)
+
+    if args.corr_file is not None:
+        concept_corr = load_concept_corr(args.corr_file)
+        plot_concept_corr(concept_ppmis, concept_corr)
 
 
 if __name__ == '__main__':

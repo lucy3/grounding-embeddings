@@ -1,4 +1,5 @@
 from collections import defaultdict
+import csv
 from pathlib import Path
 
 
@@ -62,3 +63,31 @@ def load_concept_fit(fit_dir):
 
     return concept_fits
 
+
+def get_map_from_tsv(tsv_path, k_col, v_col, cast=float):
+    """
+    Build a key-value map from two columns of a TSV file.
+
+    Arguments:
+        csv_path:
+        k_col: Column which should yield keys of map. Values in this should
+            column should be unique, otherwise things break!
+        v_col: Column which should yield values of map.
+
+    Returns:
+        dict
+    """
+
+    ret = {}
+    with open(tsv_path, "rU") as f:
+        reader = csv.DictReader(f, delimiter="\t")
+        for row in reader:
+            if row[v_col] == "n/a":
+                row[v_col] = 0
+            ret[row[k_col]] = cast(row[v_col])
+
+    return ret
+
+
+def load_concept_corr(corr_path):
+    return get_map_from_tsv(corr_path, "Concept", "correlation")
