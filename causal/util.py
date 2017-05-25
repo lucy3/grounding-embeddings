@@ -23,9 +23,9 @@ def load_ppmi(ppmi_file):
     with open(ppmi_file, "r") as ppmi_f:
         for line in ppmi_f:
             fields = line.strip().split("\t")
-            if len(fields) < 4: continue
+            if len(fields) < 5: continue
 
-            feature, concept, ppmi, is_positive = fields[:4]
+            feature, _, concept, ppmi, is_positive = fields[:5]
             idx = 1 if is_positive == "True" else 0
 
             # Normalize feature name to match feature_fit output

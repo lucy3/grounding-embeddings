@@ -284,7 +284,8 @@ def do_ppmi_analysis(vocab, features, concepts, ppmi):
         concept_scores = sorted(concept_scores.items(), key=lambda x: x[1][0],
                                 reverse=True)
         for concept, (score, is_positive) in concept_scores:
-            print("%s\t%s\t%f\t%s" % (feature_name, concept, score, is_positive))
+            print("%s\t%s\t%s\t%f\t%s" % (feature_name, feature.category,
+                                          concept, score, is_positive))
 
         print()
         sys.stdout.flush()
