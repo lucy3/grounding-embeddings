@@ -275,6 +275,10 @@ def loocv_feature(C, f_idx, clf):
     X = loocv_features.X
     y = loocv_features.Y[:, f_idx]
 
+    # Find all concepts which (1) do or (2) do not have this feature
+    c_idxs = y.nonzero()[0]
+    c_not_idxs = (1 - y).nonzero()[0]
+
     scores = []
     def eval_clf(clf, X_test, y_test):
         pred_prob = clf.predict_proba(X_test)[:, 1]
@@ -291,11 +295,6 @@ def loocv_feature(C, f_idx, clf):
             scores.append(eval_clf(clf_kf, X[test_index], y[test_index]))
     else:
         # Run leave-one-out.
-
-        # Find all concepts which (1) do or (2) do not have this feature
-        c_idxs = y.nonzero()[0]
-        c_not_idxs = (1 - y).nonzero()[0]
-
         for c_idx in c_idxs:
             X_loo = np.concatenate([X[:c_idx], X[c_idx+1:]])
             y_loo = np.concatenate([y[:c_idx], y[c_idx+1:]])
