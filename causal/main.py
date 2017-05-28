@@ -152,9 +152,12 @@ def do_ppmi_analysis(vocab, features, concepts, ppmi):
                     if alt_idx in ppmi.rows[c_idx]:
                         ppmis.append(ppmi[c_idx, alt_idx])
 
+            is_positive = concept in feature.concepts
             if len(ppmis) > 0:
-                is_positive = concept in feature.concepts
-                concept_scores[concept] = (np.max(ppmis), is_positive)
+                score = np.max(ppmis)
+            else:
+                score = -np.inf
+            concept_scores[concept] = (score, is_positive)
 
         concept_scores = sorted(concept_scores.items(), key=lambda x: x[1][0],
                                 reverse=True)
