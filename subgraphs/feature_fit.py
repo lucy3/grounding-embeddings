@@ -22,6 +22,7 @@ import seaborn as sns
 from sklearn import metrics
 from sklearn.base import clone
 from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import StratifiedKFold
 from tqdm import tqdm, trange
 from scipy import stats
 
@@ -34,7 +35,7 @@ from util import get_map_from_tsv
 # resulting feature_fit metric represents how well these representations encode
 # the relevant features. Each axis of the resulting graphs also involves the
 # pivot source.
-PIVOT = "mygiga"
+PIVOT = "wikigiga"
 INPUT_FVOCAB = None
 if PIVOT == "mcrae":
     INPUT = "./all/mcrae_vectors.txt"
@@ -275,25 +276,36 @@ def loocv_feature(C, f_idx, clf):
     y = loocv_features.Y[:, f_idx]
 
     scores = []
+    def eval_clf(clf, X_test, y_test):
+        pred_prob = clf.predict_proba(X_test)[:, 1]
+        pos_score = np.mean(np.log(pred_prob[y_test == 1]))
+        neg_score = np.mean(np.log(pred_prob[y_test == 0]))
+        return pos_score - neg_score
 
-    # Find all concepts which (1) do or (2) do not have this feature
-    c_idxs = y.nonzero()[0]
-    c_not_idxs = (1 - y).nonzero()[0]
+    if len(c_idxs) > 15:
+        # Run 10-fold CV.
+        skf = StratifiedKFold(n_splits=10)
+        for train_index, test_index in skf.split(X, y):
+            clf_kf = clone(clf)
+            clf_kf.fit(X[train_index], y[train_index])
+            scores.append(eval_clf(clf_kf, X[test_index], y[test_index]))
+    else:
+        # Run leave-one-out.
 
-    # Leave-one-out.
-    for c_idx in c_idxs:
-        X_loo = np.concatenate([X[:c_idx], X[c_idx+1:]])
-        y_loo = np.concatenate([y[:c_idx], y[c_idx+1:]])
+        # Find all concepts which (1) do or (2) do not have this feature
+        c_idxs = y.nonzero()[0]
+        c_not_idxs = (1 - y).nonzero()[0]
 
-        clf_loo = clone(clf)
-        clf_loo.fit(X_loo, y_loo)
+        for c_idx in c_idxs:
+            X_loo = np.concatenate([X[:c_idx], X[c_idx+1:]])
+            y_loo = np.concatenate([y[:c_idx], y[c_idx+1:]])
 
-        # Draw negative samples for a ranking loss
-        test = np.concatenate([X[c_idx:c_idx+1], X[c_not_idxs]])
-        pred_prob = clf_loo.predict_proba(test)[:, 1]
+            clf_loo = clone(clf)
+            clf_loo.fit(X_loo, y_loo)
 
-        score = np.log(pred_prob[0]) + np.mean(np.log(1 - pred_prob[1:]))
-        scores.append(score)
+            X_test = np.concatenate([X[c_idx:c_idx+1], X[c_not_idxs]])
+            y_test = np.concatenate([[1], np.zeros_like(c_not_idxs)])
+            scores.append(eval_clf(clf_loo, X_test, y_test))
 
     return f_idx, C, scores
 
