@@ -51,7 +51,7 @@ elif PIVOT == "cc":
     MIN_WORD_COUNT = 300
 elif PIVOT == "word2vec":
     INPUT = "../word2vec/GoogleNews-vectors-negative300.bin"
-    MIN_WORD_COUNT = 300
+    MIN_WORD_COUNT = 300 * 30
 elif PIVOT == "mygiga":
     INPUT = "/john0/scr1/jgauthie/vectors.en.w2v.txt"
     INPUT_FVOCAB = "/john0/scr1/jgauthie/vocab.txt"

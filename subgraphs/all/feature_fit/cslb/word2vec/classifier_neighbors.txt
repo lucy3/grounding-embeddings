@@ -469,7 +469,6 @@ has_soft_flesh	0.09449
 	0.33514	mango
 	0.33438	stonefruit
 	0.32993	satsuma
-	0.32941	kale_turnips
 	0.32183	heirloom_tomato
 	0.32139	sweet_potato
 	0.32014	peach_plum
@@ -508,6 +507,7 @@ has_soft_flesh	0.09449
 	0.30176	tomatoes
 	0.30138	muskmelon
 	0.30061	grapefruit_oranges
+	0.30027	seedless_varieties
 is_any_shape	0.09459
 	0.36771	window
 	0.32697	mirror
@@ -1047,7 +1047,6 @@ has_two_feet	0.13483
 	0.25013	mourning_doves
 	0.24945	parakeets
 	0.24738	crows
-	0.24636	dead_pigeons_sparrows
 	0.24615	turtle_doves
 	0.24568	mallard
 	0.24548	red_tailed_hawks
@@ -1069,6 +1068,7 @@ has_two_feet	0.13483
 	0.23161	rarest_birds
 	0.23144	whooping_crane
 	0.23052	blackbird
+	0.23050	roost
 has_types	0.13636
 	0.29853	lily
 	0.28918	nut
@@ -1482,7 +1482,6 @@ made_of_metal_and_plastic	0.15094
 	0.27963	blender
 	0.25752	whisking
 	0.25373	drill
-	0.24551	flying_Billy_Elliots
 	0.24513	trolley
 	0.24065	scissors
 	0.23404	nonemergency_transports
@@ -1528,6 +1527,7 @@ made_of_metal_and_plastic	0.15094
 	0.18845	choreographed_routines
 	0.18807	busses
 	0.18807	z_OpenGate
+	0.18759	ecash_checking
 is_American	0.15556
 	0.31633	jeans
 	0.30655	blue_jeans
@@ -1575,10 +1575,10 @@ is_American	0.15556
 	0.20477	overage_goaltender
 	0.20349	plaid_shorts
 	0.20341	gray_sweatshirt
-	0.20332	via_COMTEX_HOG
 	0.20323	defenseman_Colby_Robak
 	0.20316	camouflage_jerseys
 	0.20234	agent_Kristen_Kuliga
+	0.20234	cowboy_hat
 is_wide	0.15873
 	0.41114	umbrella
 	0.35197	cloak
@@ -1980,13 +1980,13 @@ is_wrinkly	0.17073
 	0.25225	accommo
 	0.25155	sultana
 	0.25133	leguminous_plants
-	0.25104	kale_turnips
 	0.25094	cabbage_cauliflower
 	0.25080	apples_blueberries_cherries
 	0.25003	parsnips_turnips
 	0.24871	pro_duction
 	0.24868	peas_lettuce
 	0.24836	pomegranates_grapes
+	0.24812	peas_beans
 is_shy_timid	0.17143
 	0.33263	mso_para_margin_0in
 	0.30259	etwcf
@@ -2515,7 +2515,6 @@ does_hang	0.18750
 	0.22797	nailed_jumper
 	0.22506	translucent_skinned
 	0.21396	bells_rang
-	0.21274	flying_Billy_Elliots
 	0.20812	chimes
 	0.20758	lanterns
 	0.20650	bell_rang
@@ -2548,6 +2547,7 @@ does_hang	0.18750
 	0.18536	grand_staircase
 	0.18501	http://www.agoracom.com/IR/kinbauri
 	0.18496	cavernous_basilica
+	0.18489	breakaway_layup
 has_two_eyes	0.18750
 	0.31903	mso_para_margin_0in
 	0.31798	etwcf
@@ -2711,7 +2711,6 @@ has_a_hole	0.19298
 	0.22055	bolts
 	0.21989	pyrotechnically
 	0.21871	balloons
-	0.21868	ozone_depleting_CFC
 	0.21718	syringe
 	0.21571	cymbal
 	0.21474	pyrotechnical
@@ -2733,7 +2732,6 @@ has_a_hole	0.19298
 	0.20024	aerial_stunt
 	0.19951	overviewed
 	0.19887	patented_omni_directional
-	0.19808	officer_Allison_Bolinger
 	0.19769	amalgam_separator
 	0.19753	hypersonic_propulsion
 	0.19748	axial_radial
@@ -2752,6 +2750,8 @@ has_a_hole	0.19298
 	0.19135	taps
 	0.19133	inertial_fusion
 	0.19019	nozzle
+	0.18981	percussion
+	0.18937	filtration_purification
 does_live_on_land	0.19355
 	0.38185	etwcf
 	0.29785	mso_para_margin_0in
@@ -2910,7 +2910,6 @@ has_white_flesh	0.20000
 	0.28877	carnaroli_rice
 	0.28876	eggplant
 	0.28218	garlic
-	0.27546	kale_turnips
 	0.27347	shallots
 	0.26921	radicchio
 	0.26531	cabbage_cauliflower
@@ -2937,7 +2936,6 @@ has_white_flesh	0.20000
 	0.24170	click_STXNEWS
 	0.23941	broccoli_cabbage
 	0.23919	shallot
-	0.23890	dal_tadka
 	0.23838	durian_mangosteen
 	0.23511	potatoes_onions
 	0.23186	turnip
@@ -2956,6 +2954,8 @@ has_white_flesh	0.20000
 	0.22704	vegetables
 	0.22628	cauliflower_cabbage
 	0.22552	peppers_scallions
+	0.22448	endive_escarole
+	0.22397	kale
 is_a_machine	0.20000
 	0.35303	data_terminals_MDTs
 	0.35114	thermo_imaging
@@ -3065,7 +3065,6 @@ has_fibre	0.20290
 	0.27534	prune
 	0.27217	tomatoes_peppers
 	0.27055	replant
-	0.26615	kale_turnips
 	0.26292	review_aggregator_Rotten
 	0.25918	artichoke
 	0.25368	almond_walnut
@@ -3109,6 +3108,7 @@ has_fibre	0.20290
 	0.21772	peaches
 	0.21715	grain_sowings
 	0.21678	citrus_fruits
+	0.21660	peppers_tomatoes
 is_for_babies	0.20339
 	0.32946	pram
 	0.32182	cradle
@@ -3217,7 +3217,6 @@ is_peeled	0.20588
 	0.28076	tangerine
 	0.25575	orange
 	0.24610	flowers_Dangot
-	0.24432	kale_turnips
 	0.23907	tangerines
 	0.23903	carrot
 	0.23651	banana
@@ -3242,7 +3241,6 @@ is_peeled	0.20588
 	0.20757	enzymatic_degumming
 	0.20748	lycopene_intake
 	0.20561	phenolic_antioxidants
-	0.20489	dal_tadka
 	0.20269	rice_coarse_cereals
 	0.20200	carrots
 	0.20196	tomatoes_capsicum
@@ -3262,6 +3260,8 @@ is_peeled	0.20588
 	0.19234	methyl_jasmonate
 	0.19184	tangelos
 	0.19098	smh.com.au_smh.com.au_Web
+	0.19058	high_oleic_sunflower
+	0.19057	satsumas
 has_a_long_tongue	0.20896
 	0.33295	etwcf
 	0.30724	mso_para_margin_0in
@@ -3475,7 +3475,6 @@ has_a_green_stalk	0.21622
 	0.25056	strawberry
 	0.24084	courted_Islamic_fundamentalists
 	0.24058	poppies
-	0.23561	kale_turnips
 	0.22722	opium_poppies
 	0.22577	peach_plum
 	0.22484	jatropha_seedlings
@@ -3517,13 +3516,13 @@ has_a_green_stalk	0.21622
 	0.19208	david.brett_@_thomsonreuters.com
 	0.19121	vegetable_seedlings
 	0.19102	asters
+	0.19096	angelonia
 is_fried	0.21622
 	0.28573	carnaroli_rice
 	0.27759	durum_wheat_flour
 	0.25935	tempeh
 	0.25352	onion
 	0.24951	etwcf
-	0.24818	dal_tadka
 	0.24581	potato
 	0.24120	meatball_marinara
 	0.24027	rice
@@ -3568,6 +3567,7 @@ is_fried	0.21622
 	0.20472	grilled_onions_peppers
 	0.20450	ramen
 	0.20426	chick_pea
+	0.20375	de_mariscos
 is_easy_to_lose	0.21739
 	0.38326	key
 	0.33621	button
@@ -3783,7 +3783,6 @@ is_chewy	0.22535
 	0.23349	etwcf
 	0.23339	créme_de_la
 	0.23034	guisado
-	0.22934	dal_tadka
 	0.22923	flowers_Dangot
 	0.22757	review_aggregator_Rotten
 	0.22623	viagra_pharmacie
@@ -3823,6 +3822,7 @@ is_chewy	0.22535
 	0.20795	crispbreads
 	0.20794	lamb_souvlaki
 	0.20755	raisin
+	0.20701	crepes_stuffed
 has_thin_legs	0.22857
 	0.30258	etwcf
 	0.30127	mso_para_margin_0in
@@ -5740,7 +5740,6 @@ is_roasted	0.27907
 	0.19971	david.brett_@_thomsonreuters.com
 	0.19770	agoBy
 	0.19678	selected_ReconNET
-	0.19514	dal_tadka
 	0.18935	salami_salame
 	0.18900	jared.favole_@_dowjones.com
 	0.18705	mtownsend@cherokeescout.com_Tuesday
@@ -5761,6 +5760,7 @@ is_roasted	0.27907
 	0.17866	potato_grower
 	0.17850	proposed_PGT_Beauregard
 	0.17759	hams
+	0.17619	tailback_Roy_Helu
 is_added_to_cereal	0.28571
 	0.31648	sugar
 	0.28701	overflowing_granaries
@@ -6095,7 +6095,6 @@ made_of_cells	0.29730
 	0.20365	pallidum
 	0.20364	divaricata
 	0.20362	pigmented_lesions
-	0.20348	dorsal_aorta
 	0.20330	gynecological_malignancies
 	0.20309	sumac
 	0.20299	navicular_syndrome
@@ -6118,6 +6117,7 @@ made_of_cells	0.29730
 	0.19493	reacting_negatively
 	0.19426	broccoli_cabbage
 	0.19380	bone
+	0.19349	slaughtered_Holstein_cow
 is_not_found_in_Britain	0.30233
 	0.33241	etwcf
 	0.23733	koalas
@@ -6184,7 +6184,6 @@ does_eat_worms	0.30303
 	0.22884	broadband_CATV_DTV
 	0.22860	hedgehog
 	0.22544	skyhawk_Comments
-	0.22299	dead_pigeons_sparrows
 	0.22193	pigeons
 	0.21908	kestrels
 	0.21790	http://www.amex.com/
@@ -6220,6 +6219,7 @@ does_eat_worms	0.30303
 	0.17748	wrens
 	0.17604	site_http://cordis.europa.eu/ictresults
 	0.17524	christoph.steitz_@_thomson.com
+	0.17511	edbrice@star-telegram.com
 has_many_legs	0.30303
 	0.30164	etwcf
 	0.28870	mso_para_margin_0in
@@ -6674,11 +6674,11 @@ is_fat	0.31169
 	0.17404	emperor_penguin
 	0.17397	http://umns.umc.org_--------------------------------------_To
 	0.17189	conjoined_births
-	0.17139	ah_kee
 	0.17081	partridge
 	0.17077	pig
 	0.17075	silverback
 	0.17032	e_mail_sports@tylerpaper.com
+	0.17011	philip.webster_@_thomson.com
 is_casual	0.31250
 	0.33305	jeans
 	0.31409	sandals
@@ -6748,7 +6748,6 @@ is_furry	0.31250
 	0.22614	long_sleeved
 	0.22485	parka
 	0.22326	breathable
-	0.22219	tulle_gowns
 	0.22154	luxuriously_soft
 	0.22094	intermittent_sprinkles
 	0.22028	apparel_headwear
@@ -6781,6 +6780,7 @@ is_furry	0.31250
 	0.20200	insulating
 	0.20179	breathable_waterproof
 	0.20170	broadband_CATV_DTV
+	0.20151	gingham_dresses
 is_orange	0.31250
 	0.29170	grenache_shiraz
 	0.26670	strawberry_flavors
@@ -6926,7 +6926,6 @@ has_a_sharp_edge_edges	0.31373
 	0.16753	sticking
 	0.16644	towa
 	0.16620	knifes
-	0.16568	wielding_scalpel
 	0.16567	included_Jake_Honoroff
 	0.16564	crosschecking
 	0.16556	nLU######
@@ -6934,6 +6933,7 @@ has_a_sharp_edge_edges	0.31373
 	0.16344	bore_grudge
 	0.16296	wielded
 	0.16293	drew
+	0.16276	added.
 has_a_top	0.31429
 	0.23389	table
 	0.22579	david.brett_@_thomsonreuters.com
@@ -6962,7 +6962,6 @@ has_a_top	0.31429
 	0.18565	punchy_caffeinated_start
 	0.18550	detonating_explosives_hidden
 	0.18495	iGB
-	0.18454	elizabeth.large_@_baltsun.com
 	0.18417	hostess
 	0.18364	brand_www.perfume.com
 	0.18331	bikini
@@ -6985,6 +6984,7 @@ has_a_top	0.31429
 	0.17515	lacy_underthings
 	0.17498	vodka_Ciroc
 	0.17495	donned_blonde_wig
+	0.17472	presscon
 has_a_strong_flavour	0.31461
 	0.26602	mso_para_margin_0in
 	0.25902	christoph.steitz_@_thomson.com
@@ -7034,8 +7034,8 @@ has_a_strong_flavour	0.31461
 	0.21329	vermouth
 	0.21269	http://www.ticketmaster.com_###-###-####
 	0.21202	d'_habitation
-	0.21196	dal_tadka
 	0.21195	absinthe
+	0.21152	kvass
 has_a_bell	0.31579
 	0.27210	trumpet
 	0.27108	trombone
@@ -7423,7 +7423,6 @@ does_come_in_cans_tins	0.33333
 	0.18995	organizer_Bayu_Ajie
 	0.18960	catching_overfished_species
 	0.18958	reflect_Pipex_Pharmaceuticals
-	0.18941	bottler_Femsa
 	0.18847	soft_drinks
 	0.18748	miningmx.com_GOLD
 	0.18674	cider
@@ -7444,6 +7443,7 @@ does_come_in_cans_tins	0.33333
 	0.17747	craft_brewed_beers
 	0.17703	malt_beers
 	0.17656	sugarcane_planters
+	0.17651	calorie_Coke_Zero
 has_thick_fur	0.33333
 	0.35314	mso_para_margin_0in
 	0.33736	etwcf
@@ -7501,14 +7501,12 @@ is_chopped	0.33333
 	0.26337	etwcf
 	0.25644	aubergine
 	0.24685	avocado
-	0.23482	kale_turnips
 	0.23462	garlic
 	0.22613	ministra_de
 	0.22603	director_Sanjay_Puran
 	0.22369	aubergines
 	0.22369	cucumber
 	0.22309	leek
-	0.22269	dal_tadka
 	0.22132	cumin
 	0.21831	onion_garlic
 	0.21718	rounding_TABLE
@@ -7546,6 +7544,8 @@ is_chopped	0.33333
 	0.18959	garlic_ginger
 	0.18874	fgi
 	0.18807	website_www.merrimanco.com
+	0.18757	coriander
+	0.18710	de_Securite
 is_domesticated	0.33333
 	0.34763	greyhounds
 	0.32677	racing_greyhounds
@@ -7598,7 +7598,6 @@ is_domesticated	0.33333
 	0.23439	neutering_cats
 	0.23411	thick_furred_male
 is_eaten_raw	0.33333
-	0.25894	kale_turnips
 	0.25760	spinach
 	0.25425	review_aggregator_Rotten
 	0.25126	tomatoes_lettuce
@@ -7630,7 +7629,6 @@ is_eaten_raw	0.33333
 	0.19895	broccoli_cabbage
 	0.19891	peppers
 	0.19868	bok_choy
-	0.19689	dal_tadka
 	0.19675	david.brett_@_thomsonreuters.com
 	0.19623	manufacturer_Areva_Montobbio
 	0.19606	green_onions
@@ -7648,6 +7646,8 @@ is_eaten_raw	0.33333
 	0.18932	celery
 	0.18900	durian_mangosteen
 	0.18862	pistachio
+	0.18828	chard
+	0.18797	plum
 is_pulled	0.33333
 	0.29228	carriage
 	0.28886	plow
@@ -7792,7 +7792,6 @@ has_a_frame	0.33663
 	0.17306	awake
 	0.17248	co_incides
 	0.17246	certificate
-	0.17244	flying_Billy_Elliots
 	0.17229	degenerative_metabolic_disorders
 	0.17114	deckchair
 	0.17103	restful
@@ -7801,6 +7800,7 @@ has_a_frame	0.33663
 	0.17037	stationary_bike
 	0.17033	treadmill_elliptical_trainer
 	0.17013	pedaling
+	0.17001	year.This
 has_flowers	0.33898
 	0.31829	mso_para_margin_0in
 	0.27984	marigold
@@ -7818,7 +7818,6 @@ has_flowers	0.33898
 	0.24903	horticulturist
 	0.24829	chrysanthemums
 	0.24781	carbapenemase
-	0.24757	kale_turnips
 	0.24670	floriculture
 	0.24487	germplasm_collections
 	0.24147	http://www.oikoumene.org/?id=####
@@ -7852,6 +7851,7 @@ has_flowers	0.33898
 	0.22542	cabbage_cauliflower
 	0.22370	methyl_jasmonate
 	0.22360	perennials
+	0.22320	tulip
 is_a_device	0.33962
 	0.37663	radio
 	0.37589	television
@@ -8024,12 +8024,10 @@ has_horns	0.34286
 	0.21064	giraffe
 	0.21040	buffaloes
 	0.21032	dairy_cattle
-	0.20750	ah_kee
 	0.20567	font_size_##.#pt
 	0.20520	http://www.ticketmaster.com_###-###-####
 	0.20121	longhorn_cattle
 	0.20070	longhorns
-	0.19879	via_COMTEX_HOG
 	0.19640	herds
 	0.19590	bighorn_sheep
 	0.19520	rumen_acidosis
@@ -8056,6 +8054,8 @@ has_horns	0.34286
 	0.17514	cattle_rancher
 	0.17493	elk_hunters
 	0.17472	agoBy
+	0.17423	livestock
+	0.17399	milch
 has_layers	0.34286
 	0.27254	agoBy
 	0.25700	mso_para_margin_0in
@@ -8084,7 +8084,6 @@ has_layers	0.34286
 	0.19661	carnaroli_rice
 	0.19411	chicken_parmesan
 	0.19394	cheesesteaks
-	0.19290	dal_tadka
 	0.19061	fried_eggplant
 	0.19040	thinly_sliced
 	0.18972	sandwiches
@@ -8107,6 +8106,7 @@ has_layers	0.34286
 	0.18193	fork_tender
 	0.18178	eby
 	0.18119	entrées
+	0.18118	soups_salads
 made_of_steel	0.34375
 	0.23051	sink
 	0.22152	dig
@@ -8438,7 +8438,6 @@ has_green_leaves	0.34783
 	0.24319	aster
 	0.24306	stem_canker
 	0.24279	courted_Islamic_fundamentalists
-	0.24257	kale_turnips
 	0.24208	nonirrigated
 	0.24131	sycamores
 	0.24090	maples
@@ -8464,6 +8463,7 @@ has_green_leaves	0.34783
 	0.23468	consulting_rosarians
 	0.23428	drought_tolerant
 	0.23365	peach_plum
+	0.23342	rhododendrons
 is_bitter	0.34921
 	0.26848	beverage_Four_Loko
 	0.26724	broccoli_sprout
@@ -9250,7 +9250,6 @@ has_a_tongue	0.36620
 	0.17490	adoptable
 	0.17465	reptile
 	0.17463	uh_ree
-	0.17452	love_Massaging_horses
 	0.17442	iguana
 	0.17344	racehorse_Barbaro
 	0.17305	de_Lafuente
@@ -9280,6 +9279,7 @@ has_a_tongue	0.36620
 	0.16363	edbrice@star-telegram.com
 	0.16337	lizards
 	0.16336	boots
+	0.16336	canine_companions
 is_boiled	0.36620
 	0.32396	etwcf
 	0.29161	mso_para_margin_0in
@@ -9291,7 +9291,6 @@ is_boiled	0.36620
 	0.24734	herbicide_resistant_varieties
 	0.24333	asparagus
 	0.24252	organisms_GMOs
-	0.24242	kale_turnips
 	0.24095	sweet_corn
 	0.24007	cauliflower_cabbage
 	0.23785	brassicas
@@ -9331,6 +9330,7 @@ is_boiled	0.36620
 	0.20530	potato
 	0.20474	smh.com.au_smh.com.au_Web
 	0.20435	cabbage_cauliflower
+	0.20417	receptor_ligand_interactions
 does_climb	0.36667
 	0.30214	mso_para_margin_0in
 	0.29004	etwcf
@@ -9384,7 +9384,6 @@ does_climb	0.36667
 	0.17204	rf_CA_LOS_ANGELES
 is_sliced	0.36735
 	0.28173	david.brett_@_thomsonreuters.com
-	0.27870	dal_tadka
 	0.27069	mso_para_margin_0in
 	0.26582	etwcf
 	0.23665	agoBy
@@ -9433,6 +9432,7 @@ is_sliced	0.36735
 	0.18800	analyst_Albrecht_Denninghoff
 	0.18750	du_Liban
 	0.18632	e_mail_sports@tylerpaper.com
+	0.18545	vanilla_ice_cream
 has_seeds	0.36842
 	0.29807	hardy_geranium
 	0.29335	mso_para_margin_0in
@@ -9479,11 +9479,11 @@ has_seeds	0.36842
 	0.24296	vinca
 	0.24270	pincushion_flower
 	0.24158	rhizomatous
-	0.24112	kale_turnips
 	0.24066	nobile
 	0.24028	du_Liban
 	0.24013	lowbush
 	0.23978	scandens
+	0.23896	purple_coneflowers
 has_styles	0.36842
 	0.33723	jeans
 	0.30942	tried_outlawing_saggy
@@ -9970,7 +9970,6 @@ is_baked	0.37500
 	0.19199	click_STXNEWS
 	0.19150	breads
 	0.19025	organisms_GMOs
-	0.18959	pills_Spontane_ES
 	0.18910	blueberry_bagel
 	0.18744	unpeeled_fruit
 	0.18437	profanity_laced_monologue
@@ -9994,6 +9993,7 @@ is_baked	0.37500
 	0.16552	smh.com.au_smh.com.au_Web
 	0.16384	baked
 	0.16368	unlisted_Suntory
+	0.16334	acquired_Javaco
 is_used_for_eating	0.37500
 	0.28110	fork
 	0.24720	plate
@@ -10024,7 +10024,6 @@ is_used_for_eating	0.37500
 	0.14855	seats_PreEmptive_Solutions
 	0.14767	vShield_Edge
 	0.14453	said.During
-	0.14435	dal_tadka
 	0.14221	http://www.ticketmaster.com_###-###-####
 	0.14144	www.gefanuc.com
 	0.13999	leadoff_hitter_Kosuke_Fukudome
@@ -10045,6 +10044,7 @@ is_used_for_eating	0.37500
 	0.13197	joined_Lottomatica_Virtus
 	0.13188	magnate_Herman_Cain
 	0.13162	uWink
+	0.13144	yawning_discrepancy
 is_cylindrical	0.37500
 	0.29534	soda_bottle
 	0.26029	bottle
@@ -10188,7 +10188,6 @@ has_a_long_neck	0.37736
 	0.18061	al_Maktum
 	0.17905	minutes_agoBy
 	0.17628	spokeswoman_Nicola_Beynon
-	0.17578	via_COMTEX_HOG
 	0.17498	vaccinating_bison
 	0.17470	swans
 	0.17441	dromedary_camel
@@ -10198,6 +10197,7 @@ has_a_long_neck	0.37736
 	0.17288	migratory_birds
 	0.17244	strongman_Zine_al
 	0.17158	website_www.merrimanco.com
+	0.16929	reflect_Pipex_Pharmaceuticals
 does_protect_from_weather	0.37838
 	0.31808	umbrella
 	0.28827	aegis
@@ -11104,18 +11104,18 @@ does_scuttle_scurry	0.39216
 	0.20028	centipede
 	0.19953	interindividual_differences
 	0.19949	cockroach
-	0.19947	cause_BrainStorm_Cell
 	0.19720	told_ProteoMonitor
 	0.19666	murine_tumor
 	0.19608	study_identifier_NCT########
 	0.19595	arthropod
-	0.19487	love_Massaging_horses
 	0.19461	aerobes
 	0.19394	leukemic_stem_cell
 	0.19382	www.spiritindia.com
 	0.19367	creator_Richard_Garriott
 	0.19344	hamsters
 	0.19256	nonhuman_primates
+	0.19205	mice
+	0.19151	herpes_virus
 has_a_shell	0.39286
 	0.27383	mso_para_margin_0in
 	0.27350	oyster
@@ -11168,7 +11168,6 @@ has_a_shell	0.39286
 	0.22257	hake_fishery
 	0.22206	shrimp_aquaculture
 is_purple	0.39506
-	0.27882	kale_turnips
 	0.27718	dianthus
 	0.26585	touriga
 	0.26389	homeowner_Lannette_Turicchi
@@ -11218,6 +11217,7 @@ is_purple	0.39506
 	0.22065	writes_aripaev.ee
 	0.22063	fruited
 	0.22055	dill_cilantro
+	0.21997	cineraria
 does_bite	0.40000
 	0.28672	mso_para_margin_0in
 	0.25738	heartworm_preventives
@@ -11315,11 +11315,11 @@ does_live_in_hot_countries	0.40000
 	0.19498	nitrate_toxicity
 	0.19488	elephant
 	0.19469	patas_monkeys
-	0.19172	love_Massaging_horses
 	0.19131	subsidiary_Airstar
 	0.18826	canine_behaviorist
 	0.18783	jaguar
 	0.18761	chimpanzees
+	0.18749	iguana
 does_measure	0.40000
 	0.27089	cup
 	0.25275	mso_para_margin_0in
@@ -11513,7 +11513,6 @@ has_a_bushy_tail	0.40000
 	0.17258	conf_C####
 	0.17212	bass_Glenn_Worf
 	0.16960	dist_C####
-	0.16889	via_COMTEX_HOG
 	0.16790	spokeswoman_Camilla_Strongin
 	0.16677	ferrets
 	0.16426	reflect_Pipex_Pharmaceuticals
@@ -11524,6 +11523,7 @@ has_a_bushy_tail	0.40000
 	0.16118	rabid_skunk
 	0.16051	http://www.ticketmaster.com_###-###-####
 	0.15892	priv_C####
+	0.15886	www.GCCapitalIdeas.com
 has_a_hard_shell	0.40000
 	0.30297	etwcf
 	0.27293	mso_para_margin_0in
@@ -11591,7 +11591,6 @@ has_a_neck	0.40000
 	0.19037	rootsy_singer_songwriter
 	0.19019	jeweled_gown
 	0.18846	designer_Ralph_Rucci
-	0.18398	conjoined_twins_Zainab
 	0.18077	soloist
 	0.17911	call_#-###-REDCHIP
 	0.17849	horse_breeder
@@ -11626,6 +11625,7 @@ has_a_neck	0.40000
 	0.16214	oryx
 	0.16207	j_cummings
 	0.16190	bass_clarinetist
+	0.16138	violin_soloist
 is_a_snack	0.40000
 	0.31992	mso_para_margin_0in
 	0.26598	etwcf
@@ -11670,13 +11670,13 @@ is_a_snack	0.40000
 	0.20523	low_carb
 	0.20465	sterol_esters
 	0.20391	cookies_pies_cakes
-	0.20294	pills_Spontane_ES
 	0.20035	raw_refrigerated_cookie
 	0.19830	barley_betafiber
 	0.19797	pro_activ
 	0.19758	click_STXNEWS
 	0.19755	nutritionally_enriched
 	0.19715	donut
+	0.19608	cantly
 is_common	0.40000
 	0.26377	dandelions
 	0.25639	tells_Shukan_Bunshun
@@ -11820,7 +11820,6 @@ is_plain	0.40000
 	0.18846	striker_Kei_Kamara
 	0.18704	remittance_senders
 	0.18607	nSGE######
-	0.18595	colateral
 	0.18547	economist_Takeshi_Minami
 	0.18477	atta
 	0.18470	covenant_headroom
@@ -11830,6 +11829,7 @@ is_plain	0.40000
 	0.18225	number_########S_AZN
 	0.18212	potassium_iodine_tablets
 	0.18156	cotton
+	0.18148	jared.favole_@_dowjones.com
 is_played_by_musicians	0.40000
 	0.36018	percussionist
 	0.35763	drummer
@@ -12382,7 +12382,6 @@ does_live_in_herds	0.41026
 	0.19879	herds
 	0.19850	font_size_##.#pt
 	0.19830	nonnative_deer
-	0.19713	via_COMTEX_HOG
 	0.19423	domesticated_animals
 	0.19380	said.While
 	0.19355	longhorn_cattle
@@ -12391,6 +12390,7 @@ does_live_in_herds	0.41026
 	0.19060	e_mail_@_faa.gov
 	0.18980	www.difc.ae
 	0.18960	elands
+	0.18937	buffalo_boar
 does_squeak	0.41026
 	0.26305	subsidiary_Airstar
 	0.24379	rat
@@ -12515,7 +12515,6 @@ is_a_root_vegetable	0.41176
 	0.19924	skyhawk_Comments
 	0.19870	jared.favole_@_dowjones.com
 	0.19828	viagra_apotheke
-	0.19594	kale_turnips
 	0.19582	gThe
 	0.19579	conf_C####_TORONTO
 	0.19534	nCa
@@ -12540,10 +12539,11 @@ is_a_root_vegetable	0.41176
 	0.17627	cauliflower_cabbage
 	0.17558	herbicide_resistant_varieties
 	0.17547	nLI######
-	0.17547	dal_tadka
 	0.17486	spokeswoman_Oana_Marinescu
 	0.17398	keting
 	0.17363	minister_Ivan_Miklos
+	0.17356	writes_FPIF_contributor
+	0.17197	inhibitor_ARRY
 is_for_men	0.41270
 	0.29223	maker_Aderans_Holdings
 	0.25937	detonating_explosives_hidden
@@ -12661,7 +12661,6 @@ is_used_for_sandwiches	0.41270
 	0.24066	de_Lait
 	0.23897	salami_mortadella
 	0.23292	cheese
-	0.23206	dal_tadka
 	0.22936	mayonnaise
 	0.22787	http://www.ticketmaster.com_###-###-####
 	0.22749	bacon
@@ -12697,6 +12696,7 @@ is_used_for_sandwiches	0.41270
 	0.20824	fritters
 	0.20730	steak_pork_chop
 	0.20685	processor_Affco
+	0.20671	unbreaded
 is_cheap	0.41379
 	0.22538	complaing
 	0.22478	authoritatively_reveal
@@ -12766,8 +12766,6 @@ is_for_soup	0.41379
 	0.21069	teaspoon_salt
 	0.21012	dough
 	0.20834	ladled
-	0.20811	ovenproof_casserole_dish
-	0.20762	dal_tadka
 	0.20465	caster_sugar
 	0.20399	puree
 	0.20380	egg_mixture
@@ -12799,6 +12797,8 @@ is_for_soup	0.41379
 	0.18894	unbaked
 	0.18788	teaspoon_baking_powder
 	0.18778	medium_bowl_whisk
+	0.18773	teaspoons_salt
+	0.18752	diced_jalapenos
 is_rough	0.41379
 	0.25080	sandpaper
 	0.24929	impermeable
@@ -12877,7 +12877,6 @@ has_a_big_mouth	0.41667
 	0.21334	humpback
 	0.20941	bull_shark
 	0.20930	killer_whales
-	0.20824	via_COMTEX_HOG
 	0.20800	whales
 	0.20618	manatees
 	0.20603	david.brett_@_thomsonreuters.com
@@ -12901,6 +12900,7 @@ has_a_big_mouth	0.41667
 	0.18458	http://www.ticketmaster.com_###-###-####
 	0.18441	website_www.merrimanco.com
 	0.18436	drownings
+	0.18423	croc
 has_tentacles	0.41667
 	0.29028	etwcf
 	0.28541	smh.com.au_smh.com.au_Web
@@ -13461,7 +13461,7 @@ does_fold	0.42857
 	0.19737	journalistically_unethical
 	0.19727	unreservedly_apologizes
 	0.19680	previous_InfoPowa
-	0.19669	editor_Amos_Malupenga
+	0.19666	frontpage_headline
 does_need_sunlight	0.42857
 	0.32310	mso_para_margin_0in
 	0.26192	etwcf
@@ -13791,7 +13791,6 @@ is_filling	0.43478
 	0.20546	bagels
 	0.20489	baked
 	0.20039	carrot_souffle
-	0.20016	dal_tadka
 	0.19687	david.brett_@_thomsonreuters.com
 	0.19581	producer_Cherkizovo
 	0.19564	blueberry_bagel
@@ -13819,6 +13818,7 @@ is_filling	0.43478
 	0.17996	chain_Pret_Manger
 	0.17892	pancakes
 	0.17800	dramatic_denouements
+	0.17774	jared.favole_@_dowjones.com
 is_hollow	0.43678
 	0.28525	drums
 	0.26800	drum
@@ -13931,8 +13931,6 @@ is_used_by_farmers	0.43750
 	0.24211	etwcf
 	0.23982	hoe
 	0.23796	tractor
-	0.22572	minister_Ngamthang_Haokip
-	0.22513	via_COMTEX_HOG
 	0.22437	serial_killer_Thozamile_Taki
 	0.22199	tractors
 	0.21886	http://www.oikoumene.org/?id=####
@@ -13972,6 +13970,8 @@ is_used_by_farmers	0.43750
 	0.17826	rington
 	0.17803	agricultural_mechanization
 	0.17764	scythes
+	0.17622	semiautomatic_rifle
+	0.17605	v._Muchnick
 is_exotic	0.43902
 	0.28128	mso_para_margin_0in
 	0.26534	etwcf
@@ -14389,7 +14389,6 @@ is_found_in_America	0.44444
 	0.24210	etwcf
 	0.24208	wolf_hybrids
 	0.24185	wild_hogs
-	0.23827	via_COMTEX_HOG
 	0.23589	coyote
 	0.23469	nonnative_deer
 	0.23401	mtownsend@cherokeescout.com_Tuesday
@@ -14431,6 +14430,7 @@ is_found_in_America	0.44444
 	0.18931	priv_C####
 	0.18903	bobcats
 	0.18876	burros
+	0.18770	elk_hunters
 is_dark	0.45000
 	0.26065	brand_www.perfume.com
 	0.22443	bodily_contours
@@ -14488,7 +14488,6 @@ is_for_sleep	0.45000
 	0.27596	sleep
 	0.27120	adjustable_firmness_beds
 	0.26756	cot
-	0.26620	rousted_Zelaya
 	0.26186	mattresses
 	0.25923	cots
 	0.25696	couches
@@ -14533,6 +14532,7 @@ is_for_sleep	0.45000
 	0.20174	slept
 	0.20066	snuggled
 	0.20009	aspiring_yogis
+	0.19933	cradle
 does_pierce	0.45161
 	0.27284	etwcf
 	0.25732	bullet
@@ -14551,7 +14551,6 @@ does_pierce	0.45161
 	0.19644	peoples_sundries
 	0.19093	crosshair
 	0.18997	badge
-	0.18766	acute_thrombosis
 	0.18538	david.brett_@_thomsonreuters.com
 	0.18290	topical_cationic_peptide
 	0.18266	intraoperative_lymphatic_mapping
@@ -14584,6 +14583,7 @@ does_pierce	0.45161
 	0.16009	violence.The
 	0.16006	designator
 	0.15971	leadeship
+	0.15918	aligning
 does_come_in_bags	0.45455
 	0.31956	mso_para_margin_0in
 	0.29417	wheat_flour
@@ -14623,7 +14623,6 @@ does_come_in_bags	0.45455
 	0.20534	viagra_generica
 	0.20334	http://www.ticketmaster.com_###-###-####
 	0.20300	millers
-	0.20251	pills_Spontane_ES
 	0.20092	natto_fermented_soybeans
 	0.20051	rice
 	0.19914	sizeAAANovember
@@ -14635,6 +14634,7 @@ does_come_in_bags	0.45455
 	0.19757	grains
 	0.19728	rye_bran
 	0.19722	pentobarbital_pancuronium_bromide
+	0.19700	solubles_DDGS
 does_grip	0.45455
 	0.28690	pliers
 	0.27621	clamping
@@ -15041,8 +15041,8 @@ has_a_pedal_pedals	0.45714
 	0.20477	bicycling
 	0.20473	www.mlnsportszone.com
 	0.20353	sax_flute
-	0.20347	flying_Billy_Elliots
 	0.20345	piano_duets
+	0.20248	concert_grands
 is_high_pitched	0.45714
 	0.32519	trumpet
 	0.29416	harmonica
@@ -15168,7 +15168,6 @@ has_hard_tough_skin	0.45833
 	0.19117	navel_oranges
 	0.18971	citrus_almond
 	0.18924	canker_eradication
-	0.18888	edging_Alejandro_Falla
 	0.18839	mamey_sapote
 	0.18741	lime
 	0.18682	oranges_tangerines
@@ -15196,6 +15195,7 @@ has_hard_tough_skin	0.45833
 	0.17466	director_Deborah_Golino
 	0.17345	citrus
 	0.17306	ringtones_voicetones
+	0.17272	themed_martini_glasses
 has_a_mouth	0.45872
 	0.26285	mso_para_margin_0in
 	0.26050	etwcf
@@ -15299,7 +15299,6 @@ is_decorative	0.45872
 	0.19497	stoles
 	0.19443	traded_nervously_jerking
 is_disgusting_taste_bad	0.45872
-	0.27973	kale_turnips
 	0.27332	carnaroli_rice
 	0.25112	biodynamic_wine
 	0.24453	mso_para_margin_0in
@@ -15308,7 +15307,6 @@ is_disgusting_taste_bad	0.45872
 	0.24207	etwcf
 	0.23656	cabbage_cauliflower
 	0.23594	shiitake_mushrooms
-	0.23465	dal_tadka
 	0.23439	chicory
 	0.23230	analyst_Akihiro_Shiroeda
 	0.22910	rhubarb
@@ -15349,6 +15347,8 @@ is_disgusting_taste_bad	0.45872
 	0.20448	tart_cherry
 	0.20446	avocado
 	0.20425	escarole
+	0.20420	vineyard_plantings
+	0.20395	durian_mangosteen
 does_use_electricity	0.46154
 	0.28018	dishwasher
 	0.27469	lamp
@@ -15530,7 +15530,6 @@ is_found_in_Asia	0.46154
 	0.24150	ngarm
 	0.24140	years.
 	0.24077	indigenous_Jumma
-	0.23828	abbot_Phra
 	0.23803	mogul_Azim_Premji
 	0.23744	lndia
 	0.23539	tuskers
@@ -15553,6 +15552,7 @@ is_found_in_Asia	0.46154
 	0.21694	serviceBy_Kathleen_Lau
 	0.21673	ethnic_Kachin
 	0.21669	said.On
+	0.21657	minister_Tako_Dabi
 has_a_strap_straps	0.46575
 	0.28133	shorts
 	0.25908	offering_shrunken_pantsuits
@@ -15802,12 +15802,12 @@ has_two_legs	0.46809
 	0.18397	red_tailed_hawks
 	0.18386	swan
 	0.18361	geese
-	0.18158	dead_pigeons_sparrows
 	0.18139	nasdaq_WFC
 	0.18100	http://www.ticketmaster.com_###-###-####
 	0.18070	robin
 	0.17975	magpie
 	0.17971	marsh_harriers
+	0.17946	heron
 has_flavours	0.47059
 	0.27971	yoghurt
 	0.25512	etwcf
@@ -15977,7 +15977,6 @@ does_nest	0.47500
 	0.24303	magpies
 	0.24070	nightingale
 	0.23952	endangered_peregrine_falcons
-	0.23766	dead_pigeons_sparrows
 	0.23441	blackbirds_starlings
 	0.23368	blackbirds
 	0.23149	falcons
@@ -16012,6 +16011,7 @@ does_nest	0.47500
 	0.20796	hoopoe
 	0.20790	ibis
 	0.20766	warblers
+	0.20717	falcon
 has_buckles	0.47619
 	0.29712	shoes
 	0.27843	belts
@@ -16106,7 +16106,6 @@ is_a_small_bird	0.47619
 	0.17312	prix_autodesk_3ds_max
 	0.17237	minutes_agoBy
 	0.17046	goldfinches
-	0.16990	dead_pigeons_sparrows
 	0.16800	benefi_ted
 	0.16552	e_mail_@_faa.gov
 	0.16475	monogamous_heterosexual_relationships
@@ -16114,6 +16113,7 @@ is_a_small_bird	0.47619
 	0.16364	same_songsheet
 	0.16341	selected_Trintech_ReconNET
 	0.16330	d'_Estruval
+	0.16304	inhibitor_INCB#####
 is_smooth	0.47826
 	0.22680	grabens
 	0.21846	bowl
@@ -16298,7 +16298,6 @@ has_a_shaft	0.48000
 	0.19135	affiliated
 	0.19099	david.brett_@_thomsonreuters.com
 	0.19075	www.difc.ae
-	0.18973	concerning_IDenta_products
 	0.18860	cross_hairs
 	0.18791	militantly_pro
 	0.18581	leadeship
@@ -16318,6 +16317,7 @@ has_a_shaft	0.48000
 	0.17613	grenade_RPG
 	0.17499	virtual_concatenation_VCAT
 	0.17445	multiclass
+	0.17441	topical_cationic_peptide
 has_talons	0.48000
 	0.32732	etwcf
 	0.31184	actor_Sonny_Landham
@@ -16610,7 +16610,6 @@ has_a_rim	0.48485
 	0.16880	continuous_sinusoid_technology
 	0.16796	sleep_nicotine_gum
 	0.16777	coach_Binky_Favis
-	0.16772	catcher_Tobias_Streich
 	0.16759	frisbee
 	0.16662	http://www.prnewswire.com/broadcast/#####/consumer.shtml_S_SUMMARY
 	0.16629	www.usfoodservice.com
@@ -16624,6 +16623,7 @@ has_a_rim	0.48485
 	0.16273	sponors
 	0.16085	guard_Kylan_Loney
 	0.16017	carousel_projector
+	0.15896	electrolyte_replenishment
 does_pull	0.48649
 	0.29481	mso_para_margin_0in
 	0.28478	oxen
@@ -17555,7 +17555,6 @@ has_two_parts	0.50000
 	0.23634	toned
 	0.23093	bared
 	0.23007	swimwear
-	0.22983	mujahideen_holy
 	0.22806	click_STXNEWS
 	0.22599	skimpy_outfits
 	0.22415	slimming
@@ -17593,6 +17592,7 @@ has_two_parts	0.50000
 	0.19499	midriffs
 	0.19434	supermodels_strutting
 	0.19431	nipple_slip
+	0.19429	etwcf
 is_a_vessel	0.50000
 	0.28418	cup
 	0.27856	etwcf
@@ -18148,12 +18148,12 @@ is_used_in_cakes	0.50000
 	0.20203	flour
 	0.20100	fudgy
 	0.20096	oat_cereal
-	0.19725	dal_tadka
 	0.19707	avocado_asparagus
 	0.19697	cocoa
 	0.19693	sunflower_oils
 	0.19622	kobe_mvp
 	0.19556	sugared
+	0.19550	cocoa_butter_substitutes
 is_aggressive	0.50505
 	0.31305	mso_para_margin_0in
 	0.31155	etwcf
@@ -18261,7 +18261,6 @@ is_scary	0.51095
 	0.22891	e_mail_nwgardens@seattlepi.com
 	0.22486	lone_gunman
 	0.22286	biowar
-	0.21326	reporter_Lan_Chengzhang
 	0.21265	averted_Jawdat
 	0.21228	bioweapon
 	0.21223	poison_Ricin
@@ -18307,6 +18306,7 @@ is_scary	0.51095
 	0.18673	mullah_Bas_Mohammad
 	0.18643	envenomation
 	0.18601	lawmaker_Daoud_Sultanzai
+	0.18559	pro_rebel_tamilnet.com
 has_a_stone	0.51429
 	0.33246	etwcf
 	0.27041	peach_plum
@@ -18796,7 +18796,6 @@ does_not_fly	0.52174
 	0.17958	dubious_Jefferson_Muzzle
 	0.17916	strategist_Scott_Marcouiller
 	0.17890	startup_Veoh_Networks
-	0.17765	via_COMTEX_HOG
 	0.17587	commentator_David_Buik
 	0.17543	spokeswoman_Nicola_Beynon
 	0.17498	penguin
@@ -18817,6 +18816,7 @@ does_not_fly	0.52174
 	0.16400	endogenous_adrenal_steroid
 	0.16393	e_mail_@_faa.gov
 	0.16256	pitted_tic_tac
+	0.16242	consultancy_Teal
 is_fashionable	0.52174
 	0.32292	tried_outlawing_saggy
 	0.30594	jacket
@@ -19071,7 +19071,7 @@ is_a_string_instrument	0.52632
 	0.20302	chromatic_harmonica
 	0.20277	pianist
 	0.20249	click_STXNEWS
-	0.20180	flying_Billy_Elliots
+	0.20173	vocalist_guitarist
 is_buoyant	0.52632
 	0.35648	sailing
 	0.35631	yacht
@@ -20073,7 +20073,6 @@ does_display	0.55556
 	0.22156	rf_CA_LOS_ANGELES
 	0.22114	ubroadcast_Entertainment
 	0.22029	widescreen_TVs
-	0.22022	http://www.thestreet.com
 	0.22009	structured_wiring
 	0.21767	color_reproduction
 	0.21755	hardcore_Flynt
@@ -20092,6 +20091,7 @@ does_display	0.55556
 	0.21057	box_HTiB
 	0.21038	credenzas
 	0.21031	monochrome_laser_MFPs
+	0.20997	www.fimalac.com
 does_need_cleaning	0.55556
 	0.27873	plumbed
 	0.27390	recorder
@@ -20134,7 +20134,6 @@ does_need_cleaning	0.55556
 	0.18325	drains
 	0.18249	plumbing_wiring
 	0.18203	text_indent_##px
-	0.18168	kaufen_oder
 	0.18095	tabulating_absentee_ballots
 	0.18050	cupboards
 	0.17992	e_mail_@_faa.gov
@@ -20143,6 +20142,7 @@ does_need_cleaning	0.55556
 	0.17555	unused
 	0.17507	kitchenette
 	0.17491	languish
+	0.17483	stowage
 is_a_dried_fruit	0.55556
 	0.32181	etwcf
 	0.30482	dates
@@ -20509,9 +20509,7 @@ has_a_sharp_blade_blades	0.57143
 	0.24099	scythe
 	0.22092	machete
 	0.21670	wield_scalpel
-	0.21254	wielding_scalpel
 	0.20927	swiss_army
-	0.20652	flying_Billy_Elliots
 	0.20376	peeler
 	0.20335	administer_IVs_Health
 	0.20318	blender
@@ -20535,7 +20533,6 @@ has_a_sharp_blade_blades	0.57143
 	0.17695	la_revista
 	0.17521	christoph.steitz_@_thomson.com
 	0.17376	world.In
-	0.17317	pills_Spontane_ES
 	0.17267	sharpening
 	0.17264	conf_C####
 	0.16997	razor_sharp
@@ -20551,6 +20548,9 @@ has_a_sharp_blade_blades	0.57143
 	0.16342	causing_annoyance_inconvenience
 	0.16285	topical_cationic_peptide
 	0.16235	analyst_Kota_Ezawa
+	0.16218	slicing
+	0.16177	serial_killer_Thozamile_Taki
+	0.16145	savage
 is_found_in_on_cars	0.57143
 	0.29243	spec_RC###V
 	0.29073	dyno_tuning
@@ -20679,7 +20679,6 @@ made_of_flour	0.57143
 	0.17368	humble_pie
 	0.17255	conf_C####_TORONTO
 	0.16841	tabathah@nwanews.com
-	0.16829	cooling_flower_vases
 	0.16702	maker_Cadbury_CBY
 	0.16228	analyst_Aditya_Kaul
 	0.16175	cornerstone
@@ -20704,6 +20703,7 @@ made_of_flour	0.57143
 	0.15083	trusts_GRATs
 	0.14806	writes_FPIF_contributor
 	0.14724	freshly_baked_chocolate
+	0.14701	fruity_floral_masterwork
 made_of_rubber	0.57391
 	0.30240	mountain_bikes
 	0.28615	bike
@@ -20819,7 +20819,6 @@ is_shiny	0.57500
 	0.21070	instrument
 	0.21032	necklace
 	0.20984	alloy_wheels
-	0.20730	facia_trim
 	0.20718	copper_cobalt_platinum
 	0.20712	caratage
 	0.20702	glitters
@@ -20857,6 +20856,7 @@ is_shiny	0.57500
 	0.18960	blue_topaz
 	0.18933	fingerboard
 	0.18924	guitar_strings
+	0.18908	bonnet_grille
 has_buttons	0.57778
 	0.27528	khaki_slacks
 	0.26956	alto_saxophone
@@ -20891,7 +20891,6 @@ has_buttons	0.57778
 	0.22551	piano_soloist
 	0.22507	soloist
 	0.22495	tenor_sax
-	0.22366	flying_Billy_Elliots
 	0.22277	flannel_shirt
 	0.22233	ensemble
 	0.22172	violinist
@@ -20908,6 +20907,7 @@ has_buttons	0.57778
 	0.21637	shaggy_hairstyle
 	0.21616	clarinet_solos
 	0.21585	cardigan_sweater
+	0.21476	undershirt
 is_annoying	0.57778
 	0.23708	plague
 	0.23052	plauged
@@ -20930,7 +20930,6 @@ is_annoying	0.57778
 	0.20543	harrying
 	0.20331	pathogenic_viruses
 	0.20224	noise
-	0.20205	cause_BrainStorm_Cell
 	0.20204	deafening_noise
 	0.20180	mosquitoes_Aedes_aegypti
 	0.20148	ravenous_hordes
@@ -20959,6 +20958,7 @@ is_annoying	0.57778
 	0.18659	pesky
 	0.18615	mosquitoes
 	0.18547	prowls
+	0.18538	gunmen_ambushed_busload
 made_of_brass	0.57895
 	0.30201	trumpet
 	0.26479	tenor_sax
@@ -21755,7 +21755,6 @@ has_toes	0.58824
 	0.20008	sesamoiditis
 	0.19838	ankle
 	0.19811	cleated
-	0.19664	edging_Alejandro_Falla
 	0.19527	inury
 	0.19463	jkovac@macon.com
 	0.19415	jared.favole_@_dowjones.com
@@ -21775,6 +21774,7 @@ has_toes	0.58824
 	0.18458	badly_bruised_thigh
 	0.18436	dislocated_toe
 	0.18389	injury.The
+	0.18304	achillies
 is_a_bird_of_prey	0.58824
 	0.31634	etwcf
 	0.31436	actor_Sonny_Landham
@@ -22870,7 +22870,6 @@ has_a_wire_cord_cable	0.62069
 	0.25435	switchboards
 	0.25236	television
 	0.25051	magnetic_resonance_NMR_spectrometer
-	0.24647	flying_Billy_Elliots
 	0.24641	tells_KFGO
 	0.24617	restoral
 	0.24495	electrical
@@ -22897,6 +22896,7 @@ has_a_wire_cord_cable	0.62069
 	0.23060	disconnectors
 	0.23010	countercharged
 	0.22958	broadcast
+	0.22943	transformers
 is_entertaining_fun	0.62185
 	0.32492	rock_climbing
 	0.32180	freestyle_motocross_riders
@@ -23284,7 +23284,6 @@ does_pollute	0.63158
 	0.19967	instructor_Clarence_Prevost
 	0.19835	magnetic_stripe_EMV
 	0.19816	jetmaker_Airbus
-	0.19744	carmaker_Bayerische_Motoren
 	0.19729	inflight_entertainment_IFE
 	0.19687	passenger
 	0.19514	baggage_pilferage
@@ -23305,6 +23304,7 @@ does_pollute	0.63158
 	0.18281	gypsy_cab
 	0.18270	cab
 	0.18062	http://www.ticketmaster.com_###-###-####
+	0.17996	car.The
 does_scoop	0.63158
 	0.30553	david.brett_@_thomsonreuters.com
 	0.28618	mso_para_margin_0in
@@ -23329,7 +23329,6 @@ does_scoop	0.63158
 	0.20697	n_ELIOT_UNITED
 	0.20540	craigshipp
 	0.20321	trowel
-	0.19785	via_COMTEX_HOG
 	0.19614	cscs
 	0.19497	spoon
 	0.18976	jared.favole_@_dowjones.com
@@ -23356,6 +23355,7 @@ does_scoop	0.63158
 	0.17049	broadband_CATV_DTV
 	0.16979	www.fimalac.com
 	0.16969	garyl@nwanews.com
+	0.16931	website_www.spx.com
 is_eaten_as_dessert	0.63158
 	0.26311	etwcf
 	0.23845	flowers_Dangot
@@ -23546,7 +23546,6 @@ has_pips_seeds	0.63768
 	0.18471	toward_trendier_toppings
 	0.18456	malting_varieties
 	0.18348	brokers_Newedge
-	0.18216	pills_Spontane_ES
 	0.18209	http://www.ticketmaster.com_###-###-####
 	0.18095	lemons
 	0.18022	christoph.steitz_@_thomson.com
@@ -23560,6 +23559,7 @@ has_pips_seeds	0.63768
 	0.17246	alc
 	0.17238	iFive
 	0.17222	grainanalyst.com
+	0.17155	grenache_shiraz
 is_for_special_occasions	0.64000
 	0.32138	champagne
 	0.29065	champagne_toast
@@ -23954,9 +23954,7 @@ made_of_water_is_watery	0.64516
 	0.16647	analyst_Akihiro_Shiroeda
 	0.16588	writers_Eric_Talmadge
 	0.16557	vegetable_juice
-	0.16370	pills_Spontane_ES
 	0.16322	vegetable_juices
-	0.16313	cheapest_acomplia
 	0.16291	fruit_juice
 	0.16266	apress_conference
 	0.16256	otc_NSRGF.PK_news
@@ -23968,6 +23966,8 @@ made_of_water_is_watery	0.64516
 	0.16027	great_ebayer
 	0.16004	kvass
 	0.15982	hyong
+	0.15912	drinks
+	0.15828	website_www.merrimanco.com
 is_used_for_baking	0.64706
 	0.25028	sizeAAANovember
 	0.24930	etwcf
@@ -24472,12 +24472,12 @@ is_eaten_in_salad	0.66667
 	0.16855	jared.favole_@_dowjones.com
 	0.16812	activist_Zhao_Lianhai
 	0.16455	noticias.info_REDWOOD_SHORES
-	0.16422	dal_tadka
 	0.16417	cucumbers
 	0.16395	www.difc.ae
 	0.16372	del_Futuro
 	0.16324	tomato
 	0.16296	la_revista
+	0.16287	cucumbers_tomatoes
 is_found_in_schools	0.66667
 	0.26147	flipchart
 	0.25852	annotations
@@ -24936,7 +24936,7 @@ has_big_teeth	0.68085
 	0.16639	added.
 	0.16574	neutering_cats
 	0.16500	google_ad_client_=_pub_################
-	0.16451	tel_+##-###-###-####
+	0.16384	blockbuster_Gladiator
 is_for_women_females_girls	0.68085
 	0.37293	undergarments
 	0.35746	gowns
@@ -25128,7 +25128,6 @@ has_strings	0.69231
 	0.19954	acoustic_guitar
 	0.19936	accompanist
 	0.19900	guitar
-	0.19898	flying_Billy_Elliots
 	0.19841	puppet_troupe
 	0.19783	pianist_vocalist
 	0.19761	violinist
@@ -25141,6 +25140,7 @@ has_strings	0.69231
 	0.19365	harp
 	0.19260	comedy_Twigs
 	0.19248	skyhawk_Comments
+	0.19205	vengo
 made_of_cardboard_card	0.69231
 	0.27662	vouchering
 	0.26612	certificate
@@ -25158,7 +25158,6 @@ made_of_cardboard_card	0.69231
 	0.23682	apcustomersupport
 	0.23476	sticker
 	0.23409	postage_affixed
-	0.23166	cable_retransmissions
 	0.23015	pamphlet
 	0.22962	brochure_outlining
 	0.22899	textbook
@@ -25183,7 +25182,6 @@ made_of_cardboard_card	0.69231
 	0.21379	gTLD_registries
 	0.21309	fi_le
 	0.21139	letterhead_stationery
-	0.21059	specialist_Datanomic
 	0.21010	proce_dures
 	0.20995	www.dfsa.ae
 	0.20907	ePrints
@@ -25192,6 +25190,8 @@ made_of_cardboard_card	0.69231
 	0.20715	www.ise.com
 	0.20667	implented
 	0.20642	badge
+	0.20616	anti_ZOG_Zionist
+	0.20606	programs.The
 is_brown	0.69301
 	0.28099	primitive_hominid
 	0.27385	cacao
@@ -25399,7 +25399,6 @@ is_crunchy	0.70000
 is_circular_round	0.70405
 	0.25873	citrus_juice
 	0.25494	orange_slices
-	0.25257	garlic_clove_minced
 	0.25008	toasted_sliced_almonds
 	0.24961	lychee_juice
 	0.24957	cherry_tomatoes
@@ -25447,10 +25446,10 @@ is_circular_round	0.70405
 	0.21151	blueberry_acai
 	0.21148	acetabulum
 	0.21148	toasted_pine_nuts
+	0.21135	kernels
 does_grow_in_ground	0.70455
 	0.27923	mso_para_margin_0in
 	0.27753	corn_Zea_mays
-	0.24465	kale_turnips
 	0.24308	winter_grain_sowings
 	0.24237	brassicas
 	0.24185	sweet_peas
@@ -25498,6 +25497,7 @@ does_grow_in_ground	0.70455
 	0.19724	herbicide_tolerant_corn
 	0.19650	soybean_planting
 	0.19649	flowers_Dangot
+	0.19621	heirloom_tomato
 does_live_in_trees	0.70588
 	0.29528	mso_para_margin_0in
 	0.26678	etwcf
@@ -25518,7 +25518,6 @@ does_live_in_trees	0.70588
 	0.19125	red_tailed_hawks
 	0.19095	subsidiary_Airstar
 	0.18741	pygmy_owls
-	0.18671	dead_pigeons_sparrows
 	0.18509	sparrows
 	0.18436	chickadee
 	0.18380	wren
@@ -25549,6 +25548,7 @@ does_live_in_trees	0.70588
 	0.16765	interconversion_receipt_rounders
 	0.16709	jared.favole_@_dowjones.com
 	0.16594	www.difc.ae
+	0.16549	wrens
 is_addictive	0.70588
 	0.28883	david.brett_@_thomsonreuters.com
 	0.28084	danazol_danazol
@@ -25768,7 +25768,6 @@ is_used_in_army_military	0.70968
 	0.25445	aUS
 	0.25242	deputy_commandant
 	0.24823	broadband_CATV_DTV
-	0.24632	minister_Ngamthang_Haokip
 	0.24406	mortar_platoon
 	0.24121	infantry_platoons
 	0.24069	quarterback_Rollie_Stichweh
@@ -25804,6 +25803,7 @@ is_used_in_army_military	0.70968
 	0.22122	avionics_technician
 	0.22100	self_propelled_howitzer
 	0.22061	remote_firebase
+	0.22042	said.While
 does_live_in_rivers	0.71111
 	0.30285	mso_para_margin_0in
 	0.29485	etwcf
@@ -25938,7 +25938,6 @@ does_provide_shade	0.71429
 	0.18332	david.brett_@_thomsonreuters.com
 	0.18150	conifers
 	0.18134	larch
-	0.18041	symbol_TCSR
 	0.18005	van_der_Harst
 	0.17879	short_rotation_coppice
 	0.17823	economist_Brian_Wesbury
@@ -25957,6 +25956,7 @@ does_provide_shade	0.71429
 	0.17005	economist_Gad_Levanon
 	0.16896	tariff_readjustment
 	0.16841	analyst_Omotayo_Okusanya
+	0.16787	jared.favole_@_dowjones.com
 has_a_waistband	0.71429
 	0.32007	etwcf
 	0.29339	mso_para_margin_0in
@@ -26194,7 +26194,6 @@ has_thick_skin	0.71795
 	0.17250	acn_Cuba
 	0.17162	enterprises_Electricite_du
 	0.17129	christoph.steitz_@_thomson.com
-	0.16940	edging_Alejandro_Falla
 	0.16899	strategist_Katsutoshi_Inadome
 	0.16720	apress_conference
 	0.16706	welterweight_Andre_Berto
@@ -26212,6 +26211,7 @@ has_thick_skin	0.71795
 	0.15989	tropical_storm_Ketsana_dumped
 	0.15938	purebred_Siamese_crocodiles
 	0.15919	sptd
+	0.15912	elect_Danilo_Astori
 has_vitamins	0.71795
 	0.29028	mso_para_margin_0in
 	0.22031	david.brett_@_thomsonreuters.com
@@ -26223,7 +26223,6 @@ has_vitamins	0.71795
 	0.19097	www.premierinc.com_Premier
 	0.19001	eby
 	0.18975	altace_ramipril
-	0.18860	wife_Abundia_Martinez
 	0.18807	overtasked_lives
 	0.18658	antioxidants_lutein
 	0.18521	review_aggregator_Rotten
@@ -26234,7 +26233,6 @@ has_vitamins	0.71795
 	0.18004	tetryl_chemical
 	0.17985	skyhawk_Comments
 	0.17924	fgi
-	0.17451	kale_turnips
 	0.17436	macadamia_nuts
 	0.17321	brand_www.perfume.com
 	0.17254	compound_CTCE
@@ -26263,6 +26261,8 @@ has_vitamins	0.71795
 	0.16104	lettuce_cauliflower
 	0.16103	anti_SLAPP_Strategic
 	0.16096	tropical_storms_Ondoy
+	0.16075	spokesman_Ron_Knoefel
+	0.15993	tracker_Hollywood.com
 has_a_back	0.72000
 	0.24467	chair
 	0.23996	armchair
@@ -26395,7 +26395,6 @@ is_used_to_secure	0.72000
 	0.19164	erect_barriers
 	0.19140	shuting
 	0.19015	ultimatley
-	0.18517	mujahideen_holy
 	0.18473	latch
 	0.18397	fencing
 	0.18365	nSGE######
@@ -26416,6 +26415,7 @@ is_used_to_secure	0.72000
 	0.17262	erecting_barriers
 	0.17169	barb_wired
 	0.17151	walling
+	0.16886	secure
 is_found_in_zoos	0.72340
 	0.31445	mso_para_margin_0in
 	0.26710	western_lowland_gorilla
@@ -26640,7 +26640,6 @@ has_a_long_handle	0.73333
 	0.17269	www.GCCapitalIdeas.com
 	0.17183	hoe
 	0.17126	www.gtxcorp.com
-	0.17098	via_COMTEX_HOG
 	0.17084	contractual_privity
 	0.17074	agoBy
 	0.17067	font_size_##.#pt
@@ -26671,6 +26670,7 @@ has_a_long_handle	0.73333
 	0.14939	strategist_Scott_Marcouiller
 	0.14831	minutes_agoBy
 	0.14795	raked
+	0.14776	soliciting_tithes
 is_an_invertebrate	0.73333
 	0.29376	etwcf
 	0.28614	http://www.sco.com
@@ -26718,10 +26718,10 @@ is_an_invertebrate	0.73333
 	0.17487	spyware_adware_malware
 	0.17446	arthropods
 	0.17442	site_http://cordis.europa.eu/ictresults
-	0.17406	norepinephrine_reuptake
 	0.17391	j_cummings
 	0.17235	cephalopod
 	0.17217	worms
+	0.17171	helminths
 has_ears	0.73418
 	0.31642	mso_para_margin_0in
 	0.28724	humanely_euthanized
@@ -26792,7 +26792,6 @@ does_stab	0.73684
 	0.18874	war.The
 	0.18488	font_size_##.#pt
 	0.18336	knives
-	0.18311	minister_Ngamthang_Haokip
 	0.18027	fork
 	0.17371	unsheathed
 	0.17241	http://www.oikoumene.org/?id=####
@@ -26824,6 +26823,7 @@ does_stab	0.73684
 	0.14768	edbrice@star-telegram.com
 	0.14763	smh.com.au_smh.com.au_Web
 	0.14754	www.premierinc.com_Premier
+	0.14664	http://mwcnews.net/content/view/#####/##/
 has_passengers	0.73684
 	0.27171	mso_para_margin_0in
 	0.26688	mullah_Bas_Mohammad
@@ -28008,7 +28008,6 @@ does_store	0.76923
 	0.21516	vaults
 	0.20032	unopened
 	0.19288	tycoon_Boone_Pickens
-	0.19246	cause_BrainStorm_Cell
 	0.19088	desk_drawer
 	0.19033	nd_nd_HK
 	0.18872	bedroom_dresser
@@ -28043,11 +28042,12 @@ does_store	0.76923
 	0.16209	e_mail_sports@tylerpaper.com
 	0.16190	expose_Gasland
 	0.16142	estate_Norwine
-	0.16137	pills_Spontane_ES
 	0.16087	box
 	0.16037	consultants_Petromatrix
 	0.15996	http://www.mysmartrend.com/research/_SmarTrend
 	0.15846	jar
+	0.15787	refiner_Premcor
+	0.15677	prix_autodesk_3ds_max
 has_a_crew	0.76923
 	0.30259	vessel_Weatherbird_II
 	0.29056	ship
@@ -28192,7 +28192,6 @@ has_compartments	0.76923
 	0.16231	freezer
 	0.16207	craigshipp
 	0.16087	desk_drawers
-	0.15978	wife_Abundia_Martinez
 	0.15966	spokeswoman_Joylynn_Occhiuzzi
 	0.15647	stolen
 	0.15612	website_www.merrimanco.com
@@ -28201,6 +28200,7 @@ has_compartments	0.76923
 	0.15447	tetryl_chemical
 	0.15345	newspaper_Darmstaedter_Echo
 	0.15342	supermodel_Frederique
+	0.15172	drawer
 has_feet	0.76923
 	0.25327	parrot
 	0.22401	parrots
@@ -28646,7 +28646,6 @@ is_herbivorous	0.77778
 	0.16283	bighorns
 	0.16269	black_tailed_jackrabbits
 	0.16219	herdmates
-	0.16130	pills_Spontane_ES
 	0.16117	landless_peasant_farmers
 	0.16107	eliminate_blinding_trachoma
 	0.16106	deer
@@ -28660,6 +28659,7 @@ is_herbivorous	0.77778
 	0.15566	http://www.oikoumene.org/?id=####
 	0.15559	ostriches
 	0.15469	zebras
+	0.15428	poachings
 is_oily	0.77778
 	0.30618	mso_para_margin_0in
 	0.26155	etwcf
@@ -28811,8 +28811,8 @@ does_hold_things_together	0.78261
 	0.16774	emPerform
 	0.16769	rf_CA_LOS_ANGELES
 	0.16582	bureaucratic_wrangles
-	0.16500	mujahideen_holy
 	0.16472	couplings
+	0.16470	microsoft_visio
 is_fatty_fattening	0.78261
 	0.31929	etwcf
 	0.27813	mso_para_margin_0in
@@ -28930,7 +28930,6 @@ has_a_stalk_stem	0.78505
 	0.26200	zinnia
 	0.26129	artemisia
 	0.26124	snapdragons
-	0.26035	kale_turnips
 	0.26023	brassicas
 	0.25966	snapdragon
 	0.25874	saffron_crocus
@@ -28966,6 +28965,7 @@ has_a_stalk_stem	0.78505
 	0.23564	showy_flowers
 	0.23548	nemesia
 	0.23303	alyssum
+	0.23293	cucurbit
 is_alive	0.78924
 	0.24595	anadromous
 	0.24593	neurona
@@ -29209,7 +29209,6 @@ does_run_fast	0.80000
 	0.18913	wild_bison_herd
 	0.18874	shuttle_stallions
 	0.18812	trotting_sire
-	0.18795	via_COMTEX_HOG
 	0.18763	vaccinating_bison
 	0.18754	giraffe
 	0.18718	de_Kock
@@ -29221,6 +29220,7 @@ does_run_fast	0.80000
 	0.18546	wild_mustangs
 	0.18491	stated_Dino_Luzzi
 	0.18461	wildebeests
+	0.18343	trainer_Andreas_Schutz
 has_an_exhaust	0.80000
 	0.36293	mso_para_margin_0in
 	0.32973	david.brett_@_thomsonreuters.com
@@ -29304,7 +29304,6 @@ has_segments	0.80000
 	0.17769	strategist_Osamu_Tamada
 	0.17706	pro_Shinichi_Fukae
 	0.17621	magenta
-	0.17588	affecting_Baltia_Air
 	0.17495	lemon
 	0.17324	src_=_onmouseover_=
 	0.17306	analyst_Akihiro_Shiroeda
@@ -29323,6 +29322,7 @@ has_segments	0.80000
 	0.16770	click_STXNEWS
 	0.16746	pink_grapefruit
 	0.16738	iPLATO_Patient_Care
+	0.16697	zero_Bjorndal
 is_a_reptile	0.80000
 	0.36615	etwcf
 	0.34178	mso_para_margin_0in
@@ -29359,7 +29359,6 @@ is_a_reptile	0.80000
 	0.16879	turtle
 	0.16713	actor_Sonny_Landham
 	0.16566	alligators
-	0.16405	edging_Alejandro_Falla
 	0.16387	www.kimbrellstern.com
 	0.16356	enterprises_Electricite_du
 	0.16266	crocodiles
@@ -29374,6 +29373,7 @@ is_a_reptile	0.80000
 	0.15501	al_Mustansariyah
 	0.15323	analyst_Akihiro_Shiroeda
 	0.15303	bill@tmnews.com
+	0.15296	j_cummings
 is_formal	0.80000
 	0.29519	etwcf
 	0.26894	mso_para_margin_0in
@@ -29463,7 +29463,6 @@ is_found_in_sheds	0.80000
 	0.14935	minister_SN_Patro
 	0.14811	nLU######
 	0.14573	hipster_megachurch
-	0.14500	via_COMTEX_HOG
 	0.14476	n_ELIOT_UNITED
 	0.14462	n_CHRISTIAN_LIFE
 	0.14438	spokesperson_Cheryl_Sullenger
@@ -29476,6 +29475,7 @@ is_found_in_sheds	0.80000
 	0.14012	manager_Laurie_Engelen
 	0.13980	nasdaq_WFC
 	0.13950	trowels
+	0.13913	postprandial_plasma_glucose
 is_worn_on_feet	0.80000
 	0.32323	mso_para_margin_0in
 	0.28891	etwcf
@@ -29831,8 +29831,8 @@ does_hold_contain_liquid_water	0.81250
 	0.16557	pCi_L.
 	0.16548	sewage_spills
 	0.16471	tertiary_butyl
-	0.16463	cause_BrainStorm_Cell
 	0.16355	sulfate_concentrations
+	0.16354	mug
 is_grown	0.81301
 	0.30248	rice_coarse_cereals
 	0.27669	eradicating_opium_poppy
@@ -29867,7 +29867,6 @@ is_grown	0.81301
 	0.22795	high_oleic_sunflower
 	0.22690	arabica_beans
 	0.22609	arabica_coffee
-	0.22564	kale_turnips
 	0.22314	sugarbeet_growers
 	0.22249	tangerines
 	0.22178	cultivation
@@ -29884,6 +29883,7 @@ is_grown	0.81301
 	0.21707	poppy_cultivators
 	0.21659	cultivating_jatropha
 	0.21634	peppers_tomatoes
+	0.21630	transgenic_soybeans
 does_carry_transport_people	0.81481
 	0.34271	ferry
 	0.34094	icebreaker_CCGS
@@ -30345,7 +30345,6 @@ has_paws	0.82609
 	0.16428	terriers
 has_a_blade_blades	0.82759
 	0.26823	agoBy
-	0.23573	wielding_scalpel
 	0.22860	chainsaws
 	0.22072	scalpel
 	0.21547	barber_razor
@@ -30362,7 +30361,6 @@ has_a_blade_blades	0.82759
 	0.20164	saws
 	0.19935	wield_scalpel
 	0.19774	machete
-	0.19721	via_COMTEX_HOG
 	0.19389	razor
 	0.19305	machetes
 	0.19212	knife
@@ -30389,11 +30387,13 @@ has_a_blade_blades	0.82759
 	0.16769	scissors
 	0.16746	scythes
 	0.16724	grind
-	0.16680	flying_Billy_Elliots
 	0.16626	commander_Akram_Rajoub
 	0.16586	de_Chalain
 	0.16586	slicing
 	0.16565	swiss_army
+	0.16522	hoe
+	0.16512	war.The
+	0.16402	sociopathic_killer
 has_a_seat_seats	0.82759
 	0.28687	bus
 	0.27479	buses
@@ -30512,7 +30512,6 @@ is_used_in_cooking	0.83158
 	0.28424	pan_drippings
 	0.28375	pork_medallions
 	0.28348	mso_para_margin_0in
-	0.28341	dal_tadka
 	0.28251	herb_roasted_chicken
 	0.28166	lemons_garlic
 	0.28132	puree
@@ -30547,6 +30546,7 @@ is_used_in_cooking	0.83158
 	0.26615	aubergine_slices
 	0.26607	precooked
 	0.26567	cranberry_beans
+	0.26552	nonfat_dry_milk_powder
 does_chop	0.83333
 	0.31376	agoBy
 	0.29610	etwcf
@@ -30558,7 +30558,6 @@ does_chop	0.83333
 	0.21917	chainsaw
 	0.21564	machete
 	0.21297	chainsaws
-	0.21240	flying_Billy_Elliots
 	0.21050	skyhawk_Comments
 	0.20543	manager_Laurie_Engelen
 	0.20498	machetes
@@ -30598,6 +30597,7 @@ does_chop	0.83333
 	0.15760	presentado_por
 	0.15739	bookkeeper_embezzled
 	0.15641	reflect_Pipex_Pharmaceuticals
+	0.15484	tinued_Total
 does_grow_in_hot_countries	0.83333
 	0.30825	mso_para_margin_0in
 	0.30705	etwcf
@@ -30693,13 +30693,13 @@ does_lock	0.83333
 	0.18884	chains
 	0.18862	lone_wolf_Langevin
 	0.18811	cor_porate
-	0.18776	rebar_fabricator
 	0.18524	door
-	0.18512	specialist_Datanomic
 	0.18502	major
 	0.18479	tracker_DRAMeXchange
 	0.18378	states.The
 	0.18377	nucleic_acid_LNA
+	0.18362	table_Virasb_Vahidi
+	0.18354	ePerformance
 has_a_base	0.83333
 	0.26084	http://www.ticketmaster.com_###-###-####
 	0.25915	etwcf
@@ -30851,8 +30851,8 @@ is_used_by_police	0.83333
 	0.17096	s_everal
 	0.17064	e_mail_sports@tylerpaper.com
 	0.17024	www.mlnsportszone.com
-	0.16978	unrebutted_testimony
 	0.16959	proximately_harmed
+	0.16786	postmatch_tears
 made_of_tendons	0.83333
 	0.34816	suffered_torn_medial
 	0.33668	hind_fetlock_joint
@@ -31081,7 +31081,6 @@ has_an_edge	0.84211
 	0.16492	roundly_vilified
 	0.16470	upscale_Madidi_restaurant
 	0.16461	moniker_Chainsaw
-	0.16449	wielding_scalpel
 	0.16406	unsheathed
 	0.16176	tyrannical_despot
 	0.16158	governme_nt
@@ -31108,6 +31107,7 @@ has_an_edge	0.84211
 	0.14870	woundings
 	0.14861	analyst_Ralph_Schackart
 	0.14798	www.dfsa.ae
+	0.14794	ko_vich
 has_antenna	0.84211
 	0.26752	etwcf
 	0.26650	http://www.ticketmaster.com_###-###-####
@@ -31256,11 +31256,11 @@ does_DIY	0.84615
 	0.15439	shim
 	0.15159	author_Zama_Coursen
 	0.15158	told_ProteoMonitor
-	0.15091	flying_Billy_Elliots
 	0.15087	unscrew
 	0.15034	said.While
 	0.15000	salesman_Dash_Domi
 	0.14994	largest_shipbroker
+	0.14978	economist_Gad_Levanon
 made_of_polyester	0.84615
 	0.31605	etwcf
 	0.26172	jared.favole_@_dowjones.com
@@ -31406,7 +31406,6 @@ does_contain_hold	0.85106
 	0.16717	site_http://cordis.europa.eu/ictresults
 	0.16701	bbl_WTI
 	0.16595	jar
-	0.16582	cause_BrainStorm_Cell
 	0.16528	bill@tmnews.com
 	0.16416	rambling_disjointed_letter
 	0.16323	al_Mustansariyah
@@ -31414,6 +31413,7 @@ does_contain_hold	0.85106
 	0.16312	free_Crunchy_Seasoned
 	0.16306	official_Ebrahim_Darvishi
 	0.16204	purse
+	0.16091	swag_bag
 has_fur_hair	0.85294
 	0.31562	llama
 	0.28511	mso_para_margin_0in
@@ -32343,7 +32343,6 @@ does_dig	0.87500
 	0.20481	shovel
 	0.20222	hoe
 	0.20142	spade
-	0.19881	via_COMTEX_HOG
 	0.19644	name1_=_string
 	0.19600	stated_Aviram_Malik
 	0.19341	plow
@@ -32383,6 +32382,7 @@ does_dig	0.87500
 	0.17238	www.snclavalin.com
 	0.17061	leaching_testwork
 	0.16962	maker_Xugong
+	0.16905	topsoil
 is_useful	0.88184
 	0.28193	handy_dandy
 	0.27790	batteries_flashlights
@@ -32683,12 +32683,12 @@ has_a_wooden_handle	0.88889
 	0.16788	selected_Trintech_ReconNET
 	0.16694	info.ea.com_Electronic_Arts
 	0.16507	rul_ing
-	0.16454	wielding_scalpel
 	0.16443	call_#-###-REDCHIP
 	0.16354	analyst_Akihiro_Shiroeda
 	0.16227	analyst_Theo_Kitz
 	0.16161	e_mail_sports@tylerpaper.com
 	0.16081	gence
+	0.15943	conf_C####_TORONTO
 has_eyes	0.89062
 	0.26010	mso_para_margin_0in
 	0.26007	cold_blooded_creatures
@@ -32911,7 +32911,6 @@ is_sharp	0.90385
 	0.20155	rapier
 	0.20136	awl
 	0.19648	tunneled
-	0.19570	wielding_scalpel
 	0.19524	pulverize
 	0.19481	wield_scalpel
 	0.19336	mso_para_margin_0in
@@ -32944,8 +32943,8 @@ is_sharp	0.90385
 	0.17699	scribing
 	0.17660	samurai_sword
 	0.17574	infielder_Josh_Vitters
+	0.17554	christoph.steitz_@_thomson.com
 does_cut	0.90476
-	0.21876	wielding_scalpel
 	0.20902	etwcf
 	0.20684	barber_razor
 	0.20518	agoBy
@@ -32982,7 +32981,6 @@ does_cut	0.90476
 	0.16978	http://packages.debian.org/
 	0.16774	coach_Jeremy_Civello
 	0.16763	brutal_beatings
-	0.16675	via_COMTEX_HOG
 	0.16617	rapier
 	0.16614	brutal
 	0.16530	via_COMTEX_XEL
@@ -32995,6 +32993,8 @@ does_cut	0.90476
 	0.16055	proof_Ebersbach
 	0.15933	far_Max_Mortiz
 	0.15863	penknife
+	0.15840	war.The
+	0.15779	c####_##/##/####_MSG_NO
 has_a_door_doors	0.90909
 	0.25795	guesthouse
 	0.25262	mso_para_margin_0in
@@ -33202,7 +33202,6 @@ is_hard_to_play	0.90909
 is_healthy	0.91057
 	0.29980	flowers_Dangot
 	0.29642	apricots
-	0.29124	kale_turnips
 	0.28390	fruits
 	0.27779	leafy_greens
 	0.27712	review_aggregator_Rotten
@@ -33250,6 +33249,7 @@ is_healthy	0.91057
 	0.23727	broccoli_cabbage
 	0.23711	cucumbers_tomatoes
 	0.23694	carrots
+	0.23688	red_leaf_lettuce
 has_leaves	0.91089
 	0.29160	asters
 	0.27385	daffodils
@@ -33333,7 +33333,6 @@ does_grow_on_trees	0.91667
 	0.18017	nectarine
 	0.17849	durian_mangosteen
 	0.17729	pummelo
-	0.17690	flying_Billy_Elliots
 	0.17664	peach_plum
 	0.17659	iFive
 	0.17643	tangerine
@@ -33352,6 +33351,7 @@ does_grow_on_trees	0.91667
 	0.17142	orange_tangerine
 	0.17081	littered_citrus_groves
 	0.16970	themed_martini_glasses
+	0.16930	mango
 has_a_picture_pictures	0.91667
 	0.31778	peer_reviewed_journal_Annals
 	0.29758	blogozine
@@ -33532,7 +33532,6 @@ is_a_cat	0.92308
 	0.20749	panther
 	0.20597	click_STXNEWS
 	0.19313	chief_statistician_TCA
-	0.19092	minister_Ngamthang_Haokip
 	0.19022	tomg@nwanews.com
 	0.18946	site_http://cordis.europa.eu/ictresults
 	0.18892	serviceBy_Kathleen_Lau
@@ -33556,6 +33555,7 @@ is_a_cat	0.92308
 	0.17300	tiger_habitats
 	0.17273	writes_FPIF_contributor
 	0.17028	broadband_CATV_DTV
+	0.17013	http://www.amex.com/
 is_a_drug	0.92308
 	0.39130	opioids
 	0.37849	noncancer_pain
@@ -33649,7 +33649,6 @@ is_eaten_by_birds	0.92308
 	0.17174	botnets
 	0.17154	infective
 	0.17117	worms
-	0.17088	dorsal_aorta
 	0.17071	called_midges_swarmed
 	0.16991	parched_plains_environment
 	0.16915	dragonfly
@@ -33658,6 +33657,7 @@ is_eaten_by_birds	0.92308
 	0.16805	iFive
 	0.16701	serviceBy_Kathleen_Lau
 	0.16674	http://www.prnewswire.com/broadcast/#####/consumer.shtml_S_SUMMARY
+	0.16583	maligned_microorganisms
 is_fermented	0.92308
 	0.29745	maker_Jinro
 	0.29670	giant_Diageo_PLC
@@ -33828,7 +33828,6 @@ does_kill_people	0.93333
 	0.21495	rf_CA_LOS_ANGELES
 	0.21372	snipers
 	0.20459	gunman
-	0.20451	via_COMTEX_HOG
 	0.20405	etwcf
 	0.20174	unexploded_bombs
 	0.19948	suburban_Dormont
@@ -33862,6 +33861,7 @@ does_kill_people	0.93333
 	0.18167	rip_currents
 	0.18056	j_cummings
 	0.18036	ammos
+	0.17984	homemade_bombs
 is_digital	0.93333
 	0.32868	www.mlnsportszone.com
 	0.30605	television
@@ -34016,7 +34016,6 @@ has_legs	0.94198
 	0.21269	avian_flu
 	0.21229	carnivore
 is_a_tool	0.94400
-	0.24624	wielding_scalpel
 	0.22442	hammers
 	0.21771	jackhammer
 	0.21643	pulverize
@@ -34066,6 +34065,7 @@ is_a_tool	0.94400
 	0.17768	trowels
 	0.17752	journalstar.com
 	0.17736	grinder
+	0.17718	pain_specialists_Memeger
 is_eaten_edible	0.94483
 	0.34221	durum_wheat_flour
 	0.33434	trout_roe
@@ -34088,7 +34088,6 @@ is_eaten_edible	0.94483
 	0.30080	goat_curd
 	0.30037	parsley_salad
 	0.30012	capicola_ham
-	0.29936	goat_cheese_gnocchi
 	0.29899	sweetcorn
 	0.29819	inshell
 	0.29790	asparagus_broccoli
@@ -34113,10 +34112,11 @@ is_eaten_edible	0.94483
 	0.28845	vegetable_ragout
 	0.28823	sodium_diacetate
 	0.28687	stuffed_pork_chop
-	0.28677	dal_tadka
 	0.28674	ebi
 	0.28659	meatball_marinara
 	0.28625	crumbled_bleu_cheese
+	0.28593	ham_bacon
+	0.28555	onions_pickles
 does_eat	0.94656
 	0.32026	jaguar
 	0.30369	komodo_dragons
@@ -34178,7 +34178,6 @@ is_a_vegetable	0.94737
 	0.22450	cabbage
 	0.22266	onions
 	0.22210	radishes
-	0.22003	kale_turnips
 	0.21866	tomatoes_peppers
 	0.21845	brussels_sprouts
 	0.21687	arugula
@@ -34219,6 +34218,7 @@ is_a_vegetable	0.94737
 	0.18936	minutes_agoBy
 	0.18876	lettuce_spinach
 	0.18819	leek
+	0.18779	e_FoodSafety.com
 made_of_plastic	0.94840
 	0.27537	wood_paneled_locker
 	0.27030	walkie_talkie_radios
@@ -34231,7 +34231,6 @@ made_of_plastic	0.94840
 	0.25117	vandal_proof
 	0.25077	wheel_balancer
 	0.24918	handlebar_mount
-	0.24836	vehicles_AGVs
 	0.24836	chart_plotter
 	0.24706	dustpan
 	0.24539	servo_controlled
@@ -34270,6 +34269,7 @@ made_of_plastic	0.94840
 	0.22905	posing_stiffly
 	0.22891	rangehood
 	0.22810	power_rear_sunshade
+	0.22754	weigher
 has_keys	0.95238
 	0.36785	mso_para_margin_0in
 	0.30695	etwcf
@@ -34316,11 +34316,11 @@ has_keys	0.95238
 	0.18109	de_la_Louisiane
 	0.18109	clarinetists
 	0.18101	jazz_ensemble
-	0.18047	dorsal_aorta
 	0.18024	quarterback_Rollie_Stichweh
 	0.17903	purchase_vmware_vsphere
 	0.17902	e_mail_@_faa.gov
 	0.17866	de_la_Guerre
+	0.17853	topical_cationic_peptide
 made_of_chemicals	0.95238
 	0.30232	inflammatory_NSAID
 	0.28412	fr_cheapest
@@ -34601,7 +34601,6 @@ is_tasty	0.96170
 	0.28805	de_bola
 	0.28764	blueberry_cheesecake
 	0.28710	ham_bacon
-	0.28691	goat_cheese_gnocchi
 	0.28573	pumpkin_gnocchi
 	0.28528	roasted_fillet
 	0.28521	créme_de_la
@@ -34627,6 +34626,7 @@ is_tasty	0.96170
 	0.27925	pâtés
 	0.27868	chicken_scalloped_potatoes
 	0.27862	lemongrass_soup
+	0.27834	tomato_basil_soup
 does_grow	0.96667
 	0.31496	winter_oilseed_rape
 	0.31264	winter_grain_sowings
@@ -34644,7 +34644,6 @@ does_grow	0.96667
 	0.27749	sweet_peas
 	0.27733	kale
 	0.27606	tomatoes_peppers
-	0.27605	kale_turnips
 	0.27497	hardy_geranium
 	0.27485	pansies_snapdragons
 	0.27460	high_oleic_soybeans
@@ -34678,6 +34677,7 @@ does_grow	0.96667
 	0.25910	speciosa
 	0.25899	campanula
 	0.25844	cultivar
+	0.25827	zinnias
 is_a_weapon	0.96970
 	0.29751	weapon
 	0.28002	projectile
@@ -34819,7 +34819,6 @@ is_found_in_kitchens	0.97436
 	0.19162	rinse
 	0.19109	utensils
 	0.18998	preheat
-	0.18943	ovenproof_casserole_dish
 	0.18871	gowning
 	0.18808	dishwasher
 	0.18747	ovens
@@ -34831,6 +34830,7 @@ is_found_in_kitchens	0.97436
 	0.18329	trays
 	0.18278	sanitizes
 	0.18268	david.brett_@_thomsonreuters.com
+	0.18246	disposer
 is_worn	0.98246
 	0.34949	bushy_browed_braces
 	0.33843	tried_outlawing_saggy
@@ -34888,7 +34888,6 @@ made_of_metal	0.98468
 	0.29420	disassemble
 	0.29331	carbine_rifles
 	0.28585	pallet_changer
-	0.28280	ignition_interlocking
 	0.28279	cassette_deck
 	0.28155	gyro_stabilized_camera
 	0.28017	radios
@@ -34933,6 +34932,7 @@ made_of_metal	0.98468
 	0.25475	walkie_talkie_radios
 	0.25462	flatbeds
 	0.25449	volt_batteries
+	0.25434	chambering
 has_feathers	0.98734
 	0.29408	mso_para_margin_0in
 	0.23452	avian
@@ -34982,8 +34982,8 @@ has_feathers	0.98734
 	0.16929	doves
 	0.16928	cuckoos
 	0.16917	www.difc.ae
-	0.16854	dead_pigeons_sparrows
 	0.16826	strategist_Howard_Wheeldon
+	0.16776	strategist_Scott_Marcouiller
 does_bend	1.00000
 	0.32670	suffered_torn_medial
 	0.32274	hind_fetlock_joint
@@ -35099,7 +35099,6 @@ does_drive_is_driven	1.00000
 	0.22642	vehcile
 	0.22201	www.majorblogs.net
 	0.22053	minibus
-	0.22029	automaker_Chang'an_Automobile
 	0.21555	van
 	0.21306	e_mail_@_faa.gov
 	0.21162	dirver
@@ -35137,6 +35136,7 @@ does_drive_is_driven	1.00000
 	0.18828	car
 	0.18800	tipper_truck
 	0.18792	www.GCCapitalIdeas.com
+	0.18775	broadsided
 does_fly	1.00000
 	0.26512	birdstrikes
 	0.26195	pathogenicity
@@ -35159,7 +35159,6 @@ does_fly	1.00000
 	0.22389	sparrows
 	0.22278	mso_para_margin_0in
 	0.22273	etwcf
-	0.21945	dead_pigeons_sparrows
 	0.21864	blackbirds
 	0.21816	anvil_clouds
 	0.21639	figher_jets
@@ -35188,6 +35187,7 @@ does_fly	1.00000
 	0.19337	drone
 	0.19279	phoenix
 	0.19227	swooping
+	0.19184	waterfowl
 does_keep_dry	1.00000
 	0.32193	mso_para_margin_0in
 	0.28931	etwcf
@@ -35376,7 +35376,6 @@ does_move_earth	1.00000
 	0.17873	trowels
 	0.17743	shoveled
 	0.17558	smh.com.au_smh.com.au_Web
-	0.17527	via_COMTEX_HOG
 	0.17484	http://www.episcopalchurch.org/#####_#####_ENG_HTM.htm
 	0.17478	ceremonial_shovels
 	0.17382	nLU######
@@ -35392,6 +35391,7 @@ does_move_earth	1.00000
 	0.15586	plows
 	0.15470	asphalt_paving
 	0.15318	ership
+	0.15092	largest_shipbroker
 does_swim	1.00000
 	0.34010	etwcf
 	0.32113	mso_para_margin_0in
@@ -35514,7 +35514,6 @@ has_a_beak	1.00000
 	0.19231	bulging_biceps_straining
 	0.19178	heron
 	0.19145	www.difc.ae
-	0.18851	dead_pigeons_sparrows
 	0.18846	j_cummings
 	0.18652	astronaut_Deke_Slayton
 	0.18646	gulls
@@ -35545,6 +35544,7 @@ has_a_beak	1.00000
 	0.16361	wren
 	0.16337	smh.com.au_smh.com.au_Web
 	0.16288	birdwatchers
+	0.16281	bird_watchers
 has_a_lens	1.00000
 	0.30088	lens
 	0.29614	mso_para_margin_0in
@@ -35896,12 +35896,12 @@ has_a_steering_wheel	1.00000
 	0.17687	ambulette
 	0.17581	official_Aleem_Jaffry
 	0.17528	minutes_agoBy
-	0.17439	automaker_Chang'an_Automobile
 	0.17348	trucks
 	0.17334	craigshipp
 	0.17271	font_size_##.#pt
 	0.17193	analyst_Nuria_Alvarez
 	0.17064	car
+	0.16999	chiefexecutive
 has_a_trigger	1.00000
 	0.33002	mso_para_margin_0in
 	0.29692	etwcf
@@ -35990,7 +35990,6 @@ has_a_trunk	1.00000
 	0.16933	nLU######
 	0.16664	activist_Subhas_Datta
 	0.16595	call_#-###-REDCHIP
-	0.16566	draining_peatlands
 	0.16462	willow
 	0.16334	homeowner_Lannette_Turicchi
 	0.16331	firs
@@ -36004,6 +36003,7 @@ has_a_trunk	1.00000
 	0.15645	beech
 	0.15616	www.mlnsportszone.com
 	0.15455	pines
+	0.15439	oak_trees
 has_a_zip	1.00000
 	0.24669	mso_para_margin_0in
 	0.24147	etwcf
@@ -36130,7 +36130,6 @@ has_an_engine	1.00000
 	0.23093	etwcf
 	0.22890	drillship_Deepwater
 	0.22659	refuelers
-	0.22655	automaker_Chang'an_Automobile
 	0.22348	vessel_MV
 	0.22302	powerboat
 	0.22281	ship_Pong_Su
@@ -36157,6 +36156,7 @@ has_an_engine	1.00000
 	0.20846	jetmaker_Airbus
 	0.20833	jet
 	0.20701	towboat
+	0.20690	submarine_HMS
 has_bark	1.00000
 	0.32931	mso_para_margin_0in
 	0.26905	etwcf
@@ -36243,7 +36243,6 @@ has_branches	1.00000
 	0.18175	conifers
 	0.18005	zu_da
 	0.17845	doxorubicin_prodrug
-	0.17544	draining_peatlands
 	0.17513	felling
 	0.17475	www.difc.ae
 	0.17248	larch
@@ -36259,6 +36258,7 @@ has_branches	1.00000
 	0.16768	extract_EGb
 	0.16721	nLU######
 	0.16718	hardwood_timber
+	0.16664	aspen
 has_bullets	1.00000
 	0.38473	mso_para_margin_0in
 	0.32962	etwcf
@@ -36615,7 +36615,7 @@ has_ink	1.00000
 	0.23413	foreword
 	0.23356	call_#-###-REDCHIP
 	0.23351	eminently_readable
-	0.23351	tel_+##-###-###-####
+	0.23181	autobiographical_sketch
 has_joints	1.00000
 	0.32327	suffered_torn_medial
 	0.32002	hind_fetlock_joint
@@ -36938,7 +36938,6 @@ has_wings	1.00000
 	0.21604	etwcf
 	0.21410	sparrows
 	0.21387	instructor_Clarence_Prevost
-	0.21349	dead_pigeons_sparrows
 	0.20893	http://www.episcopalchurch.org/#####_#####_ENG_HTM.htm
 	0.20716	migrating_birds
 	0.20698	consultancy_Teal
@@ -36973,6 +36972,7 @@ has_wings	1.00000
 	0.18484	infectious_bronchitis
 	0.18465	waterbirds
 	0.18435	flightless
+	0.18388	van_Westendorp
 has_words	1.00000
 	0.34619	peer_reviewed_journal_Annals
 	0.33479	newletter
@@ -37060,7 +37060,6 @@ is_a_bird	1.00000
 	0.18107	manager_Laurie_Engelen
 	0.17779	feathered_friends
 	0.17773	obtained_Temporary_Restraining
-	0.17759	dead_pigeons_sparrows
 	0.17688	e_mail_@_faa.gov
 	0.17571	plumage
 	0.17539	shorebirds
@@ -37075,6 +37074,7 @@ is_a_bird	1.00000
 	0.17190	tomg@nwanews.com
 	0.17004	gulls
 	0.16886	reflect_Pipex_Pharmaceuticals
+	0.16879	pricing_tracker_TrueCar
 is_a_body_part	1.00000
 	0.31056	etwcf
 	0.30729	mso_para_margin_0in
@@ -37257,7 +37257,6 @@ is_a_flower	1.00000
 	0.18793	http://www.oikoumene.org/?id=####
 	0.18684	skyhawk_Comments
 	0.18673	grandiflora
-	0.18672	pills_Spontane_ES
 	0.18536	smh.com.au_smh.com.au_Web
 	0.18465	courted_Islamic_fundamentalists
 	0.18441	www.premierinc.com_Premier
@@ -37279,6 +37278,7 @@ is_a_flower	1.00000
 	0.17203	e_Pesquisa
 	0.17202	pasque_flower
 	0.17190	lily
+	0.17164	jared.favole_@_dowjones.com
 is_a_gun	1.00000
 	0.38231	mso_para_margin_0in
 	0.29716	etwcf
@@ -37320,7 +37320,6 @@ is_a_gun	1.00000
 	0.19383	mm_semiautomatic_rifle
 	0.19300	member_Maitham_Ibrahim
 	0.19207	mtownsend@cherokeescout.com_Tuesday
-	0.19155	via_COMTEX_HOG
 	0.19144	rifles
 	0.19122	nasdaq_WFC
 	0.19048	told_ProteoMonitor
@@ -37330,6 +37329,7 @@ is_a_gun	1.00000
 	0.18640	semiautomatic_rifle
 	0.18454	bbl_WTI
 	0.18445	analyst_Akihiro_Shiroeda
+	0.18442	newspaper_Darmstaedter_Echo
 is_a_kitchen_appliance	1.00000
 	0.32385	mso_para_margin_0in
 	0.29582	etwcf
@@ -37608,7 +37608,6 @@ is_a_rodent	1.00000
 	0.17501	mice
 	0.17418	noninvasive_prenatal_diagnosis
 	0.17208	gamma_secretase_modulator
-	0.17195	norepinephrine_reuptake
 	0.16994	drug_Adderall_XR
 	0.16972	supermodel_Frederique
 	0.16958	edbrice@star-telegram.com
@@ -37636,6 +37635,7 @@ is_a_rodent	1.00000
 	0.15272	cellular_cytotoxicity
 	0.15268	chipmunk
 	0.15249	nasdaq_WFC
+	0.15215	rat
 is_a_tree	1.00000
 	0.40562	mso_para_margin_0in
 	0.27502	etwcf
@@ -37768,7 +37768,6 @@ is_a_vehicle	1.00000
 	0.18413	car.The
 	0.18394	spokesman_Ken_Kettenbeil
 	0.18290	truck
-	0.18156	automaker_Chang'an_Automobile
 	0.18095	buses
 	0.17929	efficient_powertrains
 	0.17898	taxi_cab
@@ -37789,6 +37788,7 @@ is_a_vehicle	1.00000
 	0.16592	maxi_cab
 	0.16487	mounted_missile_launchers
 	0.16256	vehichle
+	0.16167	ministry_website_www.fmprc.gov.cn
 is_alcoholic	1.00000
 	0.34836	mso_para_margin_0in
 	0.32821	etwcf
@@ -37981,7 +37981,6 @@ is_blown	1.00000
 	0.15531	vice_presidentof
 	0.15507	clarinet
 	0.15506	suffi_ciently
-	0.15462	cause_BrainStorm_Cell
 	0.15460	attorney_Jay_Abramowitch
 	0.15425	selected_OpenPages_Sarbanes
 	0.15399	attorney_Kort_Gatterdam
@@ -37993,6 +37992,7 @@ is_blown	1.00000
 	0.15202	patented_omni_directional
 	0.14892	engineer
 	0.14882	bagpiper
+	0.14878	trumpeter
 is_clothing	1.00000
 	0.33120	tried_outlawing_saggy
 	0.28203	attire
@@ -38292,13 +38292,13 @@ is_found_in_libraries	1.00000
 	0.20605	scholar_Reza_Aslan
 	0.20362	encyclopedic
 	0.20120	eBooks
-	0.20027	boozy_carousing
 	0.19941	call_#-###-REDCHIP
 	0.19933	fiction
 	0.19890	coedited
 	0.19799	bookcase
 	0.19556	sourcebook
 	0.19499	tomes
+	0.19313	publisher_Houghton_Mifflin
 is_found_in_seas	1.00000
 	0.29951	mso_para_margin_0in
 	0.27201	overfishing
@@ -38410,7 +38410,6 @@ is_found_on_rivers	1.00000
 	0.23599	david.brett_@_thomsonreuters.com
 	0.23520	agoBy
 	0.23435	mtownsend@cherokeescout.com_Tuesday
-	0.22208	via_COMTEX_HOG
 	0.20722	reflect_Pipex_Pharmaceuticals
 	0.20054	website_www.merrimanco.com
 	0.19887	tomg@nwanews.com
@@ -38452,6 +38451,7 @@ is_found_on_rivers	1.00000
 	0.16295	expose_Gasland
 	0.16195	personal_watercraft
 	0.16020	downriver
+	0.15836	paddlers
 is_found_on_water	1.00000
 	0.31645	mso_para_margin_0in
 	0.30107	etwcf
@@ -38900,7 +38900,6 @@ is_played_in_bands	1.00000
 	0.19261	guitarist_vocalist
 	0.19088	drummers
 	0.19077	drum
-	0.18903	cause_BrainStorm_Cell
 	0.18878	mtownsend@cherokeescout.com_Tuesday
 	0.18845	designer_Rizwanur_Rehman
 	0.18752	bandmember
@@ -38911,6 +38910,7 @@ is_played_in_bands	1.00000
 	0.18531	cymbal
 	0.18494	guitarists
 	0.18283	click_STXNEWS
+	0.18268	vice_presidentof
 is_read	1.00000
 	0.34938	etwcf
 	0.33263	jared.favole_@_dowjones.com
@@ -39091,7 +39091,6 @@ is_seafood	1.00000
 	0.17129	partner_Guxiang_Information
 	0.16929	bill@tmnews.com
 	0.16883	minutes_agoBy
-	0.16648	dorsal_aorta
 	0.16539	shellfish_beds
 	0.16401	http://www.mysmartrend.com/research/_SmarTrend
 	0.16369	lobsters
@@ -39115,6 +39114,7 @@ is_seafood	1.00000
 	0.15400	j_cummings
 	0.15392	mussel
 	0.15378	lobster
+	0.15354	prawn
 is_sensitive	1.00000
 	0.38938	mso_para_margin_0in
 	0.35622	etwcf
