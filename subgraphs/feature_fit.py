@@ -258,8 +258,8 @@ def loocv_features(features, X, Y, clf_base):
 
 
 def loocv_feature_outer(pool, clf_base, f_idx):
-    Cs = [10 ** exp for exp in range(-4, 1)]
-    Cs += [5 * (10 ** exp) for exp in range(-4, 0)]
+    Cs = [10 ** exp for exp in range(-4, 3)]
+    Cs += [5 * (10 ** exp) for exp in range(-4, 1)]
 
     return [pool.submit(loocv_feature, C, f_idx, clf_base(C=C))
             for C in Cs]
@@ -284,16 +284,9 @@ def loocv_feature(C, f_idx, clf):
         pred_prob = clf.predict_proba(X_test)[:, 1]
 
         pos_probs = np.log(pred_prob[y_test == 1])
-        neg_probs = np.log(pred_prob[y_test == 0])
+        neg_probs = np.log(1 - pred_prob[y_test == 0])
 
-        # Apply class prior (the classifiers fit a class-balanced
-        # dataset, so we can't trust their probs until applying the prior from
-        # the data).
-        p_c = float(len(c_idxs)) / len(y)
-        pos_probs += np.log(p_c)
-        pos_probs += np.log(1 - p_c)
-
-        return np.mean(pos_probs) - np.mean(neg_probs)
+        return np.mean(pos_probs) + np.mean(neg_probs)
 
     if len(c_idxs) > 15:
         # Run 10-fold CV.
