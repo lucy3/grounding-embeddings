@@ -43,13 +43,19 @@ elif PIVOT == "cslb":
     INPUT = "./all/cslb_vectors.txt"
 elif PIVOT == "wikigiga":
     INPUT = "../glove/glove.6B.300d.w2v.txt"
+    INPUT_FVOCAB = "/john0/scr1/jgauthie/vocab.txt"
+    MIN_WORD_COUNT = 300
 elif PIVOT == "cc":
     INPUT = "../glove/glove.840B.300d.w2v.txt"
+    INPUT_FVOCAB = "/john0/scr1/jgauthie/vocab.txt"
+    MIN_WORD_COUNT = 300
 elif PIVOT == "word2vec":
     INPUT = "../word2vec/GoogleNews-vectors-negative300.bin"
+    MIN_WORD_COUNT = 300
 elif PIVOT == "mygiga":
     INPUT = "/john0/scr1/jgauthie/vectors.en.w2v.txt"
     INPUT_FVOCAB = "/john0/scr1/jgauthie/vocab.txt"
+    MIN_WORD_COUNT = 300
 
 SOURCE = "cslb"
 if SOURCE == "mcrae":
@@ -393,7 +399,8 @@ def analyze_classifiers(analyze_results, all_embeddings, min_count=300):
     sims = np.dot(clf_coefs, all_embeddings.syn0norm.T)
 
     # Cache counts for faster inner loop
-    word_counts = {word.index: word.count for word in all_embeddings.vocab.values()}
+    word_counts = {word.index: word.count
+                   for word in all_embeddings.vocab.values()}
     word_counts = [word_counts[i] for i in range(len(word_counts))]
 
     lowercase = set(string.ascii_lowercase)
@@ -935,7 +942,8 @@ def main():
             clfs = {result.feature.name: result.clf for result in feature_data}
             pickle.dump(clfs, clf_out)
 
-    classifier_nearby = analyze_classifiers(feature_data, all_embeddings)
+    classifier_nearby = analyze_classifiers(feature_data, all_embeddings,
+                                            min_count=MIN_WORD_COUNT)
     with open(CLASSIFIER_NEIGHBOR_OUTPUT, "w") as f:
         for result in feature_data:
             feature = result.feature.name
