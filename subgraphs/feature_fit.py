@@ -22,6 +22,7 @@ import seaborn as sns
 from sklearn import metrics
 from sklearn.base import clone
 from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import StratifiedKFold
 from tqdm import tqdm, trange
 from scipy import stats
 
@@ -34,7 +35,7 @@ from util import get_map_from_tsv
 # resulting feature_fit metric represents how well these representations encode
 # the relevant features. Each axis of the resulting graphs also involves the
 # pivot source.
-PIVOT = "mygiga"
+PIVOT = "wikigiga"
 INPUT_FVOCAB = None
 if PIVOT == "mcrae":
     INPUT = "./all/mcrae_vectors.txt"
@@ -42,13 +43,19 @@ elif PIVOT == "cslb":
     INPUT = "./all/cslb_vectors.txt"
 elif PIVOT == "wikigiga":
     INPUT = "../glove/glove.6B.300d.w2v.txt"
+    INPUT_FVOCAB = "/john0/scr1/jgauthie/vocab.txt"
+    MIN_WORD_COUNT = 300
 elif PIVOT == "cc":
     INPUT = "../glove/glove.840B.300d.w2v.txt"
+    INPUT_FVOCAB = "/john0/scr1/jgauthie/vocab.txt"
+    MIN_WORD_COUNT = 300
 elif PIVOT == "word2vec":
     INPUT = "../word2vec/GoogleNews-vectors-negative300.bin"
+    MIN_WORD_COUNT = 300
 elif PIVOT == "mygiga":
     INPUT = "/john0/scr1/jgauthie/vectors.en.w2v.txt"
     INPUT_FVOCAB = "/john0/scr1/jgauthie/vocab.txt"
+    MIN_WORD_COUNT = 300
 
 SOURCE = "cslb"
 if SOURCE == "mcrae":
@@ -257,8 +264,8 @@ def loocv_features(features, X, Y, clf_base):
 
 
 def loocv_feature_outer(pool, clf_base, f_idx):
-    Cs = [10 ** exp for exp in range(-4, 1)]
-    Cs += [5 * (10 ** exp) for exp in range(-4, 0)]
+    Cs = [10 ** exp for exp in range(-4, 3)]
+    Cs += [5 * (10 ** exp) for exp in range(-4, 1)]
 
     return [pool.submit(loocv_feature, C, f_idx, clf_base(C=C))
             for C in Cs]
@@ -274,26 +281,38 @@ def loocv_feature(C, f_idx, clf):
     X = loocv_features.X
     y = loocv_features.Y[:, f_idx]
 
-    scores = []
-
     # Find all concepts which (1) do or (2) do not have this feature
     c_idxs = y.nonzero()[0]
     c_not_idxs = (1 - y).nonzero()[0]
 
-    # Leave-one-out.
-    for c_idx in c_idxs:
-        X_loo = np.concatenate([X[:c_idx], X[c_idx+1:]])
-        y_loo = np.concatenate([y[:c_idx], y[c_idx+1:]])
+    scores = []
+    def eval_clf(clf, X_test, y_test):
+        pred_prob = clf.predict_proba(X_test)[:, 1]
 
-        clf_loo = clone(clf)
-        clf_loo.fit(X_loo, y_loo)
+        pos_probs = np.log(pred_prob[y_test == 1])
+        neg_probs = np.log(1 - pred_prob[y_test == 0])
 
-        # Draw negative samples for a ranking loss
-        test = np.concatenate([X[c_idx:c_idx+1], X[c_not_idxs]])
-        pred_prob = clf_loo.predict_proba(test)[:, 1]
+        return np.mean(pos_probs) + np.mean(neg_probs)
 
-        score = np.log(pred_prob[0]) + np.mean(np.log(1 - pred_prob[1:]))
-        scores.append(score)
+    if len(c_idxs) > 15:
+        # Run 10-fold CV.
+        skf = StratifiedKFold(n_splits=10)
+        for train_index, test_index in skf.split(X, y):
+            clf_kf = clone(clf)
+            clf_kf.fit(X[train_index], y[train_index])
+            scores.append(eval_clf(clf_kf, X[test_index], y[test_index]))
+    else:
+        # Run leave-one-out.
+        for c_idx in c_idxs:
+            X_loo = np.concatenate([X[:c_idx], X[c_idx+1:]])
+            y_loo = np.concatenate([y[:c_idx], y[c_idx+1:]])
+
+            clf_loo = clone(clf)
+            clf_loo.fit(X_loo, y_loo)
+
+            X_test = np.concatenate([X[c_idx:c_idx+1], X[c_not_idxs]])
+            y_test = np.concatenate([[1], np.zeros_like(c_not_idxs)])
+            scores.append(eval_clf(clf_loo, X_test, y_test))
 
     return f_idx, C, scores
 
@@ -380,7 +399,8 @@ def analyze_classifiers(analyze_results, all_embeddings, min_count=300):
     sims = np.dot(clf_coefs, all_embeddings.syn0norm.T)
 
     # Cache counts for faster inner loop
-    word_counts = {word.index: word.count for word in all_embeddings.vocab.values()}
+    word_counts = {word.index: word.count
+                   for word in all_embeddings.vocab.values()}
     word_counts = [word_counts[i] for i in range(len(word_counts))]
 
     lowercase = set(string.ascii_lowercase)
@@ -922,7 +942,8 @@ def main():
             clfs = {result.feature.name: result.clf for result in feature_data}
             pickle.dump(clfs, clf_out)
 
-    classifier_nearby = analyze_classifiers(feature_data, all_embeddings)
+    classifier_nearby = analyze_classifiers(feature_data, all_embeddings,
+                                            min_count=MIN_WORD_COUNT)
     with open(CLASSIFIER_NEIGHBOR_OUTPUT, "w") as f:
         for result in feature_data:
             feature = result.feature.name
