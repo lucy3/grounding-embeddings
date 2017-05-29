@@ -1,41 +1,41 @@
 0	  nan	  nan	
-1	0.522542	0.000000	sandwich
-2	0.588964	0.000000	pyramid
-3	0.597543	0.000005	balloon bottle
-4	0.625724	0.000004	sandpaper watch
-5	0.635755	0.000000	certificate
-6	0.644186	0.000283	ball boomerang brick football glue marble rock rope seashell stick stone yoyo
-7	0.648222	0.000241	bread cheese flour ham jam jelly sugar yoghurt
-8	0.650593	0.000007	dolphin slug
-9	0.651431	0.000232	anchor chain chandelier mirror tyre window
-10	0.674519	0.000003	cork hose
-11	0.684087	0.000214	arm bone hair tongue
-12	0.684942	0.000267	bra cushion envelope flannel napkin pillow wallet
-13	0.708636	0.000431	bacon bean beer biscuit butter cake chocolate cider coffee cucumber currant dates doughnut gherkin ketchup lemonade mango mayonnaise melon milk nut peanut peas pie pineapple potato prune pumpkin raisin rice soup sultana tea watermelon
-14	0.713822	0.000360	barrel basket bed bolts box buckle button cage clamp clock coin cradle deckchair dice doorknob fence frisbee gate helmet hutch key kite ladder puppet rattle skateboard stool swing tambourine tent thimble tray wheel whistle
-15	0.715095	0.000464	bag belt bikini bracelet cape cloak jeans leotard lipstick necklace satchel scarf shawl swimsuit trousers
-16	0.721421	0.000544	alligator beetle camel caterpillar centipede clam cockroach crab crocodile deer eel elephant emu flamingo frog giraffe goat goldfish gorilla hedgehog heron hippo iguana jellyfish kangaroo lizard llama millipede monkey octopus ox oyster penguin pigeon porcupine rattlesnake rhino scorpion seahorse snail squid squirrel toad tortoise walrus whale worm
-17	0.732546	0.000769	candle lantern
-18	0.737924	0.000034	eye heart nose
-19	0.746458	0.000039	eucalyptus fern moss seaweed
-20	0.751915	0.000498	ashtray basin bath bicycle bin bookcase bowl bridge bucket buggy camera crayon cup cupboard desk dresser fork fridge glider jar jug lamp mop mug nail needle pen pencil pin plate pram ruler screw sink skis spatula spoon surfboard telephone television thermometer toilet tongs tricycle tripod tweezers typewriter umbrella unicycle wand
-21	0.761276	0.000000	newspaper
-22	0.768757	0.000618	apron badge blouse boots cap coat doll dress earmuffs gloves goggles gown jacket knickers mask mat mittens parka pyjamas robe sandals shirt shoes skirt slippers sock stockings suit sweater tights veil wetsuit
-23	0.776683	0.000245	bouquet cigar cigarette perfume tobacco
-24	0.779041	0.001358	barge canoe dinghy kayak yacht
-25	0.782101	0.000558	ear finger foot leg lips thumb toe
-26	0.783873	0.000758	apple apricot artichoke aubergine avocado banana blueberry cabbage carrot chestnut coconut garlic grape grapefruit leek lemon lettuce lime mushroom olive onion orange peach pear plum radish raspberry rhubarb satsuma strawberry tangerine tomato turnip
-27	0.787535	0.000274	brandy champagne gin whisky wine
-28	0.788826	0.001761	aspirin codeine ibuprofen valium
-29	0.796118	0.001309	accordion bagpipes banjo bell cello clarinet cymbal drum flute gong guitar harmonica harp harpsichord piano recorder saxophone trombone trumpet tuba violin
-30	0.802855	0.000692	armchair bench chair sofa throne
-31	0.802915	0.001084	ant bear beaver bee budgie buffalo butterfly buzzard calf canary carp cat cheetah chicken chipmunk cockerel cod cow crayfish cricket dog donkey dove dragonfly duck eagle falcon flea flounder fox gerbil goose grasshopper hamster hawk herring hornet horse housefly hummingbird hyena kingfisher ladybird lamb leopard lion lobster locust mackerel magpie minnow moose mosquito moth mouse mussel nightingale ostrich otter owl panther parakeet partridge peacock pelican pig platypus pony prawn rabbit raccoon rat raven robin salmon sardine scallop seagull shark sheep shrimp skunk sparrow spider starling swan tarantula termite tiger trout tuna turkey turtle wasp wolf woodpecker wren zebra
-32	0.818073	0.000674	armour arrow axe bayonet bellows blender broom brush bullet cannon caravan cart chisel club coffin comb crossbow crowbar dagger dishwasher drill grater hammer harpoon hatchet hoe hook houseboat knife ladle machete microscope peeler peg penknife pliers plough projector radio rake razor rocket rollerskate saw scalpel scissors screwdriver scythe shield shovel spade spanner spear submarine sword syringe tank trolley trowel wheelbarrow wheelchair whip whisk
-33	0.819145	0.000805	asparagus birch broccoli buttercup carnation cauliflower celery daffodil daisy dandelion elm fir geranium hyacinth lily marigold oak orchid pansy parsley pine poppy rose spinach sunflower sycamore tulip willow
-34	0.823401	0.000000	castle
-35	0.842082	0.000938	book brochure catalogue dictionary encyclopaedia menu pamphlet textbook
-36	0.847986	0.000000	poison
-37	0.858177	0.000614	aeroplane ambulance boat bus car carriage ferry helicopter jeep kettle limousine lorry microwave moped motorcycle oven raft ship sledge speedboat stove table taxi toaster tractor truck tugboat van
-38	0.871813	0.000071	cherry corn nectarine
-39	0.880156	0.000810	bomb chainsaw grenade gun pistol revolver rifle shotgun
-40	0.929361	0.000229	colander corkscrew strainer train
+1	0.436141	0.000000	sandwich
+2	0.494253	0.000000	dolphin
+3	0.500000	0.000000	balloon
+4	0.506698	0.000045	sandpaper watch
+5	0.544238	0.000227	bottle cork deckchair lipstick seashell swimsuit
+6	0.546763	0.000448	beetle cockroach gorilla millipede monkey penguin rattlesnake slug squirrel
+7	0.546773	0.000474	chandelier lantern
+8	0.551615	0.000627	bacon currant ham jam jelly prune
+9	0.578623	0.000349	anchor belt bracelet mirror necklace satchel shawl tweezers tyre unicycle wallet wheel window
+10	0.583333	0.000000	hose
+11	0.599283	0.000228	bone brick hair pyramid rock stick stone tongue
+12	0.605158	0.000636	beer cider lemonade
+13	0.611765	0.000404	arrow ball basin bath boomerang bowl camera crayon cup dice doll doorknob flute football frisbee glider hutch kayak kite ladder lamp marble mug nail needle pen pencil pin plate puppet rattle recorder ruler sink skateboard skis stool surfboard swing syringe tambourine television tent thermometer thimble wand yoyo
+14	0.631793	0.000693	cushion envelope flannel mat napkin pillow
+15	0.635735	0.000405	ant caterpillar centipede clam crab eel frog giraffe jellyfish octopus oyster prawn scorpion seahorse squid toad walrus worm
+16	0.637500	0.000000	newspaper
+17	0.641897	0.000000	castle
+18	0.645161	0.000727	apricot aubergine banana bean biscuit bread butter cake cheese chocolate coconut cucumber dates doughnut flour gherkin ketchup mango mayonnaise melon milk nut peach peanut peas pie pineapple plum potato pumpkin raisin sugar sultana watermelon yoghurt
+19	0.648027	0.000189	bell buckle button candle chain clamp clock coin crowbar cymbal desk fence gate glue gong key rope tripod umbrella
+20	0.655989	0.000370	arm ear eye finger foot leg lips nose thumb toe
+21	0.661642	0.000872	apron armour badge bikini blouse boots bra cap cape cloak dress earmuffs gloves goggles gown helmet jeans knickers leotard mask mittens pyjamas robe sandals scarf shirt shoes skirt slippers sock stockings sweater tights trousers veil wetsuit
+22	0.692308	0.000000	certificate
+23	0.693009	0.000325	alligator crocodile deer elephant hedgehog hippo horse iguana kangaroo lizard llama ox pony porcupine rhino swan tortoise
+24	0.704050	0.000519	ashtray bag banjo barrel basket bellows bicycle bolts bookcase box bridge bucket cage club cupboard dresser drum fork guitar harp radio rollerskate screw screwdriver shield spatula spoon telephone toilet tongs tray tricycle typewriter violin whip
+25	0.704972	0.000275	aspirin bouquet cigar cigarette codeine ibuprofen tobacco valium
+26	0.707654	0.000854	apple artichoke asparagus avocado blueberry broccoli cabbage carrot cauliflower celery garlic grape grapefruit leek lettuce moss mushroom mussel olive onion radish raspberry rhubarb rice seaweed spinach strawberry sunflower tomato turnip
+27	0.716014	0.000513	coffee gin perfume soup tea whisky
+28	0.720000	0.000000	heart
+29	0.746988	0.000250	bayonet bullet cannon crossbow dagger grenade harpoon rocket spear submarine sword tank
+30	0.749791	0.000900	armchair bed bench chair cradle sofa throne
+31	0.750000	0.000682	bear bee budgie buffalo butterfly buzzard calf camel canary cat cheetah chipmunk cockerel cow cricket donkey dove dragonfly duck eagle emu falcon flamingo flea fox gerbil goat goose grasshopper hamster hawk heron hornet housefly hummingbird hyena kingfisher ladybird lamb leopard lion locust magpie moose mosquito mouse nightingale ostrich otter owl panther parakeet partridge peacock pelican pigeon platypus rabbit raccoon rat raven robin seagull skunk snail sparrow spider starling tarantula termite tiger turkey turtle wasp whale wolf woodpecker wren zebra
+32	0.771021	0.000313	coat coffin dishwasher drill fridge jacket jar jug microscope oven parka projector stove suit
+33	0.785047	0.001114	birch buttercup carnation daffodil daisy dandelion elm eucalyptus fern fir geranium hyacinth lily marigold oak orchid pansy pine poppy rose sycamore tulip willow
+34	0.794699	0.000820	accordion bagpipes cello clarinet harmonica harpsichord piano saxophone trombone trumpet tuba whistle
+35	0.795197	0.000850	book brochure catalogue dictionary encyclopaedia menu pamphlet textbook
+36	0.806452	0.000559	aeroplane ambulance barge boat buggy bus canoe car caravan carriage cart dinghy ferry helicopter houseboat jeep limousine lorry moped motorcycle pram raft ship sledge speedboat taxi tractor train trolley truck tugboat van wheelbarrow wheelchair yacht
+37	0.813008	0.000519	cherry chestnut corn lemon lime nectarine orange parsley pear satsuma tangerine
+38	0.826821	0.000819	beaver carp chicken cod crayfish dog flounder goldfish herring lobster mackerel minnow moth pig salmon sardine scallop shark sheep shrimp trout tuna
+39	0.837736	0.000433	axe bin blender bomb broom brush chainsaw chisel colander comb corkscrew grater gun hammer hatchet hoe hook kettle knife ladle machete microwave mop peeler peg penknife pistol pliers plough rake razor revolver rifle saw scalpel scissors scythe shotgun shovel spade spanner strainer table toaster trowel whisk
+40	0.838743	0.000427	brandy champagne poison wine

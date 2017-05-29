@@ -1,775 +1,775 @@
-is_upright	visual perceptual	5	0.034014
-is_hardy	encyclopaedic	5	0.034247
-is_triangular	visual perceptual	6	0.035608
-is_found_in_bible	encyclopaedic	5	0.035714
-has_no_legs	visual perceptual	5	0.046512
-has_a_string	visual perceptual	5	0.056818
-is_long_and_thin	visual perceptual	7	0.063348
-does_work	functional	6	0.068966
-is_found_in_the_country	encyclopaedic	5	0.079365
-is_necessary_essential	encyclopaedic	5	0.091743
-has_soft_flesh	other perceptual	6	0.100840
-made_of_flesh_and_bones	visual perceptual	6	0.100840
-is_inanimate	encyclopaedic	7	0.109375
-has_species	encyclopaedic	7	0.115702
-does_play	encyclopaedic	6	0.117647
-is_any_shape	visual perceptual	7	0.123894
-does_live_by_water	encyclopaedic	9	0.129496
-does_breathe	functional	8	0.135593
-is_found_in_pockets	encyclopaedic	5	0.140845
-is_fresh	encyclopaedic	8	0.142857
-is_washed	encyclopaedic	5	0.142857
-does_come_in_bags	visual perceptual	5	0.144928
-has_types	encyclopaedic	6	0.146341
-is_curved	visual perceptual	11	0.146667
-does_drink	functional	9	0.148760
-is_spherical	visual perceptual	8	0.150943
-is_durable	encyclopaedic	6	0.151899
-made_of_metal_and_plastic	visual perceptual	8	0.152381
-has_an_end	visual perceptual	7	0.153846
-has_two_feet	visual perceptual	6	0.157895
-is_for_parties	functional	7	0.159091
-is_wide	visual perceptual	5	0.161290
-does_support	functional	7	0.164706
-has_padding	visual perceptual	5	0.166667
-is_found_in_pubs	encyclopaedic	5	0.166667
-is_American	encyclopaedic	7	0.168675
-is_in_a_jar	visual perceptual	5	0.169492
-does_glide	functional	6	0.171429
-is_rigid	visual perceptual	6	0.171429
+is_upright	visual perceptual	5	0.030030
+is_found_in_bible	encyclopaedic	5	0.031746
+is_hardy	encyclopaedic	5	0.032680
+is_triangular	visual perceptual	6	0.035821
+has_no_legs	visual perceptual	5	0.043668
+has_a_string	visual perceptual	5	0.052910
+does_work	functional	6	0.053571
+is_necessary_essential	encyclopaedic	5	0.079365
+is_inanimate	encyclopaedic	7	0.084848
+has_soft_flesh	other perceptual	6	0.094488
+is_any_shape	visual perceptual	7	0.094595
+made_of_flesh_and_bones	visual perceptual	6	0.095238
+is_found_in_the_country	encyclopaedic	5	0.103093
+has_species	encyclopaedic	7	0.104478
+does_play	encyclopaedic	6	0.108108
+is_long_and_thin	visual perceptual	7	0.118644
+is_found_in_pockets	encyclopaedic	5	0.126582
+does_live_by_water	encyclopaedic	9	0.126761
+does_breathe	functional	8	0.129032
+is_washed	encyclopaedic	5	0.133333
+has_two_feet	visual perceptual	6	0.134831
+has_types	encyclopaedic	6	0.136364
+is_durable	encyclopaedic	6	0.141176
+has_an_end	visual perceptual	7	0.141414
+does_drink	functional	9	0.141732
+is_spherical	visual perceptual	8	0.144144
+does_glide	functional	6	0.148148
+does_support	functional	7	0.148936
+is_for_parties	functional	7	0.148936
+made_of_metal_and_plastic	visual perceptual	8	0.150943
+is_American	encyclopaedic	7	0.155556
+is_wide	visual perceptual	5	0.158730
+is_rigid	visual perceptual	6	0.162162
+has_padding	visual perceptual	5	0.163934
+is_found_in_pubs	encyclopaedic	5	0.163934
+is_in_a_jar	visual perceptual	5	0.166667
+is_spiky	visual perceptual	8	0.170213
+is_cool	encyclopaedic	7	0.170732
+is_wrinkly	visual perceptual	7	0.170732
+is_shy_timid	encyclopaedic	6	0.171429
 made_of_string	visual perceptual	6	0.173913
-is_cool	encyclopaedic	7	0.175000
-does_protect_from_weather	functional	7	0.181818
-has_jaws	visual perceptual	5	0.181818
-is_painted	visual perceptual	5	0.181818
-is_spiky	visual perceptual	8	0.183908
-is_shy_timid	encyclopaedic	6	0.184615
-has_two_eyes	visual perceptual	9	0.189474
-is_found_in_parks	encyclopaedic	7	0.194444
-does_hang	functional	6	0.200000
-has_air	encyclopaedic	5	0.200000
-is_collectable	encyclopaedic	5	0.200000
-has_a_big_tail	visual perceptual	6	0.203390
-is_found_in_laboratories	encyclopaedic	5	0.204082
-is_plain	visual perceptual	5	0.204082
+is_found_in_laboratories	encyclopaedic	5	0.175439
+is_painted	visual perceptual	5	0.175439
+is_found_in_parks	encyclopaedic	7	0.177215
+is_curved	visual perceptual	11	0.177419
+made_of_silver	visual perceptual	10	0.183486
+has_a_big_tail	visual perceptual	6	0.184615
+is_bouncy	visual perceptual	6	0.184615
+is_hard_to_use	encyclopaedic	5	0.185185
+does_hang	functional	6	0.187500
+has_two_eyes	visual perceptual	9	0.187500
+is_unstable	visual perceptual	7	0.191781
+is_collectable	encyclopaedic	5	0.192308
+has_a_hole	visual perceptual	12	0.192982
+does_live_on_land	encyclopaedic	6	0.193548
+has_air	encyclopaedic	5	0.196078
+has_a_face	visual perceptual	9	0.200000
+has_white_flesh	visual perceptual	7	0.200000
+is_a_machine	encyclopaedic	6	0.200000
+is_found_outside	encyclopaedic	10	0.202020
+has_fibre	encyclopaedic	7	0.202899
+is_for_babies	functional	6	0.203390
+does_hibernate	encyclopaedic	5	0.204082
 is_peeled	functional	7	0.205882
-is_bouncy	visual perceptual	6	0.206897
-does_hibernate	encyclopaedic	5	0.208333
-has_fibre	encyclopaedic	7	0.208955
-has_white_flesh	visual perceptual	7	0.208955
-is_unstable	visual perceptual	7	0.208955
-is_a_machine	encyclopaedic	6	0.210526
-is_hard_to_use	encyclopaedic	5	0.212766
-has_a_sharp_edge_edges	visual perceptual	8	0.213333
-has_a_hole	visual perceptual	12	0.213592
-does_live_on_land	encyclopaedic	6	0.214286
-is_for_babies	functional	6	0.218182
-has_a_green_stalk	visual perceptual	8	0.222222
-is_from_Australia	encyclopaedic	6	0.222222
-is_found_outside	encyclopaedic	10	0.224719
-has_a_long_tongue	visual perceptual	7	0.225806
-has_a_hinge_hinges	visual perceptual	6	0.226415
-is_inflated	visual perceptual	6	0.226415
-is_easy_to_lose	encyclopaedic	5	0.227273
-is_fried	functional	8	0.228571
-does_live_in_groups	encyclopaedic	10	0.229885
-has_a_face	visual perceptual	9	0.230769
+has_a_long_tongue	visual perceptual	7	0.208955
+does_live_in_groups	encyclopaedic	10	0.210526
+is_found_in_on_a_pond	encyclopaedic	8	0.210526
+has_two_arms	visual perceptual	5	0.212766
+has_a_green_stalk	visual perceptual	8	0.216216
+is_fried	functional	8	0.216216
+is_easy_to_lose	encyclopaedic	5	0.217391
+has_decoration	visual perceptual	9	0.219512
+has_a_hinge_hinges	visual perceptual	6	0.222222
+is_inflated	visual perceptual	6	0.222222
+is_chewy	other perceptual	8	0.225352
+has_thin_legs	visual perceptual	8	0.228571
+does_climb_trees	functional	6	0.230769
+has_corners	visual perceptual	6	0.230769
+is_wet	other perceptual	14	0.231405
 is_found_on_boats_ships	encyclopaedic	8	0.231884
+is_fresh	encyclopaedic	8	0.231884
 does_cover_body	functional	5	0.232558
-is_found_in_on_a_pond	encyclopaedic	8	0.235294
-is_chewy	other perceptual	8	0.238806
-does_climb_trees	functional	6	0.240000
-has_corners	visual perceptual	6	0.240000
-does_go_off	encyclopaedic	5	0.243902
-is_practical	encyclopaedic	5	0.243902
-made_of_wire	visual perceptual	5	0.243902
-is_ancient_medieval	encyclopaedic	9	0.246575
+made_of_wire	visual perceptual	5	0.232558
+has_spots	visual perceptual	12	0.233010
+does_go_off	encyclopaedic	5	0.238095
+is_practical	encyclopaedic	5	0.238095
+is_ancient_medieval	encyclopaedic	9	0.240000
+is_found_in_flocks	encyclopaedic	6	0.240000
+has_big_eyes	visual perceptual	13	0.242991
+has_a_long_nose	visual perceptual	6	0.244898
+is_sticky	other perceptual	7	0.245614
+is_tropical	encyclopaedic	7	0.245614
 does_rattle	other perceptual	5	0.250000
-has_thin_legs	visual perceptual	8	0.250000
-is_wet	other perceptual	14	0.250000
-is_a_symbol	encyclopaedic	12	0.252632
-has_big_eyes	visual perceptual	13	0.254902
+does_swing	visual perceptual	5	0.250000
+has_a_big_beak	visual perceptual	5	0.250000
+has_big_back_legs	visual perceptual	6	0.250000
+has_big_feet	visual perceptual	5	0.250000
+is_modern	encyclopaedic	5	0.250000
+is_found_in_bedrooms	encyclopaedic	6	0.255319
+has_a_flat_bottom	visual perceptual	5	0.256410
 is_worn_by_men_and_women	functional	5	0.256410
-has_spots	visual perceptual	12	0.258065
-is_tropical	encyclopaedic	7	0.259259
-is_found_in_bedrooms	encyclopaedic	6	0.260870
-has_a_flat_bottom	visual perceptual	5	0.263158
-has_big_feet	visual perceptual	5	0.263158
-is_nocturnal	encyclopaedic	10	0.263158
-is_bumpy	visual perceptual	7	0.264151
-has_big_back_legs	visual perceptual	6	0.266667
-has_short_legs	visual perceptual	7	0.269231
-has_a_big_mouth	visual perceptual	5	0.270270
-has_two_arms	visual perceptual	5	0.270270
-is_graceful	visual perceptual	5	0.270270
-is_modern	encyclopaedic	5	0.270270
-is_posh	encyclopaedic	8	0.271186
-has_layers	visual perceptual	6	0.272727
-has_a_big_beak	visual perceptual	5	0.277778
-does_peck	functional	6	0.279070
-is_found_in_flocks	encyclopaedic	6	0.279070
-is_sticky	other perceptual	7	0.280000
-does_eat_anything	functional	8	0.280702
-has_a_long_nose	visual perceptual	6	0.285714
-is_cosy	other perceptual	6	0.285714
-is_cuboid	visual perceptual	5	0.285714
-is_powerful	encyclopaedic	5	0.285714
-is_roasted	functional	6	0.285714
+has_short_legs	visual perceptual	7	0.259259
+is_bumpy	visual perceptual	7	0.259259
+is_cuboid	visual perceptual	5	0.263158
+is_posh	encyclopaedic	8	0.266667
+does_dive	functional	7	0.269231
+is_powerful	encyclopaedic	5	0.270270
+does_peck	functional	6	0.272727
+made_of_gold	visual perceptual	6	0.272727
+does_eat_anything	functional	8	0.275862
+has_sharp_claws	visual perceptual	5	0.277778
+is_cosy	other perceptual	6	0.279070
+is_roasted	functional	6	0.279070
+is_added_to_cereal	encyclopaedic	5	0.285714
 is_savoury	other perceptual	5	0.285714
+is_worn_on_the_shoulder	functional	5	0.285714
 made_of_nylon	visual perceptual	6	0.285714
-has_green_leaves	visual perceptual	12	0.292683
-made_of_gold	visual perceptual	6	0.292683
-does_swing	visual perceptual	5	0.294118
-is_hung_on_walls	visual perceptual	5	0.294118
-does_fasten	functional	8	0.296296
-is_added_to_cereal	encyclopaedic	5	0.303030
-is_worn_on_the_shoulder	functional	5	0.303030
-is_underwater	encyclopaedic	7	0.311111
+does_fasten	functional	8	0.290909
+is_funny	encyclopaedic	6	0.292683
+made_of_cells	encyclopaedic	22	0.297297
+is_not_found_in_Britain	encyclopaedic	13	0.302326
+does_eat_worms	functional	5	0.303030
+has_many_legs	visual perceptual	5	0.303030
+is_graceful	visual perceptual	5	0.303030
+made_of_materials	encyclopaedic	5	0.303030
+is_a_symbol	encyclopaedic	12	0.303797
+is_striped	visual perceptual	14	0.304348
+does_sleep	functional	10	0.307692
+is_farmed	functional	11	0.309859
+has_varieties	encyclopaedic	16	0.310680
+is_fat	visual perceptual	12	0.311688
 is_casual	encyclopaedic	5	0.312500
+is_furry	visual perceptual	10	0.312500
+is_orange	visual perceptual	31	0.312500
 does_grow_on_plants	encyclopaedic	8	0.313725
+has_a_sharp_edge_edges	visual perceptual	8	0.313725
+has_a_top	visual perceptual	11	0.314286
+has_a_strong_flavour	other perceptual	14	0.314607
 has_a_bell	other perceptual	6	0.315789
 is_an_ingredient	taxonomic	6	0.315789
-has_a_strong_flavour	other perceptual	14	0.321839
-is_striped	visual perceptual	14	0.321839
-does_sleep	functional	10	0.322581
-has_many_legs	visual perceptual	5	0.322581
-has_sharp_claws	visual perceptual	5	0.322581
-is_furry	visual perceptual	10	0.322581
+is_blue	visual perceptual	18	0.315789
+made_of_plant_matter	encyclopaedic	6	0.315789
+made_of_wood_and_metal	visual perceptual	8	0.320000
 has_lights	visual perceptual	6	0.324324
-is_funny	encyclopaedic	6	0.324324
-does_dive	functional	7	0.325581
-made_of_wood_and_metal	visual perceptual	8	0.326531
-is_blue	visual perceptual	18	0.327273
-is_exotic	encyclopaedic	9	0.327273
-has_a_top	visual perceptual	11	0.328358
-made_of_cells	encyclopaedic	22	0.328358
-is_fat	visual perceptual	12	0.328767
-does_jump	functional	20	0.330579
+is_clever_intelligent	encyclopaedic	14	0.329412
+does_come_in_cans_tins	encyclopaedic	10	0.333333
 has_thick_fur	visual perceptual	5	0.333333
-is_farmed	functional	11	0.333333
-is_for_leisure_pleasure	functional	5	0.333333
-is_not_found_in_Britain	encyclopaedic	13	0.333333
+is_chopped	functional	6	0.333333
+is_domesticated	encyclopaedic	7	0.333333
+is_eaten_raw	functional	12	0.333333
 is_pulled	functional	5	0.333333
-made_of_materials	encyclopaedic	5	0.333333
-made_of_plant_matter	encyclopaedic	6	0.333333
+is_underwater	encyclopaedic	7	0.333333
 has_a_frame	visual perceptual	17	0.336634
+has_flowers	visual perceptual	10	0.338983
 is_a_device	encyclopaedic	9	0.339623
-is_clever_intelligent	encyclopaedic	14	0.341463
-is_eaten_raw	functional	12	0.342857
-has_a_short_tail	visual perceptual	6	0.352941
-has_horns	visual perceptual	6	0.352941
-is_chopped	functional	6	0.352941
-made_of_steel	visual perceptual	11	0.354839
-does_come_in_cans_tins	encyclopaedic	10	0.357143
-does_eat_worms	functional	5	0.357143
+is_stretchy	other perceptual	7	0.341463
+has_a_short_tail	visual perceptual	6	0.342857
+has_horns	visual perceptual	6	0.342857
+has_layers	visual perceptual	6	0.342857
+made_of_steel	visual perceptual	11	0.343750
+is_an_amphibian	taxonomic	5	0.344828
+is_for_leisure_pleasure	functional	5	0.344828
+is_nocturnal	encyclopaedic	10	0.344828
+is_percussion	encyclopaedic	5	0.344828
+is_worn_on_head	functional	5	0.344828
+has_green_leaves	visual perceptual	12	0.347826
+is_bitter	other perceptual	11	0.349206
+is_camouflaged	visual perceptual	11	0.349206
+does_race	functional	7	0.350000
+does_hop	functional	6	0.352941
+has_oil	encyclopaedic	12	0.352941
+has_a_strong_smell	other perceptual	8	0.355556
 has_yellow_flesh	visual perceptual	5	0.357143
-is_percussion	encyclopaedic	5	0.357143
-is_made_into_juice	functional	7	0.358974
-is_stretchy	other perceptual	7	0.358974
-does_hop	functional	6	0.363636
-has_a_strong_smell	other perceptual	8	0.363636
-has_flowers	visual perceptual	10	0.363636
-has_oil	encyclopaedic	12	0.363636
-is_baked	functional	6	0.363636
-has_sides	visual perceptual	11	0.366667
-is_bitter	other perceptual	11	0.366667
-has_varieties	encyclopaedic	16	0.367816
-does_race	functional	7	0.368421
-is_worn_on_head	functional	5	0.370370
-does_spin	functional	6	0.375000
-has_protein	encyclopaedic	9	0.375000
-is_for_adults	encyclopaedic	6	0.375000
-is_used_to_hold	functional	9	0.375000
-has_seeds	visual perceptual	14	0.378378
-has_styles	encyclopaedic	7	0.378378
-is_boiled	functional	13	0.382353
-does_walk	functional	19	0.383838
+is_used_to_make_jam	functional	5	0.357143
+is_used_to_hold	functional	9	0.360000
+has_sides	visual perceptual	11	0.360656
+has_eight_legs	visual perceptual	6	0.363636
+is_fluffy	other perceptual	12	0.363636
+is_for_adults	encyclopaedic	6	0.363636
+is_hunted_is_prey	functional	12	0.363636
+does_walk	functional	19	0.365385
+has_a_tongue	visual perceptual	13	0.366197
+is_boiled	functional	13	0.366197
+does_climb	functional	11	0.366667
+is_sliced	functional	9	0.367347
+has_seeds	visual perceptual	14	0.368421
+has_styles	encyclopaedic	7	0.368421
+is_made_into_juice	functional	7	0.368421
+has_holes	visual perceptual	19	0.368932
+has_jaws	visual perceptual	5	0.370370
+is_creepy	encyclopaedic	5	0.370370
+has_pincers	visual perceptual	8	0.372093
+is_refreshing	other perceptual	8	0.372093
+has_a_collar	visual perceptual	6	0.375000
+has_webbed_feet	visual perceptual	9	0.375000
+is_baked	functional	6	0.375000
+is_used_for_eating	functional	6	0.375000
+is_cylindrical	visual perceptual	25	0.375000
+does_jump	functional	20	0.377358
+has_a_long_neck	visual perceptual	10	0.377358
+does_protect_from_weather	functional	7	0.378378
+is_sold_bought	encyclopaedic	25	0.378788
+does_carry	functional	8	0.380952
+has_a_hood	visual perceptual	8	0.380952
+has_protein	encyclopaedic	9	0.382979
+is_any_size	visual perceptual	35	0.383721
 does_filter_feed	functional	5	0.384615
-has_a_deck	visual perceptual	5	0.384615
-made_of_synthetic_materials	visual perceptual	15	0.384615
-does_need_sunlight	encyclopaedic	6	0.387097
-has_a_collar	visual perceptual	6	0.387097
-is_fluffy	other perceptual	12	0.387097
-is_hunted_is_prey	functional	12	0.387097
-is_worn_around_the_neck	functional	6	0.387097
+is_ornate	visual perceptual	5	0.384615
+is_black_and_white	visual perceptual	17	0.386364
+does_spin	functional	6	0.387097
+is_found_in_grass	encyclopaedic	6	0.387097
+is_natural	visual perceptual	12	0.387097
+is_traditional	encyclopaedic	6	0.387097
 made_of_linen	visual perceptual	6	0.387097
-has_a_tongue	visual perceptual	13	0.388060
-is_domesticated	encyclopaedic	7	0.388889
-has_pincers	visual perceptual	8	0.390244
-is_refreshing	other perceptual	8	0.390244
-is_sold_bought	encyclopaedic	25	0.390625
-is_sliced	functional	9	0.391304
-is_an_accessory	taxonomic	10	0.392157
-does_climb	functional	11	0.392857
-is_black_and_white	visual perceptual	17	0.395349
-does_carry	functional	8	0.400000
+does_scavenge	functional	7	0.388889
+is_dirty	visual perceptual	16	0.390244
+has_a_long_tail	visual perceptual	19	0.391753
+does_scuttle_scurry	visual perceptual	10	0.392157
+has_a_shell	visual perceptual	22	0.392857
+is_purple	visual perceptual	16	0.395062
+does_bite	functional	15	0.400000
+does_live_in_hot_countries	encyclopaedic	14	0.400000
+does_measure	functional	6	0.400000
 does_play_notes	functional	5	0.400000
-does_scavenge	functional	7	0.400000
+does_warm	functional	6	0.400000
 has_a_bushy_tail	visual perceptual	5	0.400000
-has_a_hood	visual perceptual	8	0.400000
+has_a_hard_shell	visual perceptual	12	0.400000
+has_a_neck	visual perceptual	21	0.400000
 is_a_snack	functional	9	0.400000
-is_an_amphibian	taxonomic	5	0.400000
-is_camouflaged	visual perceptual	11	0.400000
-is_found_in_grass	encyclopaedic	6	0.400000
-is_hit	functional	8	0.400000
-is_natural	visual perceptual	12	0.400000
+is_common	encyclopaedic	20	0.400000
+is_disgusting	encyclopaedic	7	0.400000
+is_plain	visual perceptual	5	0.400000
 is_played_by_musicians	functional	5	0.400000
-is_used_for_eating	functional	6	0.400000
+is_unusual	encyclopaedic	6	0.400000
 is_used_in_pies	functional	5	0.400000
-is_used_to_make_jam	functional	5	0.400000
-is_eaten_as_dessert	functional	18	0.404494
-does_scuttle_scurry	visual perceptual	10	0.408163
-has_a_long_neck	visual perceptual	10	0.408163
-is_purple	visual perceptual	16	0.410256
-is_orange	visual perceptual	31	0.410596
-does_live_in_hot_countries	encyclopaedic	14	0.411765
+is_worn_over_clothes	functional	7	0.400000
+made_of_butter	encyclopaedic	5	0.400000
+does_eat_fish	functional	17	0.404762
+is_carried	functional	17	0.404762
+has_whiskers	visual perceptual	15	0.405405
+is_rare	encyclopaedic	15	0.405405
+does_eat_plants	functional	8	0.410256
+does_live_in_herds	encyclopaedic	8	0.410256
+does_squeak	other perceptual	8	0.410256
+has_a_lid	visual perceptual	16	0.410256
+is_a_root_vegetable	taxonomic	7	0.411765
+is_for_men	functional	13	0.412698
+is_ugly	visual perceptual	13	0.412698
 is_used_for_sandwiches	functional	13	0.412698
-does_warm	functional	6	0.413793
-is_found_in_cold_climates	encyclopaedic	6	0.413793
+is_cheap	encyclopaedic	24	0.413793
+is_for_soup	functional	12	0.413793
 is_rough	other perceptual	12	0.413793
-is_traditional	encyclopaedic	6	0.413793
-is_unusual	encyclopaedic	6	0.413793
-does_bite	functional	15	0.416667
-is_common	encyclopaedic	20	0.416667
-is_creepy	encyclopaedic	5	0.416667
-is_filling	encyclopaedic	5	0.416667
-is_ornate	visual perceptual	5	0.416667
-made_of_butter	encyclopaedic	5	0.416667
-made_of_silver	visual perceptual	10	0.416667
-has_a_neck	visual perceptual	21	0.420000
-does_live_in_herds	encyclopaedic	8	0.421053
-is_for_soup	functional	12	0.421053
-is_a_root_vegetable	taxonomic	7	0.424242
+has_a_big_mouth	visual perceptual	5	0.416667
+has_tentacles	visual perceptual	5	0.416667
+is_dried	visual perceptual	9	0.418605
+is_clear_transparent	visual perceptual	22	0.419048
+does_eat_leaves	functional	8	0.421053
+has_an_exoskeleton	visual perceptual	8	0.421053
+has_a_body	visual perceptual	33	0.423841
+is_fished	encyclopaedic	7	0.424242
 is_relaxing	encyclopaedic	7	0.424242
-has_a_lid	visual perceptual	16	0.426667
+is_patterned	visual perceptual	23	0.425926
 is_short	visual perceptual	16	0.426667
-has_eight_legs	visual perceptual	6	0.428571
-has_whiskers	visual perceptual	15	0.428571
-is_rare	encyclopaedic	15	0.428571
+does_fold	encyclopaedic	12	0.428571
+does_need_sunlight	encyclopaedic	6	0.428571
 is_used_to_build_used_by_builders	functional	9	0.428571
+is_worn_around_the_neck	functional	6	0.428571
 made_of_fruit	encyclopaedic	6	0.428571
-is_patterned	visual perceptual	23	0.429907
-has_an_exoskeleton	visual perceptual	8	0.432432
-is_cheap	encyclopaedic	24	0.432432
-is_formal	encyclopaedic	8	0.432432
-is_annoying	encyclopaedic	13	0.433333
 does_support_weight	functional	5	0.434783
-has_tentacles	visual perceptual	5	0.434783
 is_a_home	taxonomic	5	0.434783
-does_fold	encyclopaedic	12	0.436364
+is_filling	encyclopaedic	5	0.434783
 is_hollow	visual perceptual	19	0.436782
-is_pushed	functional	7	0.437500
+is_popular	encyclopaedic	21	0.437500
 is_used_by_farmers	functional	7	0.437500
-is_worn_over_clothes	functional	7	0.437500
-is_wrinkly	visual perceptual	7	0.437500
-is_dried	visual perceptual	9	0.439024
-is_for_men	functional	13	0.440678
-is_ugly	visual perceptual	13	0.440678
+is_exotic	encyclopaedic	9	0.439024
+is_eaten_by_humans	functional	11	0.440000
 is_flexible	other perceptual	17	0.441558
-is_popular	encyclopaedic	21	0.442105
-does_eat_plants	functional	8	0.444444
-does_measure	functional	6	0.444444
-does_squeak	other perceptual	8	0.444444
-has_a_hard_shell	visual perceptual	12	0.444444
-has_a_long_beak	visual perceptual	6	0.444444
 has_a_tyre_tyres	visual perceptual	6	0.444444
+has_long_legs	visual perceptual	14	0.444444
 has_valves	visual perceptual	6	0.444444
-is_cold_blooded	encyclopaedic	8	0.444444
-does_eat_fish	functional	17	0.447368
+is_a_crustacean	taxonomic	6	0.444444
+is_for_weddings	functional	8	0.444444
+is_found_in_America	encyclopaedic	12	0.444444
+is_dark	visual perceptual	18	0.450000
 is_for_sleep	functional	9	0.450000
-is_disgusting	encyclopaedic	7	0.451613
-is_fished	encyclopaedic	7	0.451613
-is_found_in_freshwater	encyclopaedic	7	0.451613
+does_pierce	functional	7	0.451613
+does_come_in_bags	visual perceptual	5	0.454545
+does_grip	functional	5	0.454545
+is_a_sea_animal	taxonomic	10	0.454545
+is_an_accessory	taxonomic	10	0.454545
 is_salty	other perceptual	10	0.454545
-does_eat_leaves	functional	8	0.457143
+made_of_synthetic_materials	visual perceptual	15	0.454545
+has_a_nose	visual perceptual	23	0.455446
+is_flat	visual perceptual	38	0.456790
 has_a_pedal_pedals	visual perceptual	8	0.457143
-is_for_weddings	functional	8	0.457143
 is_high_pitched	other perceptual	8	0.457143
-has_holes	visual perceptual	19	0.457831
 does_open	functional	11	0.458333
-is_eaten_by_humans	functional	11	0.458333
-has_a_strap_straps	visual perceptual	17	0.459459
-has_a_sharp_blade_blades	visual perceptual	6	0.461538
-is_a_crustacean	taxonomic	6	0.461538
-is_dark	visual perceptual	18	0.461538
-is_found_in_America	encyclopaedic	12	0.461538
-is_any_size	visual perceptual	35	0.465753
-has_advertising	visual perceptual	7	0.466667
-is_decorative	functional	25	0.467290
-has_hard_tough_skin	visual perceptual	11	0.468085
-has_a_nose	visual perceptual	23	0.469388
+has_hard_tough_skin	visual perceptual	11	0.458333
+has_a_mouth	visual perceptual	25	0.458716
+is_decorative	functional	25	0.458716
+is_disgusting_taste_bad	other perceptual	25	0.458716
+does_use_electricity	encyclopaedic	6	0.461538
+has_big_wings	visual perceptual	9	0.461538
+has_hands	visual perceptual	6	0.461538
+is_found_in_Asia	encyclopaedic	6	0.461538
+has_a_strap_straps	visual perceptual	17	0.465753
+does_eat_seeds	functional	7	0.466667
+has_a_clasp	visual perceptual	7	0.466667
+is_a_mollusc	taxonomic	7	0.466667
+has_two_legs	visual perceptual	22	0.468085
 has_flavours	other perceptual	8	0.470588
-is_light	other perceptual	59	0.471616
-is_manmade	encyclopaedic	21	0.471910
-has_decoration	visual perceptual	9	0.473684
+has_a_head	visual perceptual	52	0.471154
+is_tight	other perceptual	9	0.473684
+does_nest	functional	19	0.475000
 has_buckles	visual perceptual	5	0.476190
-is_a_dried_fruit	taxonomic	5	0.476190
-is_a_sea_animal	taxonomic	10	0.476190
+is_a_small_bird	encyclopaedic	5	0.476190
+is_smooth	other perceptual	33	0.478261
 is_fragile_delicate	encyclopaedic	17	0.478873
-does_use_electricity	encyclopaedic	6	0.480000
-has_a_chain	visual perceptual	6	0.480000
+has_a_segmented_body	visual perceptual	6	0.480000
 has_a_shaft	visual perceptual	6	0.480000
-has_hands	visual perceptual	6	0.480000
-does_eat_seeds	functional	7	0.482759
-does_keep_warm	functional	14	0.482759
-has_a_clasp	visual perceptual	7	0.482759
-is_a_mollusc	taxonomic	7	0.482759
+has_talons	visual perceptual	6	0.480000
+is_found_in_cold_climates	encyclopaedic	6	0.480000
+has_advertising	visual perceptual	7	0.482759
 does_roll	visual perceptual	15	0.483871
-is_used_in_cakes	functional	10	0.487805
-has_long_legs	visual perceptual	14	0.491228
-does_nest	functional	19	0.493506
+does_eat_animals	functional	8	0.484848
+has_a_rim	visual perceptual	8	0.484848
+does_pull	functional	9	0.486486
+is_found_in_forests_woods	encyclopaedic	19	0.487179
+is_aerodynamic_streamlined	encyclopaedic	13	0.490566
+is_golden	visual perceptual	13	0.490566
+is_red	visual perceptual	60	0.490566
+does_crawl	functional	27	0.490909
+is_poisonous	encyclopaedic	15	0.491803
+is_grey	visual perceptual	44	0.494253
+is_pink	visual perceptual	42	0.497041
 does_sink	visual perceptual	7	0.500000
+has_a_chain	visual perceptual	6	0.500000
+has_a_deck	visual perceptual	5	0.500000
 has_a_hull	visual perceptual	5	0.500000
 has_a_lock	visual perceptual	6	0.500000
-has_a_segmented_body	visual perceptual	6	0.500000
-has_big_wings	visual perceptual	9	0.500000
+has_arms	visual perceptual	19	0.500000
+has_bubbles	visual perceptual	5	0.500000
+has_numbers	visual perceptual	5	0.500000
+has_shelves	visual perceptual	5	0.500000
+has_two_parts	visual perceptual	6	0.500000
 is_a_vessel	taxonomic	5	0.500000
+is_associated_with_Christmas	encyclopaedic	15	0.500000
+is_bright	visual perceptual	5	0.500000
+is_cold	other perceptual	22	0.500000
+is_for_children	functional	38	0.500000
 is_for_holidays	functional	9	0.500000
-is_golden	visual perceptual	13	0.500000
-is_luxurious	encyclopaedic	5	0.500000
-is_poisonous	encyclopaedic	15	0.500000
+is_plucked	functional	5	0.500000
 is_slippery	other perceptual	12	0.500000
-is_tight	other perceptual	9	0.500000
-is_grey	visual perceptual	44	0.502924
-has_a_mouth	visual perceptual	25	0.505051
-is_squashy_squidgy_squishy	other perceptual	15	0.508475
-is_aerodynamic_streamlined	encyclopaedic	13	0.509804
-does_sing	other perceptual	12	0.510638
-is_uncomfortable	other perceptual	9	0.514286
-has_a_rim	visual perceptual	8	0.516129
-is_associated_with_Christmas	encyclopaedic	15	0.517241
-has_a_shell	visual perceptual	22	0.517647
-does_pierce	functional	7	0.518519
+is_slow	visual perceptual	25	0.500000
+is_uncomfortable	other perceptual	9	0.500000
+is_used_in_cakes	functional	10	0.500000
+is_aggressive	encyclopaedic	25	0.505051
+is_sold_bought_in_supermarkets_shops	encyclopaedic	45	0.509091
+is_scary	encyclopaedic	35	0.510949
+has_a_stone	visual perceptual	9	0.514286
+has_a_sharp_point	visual perceptual	8	0.516129
+is_hit	functional	8	0.516129
+is_squashy_squidgy_squishy	other perceptual	15	0.517241
+does_stunts_tricks	encyclopaedic	7	0.518519
 has_a_light	visual perceptual	7	0.518519
+is_kept_in_fridge	encyclopaedic	7	0.518519
 made_of_carbohydrate_starch	encyclopaedic	7	0.518519
-is_cylindrical	visual perceptual	25	0.520833
+does_come_in_colours	visual perceptual	42	0.520000
 does_not_fly	encyclopaedic	6	0.521739
-has_two_parts	visual perceptual	6	0.521739
-is_found_in_Asia	encyclopaedic	6	0.521739
-is_carried	functional	17	0.523077
+is_fashionable	encyclopaedic	18	0.521739
+is_romantic	encyclopaedic	6	0.521739
 is_for_one_person	functional	11	0.523810
-does_grip	functional	5	0.526316
-has_numbers	visual perceptual	5	0.526316
-is_a_big_cat	encyclopaedic	5	0.526316
-is_a_small_bird	encyclopaedic	5	0.526316
+is_a_chair	taxonomic	5	0.526316
 is_a_string_instrument	taxonomic	5	0.526316
-is_bright	visual perceptual	5	0.526316
 is_buoyant	visual perceptual	5	0.526316
-is_plucked	functional	5	0.526316
-is_smooth	other perceptual	33	0.528000
-does_pull	functional	9	0.529412
-is_slow	visual perceptual	25	0.531915
-has_a_sharp_point	visual perceptual	8	0.533333
+is_used_by_soldiers	functional	5	0.526316
+is_light	other perceptual	59	0.528302
+is_thin	visual perceptual	86	0.529851
+made_of_bones	visual perceptual	43	0.530864
 has_fat	encyclopaedic	12	0.533333
+is_associated_with_summer	encyclopaedic	28	0.533333
+made_of_ceramic_china_clay_porcelain	visual perceptual	18	0.537313
+is_watertight_waterproof	functional	24	0.539326
+is_black	visual perceptual	103	0.539792
+does_move	functional	36	0.541353
+has_skin	visual perceptual	37	0.544118
+has_prongs	visual perceptual	6	0.545455
 is_filled	encyclopaedic	6	0.545455
-is_found_in_on_cars	encyclopaedic	6	0.545455
-is_romantic	encyclopaedic	6	0.545455
+is_cute	encyclopaedic	38	0.546763
+is_silver	visual perceptual	20	0.547945
 is_found_in_homes_houses	encyclopaedic	17	0.548387
-is_clear_transparent	visual perceptual	22	0.550000
-does_eat_animals	functional	8	0.551724
-is_used_for_hunting	functional	8	0.551724
-does_move	functional	36	0.553846
+made_of_glass	visual perceptual	33	0.550000
+is_smoked	other perceptual	8	0.551724
 does_display	visual perceptual	5	0.555556
-has_compartments	visual perceptual	5	0.555556
-has_shelves	visual perceptual	5	0.555556
-has_toes	visual perceptual	5	0.555556
-is_a_chair	taxonomic	5	0.555556
-is_used_by_doctors	functional	5	0.555556
-is_used_by_soldiers	functional	5	0.555556
+does_need_cleaning	encyclopaedic	5	0.555556
+is_a_dried_fruit	taxonomic	5	0.555556
+is_citrus	other perceptual	5	0.555556
 made_of_tissue	encyclopaedic	5	0.555556
-is_watertight_waterproof	functional	24	0.558140
-is_dirty	visual perceptual	16	0.561404
-is_flat	visual perceptual	38	0.562963
-has_prongs	visual perceptual	6	0.571429
-is_played_with	functional	12	0.571429
+is_meat	functional	19	0.558824
+is_old_fashioned	encyclopaedic	43	0.562092
+is_a_gift	functional	11	0.564103
+is_yellow	visual perceptual	58	0.570000
+has_a_sharp_blade_blades	visual perceptual	6	0.571429
+is_found_in_on_cars	encyclopaedic	6	0.571429
 made_of_fibre_glass	encyclopaedic	10	0.571429
 made_of_flour	encyclopaedic	6	0.571429
-made_of_leather	visual perceptual	27	0.574468
-is_yellow	visual perceptual	58	0.575758
-is_solid	other perceptual	15	0.576923
-has_a_long_handle	visual perceptual	11	0.578947
-is_cold	other perceptual	22	0.578947
+made_of_rubber	visual perceptual	33	0.573913
+is_rectangular_square	visual perceptual	47	0.575000
+is_shiny	visual perceptual	49	0.575000
+has_buttons	visual perceptual	26	0.577778
+is_annoying	encyclopaedic	13	0.577778
 made_of_brass	visual perceptual	11	0.578947
-is_silver	visual perceptual	20	0.579710
-has_a_plug	visual perceptual	9	0.580645
 is_important	encyclopaedic	9	0.580645
+made_of_canvas	visual perceptual	9	0.580645
+made_of_leather	visual perceptual	27	0.580645
+has_a_point	visual perceptual	38	0.582677
 does_carry_disease	encyclopaedic	7	0.583333
-does_stunts_tricks	encyclopaedic	7	0.583333
+does_damage	functional	7	0.583333
 does_wriggle	visual perceptual	7	0.583333
-is_sold_bought_in_supermarkets_shops	encyclopaedic	45	0.584416
-is_thick	visual perceptual	19	0.584615
-does_come_in_colours	visual perceptual	42	0.585714
+is_manmade	encyclopaedic	21	0.583333
+is_pushed	functional	7	0.583333
+is_used_for_gardening	functional	7	0.583333
+is_played_with	functional	12	0.585366
 does_fire	functional	5	0.588235
-does_need_cleaning	encyclopaedic	5	0.588235
+has_a_sharp_beak	visual perceptual	5	0.588235
+has_a_sting	other perceptual	5	0.588235
+has_toes	visual perceptual	5	0.588235
+is_a_bird_of_prey	taxonomic	5	0.588235
 is_a_citrus_fruit	taxonomic	5	0.588235
 is_an_electrical_appliance	taxonomic	5	0.588235
-is_citrus	other perceptual	5	0.588235
-made_of_ceramic_china_clay_porcelain	visual perceptual	18	0.590164
-is_smoked	other perceptual	8	0.592593
-has_a_long_tail	visual perceptual	19	0.593750
-is_a_gift	functional	11	0.594595
-made_of_cardboard_card	visual perceptual	9	0.600000
+is_found_in_gardens	encyclopaedic	40	0.588235
+is_hung_on_walls	visual perceptual	5	0.588235
+is_solid	other perceptual	15	0.588235
+does_turn	functional	8	0.592593
+is_handheld	functional	45	0.596026
+has_windows	visual perceptual	16	0.603774
 is_tall	visual perceptual	29	0.604167
 has_edges	visual perceptual	7	0.608696
-is_used_for_gardening	functional	7	0.608696
 is_a_toy	taxonomic	22	0.611111
-is_thin	visual perceptual	86	0.614173
+does_break	encyclopaedic	26	0.611765
 does_bloom	functional	8	0.615385
+has_six_legs	visual perceptual	20	0.615385
 is_a_wind_instrument	taxonomic	8	0.615385
 is_found_in_bathrooms	encyclopaedic	8	0.615385
-is_hard	other perceptual	80	0.615385
+is_found_on_beaches	encyclopaedic	16	0.615385
+is_sexy	encyclopaedic	8	0.615385
+is_slimy	other perceptual	21	0.617647
+has_a_plug	visual perceptual	9	0.620690
 has_a_wire_cord_cable	visual perceptual	9	0.620690
-is_for_children	functional	38	0.622951
-has_a_sharp_beak	visual perceptual	5	0.625000
-has_a_sting	other perceptual	5	0.625000
-has_two_wings	visual perceptual	5	0.625000
-is_a_bird_of_prey	taxonomic	5	0.625000
-made_of_iron	visual perceptual	5	0.625000
+is_entertaining_fun	encyclopaedic	37	0.621849
+is_long	visual perceptual	126	0.622356
+is_hard	other perceptual	80	0.623482
+does_live_in_jungles	encyclopaedic	5	0.625000
+is_luxurious	encyclopaedic	5	0.625000
+is_used_by_doctors	functional	5	0.625000
+is_found_in_fields	encyclopaedic	16	0.627451
 does_pollute	functional	6	0.631579
-has_talons	visual perceptual	6	0.631579
-is_a_container	taxonomic	18	0.631579
-does_damage	functional	7	0.636364
-is_oily	other perceptual	7	0.636364
-is_found_on_beaches	encyclopaedic	16	0.653061
-has_pips_seeds	visual perceptual	22	0.656716
-is_disgusting_taste_bad	other perceptual	25	0.657895
-has_a_body	visual perceptual	33	0.660000
+does_scoop	functional	6	0.631579
+is_eaten_as_dessert	functional	18	0.631579
+has_flesh	visual perceptual	61	0.633880
+is_white	visual perceptual	111	0.637500
+has_pips_seeds	visual perceptual	22	0.637681
+is_for_special_occasions	functional	8	0.640000
+is_strong	encyclopaedic	84	0.640316
+is_soft	other perceptual	85	0.640625
+made_of_milk	encyclopaedic	9	0.642857
+does_protect	functional	38	0.643478
+does_come_in_pairs	visual perceptual	20	0.645161
+is_worn_in_winter	functional	10	0.645161
+made_of_water_is_watery	encyclopaedic	20	0.645161
+is_used_for_baking	functional	11	0.647059
+is_used_in_sport	functional	23	0.647887
+does_keep_warm	functional	14	0.651163
+is_heavy	other perceptual	108	0.655738
+does_kill	functional	43	0.656489
+is_green	visual perceptual	76	0.657534
 does_shelter	functional	5	0.666667
 has_a_propeller	visual perceptual	6	0.666667
-has_two_legs	visual perceptual	22	0.666667
+is_caught	encyclopaedic	8	0.666667
+is_eaten_in_salad	functional	15	0.666667
 is_found_in_schools	encyclopaedic	13	0.666667
 is_found_on_bicycles	visual perceptual	5	0.666667
+is_from_Australia	encyclopaedic	6	0.666667
 is_smart	encyclopaedic	7	0.666667
-is_worn_in_winter	functional	10	0.666667
-made_of_water_is_watery	encyclopaedic	20	0.666667
-is_pink	visual perceptual	42	0.672000
-has_sugar	encyclopaedic	17	0.680000
-is_eaten_in_salad	functional	15	0.681818
-made_of_elastic	visual perceptual	12	0.685714
-does_DIY	functional	11	0.687500
-is_used_for_baking	functional	11	0.687500
-made_of_polyester	visual perceptual	11	0.687500
+made_of_elastic	visual perceptual	12	0.666667
+made_of_iron	visual perceptual	5	0.666667
+is_colourful	visual perceptual	75	0.669767
+does_eat_insects	functional	17	0.680000
+has_big_teeth	visual perceptual	16	0.680851
+is_for_women_females_girls	functional	32	0.680851
+is_electric	visual perceptual	28	0.682927
+is_endangered	encyclopaedic	19	0.690909
 has_strings	visual perceptual	9	0.692308
-made_of_milk	encyclopaedic	9	0.692308
-made_of_bones	visual perceptual	43	0.693548
-does_turn	functional	8	0.695652
-is_for_special_occasions	functional	8	0.695652
-is_found_in_sheds	encyclopaedic	8	0.695652
+made_of_cardboard_card	visual perceptual	9	0.692308
+is_brown	visual perceptual	127	0.693009
+has_sugar	encyclopaedic	17	0.693878
 is_sour_sharp_acidic	other perceptual	15	0.697674
 is_crunchy	other perceptual	14	0.700000
-is_herbivorous	encyclopaedic	14	0.700000
-is_used_to_see	functional	6	0.705882
+is_circular_round	visual perceptual	124	0.704050
+does_grow_in_ground	encyclopaedic	31	0.704545
+does_live_in_trees	encyclopaedic	12	0.705882
+is_addictive	functional	6	0.705882
+is_kept_in_a_cage	encyclopaedic	6	0.705882
 is_used_to_wash	functional	6	0.705882
 is_worn_on_upper_body	functional	6	0.705882
-has_big_teeth	visual perceptual	16	0.711111
+is_used_in_army_military	functional	11	0.709677
+does_live_in_rivers	encyclopaedic	16	0.711111
 does_go_on_roads	functional	10	0.714286
-does_live_in_jungles	encyclopaedic	5	0.714286
 does_provide_shade	functional	5	0.714286
-is_red	visual perceptual	60	0.714286
+has_a_waistband	visual perceptual	5	0.714286
+has_two_wings	visual perceptual	5	0.714286
+is_worn_by_humans	functional	5	0.714286
+is_found_in_Britain_UK_England	encyclopaedic	38	0.716981
+has_thick_skin	visual perceptual	14	0.717949
+has_vitamins	encyclopaedic	14	0.717949
 has_a_back	visual perceptual	9	0.720000
 has_blood	encyclopaedic	9	0.720000
-is_fatty_fattening	encyclopaedic	9	0.720000
-has_a_head	visual perceptual	52	0.722222
-does_use_fuel_diesel_petrol	encyclopaedic	17	0.723404
-has_skin	visual perceptual	37	0.725490
-does_live_in_trees	encyclopaedic	12	0.727273
-is_sexy	encyclopaedic	8	0.727273
-is_endangered	encyclopaedic	19	0.730769
-is_used_in_army_military	functional	11	0.733333
+is_used_to_secure	functional	9	0.720000
+is_found_in_zoos	encyclopaedic	17	0.723404
+made_of_paper	visual perceptual	24	0.727273
+does_lay_eggs	encyclopaedic	50	0.729927
+is_pretty_attractive_beautiful	encyclopaedic	74	0.730000
+has_a_long_handle	visual perceptual	11	0.733333
+is_an_invertebrate	taxonomic	11	0.733333
 has_ears	visual perceptual	29	0.734177
-has_vitamins	encyclopaedic	14	0.736842
-is_kept_in_fridge	encyclopaedic	7	0.736842
-is_handheld	functional	45	0.737705
-does_crawl	functional	27	0.739726
-is_old_fashioned	encyclopaedic	43	0.747826
-does_scoop	functional	6	0.750000
+does_stab	functional	7	0.736842
+has_passengers	functional	7	0.736842
+is_found_in_freshwater	encyclopaedic	7	0.736842
+does_hunt	functional	17	0.739130
+does_use_fuel_diesel_petrol	encyclopaedic	17	0.739130
+is_wild	encyclopaedic	30	0.740741
+does_cover	functional	23	0.741935
+does_smell_is_smelly	other perceptual	57	0.745098
+does_run	functional	31	0.746988
+is_dangerous	encyclopaedic	101	0.746988
+does_buzz	other perceptual	6	0.750000
+has_a_long_beak	visual perceptual	6	0.750000
 has_gunpowder	encyclopaedic	6	0.750000
 is_a_pest	encyclopaedic	18	0.750000
-is_fermented	other perceptual	6	0.750000
 is_printed	encyclopaedic	6	0.750000
-is_white	visual perceptual	111	0.755245
-is_found_in_gardens	encyclopaedic	40	0.761905
-is_strong	encyclopaedic	84	0.764977
-is_shiny	visual perceptual	49	0.765625
-does_lock	functional	5	0.769231
+is_tasteless_bland	other perceptual	9	0.750000
+is_used_to_see	functional	6	0.750000
+is_fast	visual perceptual	65	0.755814
+is_a_carnivore_eats_meat	functional	22	0.758621
+is_thick	visual perceptual	19	0.760000
+is_cold_blooded	encyclopaedic	8	0.761905
+is_used_for_hunting	functional	8	0.761905
+does_make_sound_a_noise	other perceptual	43	0.763636
+does_eat_flies	functional	5	0.769231
 does_store	functional	15	0.769231
-has_a_waistband	visual perceptual	5	0.769231
+has_a_crew	encyclopaedic	5	0.769231
 has_brakes	encyclopaedic	5	0.769231
-is_worn_by_humans	functional	5	0.769231
-is_heavy	other perceptual	108	0.770909
-is_black	visual perceptual	103	0.770992
-does_eat_insects	functional	17	0.772727
-is_green	visual perceptual	76	0.775510
-has_buttons	visual perceptual	26	0.776119
-has_thick_skin	visual perceptual	14	0.777778
-is_associated_with_summer	encyclopaedic	28	0.777778
-is_wild	encyclopaedic	30	0.779221
-does_live_in_rivers	encyclopaedic	16	0.780488
-is_tasteless_bland	other perceptual	9	0.782609
-has_a_point	visual perceptual	38	0.783505
-is_an_invertebrate	taxonomic	11	0.785714
-made_of_rubber	visual perceptual	33	0.785714
-made_of_glass	visual perceptual	33	0.795181
-is_scary	encyclopaedic	35	0.795455
-is_rectangular_square	visual perceptual	47	0.796610
+has_compartments	visual perceptual	5	0.769231
+has_feet	visual perceptual	55	0.769231
+is_a_big_cat	encyclopaedic	5	0.769231
+is_written	encyclopaedic	5	0.769231
+is_comfortable	other perceptual	27	0.771429
+does_float	functional	22	0.771930
+has_sleeves	visual perceptual	12	0.774194
+is_ridden	functional	12	0.774194
+has_claws	visual perceptual	47	0.776860
+is_herbivorous	encyclopaedic	14	0.777778
+is_oily	other perceptual	7	0.777778
+is_big_large	visual perceptual	197	0.779582
+does_hold_things_together	functional	9	0.782609
+is_fatty_fattening	encyclopaedic	9	0.782609
+does_need_water	encyclopaedic	20	0.784314
+has_a_stalk_stem	visual perceptual	42	0.785047
+is_alive	encyclopaedic	88	0.789238
+has_muscles	encyclopaedic	15	0.789474
+is_warm	other perceptual	27	0.794118
+does_hurt	functional	26	0.800000
 does_run_fast	functional	8	0.800000
+has_an_exhaust	visual perceptual	6	0.800000
 has_segments	visual perceptual	8	0.800000
-is_caught	encyclopaedic	8	0.800000
-is_cute	encyclopaedic	38	0.800000
-is_kept_in_a_cage	encyclopaedic	6	0.800000
+is_a_reptile	taxonomic	8	0.800000
+is_formal	encyclopaedic	8	0.800000
+is_found_in_sheds	encyclopaedic	8	0.800000
 is_worn_on_feet	functional	8	0.800000
-does_grow_in_hot_countries	encyclopaedic	15	0.810811
+does_travel	functional	25	0.806452
+does_smell_good_nice	other perceptual	23	0.807018
+does_eat_grass	functional	17	0.809524
+is_expensive	encyclopaedic	66	0.809816
 has_a_cover	visual perceptual	15	0.810811
-has_muscles	encyclopaedic	15	0.810811
-does_break	encyclopaedic	26	0.812500
-is_colourful	visual perceptual	75	0.815217
-does_hold_things_together	functional	9	0.818182
+does_hold_contain_liquid_water	functional	13	0.812500
+is_grown	functional	50	0.813008
+does_carry_transport_people	functional	22	0.814815
+does_reproduce	functional	18	0.818182
+does_sail	functional	9	0.818182
+is_a_pet	functional	18	0.818182
 is_used_in_battle_war	functional	18	0.818182
-is_used_to_secure	functional	9	0.818182
-does_stab	functional	7	0.823529
+is_noisy_loud	other perceptual	79	0.822917
+has_stamens	visual perceptual	7	0.823529
 is_a_shellfish	taxonomic	7	0.823529
-does_grow_in_ground	encyclopaedic	31	0.826667
-is_long	visual perceptual	126	0.826667
-is_ridden	functional	12	0.827586
-is_soft	other perceptual	85	0.829268
-is_brown	visual perceptual	127	0.831683
+has_paws	visual perceptual	19	0.826087
+has_a_blade_blades	visual perceptual	24	0.827586
+has_a_seat_seats	visual perceptual	36	0.827586
+has_four_wheels	visual perceptual	17	0.829268
+is_used_in_cooking	functional	79	0.831579
 does_chop	functional	5	0.833333
-does_eat_flies	functional	5	0.833333
+does_grow_in_hot_countries	encyclopaedic	15	0.833333
+does_lock	functional	5	0.833333
 has_a_base	visual perceptual	15	0.833333
-has_bubbles	visual perceptual	5	0.833333
 has_hair	visual perceptual	5	0.833333
-is_found_in_Africa	encyclopaedic	15	0.833333
+is_used_by_police	functional	5	0.833333
 made_of_tendons	encyclopaedic	5	0.833333
-does_smell_good_nice	other perceptual	23	0.836364
-does_carry_transport_goods	functional	18	0.837209
-does_reproduce	functional	18	0.837209
-is_fashionable	encyclopaedic	18	0.837209
-does_smell_is_smelly	other perceptual	57	0.838235
-is_fast	visual perceptual	65	0.838710
-has_feet	visual perceptual	55	0.839695
-is_slimy	other perceptual	21	0.840000
-is_a_reptile	taxonomic	8	0.842105
+is_a_container	taxonomic	18	0.837209
+is_small	visual perceptual	261	0.837736
+has_scales	visual perceptual	21	0.840000
+has_an_edge	visual perceptual	8	0.842105
+has_antenna	visual perceptual	24	0.842105
+is_a_kitchen_utensil	taxonomic	8	0.842105
+does_DIY	functional	11	0.846154
+made_of_polyester	visual perceptual	11	0.846154
+does_live_in_water	encyclopaedic	31	0.849315
+does_contain_hold	functional	20	0.851064
+has_fur_hair	visual perceptual	58	0.852941
+does_heat	functional	6	0.857143
+does_sing	other perceptual	12	0.857143
 has_a_dial	visual perceptual	6	0.857143
-has_antenna	visual perceptual	24	0.857143
 has_pith	visual perceptual	6	0.857143
-has_webbed_feet	visual perceptual	9	0.857143
-is_addictive	functional	6	0.857143
 is_deciduous	encyclopaedic	6	0.857143
 is_used_to_make_furniture	functional	6	0.857143
-made_of_canvas	visual perceptual	9	0.857143
 made_of_nerves	encyclopaedic	6	0.857143
-is_meat	functional	19	0.863636
-is_found_in_fields	encyclopaedic	16	0.864865
-does_hold_contain_liquid_water	functional	13	0.866667
-does_need_water	encyclopaedic	20	0.869565
+has_a_handle_handles	visual perceptual	92	0.863850
+made_of_silk	visual perceptual	16	0.864865
+is_thrown	functional	13	0.866667
+has_information	encyclopaedic	10	0.869565
 is_a_garden_tool	taxonomic	10	0.869565
+is_food	taxonomic	84	0.870466
+has_roots	visual perceptual	34	0.871795
+has_sharp_teeth	visual perceptual	17	0.871795
+made_of_wood	visual perceptual	144	0.874618
+does_carry_transport	functional	42	0.875000
 does_dig	functional	7	0.875000
-has_stamens	visual perceptual	7	0.875000
-does_hurt	functional	26	0.881356
-is_a_predator	taxonomic	19	0.883721
+is_useful	encyclopaedic	157	0.881844
+is_found_in_Africa	encyclopaedic	15	0.882353
+has_a_tail	visual perceptual	95	0.883721
+has_skin_peel	visual perceptual	39	0.886364
 does_burn	functional	8	0.888889
 has_a_wooden_handle	visual perceptual	8	0.888889
-has_an_edge	visual perceptual	8	0.888889
-has_six_legs	visual perceptual	20	0.888889
-is_a_kitchen_utensil	taxonomic	8	0.888889
-is_found_in_tool_box	encyclopaedic	8	0.888889
-made_of_paper	visual perceptual	24	0.888889
-is_found_in_zoos	encyclopaedic	17	0.894737
-does_kill	functional	43	0.895833
-is_thrown	functional	13	0.896552
-has_a_stone	visual perceptual	9	0.900000
-is_a_pet	functional	18	0.900000
+has_eyes	visual perceptual	114	0.890625
+is_sweet	other perceptual	46	0.893204
+has_teeth	visual perceptual	42	0.893617
 is_an_appliance	taxonomic	9	0.900000
-does_kill_people	functional	14	0.903226
-has_arms	visual perceptual	19	0.904762
-is_found_in_forests_woods	encyclopaedic	19	0.904762
-has_a_crew	encyclopaedic	5	0.909091
-is_used_by_police	functional	5	0.909091
+is_sharp	other perceptual	47	0.903846
+does_cut	functional	19	0.904762
+has_a_door_doors	visual perceptual	25	0.909091
+has_four_legs	visual perceptual	60	0.909091
+is_footwear	taxonomic	5	0.909091
+is_hard_to_play	encyclopaedic	10	0.909091
+is_healthy	encyclopaedic	56	0.910569
+has_leaves	visual perceptual	46	0.910891
+does_grow_on_trees	encyclopaedic	22	0.916667
+has_a_picture_pictures	visual perceptual	11	0.916667
 has_pollen	other perceptual	11	0.916667
-has_sharp_teeth	visual perceptual	17	0.918919
-is_used_in_sport	functional	23	0.920000
-does_buzz	other perceptual	6	0.923077
-does_heat	functional	6	0.923077
-has_sleeves	visual perceptual	12	0.923077
+does_sting	other perceptual	6	0.923077
 is_a_cat	taxonomic	6	0.923077
 is_a_drug	taxonomic	6	0.923077
 is_eaten_by_birds	functional	6	0.923077
+is_fermented	other perceptual	6	0.923077
 is_for_walking	functional	6	0.923077
-does_come_in_pairs	visual perceptual	20	0.930233
-does_contain_hold	functional	20	0.952381
+does_photosynthesise	encyclopaedic	27	0.931034
+does_kill_people	functional	14	0.933333
+is_digital	visual perceptual	7	0.933333
+is_found_in_tool_box	encyclopaedic	8	0.941176
+has_legs	visual perceptual	139	0.941980
+is_a_tool	taxonomic	59	0.944000
+is_eaten_edible	functional	138	0.944828
+does_eat	functional	124	0.946565
+is_a_vegetable	taxonomic	27	0.947368
+made_of_plastic	visual perceptual	194	0.948403
+has_keys	visual perceptual	10	0.952381
 made_of_chemicals	encyclopaedic	10	0.952381
 made_of_stone	visual perceptual	10	0.952381
+made_of_fabric_cloth_material	visual perceptual	72	0.953642
 is_used_for_cleaning	functional	11	0.956522
 is_a_boat	taxonomic	12	0.960000
-is_circular_round	visual perceptual	124	0.964981
-does_eat_grass	functional	17	0.971429
-has_flesh	visual perceptual	61	0.976000
-is_warm	other perceptual	27	0.981818
-is_found_in_Britain_UK_England	encyclopaedic	38	0.987013
+is_tasty	other perceptual	113	0.961702
+does_grow	functional	87	0.966667
+is_a_weapon	taxonomic	32	0.969697
+is_a_fruit	taxonomic	34	0.971429
+is_found_in_kitchens	encyclopaedic	38	0.974359
+is_worn	functional	56	0.982456
+made_of_metal	visual perceptual	226	0.984683
+has_feathers	visual perceptual	39	0.987342
 does_bend	other perceptual	8	1.000000
-does_carry_transport	functional	42	1.000000
-does_carry_transport_people	functional	22	1.000000
-does_cover	functional	23	1.000000
-does_cut	functional	19	1.000000
+does_carry_transport_goods	functional	18	1.000000
 does_drive_is_driven	functional	16	1.000000
-does_eat	functional	124	1.000000
-does_float	functional	22	1.000000
 does_fly	functional	53	1.000000
-does_grow	functional	87	1.000000
-does_grow_on_trees	encyclopaedic	22	1.000000
-does_hunt	functional	17	1.000000
 does_keep_dry	functional	6	1.000000
-does_lay_eggs	encyclopaedic	50	1.000000
-does_live_in_water	encyclopaedic	31	1.000000
 does_make_music	functional	22	1.000000
-does_make_sound_a_noise	other perceptual	43	1.000000
 does_make_you_drunk	functional	7	1.000000
 does_move_earth	functional	6	1.000000
-does_photosynthesise	encyclopaedic	27	1.000000
-does_protect	functional	38	1.000000
-does_run	functional	31	1.000000
-does_sail	functional	9	1.000000
-does_sting	other perceptual	6	1.000000
 does_swim	functional	40	1.000000
-does_travel	functional	25	1.000000
 has_a_barrel	visual perceptual	6	1.000000
 has_a_beak	visual perceptual	40	1.000000
-has_a_blade_blades	visual perceptual	24	1.000000
-has_a_door_doors	visual perceptual	25	1.000000
-has_a_handle_handles	visual perceptual	92	1.000000
 has_a_lens	visual perceptual	5	1.000000
 has_a_mirror	visual perceptual	7	1.000000
 has_a_mouthpiece	visual perceptual	10	1.000000
-has_a_picture_pictures	visual perceptual	11	1.000000
 has_a_rudder	visual perceptual	6	1.000000
-has_a_seat_seats	visual perceptual	36	1.000000
 has_a_sight	visual perceptual	6	1.000000
 has_a_sole	visual perceptual	5	1.000000
-has_a_stalk_stem	visual perceptual	42	1.000000
 has_a_steering_wheel	visual perceptual	9	1.000000
-has_a_tail	visual perceptual	95	1.000000
 has_a_trigger	visual perceptual	7	1.000000
 has_a_trunk	visual perceptual	9	1.000000
 has_a_zip	visual perceptual	15	1.000000
 has_an_anchor	visual perceptual	5	1.000000
 has_an_engine	visual perceptual	28	1.000000
-has_an_exhaust	visual perceptual	6	1.000000
 has_bark	visual perceptual	9	1.000000
 has_branches	visual perceptual	9	1.000000
 has_bullets	encyclopaedic	5	1.000000
-has_claws	visual perceptual	47	1.000000
 has_cushions	visual perceptual	8	1.000000
-has_eyes	visual perceptual	114	1.000000
-has_feathers	visual perceptual	39	1.000000
 has_fins	visual perceptual	18	1.000000
-has_four_legs	visual perceptual	60	1.000000
-has_four_wheels	visual perceptual	17	1.000000
-has_fur_hair	visual perceptual	58	1.000000
 has_gills	visual perceptual	15	1.000000
 has_good_eyesight	encyclopaedic	6	1.000000
 has_hooves	visual perceptual	17	1.000000
-has_information	encyclopaedic	10	1.000000
 has_ink	visual perceptual	10	1.000000
 has_joints	visual perceptual	8	1.000000
-has_keys	visual perceptual	10	1.000000
-has_leaves	visual perceptual	46	1.000000
-has_legs	visual perceptual	139	1.000000
 has_pages	visual perceptual	9	1.000000
-has_passengers	functional	7	1.000000
-has_paws	visual perceptual	19	1.000000
 has_petals	visual perceptual	17	1.000000
 has_pockets	visual perceptual	12	1.000000
-has_roots	visual perceptual	34	1.000000
 has_sails	visual perceptual	5	1.000000
-has_scales	visual perceptual	21	1.000000
-has_skin_peel	visual perceptual	39	1.000000
-has_teeth	visual perceptual	42	1.000000
 has_wheels	visual perceptual	31	1.000000
-has_windows	visual perceptual	16	1.000000
 has_wings	visual perceptual	52	1.000000
 has_words	visual perceptual	11	1.000000
 is_a_bird	taxonomic	35	1.000000
 is_a_body_part	taxonomic	12	1.000000
-is_a_carnivore_eats_meat	functional	22	1.000000
 is_a_drink	taxonomic	11	1.000000
 is_a_fish	taxonomic	22	1.000000
 is_a_flower	taxonomic	15	1.000000
-is_a_fruit	taxonomic	34	1.000000
 is_a_gun	taxonomic	5	1.000000
 is_a_kitchen_appliance	taxonomic	6	1.000000
 is_a_mammal	taxonomic	51	1.000000
 is_a_musical_instrument	taxonomic	23	1.000000
 is_a_plant	taxonomic	46	1.000000
+is_a_predator	taxonomic	19	1.000000
 is_a_rodent	taxonomic	11	1.000000
-is_a_tool	taxonomic	59	1.000000
 is_a_tree	taxonomic	9	1.000000
 is_a_utensil	taxonomic	12	1.000000
-is_a_vegetable	taxonomic	27	1.000000
 is_a_vehicle	taxonomic	26	1.000000
-is_a_weapon	taxonomic	32	1.000000
-is_aggressive	encyclopaedic	25	1.000000
 is_alcoholic	encyclopaedic	7	1.000000
-is_alive	encyclopaedic	88	1.000000
 is_an_animal	taxonomic	143	1.000000
 is_an_insect	taxonomic	26	1.000000
-is_big_large	visual perceptual	197	1.000000
 is_blown	functional	12	1.000000
 is_clothing	taxonomic	41	1.000000
-is_comfortable	other perceptual	27	1.000000
-is_dangerous	encyclopaedic	101	1.000000
-is_digital	visual perceptual	7	1.000000
 is_drunk	functional	12	1.000000
 is_drunk_from_a_glass	encyclopaedic	6	1.000000
-is_eaten_edible	functional	138	1.000000
-is_electric	visual perceptual	28	1.000000
-is_entertaining_fun	encyclopaedic	37	1.000000
-is_expensive	encyclopaedic	66	1.000000
-is_food	taxonomic	84	1.000000
-is_footwear	taxonomic	5	1.000000
-is_for_women_females_girls	functional	32	1.000000
 is_found_in_a_bottle	visual perceptual	14	1.000000
 is_found_in_animals	visual perceptual	9	1.000000
-is_found_in_kitchens	encyclopaedic	38	1.000000
 is_found_in_libraries	encyclopaedic	5	1.000000
 is_found_in_seas	encyclopaedic	39	1.000000
 is_found_on_farms	encyclopaedic	15	1.000000
 is_found_on_rivers	encyclopaedic	7	1.000000
 is_found_on_water	encyclopaedic	13	1.000000
 is_furniture	taxonomic	15	1.000000
-is_grown	functional	50	1.000000
-is_hard_to_play	encyclopaedic	10	1.000000
-is_healthy	encyclopaedic	56	1.000000
 is_hot	other perceptual	15	1.000000
 is_in_an_orchestra	functional	11	1.000000
 is_juicy	other perceptual	25	1.000000
 is_liquid	visual perceptual	19	1.000000
-is_noisy_loud	other perceptual	79	1.000000
 is_on_the_face	encyclopaedic	5	1.000000
 is_played_does_play	functional	20	1.000000
 is_played_in_bands	functional	8	1.000000
-is_pretty_attractive_beautiful	encyclopaedic	74	1.000000
 is_read	functional	8	1.000000
 is_rolled	functional	5	1.000000
 is_sat_on	functional	13	1.000000
 is_seafood	taxonomic	10	1.000000
 is_sensitive	functional	6	1.000000
-is_sharp	other perceptual	47	1.000000
-is_small	visual perceptual	261	1.000000
-is_sweet	other perceptual	46	1.000000
-is_tasty	other perceptual	113	1.000000
 is_transport	taxonomic	32	1.000000
 is_unhealthy	encyclopaedic	15	1.000000
-is_used_in_cooking	functional	79	1.000000
 is_used_in_water	functional	5	1.000000
-is_useful	encyclopaedic	157	1.000000
-is_worn	functional	56	1.000000
 is_worn_when_cold	functional	7	1.000000
-is_written	encyclopaedic	5	1.000000
 made_of_cotton	visual perceptual	37	1.000000
-made_of_fabric_cloth_material	visual perceptual	72	1.000000
 made_of_lycra	visual perceptual	6	1.000000
-made_of_metal	visual perceptual	226	1.000000
-made_of_plastic	visual perceptual	194	1.000000
-made_of_silk	visual perceptual	16	1.000000
-made_of_wood	visual perceptual	144	1.000000
 made_of_wool	visual perceptual	25	1.000000
