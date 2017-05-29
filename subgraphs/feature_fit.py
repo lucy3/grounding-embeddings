@@ -282,9 +282,18 @@ def loocv_feature(C, f_idx, clf):
     scores = []
     def eval_clf(clf, X_test, y_test):
         pred_prob = clf.predict_proba(X_test)[:, 1]
-        pos_score = np.mean(np.log(pred_prob[y_test == 1]))
-        neg_score = np.mean(np.log(pred_prob[y_test == 0]))
-        return pos_score - neg_score
+
+        pos_probs = np.log(pred_prob[y_test == 1])
+        neg_probs = np.log(pred_prob[y_test == 0])
+
+        # Apply class prior (the classifiers fit a class-balanced
+        # dataset, so we can't trust their probs until applying the prior from
+        # the data).
+        p_c = float(len(c_idxs)) / len(y)
+        pos_probs += np.log(p_c)
+        pos_probs += np.log(1 - p_c)
+
+        return np.mean(pos_probs) - np.mean(neg_probs)
 
     if len(c_idxs) > 15:
         # Run 10-fold CV.
