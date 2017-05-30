@@ -19,6 +19,7 @@ import operator
 
 import numpy as np
 from scipy.stats.stats import pearsonr
+from scipy.stats import spearmanr
 from sklearn import linear_model
 from nltk.corpus import wordnet as wn
 from nltk.corpus import brown
@@ -27,13 +28,14 @@ import math
 from collections import Counter
 
 VOCAB_SOURCE = "cslb"
-SOURCE = "cslb"
+SOURCE = "wordnetres"
 PIVOT = "wikigiga"
+CORR = 'spearman_corr' # 'pearson_corr'
 
 VOCAB = "./all/vocab_%s.txt" % VOCAB_SOURCE
 INPUT_FILE1 = "./all/sim_%s_%s.txt" % (VOCAB_SOURCE, SOURCE)
 INPUT_FILE2 = "./all/sim_%s_%s.txt" % (VOCAB_SOURCE, PIVOT)
-OUTPUT_FILE = "./all/pearson_corr/%s/corr_%s_%s.txt" % (VOCAB_SOURCE, SOURCE, PIVOT)
+OUTPUT_FILE = "./all/%s/%s/corr_%s_%s.txt" % (CORR, VOCAB_SOURCE, SOURCE, PIVOT)
 
 if VOCAB_SOURCE == "mcrae":
     CONCSTATS = "../mcrae/CONCS_FEATS_concstats_brm.txt"
@@ -197,7 +199,10 @@ def main():
     neighbor_dist2 = get_neighbor_distance(INPUT_FILE2, vocabulary)
     pearson_co = defaultdict(float)
     for concept in vocabulary:
-        pearson_co[concept] = pearsonr(neighbor_dist1[concept], neighbor_dist2[concept])[0]
+    	if CORR == 'spearman_corr':
+    		pearson_co[concept] = spearmanr(neighbor_dist1[concept], neighbor_dist2[concept])[0]
+    	else:
+        	pearson_co[concept] = pearsonr(neighbor_dist1[concept], neighbor_dist2[concept])[0]
     sorted_pearson = sorted(pearson_co.items(), key=operator.itemgetter(1))
 
     concept_stats, average_in_domain, domains = \
