@@ -1,4 +1,4 @@
-# Graphs-Embeddings
+# Grounding-Embeddings
 
 (This is just a rough summary.)
 
@@ -17,6 +17,6 @@ You'll likely need: NLTK, sklearn, numpy, matplotlib, and several other packages
 
 ## Directory / File naming conventions
 
-The main directory has subgraphs, where we keep everything, and some empty folders that hold data. In subgraphs, all is where we keep our inputs and outputs. 
+The main directory has subgraphs, where we keep everything, and some empty folders that hold data. In subgraphs, all is where we keep our data outputs and intermediates. 
 
 
