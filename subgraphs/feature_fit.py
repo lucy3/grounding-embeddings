@@ -97,7 +97,7 @@ if SOURCE == "cslb":
 elif SOURCE == "mcrae":
     SOURCE_FORMAL = "McRae"
 
-SAVEFIG_KWARGS = {"transparent": True, "bbox_inches": "tight", "pad_inches": 0}
+SAVEFIG_KWARGS = {"bbox_inches": "tight", "pad_inches": 0, "dpi": 1200}
 
 
 Feature = namedtuple("Feature", ["name", "concepts", "wb_label", "wb_maj",
