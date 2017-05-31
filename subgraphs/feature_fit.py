@@ -657,7 +657,9 @@ def produce_unified_graph(vocab, features, feature_data, domain_concepts=None):
     zs *= 100
 
     concept_domains = {c: [d] for d, cs in domain_concepts.items() for c in cs}
-    analyze_domains(labels, zs, concept_domains=concept_domains)
+
+    with plt.style.context({"xtick.labelsize": 15}):
+        analyze_domains(labels, zs, concept_domains=concept_domains)
 
     # Render Z axis using colors
     colormap = plt.get_cmap("cool")
@@ -1025,13 +1027,16 @@ def main():
                            "sound", "tactile", "smell", "taste"],
                           ["function", "taxonomic"])
 
-    with plt.style.context({"font.size": 20, "axes.labelsize": 20, "xtick.labelsize": 17, "ytick.labelsize": 20}):
+    # Render two-col figures
+    with plt.style.context({"font.size": 18, "axes.labelsize": 18, "xtick.labelsize": 16, "ytick.labelsize": 16}):
         swarm_feature_cats(groups["br_label"], fcat_median)
 
         feature_data = [(result.feature.name, result.n_concepts, result.metric)
                         for result in feature_data]
         domain_concepts = do_cluster(vocab, features, feature_data)
 
+    # Render 1-col figures
+    with plt.style.context({"font.size": 20, "axes.labelsize": 20, "xtick.labelsize": 17, "ytick.labelsize": 17}):
         produce_unified_graph(vocab, features, feature_data, domain_concepts=domain_concepts)
         produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=domain_concepts)
 
