@@ -1025,7 +1025,7 @@ def main():
                            "sound", "tactile", "smell", "taste"],
                           ["function", "taxonomic"])
 
-    with plt.style.context({"font.size": 15, "axes.labelsize": 15, "xtick.labelsize": 13, "ytick.labelsize": 13}):
+    with plt.style.context({"font.size": 20, "axes.labelsize": 20, "xtick.labelsize": 17, "ytick.labelsize": 20}):
         swarm_feature_cats(groups["br_label"], fcat_median)
 
         feature_data = [(result.feature.name, result.n_concepts, result.metric)
