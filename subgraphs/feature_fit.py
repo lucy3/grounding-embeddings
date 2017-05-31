@@ -1025,15 +1025,15 @@ def main():
                            "sound", "tactile", "smell", "taste"],
                           ["function", "taxonomic"])
 
-    swarm_feature_cats(groups["br_label"], fcat_median)
+    with plt.style.context({"font.size": 15, "axes.labelsize": 15, "xtick.labelsize": 13, "ytick.labelsize": 13}):
+        swarm_feature_cats(groups["br_label"], fcat_median)
 
-    feature_data = [(result.feature.name, result.n_concepts, result.metric)
-                    for result in feature_data]
-    domain_concepts = do_cluster(vocab, features, feature_data)
+        feature_data = [(result.feature.name, result.n_concepts, result.metric)
+                        for result in feature_data]
+        domain_concepts = do_cluster(vocab, features, feature_data)
 
-    with plt.style.context({"font.size": 15}):
         produce_unified_graph(vocab, features, feature_data, domain_concepts=domain_concepts)
-    produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=domain_concepts)
+        produce_unified_domain_graph(vocab, features, feature_data, domain_concepts=domain_concepts)
 
 
 if __name__ == "__main__":
