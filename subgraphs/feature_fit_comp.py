@@ -48,7 +48,7 @@ def main():
     xs += np.random.randn(len(xs)) * 0.001
     ys += np.random.randn(len(ys)) * 0.001
     fig = plt.figure()
-    plt.rcParams.update({'font.size': 15})
+    plt.rcParams.update({'font.size': 20})
     ax = fig.add_subplot(111)
     axes = plt.gca()
     axes.set_xlim([-0.05,105])
@@ -57,7 +57,7 @@ def main():
     ax.set_ylabel(FORMAL_SOURCE2 + " feature fit")
     ax.scatter(xs*100, ys*100, color=colors, linewidth=0.0)
     for label in (ax.get_xticklabels() + ax.get_yticklabels()):
-    	label.set_fontsize(15)
+    	label.set_fontsize(20)
     slope, intercept, r_value, p_value, std_err = stats.linregress(xs, ys)
     print("slope", slope, "r", r_value)
     plt.plot(xs*100, slope*xs*100 + intercept, '-', color="DarkBlue", linewidth=2.0)
