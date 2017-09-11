@@ -36,25 +36,30 @@ from util import get_map_from_tsv
 # the relevant features. Each axis of the resulting graphs also involves the
 # pivot source.
 PIVOT = "wikigiga"
+
+# Vocabulary file with frequency information. Stored by default in word2vec
+# serialization, but not in Glove. So we need an auxiliary file for this
+# purpose.
 INPUT_FVOCAB = None
+
 if PIVOT == "mcrae":
     INPUT = "./all/mcrae_vectors.txt"
 elif PIVOT == "cslb":
     INPUT = "./all/cslb_vectors.txt"
 elif PIVOT == "wikigiga":
     INPUT = "../glove/glove.6B.300d.w2v.txt"
-    INPUT_FVOCAB = "/john0/scr1/jgauthie/vocab.txt"
+    INPUT_FVOCAB = "../glove/vocab.txt"
     MIN_WORD_COUNT = 300
 elif PIVOT == "cc":
     INPUT = "../glove/glove.840B.300d.w2v.txt"
-    INPUT_FVOCAB = "/john0/scr1/jgauthie/vocab.txt"
+    INPUT_FVOCAB = "../glove/vocab.txt"
     MIN_WORD_COUNT = 300
 elif PIVOT == "word2vec":
     INPUT = "../word2vec/GoogleNews-vectors-negative300.bin"
     MIN_WORD_COUNT = 300 * 30
 elif PIVOT == "mygiga":
-    INPUT = "/john0/scr1/jgauthie/vectors.en.w2v.txt"
-    INPUT_FVOCAB = "/john0/scr1/jgauthie/vocab.txt"
+    INPUT = "../word2vec/vectors.txt"
+    INPUT_FVOCAB = "../glove/vocab.txt"
     MIN_WORD_COUNT = 300
 
 SOURCE = "cslb"
