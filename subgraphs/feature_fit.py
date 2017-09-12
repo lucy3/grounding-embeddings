@@ -17,6 +17,7 @@ import matplotlib as mpl
 mpl.use("Agg")
 import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
+import nltk
 from scipy.spatial import distance
 import seaborn as sns
 from sklearn import metrics
@@ -88,6 +89,7 @@ CLUSTER_OUTPUT = "%s/clusters.txt" % OUT_DIR
 CONCEPT_OUTPUT = "%s/concepts.txt" % OUT_DIR
 CLASSIFIER_OUTPUT = "%s/classifiers.pkl" % OUT_DIR
 CLASSIFIER_NEIGHBOR_OUTPUT = "%s/classifier_neighbors.txt" % OUT_DIR
+CLASSIFIER_NEIGHBOR_NONOUN_OUTPUT = "%s/classifier_neighbors_nonouns.txt" % OUT_DIR
 LOG = "%s/log.txt" % OUT_DIR
 
 if PIVOT == "wikigiga":
@@ -951,7 +953,8 @@ def main():
 
     classifier_nearby = analyze_classifiers(feature_data, all_embeddings,
                                             min_count=MIN_WORD_COUNT)
-    with open(CLASSIFIER_NEIGHBOR_OUTPUT, "w") as f:
+    with open(CLASSIFIER_NEIGHBOR_OUTPUT, "w") as f, \
+            open(CLASSIFIER_NEIGHBOR_NONOUN_OUTPUT, "w") as f_nonoun:
         for result in feature_data:
             feature = result.feature.name
             nearby = classifier_nearby[feature]
@@ -959,6 +962,10 @@ def main():
             f.write("%s\t%.5f\n" % (feature, result.metric))
             for w, sim in nearby:
                 f.write("\t%.5f\t%s\n" % (sim, w))
+
+                _, pos = nltk.pos_tag([w])[0]
+                if not pos.startswith("NN"):
+                    f_nonoun.write("\t%.5f\t%s\n" % (sim, w))
 
     # Output raw feature data and group features
     with open(FF_OUTPUT, "w") as ff_out:
@@ -981,9 +988,9 @@ def main():
             cf_sorted = sorted(zip(concept_probs, vocab), reverse=True)
             for concept_prob, concept in cf_sorted:
                 is_positive = concept in result.feature.concepts
-                ff_out.write("%s\t%s\t%f\t%i\n"
-                             % (result.feature.name, concept,
-                                concept_prob, is_positive))
+                ff_out.write("%s\t%.5f\t%s\t%f\t%i\n"
+                             % (result.feature.name, result.metric,
+                                concept, concept_prob, is_positive))
 
     # Output grouped feature information
     with open(GROUP_OUTPUT, "w") as group_out:
