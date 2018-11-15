@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from collections import defaultdict, namedtuple, Counter
 from concurrent import futures
 from functools import partial
@@ -120,8 +122,8 @@ def load_all_embeddings():
         embeddings = KeyedVectors.load_word2vec_format(INPUT, binary=True)
     else:
         # GloVe format
-        embeddings = KeyedVectors.load_word2vec_format(INPUT, binary=False,
-                                                       fvocab=INPUT_FVOCAB)
+        embeddings = KeyedVectors.load_word2vec_format(INPUT, binary=False)
+                                                       #fvocab=INPUT_FVOCAB)
 
     if not Path(ALL_EMBEDDINGS).is_file():
         embeddings.save(ALL_EMBEDDINGS)
