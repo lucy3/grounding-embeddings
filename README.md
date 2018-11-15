@@ -10,7 +10,7 @@ Distributional word representation methods exploit word co-occurrences to build 
 
 ## Setup 
 
-You'll need: NLTK, sklearn, numpy, matplotlib, and several other packages.
+You'll need NLTK, sklearn, numpy, matplotlib, tqdm, and gensim. 
 
 ## Data
 
